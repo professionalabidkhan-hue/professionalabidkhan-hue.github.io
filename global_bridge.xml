@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say voice="Polly.Brian" language="en-GB">
+        Welcome to the Abid Khan E-Pedagogy Institute. 
+        I am the AI Sentinel. I am currently connecting you to 
+        Professor Doctor Master Abid Khan. Please wait.
+    </Say>
+
+    <Dial timeout="20" record="record-from-answer">
+        <Number>+923497469638</Number>
+    </Dial>
+
+    <Say>The Master is currently in a deep research session. Please leave a message.</Say>
+    <Record maxLength="30" action="handle_voicemail.php"/>
+</Response>

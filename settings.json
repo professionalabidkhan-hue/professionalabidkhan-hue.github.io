@@ -1,0 +1,8 @@
+{
+    "liveServer.settings.useWebExt": true,
+    "liveServer.settings.proxy": {
+        "enable": true,
+        "baseUri": "/abidkhan-e-pedagogy-institute",
+        "proxyUri": "http://localhost/abidkhan-e-pedagogy-institute"
+    }
+}
