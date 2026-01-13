@@ -3,248 +3,161 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Professor Doctor Abid Khan | Pedagogy Institute & Security Hub</title>
+    <title>IT Panel | Technical Excellence Laboratory</title>
     
-    <meta name="description" content="The official elite platform of Professor Doctor Abid Khan. Global expert in Pedagogy, secure Alphanumeric OTP systems, and advanced digital education architecture.">
-    <meta name="keywords" content="Professor Doctor Abid Khan, Abid Khan Pedagogy, Pedagogy Institute, Telenor OTP Security, Alphanumeric OTP, Secure Education Gateway, Digital Architecture Pakistan">
-    <meta name="author" content="Professor Doctor Abid Khan">
-    <meta property="og:title" content="Professor Doctor Abid Khan Pedagogy Institute">
-    <meta property="og:url" content="https://professionalabidkhan-hue.github.io">
-
-    <link rel="icon" type="image/png" href="ABID KHAN.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
             --primary-blue: #0b63d3;
-            --accent-orange: #ff9800;
             --it-purple: #a855f7;
-            --islamic-green: #10b981;
-            --dark-bg: #0a0b10;
-            --glass-white: rgba(255, 255, 255, 0.05);
             --neon-green: #00ff00;
+            --dark-bg: #0a0b10;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--dark-bg);
             color: #ffffff;
-            overflow-x: hidden;
-            -webkit-user-select: none; user-select: none;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at 50% 50%, #1a1c2c 0%, #0a0b10 100%);
-            z-index: -1;
+            min-height: 100vh;
         }
 
-        /* --- AI Interface Styles --- */
-        .ai-msg {
-            background: rgba(0, 255, 0, 0.1);
+        /* --- New Styling for Visibility --- */
+        .it-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-decoration: none !important;
+            transition: all 0.4s ease;
+            height: 100%;
+        }
+
+        .it-btn:hover {
+            background: rgba(168, 85, 247, 0.1);
+            border-color: var(--it-purple);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
+        }
+
+        .it-btn i {
+            font-size: 3rem;
+            color: var(--it-purple);
+            margin-bottom: 15px;
+        }
+
+        .course-title-master {
             color: #fff;
-            padding: 14px 18px;
-            border-radius: 20px 20px 20px 4px;
-            align-self: flex-start;
-            max-width: 85%;
-            font-size: 14px;
-            line-height: 1.6;
-            border-left: 4px solid var(--neon-green);
-            text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
-            animation: ghost-flicker 5s infinite;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: center;
         }
 
-        .user-msg {
-            background: var(--neon-green);
-            color: #000;
-            padding: 12px 18px;
-            border-radius: 20px 20px 4px 20px;
-            align-self: flex-end;
-            max-width: 85%;
-            font-size: 14px;
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(0,255,0,0.2);
+        .btn-return-dashboard {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: 0.3s;
         }
 
-        @keyframes ghost-flicker {
-            0%, 92%, 100% { opacity: 1; }
-            93% { opacity: 0.7; transform: translateX(2px); }
-            95% { opacity: 0.8; }
+        .btn-return-dashboard:hover {
+            background: #fff;
+            color: var(--primary-blue);
         }
 
-        @keyframes pulse-border { 0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4); } 50% { box-shadow: 0 0 0 12px rgba(0, 255, 0, 0); } }
-        @keyframes wave { 0%, 100% { height: 5px; } 50% { height: 15px; } }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+        .blink { animation: blinker 1.5s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
 
-        .wave-bar { width: 3px; height: 10px; background: var(--neon-green); animation: wave 1s infinite ease-in-out; }
-
-        /* --- Navbar & Cards --- */
-        .navbar { backdrop-filter: blur(10px); background: rgba(10, 11, 16, 0.8) !important; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .hero-title { font-weight: 800; background: linear-gradient(to right, #fff, var(--primary-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 3.5rem; }
-        .card { background: var(--glass-white); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; transition: 0.4s; height: 100%; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(255, 255, 255, 0.05); }
-        .icon-circle { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; background: rgba(255,255,255,0.1); font-size: 24px; }
+        /* AI Launcher Styles */
+        @keyframes pulse-border { 0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.6); } 50% { box-shadow: 0 0 0 15px rgba(0, 255, 0, 0); } }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#"><img src="ABID KHAN.png" alt="Logo" width="45" height="45" class="rounded-circle"></a>
-            <div class="collapse navbar-collapse" id="navContent">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="it_panel.html">IT Panel</a></li>
-                    <li class="nav-item"><a class="nav-link" href="islamic_studies.html">Islamic Studies</a></li>
-                </ul>
-            </div>
+<div class="container mt-5 pt-4">
+    <div class="row align-items-center mb-5">
+        <div class="col-md-8">
+            <h1 class="fw-bold text-uppercase" style="color: #ffffff; font-family: 'Orbitron', sans-serif; letter-spacing: 5px;">
+                Technical Excellence Laboratory
+            </h1>
+            <p class="text-secondary fs-4">Select a specialized IT module below</p>
+            <a href="index.html" class="btn-return-dashboard">
+                <i class="fas fa-th-large"></i> COMMAND BRIDGE
+            </a>
         </div>
-    </nav>
-
-    <section class="container text-center pt-5 mt-5">
-        <div class="py-5">
-            <h1 class="hero-title text-uppercase">Abid Khan E-Learning Hub</h1>
-            <p class="lead text-secondary">Global Education Architect: Designing the Future of Tech and Spirituality.</p>
-        </div>
-    </section>
-
-    <section class="container mb-5">
-        <div class="row g-4 justify-content-center">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body text-center" style="border-top: 4px solid var(--it-purple);">
-                        <div class="icon-circle"><i class="fas fa-laptop-code" style="color:var(--it-purple)"></i></div>
-                        <h4 style="color:var(--it-purple)">IT Panel</h4>
-                        <p class="small text-secondary">Advanced Full-stack and Alphanumeric Security modules.</p>
-                        <a href="it_panel.html" class="btn btn-outline-light w-100 mt-3">Enter Lab</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body text-center" style="border-top: 4px solid var(--islamic-green);">
-                        <div class="icon-circle"><i class="fas fa-book-quran" style="color:var(--islamic-green)"></i></div>
-                        <h4 style="color:var(--islamic-green)">Islamic Studies</h4>
-                        <p class="small text-secondary">Quranic Excellence, Tajweed, and Hifz Excellence.</p>
-                        <a href="islamic_studies.html" class="btn btn-outline-light w-100 mt-3">Enter Madrasa</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div id="welcome-bubble" style="display:none; position:fixed; bottom:100px; right:30px; background:#00ff00; color:#000; padding:10px 15px; border-radius:15px; font-family: sans-serif; font-size:12px; font-weight:bold; z-index:10001; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
-        Hello! Need help with your courses?
-        <div style="position:absolute; bottom:-8px; right:25px; width:0; height:0; border-left:10px solid transparent; border-right:10px solid transparent; border-top:10px solid #00ff00;"></div>
-    </div>
-
-    <div id="ai-launcher" onclick="toggleAI()" style="position:fixed; bottom:20px; right:20px; width:70px; height:70px; background:#000; border:2px solid #00ff00; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow: 0 0 25px rgba(0, 255, 0, 0.7); z-index:10000;">
-        <div id="ai-badge" style="position:absolute; top:0; right:0; width:20px; height:20px; background:red; border-radius:50%; display:none; animation: blink 1s infinite;"></div>
-        <div style="width:50px; height:50px; border-radius:50%; border:2px solid #00ff00; display:flex; align-items:center; justify-content:center; animation: pulse-border 2s infinite;">
-            <span style="font-size:10px; color:#00ff00; font-weight:bold; text-align:center; font-family: 'Courier New';">MASTER<br>CORE</span>
-        </div>
-    </div>
-
-    <div id="ai-command-sector" style="display:none; position:fixed; bottom:100px; right:20px; width:420px; height:600px; background: rgba(0, 8, 0, 0.98); border: 1px solid #00ff00; border-radius:24px; z-index:9999; flex-direction:column; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,1);">
-        <div style="padding:18px 25px; background: rgba(0,255,0,0.07); border-bottom: 1px solid rgba(0,255,0,0.2); display:flex; justify-content:space-between; align-items:center;">
-            <div>
-                <div style="color:#00ff00; font-weight:bold; font-size:15px;">PROFESSOR DR. MASTER CHIEF</div>
-                <div id="status-text" style="font-size:10px; color:#00ff00; opacity:0.7;">Neural Link Active</div>
-            </div>
-            <span onclick="toggleAI()" style="color:#00ff00; cursor:pointer; font-size:30px;">&times;</span>
-        </div>
-
-        <div id="discussion-feed" style="flex:1; padding:25px; overflow-y:auto; display:flex; flex-direction:column; gap:18px;">
-            <div class="ai-msg">Professor Dr. Master Chief online. Connection secure. How can I facilitate your IT or Quranic journey today?</div>
-        </div>
-
-        <div id="thinking-wave" style="display:none; padding:0 25px 15px; align-items:center; gap:5px;">
-            <div class="wave-bar"></div><div class="wave-bar" style="animation-delay: 0.1s"></div><div class="wave-bar" style="animation-delay: 0.2s"></div>
-            <span style="color:#008800; font-size:11px; margin-left:5px;">Processing...</span>
-        </div>
-
-        <div style="padding:20px;">
-            <div style="display:flex; background:rgba(255,255,255,0.08); border:1px solid #00ff00; border-radius:30px; padding:6px 18px; align-items:center;">
-                <input type="text" id="master-input" placeholder="Ask the Professor..." style="flex:1; background:transparent; border:none; color:#fff; outline:none;">
-                <button onclick="askAI()" style="background:#00ff00; border:none; width:35px; height:35px; border-radius:50%; cursor:pointer;">
-                    <i class="fas fa-paper-plane" style="color:black"></i>
-                </button>
+        
+        <div class="col-md-4">
+            <div class="p-4 rounded border-2 border border-info bg-dark text-center shadow-lg">
+                <small class="text-info fw-bold text-uppercase" style="letter-spacing: 2px;">Live Global Nodes</small>
+                <h1 class="text-white fw-bold display-4 mb-0" id="userCount">38</h1>
+                <span class="badge bg-success blink p-2 mt-2">SYSTEM ONLINE</span>
             </div>
         </div>
     </div>
 
-    <script type="importmap"> { "imports": { "@google/genai": "https://esm.run/@google/genai" } } </script>
-    <script type="module">
-        import { GoogleGenAI } from "@google/genai";
-        const API_KEY = "AIzaSyCLFfG8Uzcqoqvv4iA9-SxGiQHYkHrk3_k"; 
-        const genAI = new GoogleGenAI(API_KEY);
-        const model = genAI.getGenerativeModel({ 
-            model: "gemini-1.5-flash",
-            systemInstruction: "You are Professor Dr. Master Chief, the elite AI assistant for Abid Khan's E-Learning Hub. You specialize in IT Excellence and Quranic Studies. Your tone is futuristic and professional."
-        });
+    <div class="row g-5 mb-5">
+        <div class="col-12 col-md-6 col-lg-4">
+            <a href="courses/ms_office.html" class="it-btn position-relative">
+                <span class="badge position-absolute top-0 end-0 m-3 p-2 fs-6" style="background-color: var(--it-purple) !important;">3 Months</span>
+                <i class="fas fa-file-word"></i>
+                <span class="course-title-master">MS Office</span>
+            </a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <a href="courses/graphic_designing.html" class="it-btn position-relative">
+                <span class="badge position-absolute top-0 end-0 m-3 p-2 fs-6" style="background-color: var(--it-purple) !important;">6 Months</span>
+                <i class="fas fa-palette"></i>
+                <span class="course-title-master">Graphic Designing</span>
+            </a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <a href="courses/website_development.html" class="it-btn position-relative">
+                <span class="badge position-absolute top-0 end-0 m-3 p-2 fs-6" style="background-color: var(--it-purple) !important;">6 Months</span>
+                <i class="fas fa-code"></i>
+                <span class="course-title-master">Website Development</span>
+            </a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <a href="courses/android_app_development.html" class="it-btn position-relative">
+                <span class="badge position-absolute top-0 end-0 m-3 p-2 fs-6" style="background-color: var(--it-purple) !important;">2 Years</span>
+                <i class="fas fa-android"></i>
+                <span class="course-title-master">Android App Development</span>
+            </a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <a href="courses/ethical_hacking.html" class="it-btn position-relative">
+                <span class="badge position-absolute top-0 end-0 m-3 p-2 fs-6" style="background-color: var(--it-purple) !important;">6 Months</span>
+                <i class="fas fa-user-secret"></i>
+                <span class="course-title-master">Ethical Hacking</span>
+            </a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <a href="courses/ai_fundamentals.html" class="it-btn position-relative">
+                <span class="badge position-absolute top-0 end-0 m-3 p-2 fs-6" style="background-color: var(--it-purple) !important;">6 Months</span>
+                <i class="fas fa-brain"></i>
+                <span class="course-title-master">AI Fundamentals</span>
+            </a>
+        </div>
+    </div>
+</div>
 
-        let chat = model.start_chat({ history: [] });
+<div id="ai-launcher" onclick="alert('AI Initializing...')" style="position:fixed; bottom:20px; right:20px; width:80px; height:80px; background:#000; border:3px solid #00ff00; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow: 0 0 30px rgba(0, 255, 0, 0.8); z-index:10000;">
+    <div id="launcher-inner" style="width:60px; height:60px; border-radius:50%; border:2px solid #00ff00; display:flex; align-items:center; justify-content:center; animation: pulse-border 2s infinite;">
+        <span style="font-size:12px; color:#00ff00; font-weight:bold; text-align:center;">DR. MASTER<br>CHIEF</span>
+    </div>
+</div>
 
-        window.onload = () => {
-            setTimeout(() => {
-                document.getElementById('ai-badge').style.display = "block";
-                document.getElementById('welcome-bubble').style.display = "block";
-            }, 3000);
-        };
-
-        window.toggleAI = function() {
-            const sector = document.getElementById('ai-command-sector');
-            const bubble = document.getElementById('welcome-bubble');
-            const badge = document.getElementById('ai-badge');
-            
-            sector.style.display = sector.style.display === "none" ? "flex" : "none";
-            if(sector.style.display === "flex") {
-                bubble.style.display = "none";
-                badge.style.display = "none";
-            }
-        };
-
-        window.askAI = async function() {
-            const input = document.getElementById('master-input');
-            const feed = document.getElementById('discussion-feed');
-            const wave = document.getElementById('thinking-wave');
-            const query = input.value.trim();
-            if(!query) return;
-
-            feed.innerHTML += `<div class="user-msg">${query}</div>`;
-            input.value = '';
-            feed.scrollTop = feed.scrollHeight;
-            wave.style.display = "flex";
-
-            try {
-                const result = await chat.sendMessage(query);
-                const response = await result.response;
-                wave.style.display = "none";
-                const msgDiv = document.createElement('div');
-                msgDiv.className = 'ai-msg';
-                feed.appendChild(msgDiv);
-                
-                let text = response.text();
-                let i = 0;
-                function type() {
-                    if (i < text.length) {
-                        msgDiv.innerHTML += text.charAt(i);
-                        i++;
-                        feed.scrollTop = feed.scrollHeight;
-                        setTimeout(type, 10);
-                    }
-                }
-                type();
-            } catch (err) {
-                wave.style.display = "none";
-                feed.innerHTML += `<div class="ai-msg" style="color:red">Neural link failure. Check connectivity.</div>`;
-            }
-        };
-        document.getElementById('master-input').addEventListener('keypress', (e) => { if(e.key === 'Enter') askAI(); });
-    </script>
 </body>
 </html>
