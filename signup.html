@@ -102,50 +102,85 @@
         </form>
     </div>
 </div>
-
 <script>
-    function selectPath(role) {
-        // UI Toggle
-        document.getElementById('card-trainer').classList.remove('active');
-        document.getElementById('card-student').classList.remove('active');
-        
-        if(role === 'trainer') {
-            document.getElementById('card-trainer').classList.add('active');
-            document.getElementById('trainerFields').style.display = 'block';
-        } else {
-            document.getElementById('card-student').classList.add('active');
-            document.getElementById('trainerFields').style.display = 'none';
-        }
-        document.getElementById('selectedRole').value = role;
+  // Role selection for signup
+  function selectPath(role) {
+    document.getElementById('card-trainer').classList.remove('active');
+    document.getElementById('card-student').classList.remove('active');
+    
+    if(role === 'trainer') {
+      document.getElementById('card-trainer').classList.add('active');
+      document.getElementById('trainerFields').style.display = 'block';
+    } else {
+      document.getElementById('card-student').classList.add('active');
+      document.getElementById('trainerFields').style.display = 'none';
     }
+    document.getElementById('selectedRole').value = role;
+  }
 
-    function toggleButton() {
-        const checkbox = document.getElementById('agree');
-        const btn = document.getElementById('submitBtn');
-        if(checkbox.checked) {
-            btn.disabled = false;
-            btn.classList.add('btn-active');
-        } else {
-            btn.disabled = true;
-            btn.classList.remove('btn-active');
-        }
+  // Enable/disable submit button based on agreement
+  function toggleButton() {
+    const checkbox = document.getElementById('agree');
+    const btn = document.getElementById('submitBtn');
+    if(checkbox.checked) {
+      btn.disabled = false;
+      btn.classList.add('btn-active');
+    } else {
+      btn.disabled = true;
+      btn.classList.remove('btn-active');
     }
+  }
 
-    document.getElementById('signupForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const name = document.getElementById('full_name').value;
-        const role = document.getElementById('selectedRole').value;
-        const whatsapp = document.getElementById('whatsapp').value;
+  // Signup form logic
+  const signupForm = document.getElementById('signupForm');
+  if(signupForm) {
+    signupForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('full_name').value;
+      const role = document.getElementById('selectedRole').value;
+      const whatsapp = document.getElementById('whatsapp').value;
 
-        // WhatsApp Notification Logic (Master Notification)
-        const waText = encodeURIComponent(`Asalamu Alaikum Master Abid Khan. New Identity Registered.\nName: ${name}\nRole: ${role}\nWhatsApp: ${whatsapp}`);
-        const waLink = `https://api.whatsapp.com/send?phone=923497469638&text=${waText}`;
+      const waText = encodeURIComponent(
+        `Asalamu Alaikum Master Abid Khan. New Identity Registered.\nName: ${name}\nRole: ${role}\nWhatsApp: ${whatsapp}`
+      );
+      const waLink = `https://api.whatsapp.com/send?phone=923497469638&text=${waText}`;
 
-        alert('Identity Initialization Request Sent to Master Core.');
-        window.open(waLink, '_blank');
-        window.location.href = 'signin.html?registered';
+      alert('Identity Initialization Request Sent to Master Core.');
+      window.open(waLink, '_blank');
+      window.location.href = 'signin.html?registered';
     });
+  }
+
+  // Signin gate logic
+  const loginGate = document.getElementById('loginGate');
+  if(loginGate) {
+    loginGate.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      const errorBox = document.getElementById('vault-error');
+
+      if (email === "professor@abidkhan.com" && pass === "MASTER_CORE_2026") {
+        window.location.href = "DASHBOARD_MENTOR.html";
+      } else if (email === "student@abidkhan.com" && pass === "STUDENT_GATE_2026") {
+        window.location.href = "DASHBOARD_STUDENT.html";
+      } else {
+        errorBox.style.display = "block";
+        errorBox.innerText = "Identity Verification Failed.";
+      }
+    });
+  }
+
+  // Disable inspect element
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.onkeydown = function(e) {
+    if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode))) return false;
+  };
+</script>
+
+
 </script>
 </body>
 </html>
