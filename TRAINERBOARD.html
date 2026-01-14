@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Professor Command | ABID KHAN HUB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root { --emerald: #00e676; --dark-core: #05060a; --glass-white: rgba(255, 255, 255, 0.05); --info-blue: #4fc3f7; --ruby: #ff1744; }
+        body { background: var(--dark-core); color: #f8f9fa; font-family: 'Inter', sans-serif; background: radial-gradient(circle at bottom left, #0a1f16, #05060a); min-height: 100vh; }
+        
+        .trainer-card { background: var(--glass-white); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 25px; padding: 25px; margin-bottom: 20px; transition: 0.3s; }
+        .trainer-card:hover { border-color: var(--info-blue); }
+        
+        .status-box { padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; }
+        .status-live { background: rgba(0, 230, 118, 0.2); color: var(--emerald); border: 1px solid var(--emerald); }
+
+        /* VISION CENTER - 700PX HEIGHT */
+        .live-vision-container {
+            height: 700px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            border-radius: 25px;
+            border: 2px solid var(--info-blue);
+            overflow: hidden;
+            position: relative;
+        }
+
+        video#mainDisplay {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+            display: none; /* Hidden until stream starts */
+        }
+
+        .nav-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 10px 20px; border-radius: 12px; transition: 0.3s; font-weight: 600; }
+        .nav-btn.active { background: var(--info-blue); color: black; font-weight: 700; }
+        
+        .panel-content { display: none; }
+        .panel-content.active { display: block; }
+
+        /* COMMAND MEDIA DOCK */
+        .media-dock { 
+            background: rgba(0,0,0,0.85); 
+            border-radius: 50px; 
+            padding: 12px 25px; 
+            display: flex; 
+            gap: 20px; 
+            border: 1px solid var(--info-blue); 
+            box-shadow: 0 0 30px rgba(79, 195, 247, 0.2); 
+            backdrop-filter: blur(10px);
+        }
+        .dock-btn { background: none; border: none; color: #fff; font-size: 1.5rem; transition: 0.3s; }
+        .dock-btn:hover { color: var(--info-blue); transform: scale(1.1); }
+        .recording-active { color: var(--ruby) !important; animation: blink 1s infinite; }
+        
+        @keyframes blink { 50% { opacity: 0.4; } }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid px-5 py-4">
+    <header class="mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <div id="sessionStatus" class="status-box status-live mb-2 d-inline-block">Command Center: Active</div>
+                <h1 class="fw-800 m-0">AKH <span class="text-info">PROFESSOR</span> COMMAND</h1>
+            </div>
+            <div class="d-flex gap-3 align-items-center">
+                <div class="text-end me-3">
+                    <small class="text-secondary d-block">Uptime</small>
+                    <span id="timer" class="fw-bold text-emerald">00:00:00</span>
+                </div>
+                <button class="btn btn-outline-danger rounded-pill px-4" onclick="location.reload()">LOGOUT</button>
+            </div>
+        </div>
+        
+        <div class="d-flex gap-2 mt-4">
+            <button class="nav-btn active" onclick="showPanel('matrixPanel', this)"><i class="bi bi-grid-3x3-gap me-2"></i>Control Matrix</button>
+            <button class="nav-btn" onclick="showPanel('liveHubPanel', this)"><i class="bi bi-broadcast me-2"></i>Live Teaching Hub</button>
+            <button class="nav-btn" onclick="showPanel('curriculumPanel', this)"><i class="bi bi-book me-2"></i>Curriculum Sync</button>
+        </div>
+    </header>
+
+    <div id="matrixPanel" class="panel-content active">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="trainer-card text-center py-5">
+                    <h6 class="text-secondary small text-uppercase fw-bold">Total IT Students</h6>
+                    <h1 class="fw-800 text-info display-4">582</h1>
+                    <div class="small text-emerald mt-2"><i class="bi bi-graph-up"></i> +12% this week</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="trainer-card text-center py-5">
+                    <h6 class="text-secondary small text-uppercase fw-bold">Total Quran Students</h6>
+                    <h1 class="fw-800 text-emerald display-4">702</h1>
+                    <div class="small text-emerald mt-2"><i class="bi bi-check-circle"></i> Sync Verified</div>
+                </div>
+            </div>
+            <div class="col-md-4">  
+                <div class="trainer-card h-100">
+                    <h6 class="fw-bold mb-3"><i class="bi bi-terminal me-2"></i>AI BOSS LOG</h6>
+                    <div id="logConsole" style="font-family:'Courier New', monospace; font-size: 0.85rem; height: 120px; overflow-y: auto;" class="text-info">
+                        > Waiting for sync command...<br>
+                        > Handshake with Database... OK.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="liveHubPanel" class="panel-content">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="live-vision-container shadow-lg">
+                    <video id="mainDisplay" autoplay playsinline></video>
+                    
+                    <div id="videoPlaceholder" class="text-center">
+                        <i class="bi bi-camera-video-off display-1 text-secondary"></i>
+                        <h3 class="mt-3 fw-bold">VISION CENTER READY</h3>
+                        <p class="text-secondary">Professor, initialize your stream below</p>
+                    </div>
+
+                    <div class="position-absolute bottom-0 mb-4">
+                        <div class="media-dock">
+                            <button class="dock-btn" onclick="startCam()" title="Camera"><i class="bi bi-camera-video-fill"></i></button>
+                            <button class="dock-btn" onclick="startShare()" title="Share Screen"><i class="bi bi-display"></i></button>
+                            <button class="dock-btn" id="recBtn" onclick="toggleRec()" title="Record Session"><i class="bi bi-record-circle"></i></button>
+                            <button class="dock-btn text-warning" onclick="sendNudge()" title="Nudge Students"><i class="bi bi-bell-fill"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3">
+                <div class="trainer-card" style="height: 700px; overflow-y: auto;">
+                    <h5 class="fw-bold border-bottom border-secondary pb-3">
+                        <i class="bi bi-chat-dots me-2"></i>LIVE INTERACTION
+                    </h5>
+                    <div id="studentQuestions" class="small mt-3">
+                        <div class="p-2 mb-2 rounded bg-dark border-start border-info">
+                            <small class="text-info">SYSTEM</small>
+                            <p class="m-0 text-white">Vision height set to 700px. Database listening...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="curriculumPanel" class="panel-content">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="trainer-card" style="border-top: 5px solid var(--emerald);">
+                    <h5 class="fw-bold mb-4"><i class="bi bi-journal-check me-2"></i>QURANIC RESOURCES</h5>
+                    <div class="d-grid gap-3">
+                        <button class="btn btn-dark text-start border-secondary p-3" onclick="sync('Noorani Qaida')">
+                            <i class="bi bi-file-earmark-pdf text-danger me-2"></i> Sync Noorani Qaida PDF
+                        </button>
+                        <button class="btn btn-dark text-start border-secondary p-3" onclick="sync('Tajweed Rules')">
+                            <i class="bi bi-file-earmark-pdf text-danger me-2"></i> Sync Tajweed Rules PDF
+                        </button>
+                        <button class="btn btn-dark text-start border-secondary p-3" onclick="sync('Complete Namaz')">
+                            <i class="bi bi-file-earmark-pdf text-danger me-2"></i> Sync Complete Namaz PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="trainer-card" style="border-top: 5px solid var(--info-blue);">
+                    <h5 class="fw-bold mb-4"><i class="bi bi-cpu me-2"></i>IT CURRICULUM</h5>
+                    <div class="bg-dark p-4 rounded border border-secondary mb-3">
+                        <label class="small text-secondary mb-2">Upload Module Content</label>
+                        <input type="file" class="form-control bg-transparent border-secondary text-white">
+                    </div>
+                    <button class="btn btn-info w-100 fw-bold py-3" onclick="sync('IT Module')">DEPLOY IT CONTENT TO GLOBAL DATABASE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /* ---------------------------------------------------------
+       SECTION 1: DASHBOARD LOGIC (PROFESSOR COMMANDS)
+    ---------------------------------------------------------- */
+    function showPanel(panelId, btn) {
+        console.log("Switching to: " + panelId); // Verification log
+        document.querySelectorAll('.panel-content').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        
+        const targetPanel = document.getElementById(panelId);
+        if(targetPanel) {
+            targetPanel.classList.add('active');
+            btn.classList.add('active');
+        }
+    }
+
+    async function startCam() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
+            const video = document.getElementById('mainDisplay');
+            video.srcObject = stream;
+            video.style.display = 'block';
+            document.getElementById('videoPlaceholder').style.display = 'none';
+            logAction("Camera initialized and broadcasting.");
+        } catch(err) {
+            alert("Professor, please allow camera access.");
+        }
+    }
+
+    async function startShare() {
+        try {
+            const stream = await navigator.mediaDevices.getDisplayMedia({video:true});
+            const video = document.getElementById('mainDisplay');
+            video.srcObject = stream;
+            video.style.display = 'block';
+            document.getElementById('videoPlaceholder').style.display = 'none';
+            logAction("Screen share active.");
+        } catch(err) {
+            console.log("Share cancelled.");
+        }
+    }
+
+    let isRec = false;
+    function toggleRec() {
+        isRec = !isRec;
+        document.getElementById('recBtn').classList.toggle('recording-active');
+        logAction(isRec ? "RECORDING STARTED." : "RECORDING STOPPED AND SAVED.");
+    }
+
+    function sendNudge() {
+        logAction("Sent 'Join Class' nudge to all active students.");
+        alert("Global Nudge Sent!");
+    }
+
+    function sync(name) {
+        logAction(`Syncing ${name} to Student Library... Success.`);
+        alert("Professor Khan, " + name + " has been deployed.");
+    }
+
+    function logAction(msg) {
+        const log = document.getElementById('logConsole');
+        if(log) {
+            log.innerHTML += `<br>> ${msg}`;
+            log.scrollTop = log.scrollHeight;
+        }
+    }
+
+    let seconds = 0;
+    setInterval(() => {
+        seconds++;
+        const timerElement = document.getElementById('timer');
+        if(timerElement) {
+            const hrs = Math.floor(seconds / 3600).toString().padStart(2, '0');
+            const mins = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+            const secs = (seconds % 60).toString().padStart(2, '0');
+            timerElement.innerText = `${hrs}:${mins}:${secs}`;
+        }
+    }, 1000);
+
+    /* ---------------------------------------------------------
+       SECTION 2: AKH STEALTH SECURITY (ANTI-STEAL)
+    ---------------------------------------------------------- */
+    
+    // Prevent Right Click
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Prevent F12, Ctrl+U, Ctrl+I, Ctrl+S
+    document.addEventListener('keydown', function(e) {
+        if (
+            e.key === "F12" || 
+            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+            (e.ctrlKey && e.key === 'U') ||
+            (e.ctrlKey && e.key === 'S')
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // Disable Console Logging for Students (Security by Obscurity)
+    // To see logs yourself while testing, comment out the lines below
+    // console.log = function() {};
+    // console.warn = function() {};
+    // console.error = function() {};
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Portal | ABID KHAN HUB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root { --emerald: #00e676; --dark-core: #05060a; --glass-white: rgba(255, 255, 255, 0.05); --info-blue: #4fc3f7; }
+        body { background: var(--dark-core); color: #f8f9fa; font-family: 'Inter', sans-serif; min-height: 100vh; }
+        .student-card { background: var(--glass-white); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; }
+        .nav-btn { background: none; border: none; color: #888; padding: 10px 20px; font-weight: 700; transition: 0.3s; }
+        .nav-btn.active { color: var(--emerald); border-bottom: 3px solid var(--emerald); }
+        .panel-content { display: none; }
+        .panel-content.active { display: block; }
+
+        /* Media Interaction Dock */
+        .media-dock { background: rgba(0,0,0,0.85); border-radius: 50px; padding: 12px 25px; display: flex; gap: 20px; border: 1px solid var(--emerald); box-shadow: 0 0 20px rgba(0, 230, 118, 0.2); }
+        .dock-btn { background: none; border: none; color: #fff; font-size: 1.4rem; transition: 0.3s; position: relative; }
+        .dock-btn:hover { color: var(--emerald); transform: scale(1.1); }
+        .recording-on { color: #ff1744 !important; animation: pulse 1s infinite; }
+        @keyframes pulse { 50% { opacity: 0.4; } }
+        .badge-live { background: var(--emerald); color: black; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-weight: 800; vertical-align: middle; }
+    </style>
+</head>
+<body>
+
+<div class="container py-4">
+    <header class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h2 class="fw-800 m-0">STUDENT <span class="text-emerald">HUB</span> <span class="badge-live">LIVE</span></h2>
+            <p class="text-secondary small">Session ID: <span class="text-info">AKH-ALPHA-01</span></p>
+        </div>
+        <div class="d-flex gap-3">
+            <button class="nav-btn active" onclick="showPanel('liveView', this)">LIVE CLASS</button>
+            <button class="nav-btn" onclick="showPanel('library', this)">CURRICULUM</button>
+        </div>
+    </header>
+
+    <div id="liveView" class="panel-content active">
+        <div class="student-card text-center position-relative" style="background: #000; min-height: 480px; border: 2px solid #222; display: flex; align-items: center; justify-content: center;">
+            <video id="studentFeed" autoplay playsinline style="width:100%; border-radius: 15px; display:none;"></video>
+            
+            <div id="placeholder">
+                <i class="bi bi-broadcast text-emerald display-1 mb-3"></i>
+                <h5>Waiting for Connection...</h5>
+                <p class="small text-secondary">Use the dock below to share your screen with Professor Khan</p>
+            </div>
+
+            <div class="position-absolute bottom-0 mb-4">
+                <div class="media-dock">
+                    <button class="dock-btn" onclick="studentShareScreen()" title="Share My Screen"><i class="bi bi-display"></i></button>
+                    <button class="dock-btn" id="studentRecBtn" onclick="toggleStudentRec()" title="Record Lesson Locally"><i class="bi bi-record-circle"></i></button>
+                    <button class="dock-btn" onclick="alert('Notification sent to Professor Khan!')" title="Raise Hand"><i class="bi bi-hand-index-thumb"></i></button>
+                    <button class="dock-btn text-info" onclick="toggleCamera()" title="Open My Camera"><i class="bi bi-camera-video"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="library" class="panel-content">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="student-card border-top border-danger border-4">
+                    <h6>Noorani Qaida</h6>
+                    <a href="noorani_qaida.pdf" class="btn btn-sm btn-outline-light w-100 mt-2">Open Resource</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="student-card border-top border-info border-4">
+                    <h6>Tajweed Rules</h6>
+                    <a href="tajweedrules.pdf" class="btn btn-sm btn-outline-light w-100 mt-2">Open Resource</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="student-card border-top border-emerald border-4">
+                    <h6>Complete Namaz</h6>
+                    <a href="Complete-Namaz.pdf" class="btn btn-sm btn-outline-light w-100 mt-2">Open Resource</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /* ---------------------------------------------------------
+       SECTION 1: STUDENT PORTAL LOGIC
+    ---------------------------------------------------------- */
+    function showPanel(id, btn) {
+        document.querySelectorAll('.panel-content').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        
+        const target = document.getElementById(id);
+        if(target) {
+            target.classList.add('active');
+            btn.classList.add('active');
+        }
+    }
+
+    async function studentShareScreen() {
+        try {
+            const screen = await navigator.mediaDevices.getDisplayMedia({ video: true });
+            const feed = document.getElementById('studentFeed');
+            feed.srcObject = screen;
+            feed.style.display = 'block';
+            document.getElementById('placeholder').style.display = 'none';
+        } catch(e) { 
+            console.warn("Screen share cancelled"); 
+        }
+    }
+
+    async function toggleCamera() {
+        try {
+            const cam = await navigator.mediaDevices.getUserMedia({ video: true });
+            const feed = document.getElementById('studentFeed');
+            feed.srcObject = cam;
+            feed.style.display = 'block';
+            document.getElementById('placeholder').style.display = 'none';
+        } catch(e) { 
+            alert("Professor requires camera access for verification."); 
+        }
+    }
+
+    let isRecording = false;
+    function toggleStudentRec() {
+        isRecording = !isRecording;
+        const btn = document.getElementById('studentRecBtn');
+        if(btn) btn.classList.toggle('recording-on');
+        
+        if(isRecording) {
+            logStudentAction("Started recording lesson.");
+        } else {
+            alert("Recording saved to your local device!");
+        }
+    }
+
+    function logStudentAction(msg) {
+        // This will link to your Firebase Logs later
+        console.info("Activity: " + msg);
+    }
+
+    /* ---------------------------------------------------------
+       SECTION 2: AKH STEALTH SECURITY (ANTI-STEAL)
+    ---------------------------------------------------------- */
+    
+    // 1. Disable Right-Click
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // 2. Block F12, Ctrl+U (Source), Ctrl+I (Inspect), Ctrl+S (Save)
+    document.addEventListener('keydown', function(e) {
+        if (
+            e.key === "F12" || 
+            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+            (e.ctrlKey && e.key === 'U') ||
+            (e.ctrlKey && e.key === 'S')
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // 3. Clear Console to prevent data mining
+    // Note: I've disabled the aggressive "debugger loop" here so students' 
+    // older computers don't freeze while trying to run your high-quality video.
+    console.log = function() {};
+    console.warn = function() {};
+    console.error = function() {};
+
+</script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Master Command | ABID KHAN HUB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        :root { 
+            --emerald: #00e676; 
+            --dark-core: #05060a; 
+            --glass-white: rgba(255, 255, 255, 0.05);
+            --info-blue: #4fc3f7;
+            --neon-purple: #a855f7;
+            --gemini-spark: #4285f4;
+        }
+        
+        body { background: var(--dark-core); color: #f8f9fa; font-family: 'Inter', sans-serif; background: radial-gradient(circle at center, #102a43, #05060a); min-height: 100vh; overflow-x: hidden; }
+
+        /* Master Cards */
+        .master-card { background: var(--glass-white); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 25px; padding: 25px; margin-bottom: 20px; transition: 0.3s ease; }
+        .stat-value { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; color: var(--info-blue); }
+
+        /* Navigation */
+        .nav-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 10px 20px; border-radius: 12px; transition: 0.3s; }
+        .nav-btn.active { background: var(--neon-purple); border-color: var(--neon-purple); box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); }
+
+        /* Gemini Boss Interface */
+        .gemini-card { background: rgba(0, 0, 0, 0.4); border: 2px solid var(--gemini-spark); border-radius: 25px; height: 600px; display: flex; flex-direction: column; overflow: hidden; }
+        .ai-pulse { width: 12px; height: 12px; background: var(--gemini-spark); border-radius: 50%; display: inline-block; margin-right: 10px; box-shadow: 0 0 10px var(--gemini-spark); animation: ai-glow 2s infinite; }
+        @keyframes ai-glow { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
+
+        #chatWindow { flex-grow: 1; overflow-y: auto; padding: 20px; scrollbar-width: thin; scrollbar-color: var(--gemini-spark) transparent; }
+        .ai-msg { background: rgba(66, 133, 244, 0.1); border-radius: 18px; padding: 15px; margin-bottom: 15px; border-left: 4px solid var(--gemini-spark); max-width: 85%; }
+        .user-msg { background: rgba(255,255,255,0.05); border-radius: 18px; padding: 15px; margin-bottom: 15px; text-align: right; margin-left: auto; max-width: 80%; border-right: 4px solid var(--neon-purple); }
+        
+        .gemini-input { background: rgba(255,255,255,0.05); border: 1px solid rgba(66, 133, 244, 0.3); color: white; border-radius: 0; padding: 12px 20px; }
+        .gemini-input:focus { background: rgba(255,255,255,0.1); color: white; border-color: var(--gemini-spark); box-shadow: none; }
+
+        .panel-content { display: none; }
+        .panel-content.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="container py-4">
+    <header class="mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <span class="badge bg-info text-dark mb-2">FOUNDER ACCESS</span>
+                <h1 class="fw-800" style="font-family:'Orbitron'; font-size: 1.5rem;">AKH <span style="color:var(--neon-purple)">MASTER</span> COMMAND</h1>
+            </div>
+            <div class="d-flex gap-2">
+                <button class="nav-btn active" onclick="showPanel('overviewPanel', this)">Infrastructure</button>
+                <button class="nav-btn" onclick="showPanel('aiPanel', this)"><i class="bi bi-cpu-fill me-2"></i>Gemini Boss AI</button>
+            </div>
+        </div>
+    </header>
+
+    <hr class="border-secondary opacity-25 mb-4">
+
+    <div id="overviewPanel" class="panel-content active">
+        <div class="row g-4">
+            <div class="col-md-8">
+                <div class="master-card h-100">
+                    <h5 class="fw-bold mb-4 text-info">Hub Network Health</h5>
+                    <div class="row text-center mb-4">
+                        <div class="col-4">
+                            <small class="text-secondary uppercase small">Users</small>
+                            <div class="stat-value">1.2k</div>
+                        </div>
+                        <div class="col-4">
+                            <small class="text-secondary uppercase small">Nodes</small>
+                            <div class="stat-value" style="color:var(--neon-purple)">42</div>
+                        </div>
+                        <div class="col-4">
+                            <small class="text-secondary uppercase small">Uptime</small>
+                            <div class="stat-value text-success">99.9%</div>
+                        </div>
+                    </div>
+                    <div class="bg-black p-3 rounded-4" style="border: 1px solid #222;">
+                        <div class="d-flex justify-content-between small mb-2">
+                            <span class="text-secondary">Alphanumeric Security Shield</span>
+                            <span class="text-emerald">Active</span>
+                        </div>
+                        <div class="progress" style="height: 6px; background: #111;">
+                            <div class="progress-bar bg-emerald" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="master-card h-100">
+                    <h6 class="fw-bold mb-3"><i class="bi bi-broadcast text-danger me-2"></i>Global Alerts</h6>
+                    <textarea id="globalBroadcast" class="form-control bg-dark border-secondary text-white mb-3 small" rows="3" placeholder="Broadcast to all dashboards..."></textarea>
+                    <button class="btn btn-danger w-100 btn-sm fw-bold" onclick="alert('Sent to all Students & Trainers!')">DEPLOY EMERGENCY SIGNAL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="aiPanel" class="panel-content">
+        <div class="gemini-card shadow-lg">
+            <div class="p-3 border-bottom border-secondary d-flex justify-content-between align-items-center bg-black bg-opacity-50">
+                <div>
+                    <span class="ai-pulse"></span>
+                    <span class="fw-800 text-uppercase" style="color:var(--gemini-spark); font-family:'Orbitron'; letter-spacing:1px;">Boss Mode: Initialized</span>
+                </div>
+                <span class="badge rounded-pill border border-info text-info">Gemini 1.5 Pro</span>
+            </div>
+            
+            <div id="chatWindow">
+                <div class="ai-msg">
+                    <strong>[SYSTEM MESSAGE]</strong><br>
+                    Assalamu Alaikum, Professor Doctor Abid Khan. I have complete oversight of the Hub. I am currently monitoring all Trainer-Student interactions. How shall we direct the empire today?
+                </div>
+            </div>
+
+            <div class="p-3 bg-black">
+                <div class="input-group">
+                    <select id="commandContext" class="btn btn-dark border-secondary text-info small">
+                        <option value="professor">As Founder</option>
+                        <option value="trainer">Audit Trainers</option>
+                        <option value="student">Matrix Analysis</option>
+                        <option value="security">Shield Status</option>
+                    </select>
+                    <input type="text" id="userInput" class="form-control gemini-input" placeholder="Type command (e.g., 'Audit accuracy levels')...">
+                    <button class="btn btn-primary px-4" onclick="executeBossCommand()"><i class="bi bi-lightning-fill"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showPanel(panelId, btn) {
+        document.querySelectorAll('.panel-content').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(panelId).classList.add('active');
+        btn.classList.add('active');
+    }
+
+    function executeBossCommand() {
+        const input = document.getElementById('userInput');
+        const context = document.getElementById('commandContext').value;
+        const chat = document.getElementById('chatWindow');
+        
+        if(input.value.trim() !== "") {
+            // User Command
+            chat.innerHTML += `<div class="user-msg"><strong>[${context.toUpperCase()}]</strong>: ${input.value}</div>`;
+            
+            // Logic for Boss AI Response
+            const cmd = input.value.toLowerCase();
+            setTimeout(() => {
+                let response = "Understood, Professor. Directive received. Processing logic for the Hub nodes.";
+                
+                if(context === "trainer") {
+                    response = "Trainer Audit: 42 trainers are online. Pedagogical standards are at 98%. I have logged a minor delay in Dr. Ahmed's session.";
+                } else if(context === "student") {
+                    response = "Matrix Report: Juz 30 completion rate is rising. 15 students are ready for their Final Tajweed Exam.";
+                } else if(context === "security") {
+                    response = "Shield Status: Alphanumeric encryption is 100% stable. No unauthorized packets detected.";
+                } else if(cmd.includes("hello") || cmd.includes("salam")) {
+                    response = "Wa Alaikum Assalam, Professor. Systems are at your command.";
+                }
+
+                chat.innerHTML += `<div class="ai-msg"><strong>BOSS-AI:</strong> ${response}</div>`;
+                chat.scrollTop = chat.scrollHeight;
+            }, 800);
+            
+            input.value = "";
+            chat.scrollTop = chat.scrollHeight;
+        }
+    }
+
+    // Auto-scroll chat on start
+    window.onload = function() {
+        const chat = document.getElementById('chatWindow');
+        chat.scrollTop = chat.scrollHeight;
+    };
+</script>
+
+</body>
+</html>
