@@ -102,54 +102,82 @@
         </form>
     </div>
 </div>
-    <script>
-// Optimized Signup Logic for Master Abid Khan
-const signupForm = document.getElementById('signupForm');
-if(signupForm) {
-  signupForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
+<script>
+  // Role selection for signup
+  function selectPath(role) {
+    document.getElementById('card-trainer').classList.remove('active');
+    document.getElementById('card-student').classList.remove('active');
     
-    // 1. Get Form Data
-    const name = document.getElementById('full_name').value;
-    const email = document.getElementById('email').value; // Ensure you have this ID in HTML
-    const role = document.getElementById('selectedRole').value;
-    const whatsapp = document.getElementById('whatsapp').value;
-    const password = document.getElementById('password').value;
-
-    try {
-      // 2. Send Data to MongoDB (via Vercel API)
-      const response = await fetch('/api/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          name, 
-          email, 
-          role, 
-          whatsapp, 
-          password, 
-          joined_at: new Date() 
-        })
-      });
-
-      if (response.ok) {
-        // 3. Prepare WhatsApp Notification
-        const waText = encodeURIComponent(
-          `Asalamu Alaikum Master Abid Khan. New Identity Saved to MongoDB.\nName: ${name}\nRole: ${role}\nEmail: ${email}`
-        );
-        const waLink = `https://api.whatsapp.com/send?phone=923497469638&text=${waText}`;
-
-        alert('Identity Saved to Database. Master Core Notified.');
-        window.open(waLink, '_blank');
-        window.location.href = 'signin.html?registered';
-      } else {
-        alert("Database Error: Could not save identity.");
-      }
-    } catch (error) {
-      console.error("Connection Failed:", error);
-      alert("Network Error. Check your Master Core connection.");
+    if(role === 'trainer') {
+      document.getElementById('card-trainer').classList.add('active');
+      document.getElementById('trainerFields').style.display = 'block';
+    } else {
+      document.getElementById('card-student').classList.add('active');
+      document.getElementById('trainerFields').style.display = 'none';
     }
-  });
-}
-    </script>
+    document.getElementById('selectedRole').value = role;
+  }
+
+  // Enable/disable submit button
+  function toggleButton() {
+    const checkbox = document.getElementById('agree');
+    const btn = document.getElementById('submitBtn');
+    if(checkbox.checked) {
+      btn.disabled = false;
+      btn.classList.add('btn-active');
+    } else {
+      btn.disabled = true;
+      btn.classList.remove('btn-active');
+    }
+  }
+
+  // Optimized Signup Logic for Master Abid Khan
+  const signupForm = document.getElementById('signupForm');
+  if(signupForm) {
+    signupForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // 1. Collect all Master Fields
+      const name = document.getElementById('full_name').value;
+      const email = document.getElementById('email').value;
+      const role = document.getElementById('selectedRole').value;
+      const whatsapp = document.getElementById('whatsapp').value;
+      const password = document.getElementById('password').value;
+      const department = document.getElementById('department').value; // "IT" or "QURAN"
+      const timing = document.getElementById('timing').value;
+      const fee = document.getElementById('proposed_fee').value;
+
+      try {
+        // 2. Send Data to MongoDB (via Vercel API)
+        const response = await fetch('/api/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            name, email, role, whatsapp, password, 
+            department, timing, fee,
+            joined_at: new Date() 
+          })
+        });
+
+        if (response.ok) {
+          // 3. Prepare Master Notification
+          const waText = encodeURIComponent(
+            `Asalamu Alaikum Master Abid Khan.\nNew ${department} Registration: ${name}\nRole: ${role}\nTiming: ${timing}\nFee: ${fee}`
+          );
+          const waLink = `https://api.whatsapp.com/send?phone=923497469638&text=${waText}`;
+
+          alert('Identity Secured. Master Core Notified.');
+          window.open(waLink, '_blank');
+          window.location.href = 'signin.html?registered';
+        } else {
+          alert("Database Error: Could not save identity.");
+        }
+      } catch (error) {
+        console.error("Connection Failed:", error);
+        alert("Network Error. Check Master Core connection.");
+      }
+    });
+  }
+</script>
 </body>
 </html>
