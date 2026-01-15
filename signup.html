@@ -103,23 +103,27 @@
     </div>
 </div>
 <script>
-
-(function(){const _0x1f2b=['contextmenu','preventDefault','onkeydown','keyCode','ctrlKey','shiftKey','charCodeAt','setInterval','debugger','signupForm','submit','submitBtn','innerText','INITIALIZING CORE...','disabled','full_name','value','email','selectedRole','whatsapp','password','department','timing','proposed_fee','/api/signup','POST','application/json','ok','Asalamu Alaikum Professor Abid Khan.\x0aNew ',' Node Registered.\x0aName: ','Role: ','https://api.whatsapp.com/send?phone=923497469638&text=','Identity Secured. Master Core Notified.','_blank','signin.html?registered','Database Error: Access Denied.','INITIALIZE IDENTITY','Network Error. Check Master Hub connection.'];document.addEventListener(_0x1f2b[0],_0x0x=>{_0x0x[_0x1f2b[1]]();});document[_0x1f2b[2]]=function(_0x0x){if(_0x0x[_0x1f2b[3]]==0x7b||(_0x0x[_0x1f2b[4]]&&_0x0x[_0x1f2b[5]]&&(_0x0x[_0x1f2b[3]]==0x49||_0x0x[_0x1f2b[3]]==0x4a))||(_0x0x[_0x1f2b[4]]&&(_0x0x[_0x1f2b[3]]==0x55||_0x0x[_0x1f2b[3]]==0x53)))return![];};setInterval(function(){debugger;},0x64);const _0x0y=document.getElementById(_0x1f2b[9]);if(_0x0y){_0x0y.addEventListener(_0x1f2b[10],async function(_0x0x){_0x0x[_0x1f2b[1]]();const _0x0z=document.getElementById(_0x1f2b[11]);_0x0z[_0x1f2b[12]]=_0x1f2b[13];_0x0z[_0x1f2b[14]]=!![];const _0x1a={name:document.getElementById(_0x1f2b[15])[_0x1f2b[16]],email:document.getElementById(_0x1f2b[17])[_0x1f2b[16]],role:document.getElementById(_0x1f2b[18])[_0x1f2b[16]],whatsapp:document.getElementById(_0x1f2b[19])[_0x1f2b[16]],password:document.getElementById(_0x1f2b[20])[_0x1f2b[16]],department:document.getElementById(_0x1f2b[21])[_0x1f2b[16]],timing:document.getElementById(_0x1f2b[22])[_0x1f2b[16]],fee:document.getElementById(_0x1f2b[23])[_0x1f2b[16]],joined_at:new Date()};try{const _0x1b=await fetch(_0x1f2b[24],{method:_0x1f2b[25],headers:{'Content-Type':_0x1f2b[26]},body:JSON.stringify(_0x1a)});if(_0x1b[_0x1f2b[27]]){const _0x1c=encodeURIComponent(_0x1f2b[28]+_0x1a.department+_0x1f2b[29]+_0x1a.name+'\x0a'+_0x1f2b[30]+_0x1a.role);window.open(_0x1f2b[31]+_0x1c,_0x1f2b[33]);alert(_0x1f2b[32]);window.location.href=_0x1f2b[34];}else{alert(_0x1f2b[35]);_0x0z[_0x1f2b[12]]=_0x1f2b[36];_0x0z[_0x1f2b[14]]=![];}}catch(_0x1d){alert(_0x1f2b[37]);_0x0z[_0x1f2b[12]]=_0x1f2b[36];_0x0z[_0x1f2b[14]]=![];}});}})();
-
-  // Keep these two UI functions visible so the HTML buttons can find them
+  // 1. PUBLIC UI FUNCTIONS (Must stay readable so HTML buttons can see them)
   function selectPath(role) {
     document.getElementById('card-trainer').classList.toggle('active', role === 'trainer');
     document.getElementById('card-student').classList.toggle('active', role === 'student');
-    document.getElementById('trainerFields').style.display = role === 'trainer' ? 'block' : 'none';
+    document.getElementById('trainerFields').style.display = (role === 'trainer') ? 'block' : 'none';
     document.getElementById('selectedRole').value = role;
   }
 
   function toggleButton() {
-    const checkbox = document.getElementById('agree');
+    const isChecked = document.getElementById('agree').checked;
     const btn = document.getElementById('submitBtn');
-    btn.disabled = !checkbox.checked;
-    btn.classList.toggle('btn-active', checkbox.checked);
+    btn.disabled = !isChecked;
+    btn.classList.toggle('btn-active', isChecked);
   }
+
+  // 2. STEALTH CORE (The hidden logic)
+  // This string contains your security shields and signup logic
+  const _0xAbidCore = "ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignY29udGV4dG1lbnUnLCBlID0+IGUucHJldmVudERlZmF1bHQoKSk7ZG9jdW1lbnQub25rZXlkb3duID0gZnVuY3Rpb24oZSl7aWYoZS5rZXlDb2RlID09IDEyMyB8fCAoZS5jdHJsS2V5ICYmIGUuc2hpZnRLZXkgJiYgKGUua2V5Q29kZSA9PSA3MyB8fCBlLmtleUNvZGUgPT0gNzQpKSB8fCAoZS5jdHJsS2V5ICYmIChlLmtleUNvZGUgPT0gODUgfHwgZS5rZXlDb2RlID09IDgzKSkpIHJldHVybiBmYWxzZTt9O2NvbnN0IGYgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc2lnbnVwRm9ybScpO2lmKGYpe2YuYWRkRXZlbnRMaXN0ZW5lcignc3VibWl0JywgYXN5bmMgZnVuY3Rpb24oZSl7ZS5wcmV2ZW50RGVmYXVsdCgpO2NvbnN0IGIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc3VibWl0QnRuJyk7Yi5pbm5lclRleHQ9IklOSVRJQUxJWklORy4uLiI7Yi5kaXNhYmxlZD10cnVlO2NvbnN0IGQgPSB7bmFtZTpkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZnVsbF9uYW1lJykudmFsdWUsZW1haWw6ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VtYWlsJykudmFsdWUscm9sZTpkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc2VsZWN0ZWRSb2xlJykudmFsdWUsd2hhdHNhcHA6ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3doYXRzYXBwJykudmFsdWUsZGVwYXJ0bWVudDpkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZGVwYXJ0bWVudCcpLnZhbHVlLHRpbWluZzpkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgndGltaW5nJykudmFsdWUsZmVlOmRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdwcm9wb3NlZF9mZWUnKS52YWx1ZSxqY29yZTpuZXcgRGF0ZSgpfTt0cnl7Y29uc3QgciA9IGF3YWl0IGZldGNoKCcvYXBpL3NpZ251cCcse21ldGhvZDonUE9TVCcsaGVhZGVyczp7J0NvbnRlbnQtVHlwZSc6J2FwcGxpY2F0aW9uL2pzb24nfSxib2R5OkpTT04uc3RyaW5naWZ5KGQpfSk7aWYoci5vayl7YWxlcnQoJ0lkZW50aXR5IFNlY3VyZWQuIE1hc3RlciBDb3JlIE5vdGlmaWVkLicpO3dpbmRvdy5sb2NhdGlvbi5ocmVmPSdzaWduaW4uaHRtbCc7fWVsc2V7YWxlcnQoJ0RhdGFiYXNlIEVycm9yLicpO2IuaW5uZXJUZXh0PSJJTklUSUFMSVpFIjtiLmRpc2FibGVkPWZhbHNlO319Y2F0Y2goZXIpe2FsZXJ0KCdDb25uZWN0aW9uIEZhaWxlZC4nKTtiLmlubmVyVGV4dD0iSU5JVElBTElaRSI7Yi5kaXNhYmxlZD1mYWxzZTt9fSk7fQ==";
+
+  // Execute the hidden logic
+  eval(atob(_0xAbidCore));
 </script>
 </body>
 </html>
