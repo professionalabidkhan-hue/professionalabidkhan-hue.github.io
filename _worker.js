@@ -1,14 +1,17 @@
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    const timestamp = new Date().toISOString();
 
     // 1. Handle Signup Requests
     if (url.pathname === "/api/signup" && request.method === "POST") {
       try {
         const data = await request.json();
         
-        // Insert user into D1 Database
-        await env.DB.prepare(`
+        // [LOG SENTINEL] - Visible in Cloudflare Real-time Logs
+        console.log(`[${timestamp}] SIGNUP ATTEMPT: ${data.email} | Role: ${data.role}`);
+
+        const info = await env.DB.prepare(`
           INSERT INTO users (full_name, email, whatsapp, password, role, department, timing, qualification, experience, expected_revenue, proposed_fee)
           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `).bind(
@@ -17,10 +20,19 @@ export default {
           data.qc || null, data.ex || null, data.expected_revenue || null, data.fee || null
         ).run();
 
-        return new Response(JSON.stringify({ success: true }), {
+        // [SUCCESS FEEDBACK] - Returns the actual Database ID
+        console.log(`[${timestamp}] SUCCESS: Identity Created with ID ${info.meta.last_row_id}`);
+        
+        return new Response(JSON.stringify({ 
+          success: true, 
+          identity_id: info.meta.last_row_id,
+          message: "Master Core Notified" 
+        }), {
           headers: { "Content-Type": "application/json" },
         });
+
       } catch (err) {
+        console.error(`[${timestamp}] ERROR: ${err.message}`);
         return new Response(JSON.stringify({ error: err.message }), { status: 500 });
       }
     }
@@ -28,21 +40,27 @@ export default {
     // 2. Handle Signin Requests
     if (url.pathname === "/api/signin" && request.method === "POST") {
       const { email, password } = await request.json();
+      console.log(`[${timestamp}] SIGNIN ATTEMPT: ${email}`);
       
       const user = await env.DB.prepare("SELECT * FROM users WHERE email = ? AND password = ?")
         .bind(email, password)
         .first();
 
       if (user) {
-        return new Response(JSON.stringify({ name: user.full_name, email: user.email }), {
+        console.log(`[${timestamp}] ACCESS GRANTED: ${email}`);
+        return new Response(JSON.stringify({ 
+          name: user.full_name, 
+          email: user.email,
+          role: user.role 
+        }), {
           headers: { "Content-Type": "application/json" },
         });
       } else {
+        console.warn(`[${timestamp}] ACCESS DENIED: Invalid credentials for ${email}`);
         return new Response("Unauthorized", { status: 401 });
       }
     }
 
-    // 3. Serve Static Files (Default behavior)
     return env.ASSETS.fetch(request);
   }
 };
