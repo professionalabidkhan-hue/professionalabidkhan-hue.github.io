@@ -2,35 +2,39 @@ export async function onRequestPost(context) {
   const { env, request } = context;
   
   try {
-    // 1. Get the data sent from your form
     const data = await request.json();
 
-    // 2. Insert the data into your D1 'users' table
-    // We use env.DB because that is the name of your binding in the screenshot
+    // 1. Check if the database binding "DB" is connected
+    if (!env.DB) {
+      return new Response(JSON.stringify({ 
+        success: false, 
+        error: "Database Connection Missing (Check Cloudflare Bindings)" 
+      }), { status: 500 });
+    }
+
+    // 2. Insert into the D1 'users' table
     await env.DB.prepare(`
       INSERT INTO users (full_name, email, whatsapp, password, role, department, timing, qualification, experience, proposed_fee)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).bind(
-      data.name, 
-      data.email, 
-      data.whatsapp, 
-      data.password, 
-      data.role, 
-      data.department || null, 
-      data.timing || null, 
-      data.qc || null, 
-      data.ex || null, 
-      data.fee || null
+      data.name, data.email, data.whatsapp, data.password, 
+      data.role, data.department, data.timing, 
+      data.qc, data.ex, data.fee
     ).run();
 
-    // 3. Return a success message back to the website
-    return new Response(JSON.stringify({ success: true }), {
-      headers: { "Content-Type": "application/json" }
-    });
+    return new Response(JSON.stringify({ 
+      success: true, 
+      message: "IDENTITY SECURED IN MASTER CORE" 
+    }), { headers: { "Content-Type": "application/json" } });
 
   } catch (err) {
-    // If something goes wrong, return the error
-    return new Response(JSON.stringify({ success: false, error: err.message }), {
+    let errorMsg = err.message;
+    // Friendly message for duplicate emails
+    if (errorMsg.includes("UNIQUE constraint")) {
+        errorMsg = "This Email is already registered in the Hub.";
+    }
+    
+    return new Response(JSON.stringify({ success: false, error: errorMsg }), {
       status: 500,
       headers: { "Content-Type": "application/json" }
     });
