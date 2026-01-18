@@ -1,42 +1,47 @@
 export async function onRequestPost(context) {
-    const { request } = context;
+    const { request, env } = context;
 
-    // Standard headers for JSON and CORS
-    const headers = {
-        'Content-Type': 'application/json',
+    const corsHeaders = {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
+        'Content-Type': 'application/json',
     };
 
     try {
-        // Parse the incoming JSON data from your signup.html
-        const body = await request.json();
+        const data = await request.json();
 
-        // VALIDATION LOGIC
-        if (!body.email || !body.password) {
+        // 1. Basic Validation
+        if (!data.email || !data.password || !data.role) {
             return new Response(JSON.stringify({ 
                 success: false, 
-                error: "Missing required fields." 
-            }), { status: 400, headers });
+                error: "Missing required identity credentials." 
+            }), { status: 400, headers: corsHeaders });
         }
 
-        // TODO: Here is where you would save to D1 or KV
-        // For now, we return a success signal
+        // 2. Role-Based Logic (Trainer vs Student)
+        if (data.role === 'trainer') {
+            console.log(`Processing Trainer Application for: ${data.name}`);
+            // Logic for trainers (e.g., checking qualification/experience)
+        }
+
+        // 3. Database Interaction (Placeholder)
+        // If you use Cloudflare D1:
+        // await env.DB.prepare("INSERT INTO users (name, email, role) VALUES (?, ?, ?)")
+        // .bind(data.name, data.email, data.role).run();
+
         return new Response(JSON.stringify({ 
             success: true, 
-            message: "Identity synchronized with Cloudflare." 
-        }), { status: 200, headers });
+            message: `Identity initialized successfully as ${data.role}.` 
+        }), { status: 200, headers: corsHeaders });
 
     } catch (err) {
         return new Response(JSON.stringify({ 
             success: false, 
-            error: "Server failed to process request: " + err.message 
-        }), { status: 500, headers });
+            error: "Data Synchronization Failed: " + err.message 
+        }), { status: 500, headers: corsHeaders });
     }
 }
 
-// Handle OPTIONS request for CORS preflight
+// Important: Handle preflight for browser security
 export async function onRequestOptions() {
     return new Response(null, {
         status: 204,
