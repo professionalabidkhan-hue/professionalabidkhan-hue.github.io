@@ -1,3 +1,4 @@
+<div id="header-placeholder"></div>
 ﻿<?php
 // session_start(); // Commented out so visitors don't need a session
 require_once 'connect.html';
@@ -71,3 +72,13 @@ $result = mysqli_query($conn, $query);
     </script>
 </body>
 </html>
+<div id="footer-placeholder"></div>
+<script>
+    function loadComponent(id, file) {
+        fetch(file)
+            .then(response => response.text())
+            .then(data => { document.getElementById(id).innerHTML = data; });
+    }
+    loadComponent("header-placeholder", "header.html");
+    loadComponent("footer-placeholder", "footer.html");
+    </script>

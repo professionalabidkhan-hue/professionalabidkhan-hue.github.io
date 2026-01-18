@@ -1,3 +1,4 @@
+<div id="header-placeholder"></div>
 <?php
 // --- FOUNDER ANALYTICS HEADERS ---
 header("Access-Control-Allow-Origin: *");
@@ -34,3 +35,13 @@ while ($row = oci_fetch_array($s3, OCI_ASSOC)) {
 echo json_encode($analytics);
 oci_close($conn);
 ?>
+<div id="footer-placeholder"></div>
+<script>
+    function loadComponent(id, file) {
+        fetch(file)
+            .then(response => response.text())
+            .then(data => { document.getElementById(id).innerHTML = data; });
+    }
+    loadComponent("header-placeholder", "header.html");
+    loadComponent("footer-placeholder", "footer.html");
+    </script>

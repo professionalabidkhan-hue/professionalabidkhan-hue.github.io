@@ -1,3 +1,4 @@
+<div id="header-placeholder"></div>
 <?php
 // recovery_process.html - MUST NOT HAVE ANY HTML OR INCLUDES AT THE TOP
 header('Content-Type: application/json');
@@ -40,3 +41,13 @@ if ($result && mysqli_num_rows($result) > 0) {
     ]);
 }
 ?>
+<div id="footer-placeholder"></div>
+<script>
+    function loadComponent(id, file) {
+        fetch(file)
+            .then(response => response.text())
+            .then(data => { document.getElementById(id).innerHTML = data; });
+    }
+    loadComponent("header-placeholder", "header.html");
+    loadComponent("footer-placeholder", "footer.html");
+    </script>

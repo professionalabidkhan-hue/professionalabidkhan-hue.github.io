@@ -1,3 +1,4 @@
+<div id="header-placeholder"></div>
 About Abid Khan: Bridging Divine Wisdom & Digital Excellence
 
 Welcome to Abid Khan Pedagogy, where we believe that true success in 2026 requires a balance of spiritual grounding and modern technical skill. My name is Abid Khan, and I have dedicated my life to being a Tajweed Teacher and an IT Consultant, helping students worldwide excel in both worlds.
@@ -17,3 +18,13 @@ Why Choose Abid Khan Pedagogy?
     Distinguished Results: A unique blend of Tajweed and IT skills you won't find anywhere else.
 
 “Start your journey today with the name of Allah, and let us build your future together.”
+<div id="footer-placeholder"></div>
+<script>
+    function loadComponent(id, file) {
+        fetch(file)
+            .then(response => response.text())
+            .then(data => { document.getElementById(id).innerHTML = data; });
+    }
+    loadComponent("header-placeholder", "header.html");
+    loadComponent("footer-placeholder", "footer.html");
+    </script>

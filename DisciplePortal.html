@@ -1,3 +1,4 @@
+<div id="header-placeholder"></div>
 ﻿<?php
 session_start();
 require_once 'connect.html'; 
@@ -211,3 +212,13 @@ $glow = ($dept === 'QURAN') ? 'rgba(46, 204, 113, 0.3)' : 'rgba(0, 212, 255, 0.3
 </script>
 </body>
 </html>
+<div id="footer-placeholder"></div>
+<script>
+    function loadComponent(id, file) {
+        fetch(file)
+            .then(response => response.text())
+            .then(data => { document.getElementById(id).innerHTML = data; });
+    }
+    loadComponent("header-placeholder", "header.html");
+    loadComponent("footer-placeholder", "footer.html");
+    </script>

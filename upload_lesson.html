@@ -1,3 +1,4 @@
+<div id="header-placeholder"></div>
 <?php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *'); // Essential for Fetch API
@@ -45,3 +46,13 @@ if (move_uploaded_file($file['tmp_name'], $destination)) {
     echo json_encode(['success' => false, 'message' => 'Vault Rejection: Move failed. Check folder permissions.']);
 }
 ?>
+<div id="footer-placeholder"></div>
+<script>
+    function loadComponent(id, file) {
+        fetch(file)
+            .then(response => response.text())
+            .then(data => { document.getElementById(id).innerHTML = data; });
+    }
+    loadComponent("header-placeholder", "header.html");
+    loadComponent("footer-placeholder", "footer.html");
+    </script>
