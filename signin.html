@@ -99,11 +99,11 @@
 <!-- Footer Include -->
 <div id="footer"></div>
 <script>
-  // 1. DYNAMIC UI ELEMENTS (Header/Footer)
+  // 1. DYNAMIC UI ELEMENTS
   fetch("header.html").then(res => res.text()).then(data => document.getElementById("header").innerHTML = data);
   fetch("footer.html").then(res => res.text()).then(data => document.getElementById("footer").innerHTML = data);
 
-  // 2. SECURITY SENTINEL (Blocks F12, Right-Click, and Shortcuts)
+  // 2. SECURITY SENTINEL
   document.addEventListener('contextmenu', e => e.preventDefault());
   document.onkeydown = function(e) {
     if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83))) {
@@ -111,9 +111,14 @@
     }
   };
 
-  // 3. STEALTH SIGNIN CORE (Base64 Encoded Logic)
-  // This string hides the logic for Master Access and MongoDB Connection
-  const _0xSigninCore = "YXN5bmMgZnVuY3Rpb24gaGFuZGxlU2lnbmluKGV2ZW50KSB7ZXZlbnQucHJldmVudERlZmF1bHQoKTtjb25zdCBlbWFpbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlbWFpbCcpLnZhbHVlLnRyaW0oKTtjb25zdCBwYXNzID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Bhc3N3b3JkJykudmFsdWUudHJpbSgpO2NvbnN0IGVycm9yQm94ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3ZhdWx0LWVycm9yJyk7aWYgKGVtYWlsID09PSAicHJvZmVzc29yQGFiaWRraGFuLmNvbSIgJiYgcGFzcyA9PT0gIk1BU1RFUl9DT1JFXzIwMjYiKSB7bG9jYWxTdG9yYWdlLnNldEl0ZW0oJ3VzZXJSb2xlJywgJ21lbnRvcicpO3dpbmRvdy5sb2NhdGlvbi5ocmVmID0gIkRBU0hCT0FSRF9NRU5UT1IuaHRtbCI7cmV0dXJuO310cnkge2NvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goJy9hcGkvc2lnbmluJywge21ldGhvZDogJ1BPU1QnLGhlYWRlcnM6IHsgJ0NvbnRlbnQtVHlwZSc6ICdhcHBsaWNhdGlvbi9qc29uJyB9LGJvZHk6IEpTT04uc3RyaW5naWZ5KHsgZW1haWwsIHBhc3N3b3JkOiBwYXNzIH0pIH0pO2lmIChyZXNwb25zZS5vaykge2NvbnN0IGRhdGEgPSBhd2FpdCByZXNwb25zZS5qc29uKCk7bG9jYWxTdG9yYWdlLnNldEl0ZW0oJ3VzZXJFbWFpbCcsIGRhdGEuZW1haWwpO2xvY2FsU3RvcmFnZS5zZXRJdGVtKCd1c2VyTmFtZScsIGRhdGEubmFtZSk7d2luZG93LmxvY2F0aW9uLmhyZWYgPSAiU1RVREVOVFNESVNIQk9BUkQuaHRtbCI7fSBlbHNlIHtlcnJvckJveC5zdHlsZS5kaXNwbGF5ID0gImJsb2NrIjtlcnJvckJveC5pbm5lclRleHQgPSAiSWRlbnRpdHkgVmVyaWZpY2F0aW9uIEZhaWxlZC4iO319IGNhdGNoIChlcnIpIHtlcnJvckJveC5zdHlsZS5kaXNwbGF5ID0gImJsb2NrIjtlcnJvckJveC5pbm5lclRleHQgPSAiTWFzdGVyIENvcmUgQ29ubmVjdGlvbiBFcnJvci4iO319Y29uc3QgbG9naW5HYXRlID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2xvZ2luR2F0ZScpO2lmKGxvZ2luR2F0ZSl7bG9naW5HYXRlLmFkZEV2ZW50TGlzdGVuZXIoJ3N1Ym1pdCcsIGhhbmRsZVNpZ25pbik7fQ==";
+  /**
+   * 3. STEALTH SIGNIN CORE (Updated for Cloudflare D1)
+   * The decoded logic handles:
+   * - Master Access: professor@abidkhan.com / MASTER_CORE_2026
+   * - D1 API: /api/signin
+   * - Redirects: DASHBOARD_MENTOR.html or STUDENTSDISHBOARD.html
+   */
+  const _0xSigninCore = "YXN5bmMgZnVuY3Rpb24gaGFuZGxlU2lnbmluKGV2ZW50KXs阻止=ZXZlbnQucHJldmVudERlZmF1bHQoKTtjb25zdCBlbWFpbD1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZW1haWwnKS52YWx1ZS50cmltKCk7Y29uc3QgcGFzcz1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncGFzc3dvcmQnKS52YWx1ZS50cmltKCk7Y29uc3QgZXJyb3JCb3g9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3ZhdWx0LWVycm9yJyk7aWYoZW1haWw9PT0icHJvZmVzc29yQGFiaWRraGFuLmNvbSImJnBhc3M9PT0iTUFTVEVSX0NPUkVfMjAyNiIpe2xvY2FsU3RvcmFnZS5zZXRJdGVtKCd1c2VyUm9sZScsJ21lbnRvcicpO3dpbmRvdy5sb2NhdGlvbi5ocmVmPSJEQVNIQk9BUkRfTUVOVE9SLmh0bWwiO3JldHVybjt9dHJ5e2NvbnN0IHJlcz1hd2FpdCBmZXRjaCgnL2FwaS9zaWduaW4nLHttZXRob2Q6J1BPU1QnLGhlYWRlcnM6eydDb250ZW50LVR5cGUnOidhcHBsaWNhdGlvbi9qc29uJ30sYm9keTpKU09OLnN0cmluZ2lmeSh7ZW1haWwscGFzc3dvcmQ6cGFzc30pfSk7Y29uc3QgZGF0YT1hd2FpdCByZXMuanNvbigpO2lmKGRhdGEuc3VjY2Vzcyl7bG9jYWxTdG9yYWdlLnNldEl0ZW0oJ3VzZXJEYXRhJyxKU09OLnN0cmluZ2lmeShkYXRhLnVzZXIpKTt3aW5kb3cubG9jYXRpb24uaHJlZj0iU1RVREVOVFNESVNIQk9BUkQuaHRtbCI7fWVsc2V7ZXJyb3JCb3guc3R5bGUuZGlzcGxheT0iYmxvY2siO2Vycm9yQm94LmlubmVyVGV4dD1kYXRhLmVycm9yfX1jYXRjaChlcnIpe2Vycm9yQm94LnN0eWxlLmRpc3BsYXk9ImJsb2NrIjtlcnJvckJveC5pbm5lclRleHQ9Ik1hc3RlciBDb3JlIENvbm5lY3Rpb24gRXJyb3IuIjt9fWNvbnN0IGxvZ2luR2F0ZT1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbG9naW5HYXRlJyk7aWYobG9naW5HYXRlKWxvZ2luR2F0ZS5hZGRFdmVudExpc3RlbmVyKCdzdWJtaXQnLGhhbmRsZVNpZ25pbik7";
 
   // Execute the hidden logic
   eval(atob(_0xSigninCore));

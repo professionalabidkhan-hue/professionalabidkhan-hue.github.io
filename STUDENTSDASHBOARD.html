@@ -1,3 +1,20 @@
+<script>
+  (function() {
+    // 1. Check for Master Access or Student Session
+    const userRole = localStorage.getItem('userRole');
+    const userData = localStorage.getItem('userData');
+
+    // 2. If no valid session exists, block access immediately
+    if (!userRole && !userData) {
+      // Redirect to signin if the vault is locked
+      window.location.replace("signin.html?error=access_denied");
+    }
+  })();
+  function logout() {
+  localStorage.clear();
+  window.location.href = "signin.html";
+}
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
