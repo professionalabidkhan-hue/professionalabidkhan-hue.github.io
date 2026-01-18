@@ -142,22 +142,15 @@
 // 1. UI Control Functions
 function selectPath(role) {
     const isTrainer = role === 'trainer';
-    
-    // Update visual classes
     document.getElementById('card-trainer').classList.toggle('active', isTrainer);
     document.getElementById('card-student').classList.toggle('active', !isTrainer);
-    
-    // Toggle visibility of specific fields
     document.getElementById('trainerFields').style.display = isTrainer ? 'block' : 'none';
-    
-    // Set hidden input value
     document.getElementById('selectedRole').value = role;
 }
 
 function toggleButton() {
     const isChecked = document.getElementById('agree').checked;
     const btn = document.getElementById('submitBtn');
-    
     if (isChecked) {
         btn.disabled = false;
         btn.classList.add('btn-active');
@@ -178,22 +171,30 @@ const _initHubLogic = () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // UI: Start Loading State
+        // --- ADDITION 1: Local Validation ---
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const name = document.getElementById('full_name').value.trim();
+
+        if (password.length < 6) {
+            showError("Access Key must be at least 6 characters.");
+            return;
+        }
+        // ------------------------------------
+
         btn.innerHTML = '<span class="spinner-border-sm me-2"></span> SYNCHRONIZING...';
         btn.disabled = true;
-        status.className = "mt-3 p-2 text-center d-none"; // Reset status
+        status.className = "mt-3 p-2 text-center d-none"; 
 
-        // Gather Payload
         const payload = {
-            name: document.getElementById('full_name').value,
-            email: document.getElementById('email').value,
-            whatsapp: document.getElementById('whatsapp').value,
-            password: document.getElementById('password').value,
+            name: name,
+            email: email,
+            whatsapp: document.getElementById('whatsapp').value.trim(),
+            password: password,
             role: document.getElementById('selectedRole').value,
             department: document.getElementById('department').value,
             timing: document.getElementById('timing').value,
             fee: document.getElementById('proposed_fee').value,
-            // Trainer specific fields
             qualification: document.getElementById('qualification')?.value || null,
             experience: document.getElementById('experience')?.value || null,
             expected_revenue: document.getElementById('expected_revenue')?.value || null,
@@ -201,54 +202,57 @@ const _initHubLogic = () => {
         };
 
         try {
-            // Pointing to your Cloudflare Function
+            // --- ADDITION 2: Timeout Protection ---
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second limit
+
             const response = await fetch('/api/signup', {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify(payload)
+                body: JSON.stringify(payload),
+                signal: controller.signal
             });
+            clearTimeout(timeoutId);
 
-            // Safety check for non-JSON responses (the "<" error prevention)
             const contentType = response.headers.get("content-type");
             if (!contentType || !contentType.includes("application/json")) {
-                throw new Error("The Hub returned an invalid response. Please check Cloudflare logs.");
+                throw new Error("Security Protocol Error: Invalid Response Format.");
             }
 
             const result = await response.json();
 
             if (response.ok && result.success) {
-                // SUCCESS: Visual Feedback
                 status.innerHTML = `<strong><i class="fas fa-check-circle"></i> SUCCESS:</strong> ${result.message}`;
                 status.className = "mt-3 p-2 text-center d-block animate__animated animate__fadeIn";
                 status.style.cssText = "background: rgba(0, 255, 128, 0.1); color: #00ff80; border: 1px solid #00ff80;";
                 
-                // Redirect after success
-                setTimeout(() => { 
-                    window.location.href = 'signin.html'; 
-                }, 2000);
-
+                setTimeout(() => { window.location.href = 'signin.html'; }, 2000);
             } else {
                 throw new Error(result.error || "Master Hub rejected the credentials.");
             }
 
         } catch (err) {
-            // ERROR: Visual Feedback
-            status.innerHTML = `<strong><i class="fas fa-exclamation-triangle"></i> ERROR:</strong> ${err.message}`;
-            status.className = "mt-3 p-2 text-center d-block animate__animated animate__shakeX";
-            status.style.cssText = "background: rgba(255, 49, 49, 0.1); color: #ff3131; border: 1px solid #ff3131;";
-            
-            // UI: Reset Button
-            btn.innerHTML = 'INITIALIZE IDENTITY';
-            btn.disabled = false;
+            let errorMsg = err.message;
+            if (err.name === 'AbortError') errorMsg = "Connection Timeout. Hub is unreachable.";
+            showError(errorMsg);
         }
     });
+
+    // Helper function to show errors without repeating code
+    function showError(msg) {
+        status.innerHTML = `<strong><i class="fas fa-exclamation-triangle"></i> ERROR:</strong> ${msg}`;
+        status.className = "mt-3 p-2 text-center d-block animate__animated animate__shakeX";
+        status.style.cssText = "background: rgba(255, 49, 49, 0.1); color: #ff3131; border: 1px solid #ff3131;";
+        btn.innerHTML = 'INITIALIZE IDENTITY';
+        btn.disabled = false;
+    }
 };
 
-// Start the core logic
 document.addEventListener('DOMContentLoaded', _initHubLogic);
+
 </script>
 </body>
 </html>
