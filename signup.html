@@ -12,6 +12,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* Animation for the status box */
+.animate__animated {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shakeX {
+    from, to { transform: translate3d(0, 0, 0); }
+    10%, 30%, 50%, 70%, 90% { transform: translate3d(-5px, 0, 0); }
+    20%, 40%, 60%, 80% { transform: translate3d(5px, 0, 0); }
+}
+
+.animate__fadeIn { animation-name: fadeIn; }
+.animate__shakeX { animation-name: shakeX; }
+
+/* Spinner for the button */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+    border-width: 0.2em;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: text-bottom;
+    animation: spinner-border .75s linear infinite;
+}
+
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
         body { background: #07090d; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .master-input { background: rgba(0,0,0,0.5); border: 1px solid #1a1c2c; color: white; border-radius: 12px; padding: 12px; margin-bottom: 15px; width: 100%; transition: 0.3s; }
         .master-input:focus { border-color: #4fc3f7; outline: none; box-shadow: 0 0 10px rgba(79, 195, 247, 0.3); }
@@ -97,101 +133,71 @@
                 <input type="checkbox" id="agree" class="form-check-input" onchange="toggleButton()">
                 <label for="agree" class="small text-secondary">I solemnly accept the 30% Law & Hub Rules</label>
             </div>
-
+            <div id="statusMessage" class="mt-3 p-2 text-center d-none" style="border-radius: 8px;"></div>        
             <button type="submit" id="submitBtn" class="btn-sentinel" disabled>INITIALIZE IDENTITY</button>
         </form>
     </div>
 </div>
 <script>
-  // 1. UI Control Functions (Keep as is)
-function selectPath(role) {
-    document.getElementById('card-trainer').classList.toggle('active', role === 'trainer');
-    document.getElementById('card-student').classList.toggle('active', role === 'student');
-    document.getElementById('trainerFields').style.display = (role === 'trainer') ? 'block' : 'none';
-    document.getElementById('selectedRole').value = role;
-}
-
-function toggleButton() {
-    const isChecked = document.getElementById('agree').checked;
+// Add this inside your _coreLogic function
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
     const btn = document.getElementById('submitBtn');
-    btn.disabled = !isChecked;
-    btn.classList.toggle('btn-active', isChecked);
-}
+    const status = document.getElementById('statusMessage');
+    
+    // 1. Enter Loading State
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> SYNCHRONIZING...';
+    btn.disabled = true;
+    status.classList.add('d-none'); // Hide previous messages
 
-// 2. Optimized Stealth Logic with Status Feedback
-const _coreLogic = () => {
-    // Security layer
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.onkeydown = (e) => {
-        if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83))) return false;
+    const payload = {
+        name: document.getElementById('full_name').value,
+        email: document.getElementById('email').value,
+        whatsapp: document.getElementById('whatsapp').value,
+        password: document.getElementById('password').value,
+        role: document.getElementById('selectedRole').value,
+        department: document.getElementById('department').value,
+        timing: document.getElementById('timing').value,
+        fee: document.getElementById('proposed_fee').value,
+        qc: document.getElementById('qualification')?.value || null,
+        ex: document.getElementById('experience')?.value || null
     };
 
-    const form = document.getElementById('signupForm');
-    const status = document.getElementById('statusMessage');
-
-    if (form) {
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            
-            // Initializing State
-            btn.innerText = "INITIALIZING...";
-            btn.disabled = true;
-            status.className = "mt-3 p-3 d-none"; // Reset status
-
-            const payload = {
-                name: document.getElementById('full_name').value,
-                email: document.getElementById('email').value,
-                role: document.getElementById('selectedRole').value,
-                whatsapp: document.getElementById('whatsapp').value,
-                password: document.getElementById('password').value,
-                department: document.getElementById('department').value,
-                timing: document.getElementById('timing').value,
-                fee: document.getElementById('proposed_fee').value,
-                qc: document.getElementById('qualification')?.value || null,
-                ex: document.getElementById('experience')?.value || null
-            };
-
-            try {
-                const response = await fetch('/api/signup', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-
-                if (response.ok && result.success) {
-                    // SUCCESS STATE
-                    status.innerText = "✓ IDENTITY SECURED: Information Submitted to Master Core.";
-                    status.className = "mt-3 p-3 d-block alert-success text-success";
-                    status.style.backgroundColor = "rgba(40, 167, 69, 0.15)";
-                    
-                    // Delay redirect to let them see the success message
-                    setTimeout(() => { window.location.href = 'signin.html'; }, 3000);
-                } else {
-                    // ERROR STATE (Logic/Database Error)
-                    status.innerText = "⚠ ERROR: " + (result.error || "Submission Failed. Verification required.");
-                    status.className = "mt-3 p-3 d-block alert-danger text-danger";
-                    status.style.backgroundColor = "rgba(220, 53, 69, 0.15)";
-                    
-                    btn.innerText = "INITIALIZE IDENTITY";
-                    btn.disabled = false;
-                }
-            } catch (err) {
-                // CRITICAL STATE (Network/Server down)
-                status.innerText = "✖ CONNECTION FAILED: Unable to reach Master Hub.";
-                status.className = "mt-3 p-3 d-block alert-warning text-warning";
-                status.style.backgroundColor = "rgba(255, 193, 7, 0.15)";
-                
-                btn.innerText = "INITIALIZE IDENTITY";
-                btn.disabled = false;
-            }
+    try {
+        const response = await fetch('/api/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
         });
-    }
-};
 
-_coreLogic();  
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+            // 2. SUCCESS: Show Green Message
+            status.innerHTML = `<strong>✓ SUCCESS:</strong> ${result.message || 'Identity Secured in Master Core.'}`;
+            status.className = "mt-3 p-2 text-center d-block animate__animated animate__fadeIn";
+            status.style.backgroundColor = "rgba(0, 255, 128, 0.1)";
+            status.style.color = "#00ff80";
+            status.style.border = "1px solid #00ff80";
+            
+            // Redirect after 2.5 seconds
+            setTimeout(() => { window.location.href = 'signin.html'; }, 2500);
+        } else {
+            // 3. LOGIC ERROR: Show Red Message (e.g., Duplicate Email)
+            throw new Error(result.error || "Master Hub rejected the credentials.");
+        }
+    } catch (err) {
+        // 4. CRITICAL ERROR: Show Red/Amber Message
+        status.innerHTML = `<strong>⚠ ERROR:</strong> ${err.message}`;
+        status.className = "mt-3 p-2 text-center d-block animate__animated animate__shakeX";
+        status.style.backgroundColor = "rgba(255, 49, 49, 0.1)";
+        status.style.color = "#ff3131";
+        status.style.border = "1px solid #ff3131";
+        
+        btn.innerText = "INITIALIZE IDENTITY";
+        btn.disabled = false;
+    }
+});
 </script>
 </body>
 </html>
