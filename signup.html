@@ -96,7 +96,7 @@
             </div>
         </div>
 
-        <form id="signupForm">
+    <form id="signupForm">
             <input type="hidden" id="selectedRole" value="student">
             
             <input type="text" id="full_name" class="master-input" placeholder="Full Identity Name" required>
@@ -133,126 +133,11 @@
                 <input type="checkbox" id="agree" class="form-check-input" onchange="toggleButton()">
                 <label for="agree" class="small text-secondary">I solemnly accept the 30% Law & Hub Rules</label>
             </div>
-            <div id="statusMessage" class="mt-3 p-2 text-center d-none" style="border-radius: 8px;"></div>        
-            <button type="submit" id="submitBtn" class="btn-sentinel" disabled>INITIALIZE IDENTITY</button>
+        <div id="statusMessage" class="mt-3 p-2 text-center d-none" style="border-radius: 8px;"></div>
+ <!-- all input fields --> <button type="submit" id="submitBtn">INITIALIZE IDENTITY</button>
         </form>
     </div>
 </div>
-<script>
-// 1. UI Control Functions
-function selectPath(role) {
-    const isTrainer = role === 'trainer';
-    document.getElementById('card-trainer').classList.toggle('active', isTrainer);
-    document.getElementById('card-student').classList.toggle('active', !isTrainer);
-    document.getElementById('trainerFields').style.display = isTrainer ? 'block' : 'none';
-    document.getElementById('selectedRole').value = role;
-}
-
-function toggleButton() {
-    const isChecked = document.getElementById('agree').checked;
-    const btn = document.getElementById('submitBtn');
-    if (isChecked) {
-        btn.disabled = false;
-        btn.classList.add('btn-active');
-    } else {
-        btn.disabled = true;
-        btn.classList.remove('btn-active');
-    }
-}
-
-// 2. Main Submission Logic
-const _initHubLogic = () => {
-    const form = document.getElementById('signupForm');
-    const status = document.getElementById('statusMessage');
-    const btn = document.getElementById('submitBtn');
-
-    if (!form) return;
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        // --- ADDITION 1: Local Validation ---
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value;
-        const name = document.getElementById('full_name').value.trim();
-
-        if (password.length < 6) {
-            showError("Access Key must be at least 6 characters.");
-            return;
-        }
-        // ------------------------------------
-
-        btn.innerHTML = '<span class="spinner-border-sm me-2"></span> SYNCHRONIZING...';
-        btn.disabled = true;
-        status.className = "mt-3 p-2 text-center d-none"; 
-
-        const payload = {
-            name: name,
-            email: email,
-            whatsapp: document.getElementById('whatsapp').value.trim(),
-            password: password,
-            role: document.getElementById('selectedRole').value,
-            department: document.getElementById('department').value,
-            timing: document.getElementById('timing').value,
-            fee: document.getElementById('proposed_fee').value,
-            qualification: document.getElementById('qualification')?.value || null,
-            experience: document.getElementById('experience')?.value || null,
-            expected_revenue: document.getElementById('expected_revenue')?.value || null,
-            timestamp: new Date().toISOString()
-        };
-
-        try {
-            // --- ADDITION 2: Timeout Protection ---
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second limit
-
-            const response = await fetch('/api/signup', {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(payload),
-                signal: controller.signal
-            });
-            clearTimeout(timeoutId);
-
-            const contentType = response.headers.get("content-type");
-            if (!contentType || !contentType.includes("application/json")) {
-                throw new Error("Security Protocol Error: Invalid Response Format.");
-            }
-
-            const result = await response.json();
-
-            if (response.ok && result.success) {
-                status.innerHTML = `<strong><i class="fas fa-check-circle"></i> SUCCESS:</strong> ${result.message}`;
-                status.className = "mt-3 p-2 text-center d-block animate__animated animate__fadeIn";
-                status.style.cssText = "background: rgba(0, 255, 128, 0.1); color: #00ff80; border: 1px solid #00ff80;";
-                
-                setTimeout(() => { window.location.href = 'signin.html'; }, 2000);
-            } else {
-                throw new Error(result.error || "Master Hub rejected the credentials.");
-            }
-
-        } catch (err) {
-            let errorMsg = err.message;
-            if (err.name === 'AbortError') errorMsg = "Connection Timeout. Hub is unreachable.";
-            showError(errorMsg);
-        }
-    });
-
-    // Helper function to show errors without repeating code
-    function showError(msg) {
-        status.innerHTML = `<strong><i class="fas fa-exclamation-triangle"></i> ERROR:</strong> ${msg}`;
-        status.className = "mt-3 p-2 text-center d-block animate__animated animate__shakeX";
-        status.style.cssText = "background: rgba(255, 49, 49, 0.1); color: #ff3131; border: 1px solid #ff3131;";
-        btn.innerHTML = 'INITIALIZE IDENTITY';
-        btn.disabled = false;
-    }
-};
-
-document.addEventListener('DOMContentLoaded', _initHubLogic);
-
-</script>
+<script> const API_BASE = "https://miniature-sniffle-4jp95g6rxr673jj7v-3000.app.github.dev"; function toggleButton() { const isChecked = document.getElementById('agree').checked; const btn = document.getElementById('submitBtn'); btn.disabled = !isChecked; } document.addEventListener('DOMContentLoaded', () => { const form = document.getElementById('signupForm'); const status = document.getElementById('statusMessage'); const btn = document.getElementById('submitBtn'); form.addEventListener('submit', async (e) => { e.preventDefault(); const data = { full_name: document.getElementById("full_name").value.trim(), email: document.getElementById("email").value.trim(), whatsapp: document.getElementById("whatsapp").value.trim(), password: document.getElementById("password").value, role: document.getElementById("selectedRole").value, department: document.getElementById("department").value, timing: document.getElementById("timing").value, qualification: document.getElementById("qualification").value || "", experience: document.getElementById("experience").value || "", expected_revenue: document.getElementById("expected_revenue").value || "", proposed_fee: document.getElementById("proposed_fee").value }; try { btn.innerHTML = "⏳ Synchronizing..."; btn.disabled = true; const res = await fetch(`${API_BASE}/api/signup`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) }); const json = await res.json(); status.classList.remove("d-none"); if (json.success) { status.innerHTML = "✅ Identity Initialized Successfully"; status.style.background = "#0f5132"; status.style.color = "white"; setTimeout(() => { window.location.href = "signin.html"; }, 2000); } else { status.innerHTML = "❌ Error: " + json.error; status.style.background = "#842029"; status.style.color = "white"; } } catch (err) { console.error("Signup Error:", err); status.classList.remove("d-none"); status.innerHTML = "❌ Network Error: Could not reach backend"; status.style.background = "#842029"; status.style.color = "white"; } finally { btn.innerHTML = "INITIALIZE IDENTITY"; btn.disabled = false; } }); }); </script>
 </body>
 </html>
