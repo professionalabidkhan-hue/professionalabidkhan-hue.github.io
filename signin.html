@@ -99,29 +99,55 @@
 <!-- Footer Include -->
 <div id="footer"></div>
 <script>
-  // 1. DYNAMIC UI ELEMENTS
-  fetch("header.html").then(res => res.text()).then(data => document.getElementById("header").innerHTML = data);
-  fetch("footer.html").then(res => res.text()).then(data => document.getElementById("footer").innerHTML = data);
+const API_BASE = "https://miniature-sniffle-4jp95g6rxr673jj7v-3000.app.github.dev";
 
-  // 2. SECURITY SENTINEL
-  document.addEventListener('contextmenu', e => e.preventDefault());
-  document.onkeydown = function(e) {
-    if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83))) {
-      return false;
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("loginGate");
+  const errorBox = document.getElementById("vault-error");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    // Master override access
+    if (email === "professor@abidkhan.com" && password === "MASTER_CORE_2026") {
+      localStorage.setItem("userRole", "mentor");
+      window.location.href = "DASHBOARD_MENTOR.html";
+      return;
     }
-  };
 
-  /**
-   * 3. STEALTH SIGNIN CORE (Updated for Cloudflare D1)
-   * The decoded logic handles:
-   * - Master Access: professor@abidkhan.com / MASTER_CORE_2026
-   * - D1 API: /api/signin
-   * - Redirects: DASHBOARD_MENTOR.html or STUDENTSDISHBOARD.html
-   */
-  const _0xSigninCore = "YXN5bmMgZnVuY3Rpb24gaGFuZGxlU2lnbmluKGV2ZW50KXs阻止=ZXZlbnQucHJldmVudERlZmF1bHQoKTtjb25zdCBlbWFpbD1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZW1haWwnKS52YWx1ZS50cmltKCk7Y29uc3QgcGFzcz1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncGFzc3dvcmQnKS52YWx1ZS50cmltKCk7Y29uc3QgZXJyb3JCb3g9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3ZhdWx0LWVycm9yJyk7aWYoZW1haWw9PT0icHJvZmVzc29yQGFiaWRraGFuLmNvbSImJnBhc3M9PT0iTUFTVEVSX0NPUkVfMjAyNiIpe2xvY2FsU3RvcmFnZS5zZXRJdGVtKCd1c2VyUm9sZScsJ21lbnRvcicpO3dpbmRvdy5sb2NhdGlvbi5ocmVmPSJEQVNIQk9BUkRfTUVOVE9SLmh0bWwiO3JldHVybjt9dHJ5e2NvbnN0IHJlcz1hd2FpdCBmZXRjaCgnL2FwaS9zaWduaW4nLHttZXRob2Q6J1BPU1QnLGhlYWRlcnM6eydDb250ZW50LVR5cGUnOidhcHBsaWNhdGlvbi9qc29uJ30sYm9keTpKU09OLnN0cmluZ2lmeSh7ZW1haWwscGFzc3dvcmQ6cGFzc30pfSk7Y29uc3QgZGF0YT1hd2FpdCByZXMuanNvbigpO2lmKGRhdGEuc3VjY2Vzcyl7bG9jYWxTdG9yYWdlLnNldEl0ZW0oJ3VzZXJEYXRhJyxKU09OLnN0cmluZ2lmeShkYXRhLnVzZXIpKTt3aW5kb3cubG9jYXRpb24uaHJlZj0iU1RVREVOVFNESVNIQk9BUkQuaHRtbCI7fWVsc2V7ZXJyb3JCb3guc3R5bGUuZGlzcGxheT0iYmxvY2siO2Vycm9yQm94LmlubmVyVGV4dD1kYXRhLmVycm9yfX1jYXRjaChlcnIpe2Vycm9yQm94LnN0eWxlLmRpc3BsYXk9ImJsb2NrIjtlcnJvckJveC5pbm5lclRleHQ9Ik1hc3RlciBDb3JlIENvbm5lY3Rpb24gRXJyb3IuIjt9fWNvbnN0IGxvZ2luR2F0ZT1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbG9naW5HYXRlJyk7aWYobG9naW5HYXRlKWxvZ2luR2F0ZS5hZGRFdmVudExpc3RlbmVyKCdzdWJtaXQnLGhhbmRsZVNpZ25pbik7";
+    try {
+      const res = await fetch(`${API_BASE}/api/signin`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
 
-  // Execute the hidden logic
-  eval(atob(_0xSigninCore));
+      const data = await res.json();
+
+      if (data.success) {
+        // Save user data in localStorage
+        localStorage.setItem("userData", JSON.stringify(data.user));
+
+        // Redirect based on role
+        if (data.user.role === "trainer") {
+          window.location.href = "DASHBOARD_MENTOR.html";
+        } else {
+          window.location.href = "STUDENTSDISHBOARD.html";
+        }
+      } else {
+        errorBox.style.display = "block";
+        errorBox.innerText = data.error || "Access Key Invalid.";
+      }
+    } catch (err) {
+      console.error("Signin Error:", err);
+      errorBox.style.display = "block";
+      errorBox.innerText = "Connection Error: Hub unreachable.";
+    }
+  });
+});
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
