@@ -1,2 +1,72 @@
+# Node.js dependencies
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
 .env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+logs/*.log
+backend/logs/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Build outputs
+dist/
+build/
+.cache/
+.next/
+out/
+
+# Frontend assets (generated)
+frontend/assets/css/*.map
+frontend/assets/js/*.map
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# GitHub Actions / CI
+.github/workflows/*.tmp
+
+# GAS exports (ignore local backups, keep ai_endpoint.gs)
+gas/*.bak
+gas/*.tmp
+
+# Config secrets
+config/settings.json
+config/*.local.json
+
+# PDFs and docs (if you don’t want to commit large binaries)
+docs/*.pdf
+docs/*.docx
+docs/*.xlsx
+
+# Ignore uploads (images, user files)
+frontend/uploads/*
+!frontend/uploads/ABID KHAN.png   # keep your core branding image
