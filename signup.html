@@ -121,10 +121,9 @@ function selectPath(role) {
 function toggleButton() {
   const isChecked = document.getElementById('agree').checked;
   const btn = document.getElementById('submitBtn');
-
   if (isChecked) {
     btn.disabled = false;
-    btn.classList.add("btn-active");   // keeps your .btn-sentinel base style
+    btn.classList.add("btn-active");
   } else {
     btn.disabled = true;
     btn.classList.remove("btn-active");
@@ -148,9 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
       role: document.getElementById("selectedRole").value,
       department: document.getElementById("department").value,
       timing: document.getElementById("timing").value,
-      qualification: document.getElementById("qualification").value || "",
-      experience: document.getElementById("experience").value || "",
-      expected_revenue: document.getElementById("expected_revenue").value || "",
+      qualification: document.getElementById("qualification")?.value || "",
+      experience: document.getElementById("experience")?.value || "",
+      expected_revenue: document.getElementById("expected_revenue")?.value || "",
       proposed_fee: document.getElementById("proposed_fee").value
     };
 
@@ -194,5 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+
 </body>
 </html>
