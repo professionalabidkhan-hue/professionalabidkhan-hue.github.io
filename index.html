@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Professor Abid Khan | Pedagogy Institute & Security Hub</title>
     <meta name="description" content="The official elite platform of Professor Doctor Abid Khan. Global expert in Pedagogy, secure Alphanumeric OTP systems, and advanced digital education architecture.">
-    <meta name="keywords" content="Professor Doctor Abid Khan, Abid Khan Pedagogy, Pedagogy Institute, Telenor OTP Security, Alphanumeric OTP, Secure Education Gateway, Digital Architecture Pakistan">
-    <meta name="author" content="Professor Doctor Abid Khan">
     <link rel="icon" type="image/png" href="ABID KHAN.png">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
@@ -29,9 +27,10 @@
             background-color: var(--dark-bg);
             color: #ffffff;
             overflow-x: hidden;
-            -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+            user-select: none;
         }
 
+        /* Animated Background */
         body::before {
             content: "";
             position: fixed;
@@ -40,103 +39,106 @@
             z-index: -1;
         }
 
-        /* Navbar Styling */
+        /* Fixed Navigation */
         .navbar {
-            backdrop-filter: blur(10px);
-            background: rgba(10, 11, 16, 0.8) !important;
+            backdrop-filter: blur(15px);
+            background: rgba(10, 11, 16, 0.85) !important;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 1rem 0;
         }
 
         .navbar-brand img {
             border: 2px solid var(--primary-blue);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .navbar-brand img:hover { transform: rotate(360deg) scale(1.1); }
+        .navbar-brand img:hover { transform: rotate(360deg) scale(1.15); }
 
-        /* Hero Typography */
+        /* Hero Section */
         .hero-title {
             font-weight: 800;
             letter-spacing: -2px;
-            background: linear-gradient(to right, #fff, var(--primary-blue));
+            background: linear-gradient(to right, #ffffff, var(--primary-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 8vw, 4rem);
+            margin-top: 2rem;
         }
 
-        /* Card Architecture */
+        /* Tremendous Cards */
         .card {
             background: var(--glass-white);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            transition: all 0.4s ease;
+            border-radius: 25px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             height: 100%;
+            overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(11, 99, 211, 0.2);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(11, 99, 211, 0.25);
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
-        .card-body.quran { border-top: 4px solid var(--primary-blue); }
-        .card-body.it { border-top: 4px solid var(--accent-orange); }
-        .card-body.it-panel { border-top: 4px solid var(--it-purple); }
-        .card-body.islamic { border-top: 4px solid var(--islamic-green); }
+        .card-body.it-panel { border-top: 5px solid var(--it-purple); }
+        .card-body.islamic { border-top: 5px solid var(--islamic-green); }
+        .card-body.quran { border-top: 5px solid var(--primary-blue); }
+        .card-body.careers { border-top: 5px solid #ffffff; }
 
         .icon-circle {
-            width: 60px; height: 60px; border-radius: 50%;
+            width: 70px; height: 70px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 15px; font-size: 24px;
-            background: rgba(255,255,255,0.1);
+            margin: 0 auto 20px; font-size: 28px;
+            background: rgba(255,255,255,0.08);
+            transition: 0.3s;
         }
 
-        /* AI Ghostly Glow & Effects */
-        .ai-msg {
-            background: rgba(0, 255, 0, 0.1);
-            color: #fff; padding: 14px 18px; border-radius: 20px 20px 20px 4px;
-            align-self: flex-start; max-width: 85%; font-size: 14px;
-            border-left: 4px solid var(--neon-green);
-            animation: ghost-flicker 5s infinite;
-        }
-
-        @keyframes ghost-flicker {
-            0%, 100% { opacity: 1; }
-            92% { opacity: 1; }
-            93% { opacity: 0.7; transform: translateX(2px); }
-            94% { opacity: 1; transform: translateX(0); }
-        }
+        .card:hover .icon-circle { transform: rotateY(180deg); background: rgba(255,255,255,0.2); }
 
         /* Buttons */
-        .btn-primary { background: var(--primary-blue); border: none; border-radius: 12px; font-weight: 600; }
-        .btn-primary:hover { background: #084ca3; box-shadow: 0 0 15px var(--primary-blue); }
+        .btn-primary { background: var(--primary-blue); border: none; border-radius: 14px; font-weight: 700; padding: 12px 30px; }
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--primary-blue); }
+        
+        /* Floating AI Effect */
+        .ai-status {
+            position: fixed; bottom: 20px; right: 20px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid var(--neon-green);
+            padding: 10px 20px; border-radius: 50px;
+            font-size: 12px; font-family: 'Orbitron', sans-serif;
+            animation: pulse-border 2s infinite;
+        }
 
-        .wave-bar { width: 3px; height: 10px; background: #00ff00; animation: wave 1s infinite ease-in-out; }
-        @keyframes wave { 0%, 100% { height: 5px; } 50% { height: 15px; } }
-        @keyframes pulse-border { 0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4); } 50% { box-shadow: 0 0 0 12px rgba(0, 255, 0, 0); } }
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+        }
     </style>
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="ABID KHAN.png" alt="Logo" width="45" height="45" class="rounded-circle">
+            <a class="navbar-brand" href="index.html">
+                <img src="ABID KHAN.png" alt="Logo" width="50" height="50" class="rounded-circle">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="IT.html">IT Lab</a></li>
                     <li class="nav-item"><a class="nav-link" href="islamic_studies.html">Islamic Studies</a></li>
                     <li class="nav-item"><a class="nav-link" href="jobs.html">Jobs</a></li>
                 </ul>
-             <div class="d-flex">
-    <a href="signin.html" class="btn btn-outline-light me-2">Sign In</a>
-    <a href="signup.html" class="btn btn-primary">Join Now</a>
-</div>
+                <div class="d-flex align-items-center">
+                    <a href="signin.html" class="btn btn-outline-light me-2 btn-sm">Sign In</a>
+                    <a href="signup.html" class="btn btn-primary btn-sm">Join Institute</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -144,10 +146,10 @@
     <section class="container text-center pt-5 mt-5">
         <div class="py-5">
             <h1 class="hero-title text-uppercase">Abid Khan E-Pedagogy Hub</h1>
-            <p class="lead text-secondary">Global Education Architect: Designing the Future of Tech and Spirituality.</p>
+            <p class="lead text-secondary px-md-5">The global gateway for secure alphanumeric systems, advanced pedagogy, and spiritual excellence.</p>
             <div class="mt-4">
                 <a href="#explore" class="btn btn-primary btn-lg px-5">Explore Modules</a>
-                <a href="jobs.html" class="btn btn-outline-light btn-lg ms-3">Browse Jobs</a>
+                <a href="jobs.html" class="btn btn-outline-light btn-lg ms-3">Global Careers</a>
             </div>
         </div>
     </section>
@@ -157,11 +159,11 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body it-panel text-center">
-                        <div class="icon-circle" style="background: rgba(168, 85, 247, 0.1);">
-                            <i class="fas fa-laptop-code" style="color:var(--it-purple)"></i>
+                        <div class="icon-circle">
+                            <i class="fas fa-terminal" style="color:var(--it-purple)"></i>
                         </div>
-                        <h4 class="mt-2" style="color:var(--it-purple)">IT Panel</h4>
-                        <p class="small text-secondary">Full-stack mastery & secure terminal training.</p>
+                        <h4 style="color:var(--it-purple); font-family: 'Orbitron'">IT Lab</h4>
+                        <p class="small text-secondary">Advanced full-stack systems and secure terminal architecture.</p>
                         <a href="IT.html" class="btn btn-outline-light w-100 mt-3" style="border-color:var(--it-purple)">Enter Lab</a>
                     </div>
                 </div>
@@ -170,11 +172,11 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body islamic text-center">
-                        <div class="icon-circle" style="background: rgba(16, 185, 129, 0.1);">
-                            <i class="fas fa-book-quran" style="color:var(--islamic-green)"></i>
+                        <div class="icon-circle">
+                            <i class="fas fa-mosque" style="color:var(--islamic-green)"></i>
                         </div>
-                        <h4 class="mt-2" style="color:var(--islamic-green)">Islamic Studies</h4>
-                        <p class="small text-secondary">Tajweed, Hifz, and the Al-Bukhari Library.</p>
+                        <h4 style="color:var(--islamic-green)">Madrasa</h4>
+                        <p class="small text-secondary">Expert Tajweed, Hifz, and Authentic Islamic Pedagogy.</p>
                         <a href="islamic_studies.html" class="btn btn-outline-light w-100 mt-3" style="border-color:var(--islamic-green)">Enter Madrasa</a>
                     </div>
                 </div>
@@ -184,10 +186,10 @@
                 <div class="card">
                     <div class="card-body quran text-center">
                         <div class="icon-circle text-primary">
-                            <i class="fas fa-users-rays"></i>
+                            <i class="fas fa-headset"></i>
                         </div>
-                        <h4 class="mt-2 text-primary">Live Tutors</h4>
-                        <p class="small text-secondary">Connect with expert Male & Female Trainers.</p>
+                        <h4 class="text-primary">Live Help</h4>
+                        <p class="small text-secondary">Direct access to male and female master trainers.</p>
                         <a href="livetutors.html" class="btn btn-outline-primary w-100 mt-3">Find Tutors</a>
                     </div>
                 </div>
@@ -195,12 +197,12 @@
 
             <div class="col-md-3">
                 <div class="card">
-                    <div class="card-body text-center" style="border-top: 4px solid #fff;">
+                    <div class="card-body careers text-center">
                         <div class="icon-circle text-white">
-                            <i class="fas fa-briefcase"></i>
+                            <i class="fas fa-globe"></i>
                         </div>
-                        <h4 class="mt-2 text-white">Careers</h4>
-                        <p class="small text-secondary">Global opportunities in Tech and Logistics.</p>
+                        <h4 class="text-white">Jobs</h4>
+                        <p class="small text-secondary">Logistics, IT, and Educational opportunities worldwide.</p>
                         <a href="jobs.html" class="btn btn-outline-light w-100 mt-3">View Openings</a>
                     </div>
                 </div>
@@ -208,16 +210,14 @@
         </div>
     </section>
 
+    <div class="ai-status">
+        <span class="text-success">●</span> SYSTEM ONLINE: BYPASS ACTIVE
     </div>
 
-
-        </div>
-    
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-<div id="footer"></div> <script> // Load header and footer dynamically fetch("header.html").then(res => res.text()).then(data => document.getElementById("header").innerHTML = data); fetch("footer.html").then(res => res.text()).then(data => document.getElementById("footer").innerHTML = data); </script>
+    <div id="footer"></div>
+    <script>
+        fetch("footer.html").then(res => res.text()).then(data => document.getElementById("footer").innerHTML = data);
+    </script>
 </body>
 </html>
-
-
-
