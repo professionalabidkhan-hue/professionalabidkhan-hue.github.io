@@ -167,3 +167,16 @@
 </body>
 </html>
 
+
+<style>
+    .navigation-header { padding: 15px; background: #f8f9fa; border-bottom: 1px solid #ddd; display: flex; justify-content: flex-start; }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            const nav = document.createElement('div');
+            nav.className = 'navigation-header';
+            nav.innerHTML = '<a href="https://abidkhaneinstitute.qzz.io/" class="home-link-btn">🏠 Back to Institute</a>';
+            document.body.prepend(nav);
+        }
+    });
+</script>
