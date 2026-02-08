@@ -1,21 +1,17 @@
-
+/* START: Worker Bypass Logic */
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    
-    // PUBLIC ROUTES: Add pages here you want everyone to see
+    // Allow direct access to Home, IT Lab, and Images
     if (
       url.pathname === '/' || 
       url.pathname.includes('index.html') || 
-      url.pathname.includes('it_panel.html') ||
-      url.pathname.includes('.png') ||
-      url.pathname.includes('.jpg')
+      url.pathname.includes('IT.html') || 
+      url.pathname.includes('.png')
     ) {
       return env.ASSETS.fetch(request);
     }
-
-    // PROTECTED ROUTES: Redirect everything else to Sign-in if needed
-    // (This is where your pedagogy-db logic lives)
+    // Protect other sensitive institute areas
     return env.ASSETS.fetch(request);
   }
 };
