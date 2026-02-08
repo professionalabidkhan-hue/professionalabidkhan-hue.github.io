@@ -1,17 +1,8 @@
-/* START: Worker Bypass Logic */
+/* START: 100% Public Worker Logic */
 export default {
   async fetch(request, env) {
-    const url = new URL(request.url);
-    // Allow direct access to Home, IT Lab, and Images
-    if (
-      url.pathname === '/' || 
-      url.pathname.includes('index.html') || 
-      url.pathname.includes('IT.html') || 
-      url.pathname.includes('.png')
-    ) {
-      return env.ASSETS.fetch(request);
-    }
-    // Protect other sensitive institute areas
+    // No more redirects or session checks. Everything is public.
     return env.ASSETS.fetch(request);
   }
 };
+/* END: 100% Public Worker Logic */
