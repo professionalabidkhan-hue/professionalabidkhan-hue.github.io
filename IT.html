@@ -1,7 +1,12 @@
-
 <!doctype html>
 <html lang="en">
-<head><script>(function(){if(!localStorage.getItem("userData")&&!localStorage.getItem("userRole")){window.location.replace("IT.html");}})();</script>
+<head>
+    <script>
+        (function(){
+            // Removed strict auth check to allow public viewing
+            console.log("IT Lab Node: Active");
+        })();
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>IT Panel | Abid Khan Pedagogy Institute</title>
@@ -11,52 +16,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Auth Button Styles */
-.auth-container {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.btn-cyber-auth {
-    font-family: 'Orbitron', sans-serif;
-    padding: 10px 25px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.btn-signin {
-    background: transparent;
-    border: 1px solid var(--it-purple);
-    color: var(--it-purple);
-}
-
-.btn-signin:hover {
-    background: var(--it-purple);
-    color: #fff;
-    box-shadow: 0 0 15px var(--it-purple);
-}
-
-.btn-signup {
-    background: linear-gradient(45deg, var(--it-purple), var(--neon-blue));
-    border: none;
-    color: #fff;
-    box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
-}
-
-.btn-signup:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px var(--neon-blue);
-    color: #fff;
-}
         :root {
             --it-purple: #a855f7;
             --neon-blue: #0ea5e9;
@@ -70,6 +29,34 @@
             color: #ffffff;
             background: radial-gradient(circle at 50% 50%, #161827 0%, #0a0b10 100%);
             min-height: 100vh;
+        }
+
+        /* Navbar Repair */
+        .navigation-header { 
+            padding: 20px; 
+            background: rgba(0,0,0,0.4); 
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2); 
+            display: flex; 
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .home-link-btn {
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            border: 1px solid var(--neon-blue);
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .home-link-btn:hover {
+            background: var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue);
+            color: #000;
         }
 
         .hero-header {
@@ -97,17 +84,6 @@
             overflow: hidden;
         }
 
-        .it-btn::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(168, 85, 247, 0.1), transparent);
-            transform: translateX(-100%);
-            transition: 0.6s;
-        }
-
-        .it-btn:hover::before { transform: translateX(100%); }
-
         .it-btn:hover {
             background: rgba(168, 85, 247, 0.08);
             border-color: var(--it-purple);
@@ -128,7 +104,6 @@
             font-size: 1.15rem;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .duration-badge {
@@ -139,28 +114,7 @@
             border-radius: 0 0 0 15px !important;
         }
 
-        .btn-return-dashboard {
-            display: inline-block;
-            padding: 12px 25px;
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-blue);
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            transition: 0.3s;
-        }
-
-        .btn-return-dashboard:hover {
-            background: var(--neon-blue);
-            color: #000;
-            box-shadow: 0 0 20px var(--neon-blue);
-        }
-
-        .blink { animation: blinker 1.5s linear infinite; }
-        @keyframes blinker { 50% { opacity: 0.3; } }
-
+        /* UI Repair: Master Chief Launcher */
         #ai-launcher {
             position: fixed; bottom: 20px; right: 20px; 
             width: 80px; height: 80px; background: #000; 
@@ -170,50 +124,31 @@
             box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
         }
 
-        #launcher-inner {
-            width: 60px; height: 60px; border-radius: 50%; border: 1px solid var(--neon-green);
-            display: flex; align-items: center; justify-content: center;
-            animation: pulse-border 2s infinite;
-        }
-
-        @keyframes pulse-border { 0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(0, 255, 0, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); } }
+        .blink { animation: blinker 1.5s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0.3; } }
     </style>
 </head>
 <body>
-<div class="col-md-8">
-    <h1 class="hero-header fw-bold text-uppercase display-5">Technical Excellence Laboratory</h1>
-    <p class="text-secondary fs-5">Secure Module Selection: Deploy your learning path.</p>
-    
-    <div class="d-flex flex-wrap gap-3 align-items-center mt-3">
-        <a href="index.html" class="btn-return-dashboard">
-            <i class="fas fa-th-large me-2"></i> Command Bridge
-        </a>
 
-        <div class="auth-container">
-            <a href="index.html" class="btn-cyber-auth btn-signin">
-                <i class="fas fa-sign-in-alt"></i> Sign In
-            </a>
-            <a href="index.html" class="btn-cyber-auth btn-signup">
-                <i class="fas fa-user-plus"></i> Join Lab
-            </a>
-        </div>
+<div class="navigation-header">
+    <a href="index.html" class="home-link-btn">🏠 Back to Institute</a>
+    <div class="status-indicator">
+        <span class="badge bg-success blink">NODE: ONLINE</span>
     </div>
 </div>
-<div class="container mt-5 pt-4">
+
+<div class="container mt-5">
     <div class="row align-items-center mb-5">
         <div class="col-md-8">
             <h1 class="hero-header fw-bold text-uppercase display-5">Technical Excellence Laboratory</h1>
             <p class="text-secondary fs-5">Secure Module Selection: Deploy your learning path.</p>
-            <a href="index.html" class="btn-return-dashboard">
-                <i class="fas fa-th-large me-2"></i> Command Bridge
-            </a>
         </div>
         
         <div class="col-md-4 mt-4 mt-md-0">
             <div class="p-4 rounded border border-info bg-dark text-center shadow-lg" style="background: rgba(0,0,0,0.6) !important;">
                 <small class="text-info fw-bold text-uppercase" style="letter-spacing: 2px;">Global Active Nodes</small>
                 <h1 class="text-white fw-bold display-4 mb-0">38</h1>
-                <span class="badge bg-success blink p-2 mt-2">SYSTEM SECURE</span>
+                <span class="badge bg-info p-2 mt-2">ENCRYPTION: ACTIVE</span>
             </div>
         </div>
     </div>
@@ -226,147 +161,15 @@
                 <span class="course-title-master">MS Office</span>
             </a>
         </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/graphic_designing.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">6 MONTHS</span>
-                <i class="fas fa-palette"></i>
-                <span class="course-title-master">Graphic Designing</span>
-            </a>
         </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/website_development.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">6 MONTHS</span>
-                <i class="fas fa-code"></i>
-                <span class="course-title-master">Website Development</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/android_app_development.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">2 YEARS</span>
-                <i class="fas fa-android"></i>
-                <span class="course-title-master">Android App Development</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/advance_excel_and_spreadsheets.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">3 MONTHS</span>
-                <i class="fas fa-file-excel"></i>
-                <span class="course-title-master">Advance Excel</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/ethical_hacking.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">6 MONTHS</span>
-                <i class="fas fa-user-secret"></i>
-                <span class="course-title-master">Ethical Hacking</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/network_security.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">6 MONTHS</span>
-                <i class="fas fa-shield-halved"></i>
-                <span class="course-title-master">Network Security</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/it_security_architecture.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">2 YEARS</span>
-                <i class="fas fa-sitemap"></i>
-                <span class="course-title-master">Security Architecture</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/data_science.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">2 YEARS</span>
-                <i class="fas fa-database"></i>
-                <span class="course-title-master">Data Science</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/data_analytics.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">6 MONTHS</span>
-                <i class="fas fa-chart-pie"></i>
-                <span class="course-title-master">Data Analytics</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/big_data.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">6 MONTHS</span>
-                <i class="fas fa-server"></i>
-                <span class="course-title-master">Big Data</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/cloud_infrastructure.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">6 MONTHS</span>
-                <i class="fas fa-cloud"></i>
-                <span class="course-title-master">Cloud Infrastructure</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/python.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">3 MONTHS</span>
-                <i class="fa-brands fa-python"></i>
-                <span class="course-title-master">Python Programming</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/ai_fundamentals.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">6 MONTHS</span>
-                <i class="fas fa-brain"></i>
-                <span class="course-title-master">AI Fundamentals</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/machine_learning.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">2 YEARS</span>
-                <i class="fas fa-robot"></i>
-                <span class="course-title-master">Machine Learning</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/full_stack_development.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">2 YEARS</span>
-                <i class="fas fa-layer-group"></i>
-                <span class="course-title-master">Full Stack Mastery</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/ui_ux_design.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">3 MONTHS</span>
-                <i class="fas fa-pen-nib"></i>
-                <span class="course-title-master">UI/UX Design</span>
-            </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <a href="courses/digital_marketing_and_seo.html" class="it-btn">
-                <span class="badge position-absolute top-0 end-0 m-0 duration-badge">6 MONTHS</span>
-                <i class="fas fa-magnifying-glass-chart"></i>
-                <span class="course-title-master">Digital Marketing</span>
-            </a>
-        </div>
-    </div>
 </div>
 
 <div id="ai-launcher" onclick="alert('Neural Link Initiated...')">
-    <div id="launcher-inner">
-        <span style="font-size:11px; color:var(--neon-green); font-weight:bold; text-align:center; font-family:'Orbitron'">MASTER<br>CHIEF</span>
+    <div id="launcher-inner" style="text-align:center">
+        <span style="font-size:11px; color:var(--neon-green); font-weight:bold; font-family:'Orbitron'">MASTER<br>CHIEF</span>
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
-<style>
-    .navigation-header { padding: 15px; background: #f8f9fa; border-bottom: 1px solid #ddd; display: flex; justify-content: flex-start; }
-</style>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-            const nav = document.createElement('div');
-            nav.className = 'navigation-header';
-            nav.innerHTML = '<a href="https://abidkhaneinstitute.qzz.io/" class="home-link-btn">🏠 Back to Institute</a>';
-            document.body.prepend(nav);
-        }
-    });
-</script>
