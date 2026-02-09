@@ -394,5 +394,10 @@ function typeWriter() {
 }
 /* END: Live Text Animation */
         <.script>
+            <script>
+            /* START: UI PROTECTION */
+document.addEventListener('contextmenu', event => event.preventDefault()); 
+// This prevents right-click and "Inspect" for casual users.
+/* END: UI PROTECTION */</script>
 </body>
 </html>
