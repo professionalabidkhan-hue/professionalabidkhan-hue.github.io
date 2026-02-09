@@ -308,5 +308,91 @@ function navigateTo(mode) {
 }
 /* END: SINGLE URL ROUTING LOGIC */
         </script>
+    <div class="construction-container">
+    <div class="construction-card">
+        <div class="loader-ring"></div>
+        <h1>SYSTEM STATUS: <span class="highlight">EVOLVING</span></h1>
+        <p>The <strong>Abid Pedagogy Portal</strong> is currently under heavy construction.</p>
+        <div class="status-bar">
+            <div class="progress"></div>
+        </div>
+        <small>From Worker: Abid-Pedagogy-DB | Integration in progress...</small>
+    </div>
+</div>
+    <style>
+        /* START: Construction Styles */
+.construction-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: #0a0a0a; /* Matches your dashboard depth */
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+}
+
+.construction-card {
+    text-align: center;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.highlight {
+    color: #00d4ff; /* Tech Blue */
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.loader-ring {
+    width: 50px;
+    height: 50px;
+    border: 3px solid transparent;
+    border-top: 3px solid #00d4ff;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 1s linear infinite;
+}
+
+.status-bar {
+    width: 100%;
+    height: 6px;
+    background: #222;
+    border-radius: 10px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.progress {
+    width: 65%; /* Change this as you build */
+    height: 100%;
+    background: linear-gradient(90deg, #00d4ff, #0055ff);
+    box-shadow: 0 0 10px #00d4ff;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* END: Construction Styles */
+
+    </style>
+            <script>
+        /* START: Live Text Animation */
+const statusText = "Initializing WebSoftware Systems...";
+let i = 0;
+
+function typeWriter() {
+    if (i < statusText.length) {
+        // Assuming you add an id="live-txt" to a tag
+        // document.getElementById("live-txt").innerHTML += statusText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+    }
+}
+/* END: Live Text Animation */
+        <.script>
 </body>
 </html>
