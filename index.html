@@ -44,7 +44,59 @@ body::before {
     user-select: none;
     pointer-events: none;
 }
+/* START: AUTH BUTTON STYLES */
+.auth-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+}
 
+.btn-auth {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+}
+
+/* Signup: Abid Khan Institute Hub Style (Orange/Gold) */
+.btn-signup {
+    background: rgba(255, 165, 0, 0.1);
+    color: #ffa500;
+    border: 1px solid #ffa500;
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.2);
+}
+
+.btn-signup:hover {
+    background: #ffa500;
+    color: #000;
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+    transform: translateY(-3px);
+}
+
+/* Signin: Abid Pedagogy DB Style (Electric Blue) */
+.btn-signin {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+    border: 1px solid #00d4ff;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+.btn-signin:hover {
+    background: #00d4ff;
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    transform: translateY(-3px);
+}
+/* END: AUTH BUTTON STYLES */
 /* Fix for Navbar consistency */
 .navbar {
     backdrop-filter: blur(15px);
@@ -130,7 +182,7 @@ body::before {
 <div class="content-wrapper">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="auth-btn">join</a>
+          
             <a class="navbar-brand" href="index.html">
                 <img src="ABID KHAN.png" alt="Logo" width="50" height="50" class="rounded-circle">
             </a>
@@ -147,6 +199,15 @@ body::before {
                 
             </div>
         </div>
+        <div class="auth-actions">
+    <button onclick="navigateTo('signup')" class="btn-auth btn-signup">
+        <i class="fas fa-user-plus"></i> SIGNUP HUB
+    </button>
+    
+    <button onclick="navigateTo('signin')" class="btn-auth btn-signin">
+        <i class="fas fa-key"></i> SIGNIN PORTAL
+    </button>
+</div>
     </nav>
 
     <section class="container text-center pt-5 mt-5">
@@ -233,6 +294,19 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Pedagogy Hub UI Loaded with Dark Grey Theme");
 });
 /* End: Script for dynamic UI elements */
+        /* START: SINGLE URL ROUTING LOGIC */
+function navigateTo(mode) {
+    const workerURL = "https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/"; // Replace with your actual URL
+    
+    if (mode === 'signup') {
+        // Routes to abid-khan-institute-hub logic
+        window.location.href = `${workerURL}?page=signup`;
+    } else if (mode === 'signin') {
+        // Routes to abid-pedagogy-db logic
+        window.location.href = `${workerURL}?page=signin`;
+    }
+}
+/* END: SINGLE URL ROUTING LOGIC */
         </script>
 </body>
 </html>
