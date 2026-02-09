@@ -380,24 +380,37 @@ function navigateTo(mode) {
 
     </style>
             <script>
-        /* START: Live Text Animation */
-const statusText = "Initializing WebSoftware Systems...";
-let i = 0;
+/* START: ADVANCED UI PROTECTION [2026-02-09 REPAIR] */
+(function() {
+    // 1. Disable Right Click
+    document.addEventListener('contextmenu', e => e.preventDefault());
 
-function typeWriter() {
-    if (i < statusText.length) {
-        // Assuming you add an id="live-txt" to a tag
-        // document.getElementById("live-txt").innerHTML += statusText.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50);
-    }
-}
-/* END: Live Text Animation */
-        <.script>
-            <script>
-            /* START: UI PROTECTION */
-document.addEventListener('contextmenu', event => event.preventDefault()); 
-// This prevents right-click and "Inspect" for casual users.
-/* END: UI PROTECTION */</script>
+    // 2. Disable Keyboard Shortcuts
+    document.onkeydown = function(e) {
+        if (
+            e.keyCode === 123 || // F12
+            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || // Ctrl+Shift+I/J/C
+            (e.ctrlKey && e.keyCode === 85) // Ctrl+U (View Source)
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    };
+
+    // 3. The "Debugger Trap"
+    // This creates an infinite loop that only triggers when DevTools is open
+    setInterval(function() {
+        const start = new Date();
+        debugger; // This pauses the browser IF DevTools is open
+        const end = new Date();
+        if (end - start > 100) {
+            // If the user resumed from debugger, we refresh or clear the UI
+            document.body.innerHTML = "<h1>SECURITY VIOLATION DETECTED</h1>";
+            window.location.reload();
+        }
+    }, 500);
+})();
+/* END: ADVANCED UI PROTECTION */
+            </script>
 </body>
 </html>
