@@ -1,7 +1,15 @@
-name = "professionalabidkhan-hue-github-io"
-compatibility_date = "2024-01-01"
+name = "abid-khan-institute-hub"
+main = "worker.js"
+compatibility_date = "2026-02-10"
 
-[[d1_databases]]
-binding = "DB"
-database_name = "abid-pedagogy-db"
-database_id = "PASTE_YOUR_NEW_DATABASE_ID_HERE"
+# Bindings for AI (Llama/Mistral)
+[ai]
+binding = "AI"
+
+# Bindings for your Database (KV Namespace)
+[[kv_namespaces]]
+binding = "abid_pedagogy_db"
+id = "68cf91c6f606eb4c30cc5bf692045694"
+
+[observability]
+enabled = true
