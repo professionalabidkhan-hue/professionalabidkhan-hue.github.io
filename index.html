@@ -1,416 +1,192 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Professor Abid Khan | Pedagogy Institute & Security Hub</title>
-    <meta name="description" content="The official elite platform of Professor Doctor Abid Khan. Global expert in Pedagogy, secure Alphanumeric OTP systems, and advanced digital education architecture.">
-    <link rel="icon" type="image/png" href="ABID KHAN.png">
-
+    <title>Professor Doctor Abid Khan | Pedagogy Institute & Security Hub</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-/* Start: Background and Theme Repair */
-:root {
-    --primary-blue: #0b63d3;
-    --accent-orange: #ff9800;
-    --it-purple: #a855f7;
-    --islamic-green: #10b981;
-    --dark-bg: #1a1a1c; /* Changed to a Deep Dark Grey */
-    --glass-white: rgba(255, 255, 255, 0.05);
-    --neon-green: #00ff00;
-}
+        :root { --emerald: #1a5d1a; --gold: #d4af37; --glass: rgba(255, 255, 255, 0.9); }
+        body { font-family: 'Inter', sans-serif; background: #f0f2f5; }
+        .orbitron { font-family: 'Orbitron', sans-serif; }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #121212 !important; /* Fixed: Added property and set to Dark Grey */
-    color: #ffffff;
-    overflow-x: hidden;
-    margin: 0;
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
-    /* Gradient adjusted from deep blue to Slate/Dark Grey tones */
-    background: radial-gradient(circle at 50% 50%, #2c2c2e 0%, #121212 100%);
-    z-index: -1;
-    user-select: none;
-    pointer-events: none;
-}
-/* START: AUTH BUTTON STYLES */
-.auth-actions {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 25px;
-}
-
-.btn-auth {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    letter-spacing: 1px;
-    font-size: 0.85rem;
-}
-
-/* Signup: Abid Khan Institute Hub Style (Orange/Gold) */
-.btn-signup {
-    background: rgba(255, 165, 0, 0.1);
-    color: #ffa500;
-    border: 1px solid #ffa500;
-    box-shadow: 0 0 10px rgba(255, 165, 0, 0.2);
-}
-
-.btn-signup:hover {
-    background: #ffa500;
-    color: #000;
-    box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
-    transform: translateY(-3px);
-}
-
-/* Signin: Abid Pedagogy DB Style (Electric Blue) */
-.btn-signin {
-    background: rgba(0, 212, 255, 0.1);
-    color: #00d4ff;
-    border: 1px solid #00d4ff;
-    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
-}
-
-.btn-signin:hover {
-    background: #00d4ff;
-    color: #000;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-    transform: translateY(-3px);
-}
-/* END: AUTH BUTTON STYLES */
-/* Fix for Navbar consistency */
-.navbar {
-    backdrop-filter: blur(15px);
-    background: rgba(18, 18, 18, 0.9) !important; /* Matches the new dark grey */
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-/* End: Background and Theme Repair */
-        .navbar-brand img {
-            border: 2px solid var(--primary-blue);
-            transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .navbar-brand img:hover { transform: rotate(360deg) scale(1.15); }
-.container a{
- color:#C7C7C7;
-    
-}
-        /* Hero Section */
-        .hero-title {
-            font-weight: 800;
-            letter-spacing: -2px;
-            background: linear-gradient(to right, #ffffff, var(--primary-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: clamp(2rem, 8vw, 4rem);
-            margin-top: 2rem;
-        }
-
-        /* Tremendous Cards */
-        .card {
-             background: rgba(18, 18, 18, 0.9) !important;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 25px;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Animated Card System */
+        .feature-card {
+            border: none; border-radius: 20px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer; background: var(--glass);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             height: 100%;
-            overflow: hidden;
+        }
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(26, 93, 26, 0.2);
+            border-bottom: 5px solid var(--gold);
         }
 
-        .card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(11, 99, 211, 0.25);
-            border: 1px solid rgba(255,255,255,0.3);
+        /* LIVE TXT Gallery Architecture */
+        .nazara-container {
+            background: #000; border-radius: 25px;
+            padding: 20px; border: 3px solid var(--gold);
         }
-
-        .card-body.it-panel { border-top: 5px solid var(--it-purple); }
-        .card-body.islamic { border-top: 5px solid var(--islamic-green); }
-        .card-body.quran { border-top: 5px solid var(--primary-blue); }
-        .card-body.careers { border-top: 5px solid #ffffff; }
-
-        .icon-circle {
-            width: 70px; height: 70px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px; font-size: 28px;
-            background: rgba(255,255,255,0.08);
-            transition: 0.3s;
+        #mainMediaDisplay {
+            width: 100%; height: auto; max-height: 600px;
+            border-radius: 15px; transition: opacity 0.4s;
         }
+        .thumb-strip {
+            display: flex; overflow-x: auto; gap: 15px; padding: 15px 0;
+        }
+        .thumb-strip img {
+            height: 80px; width: 120px; object-fit: cover;
+            border-radius: 10px; cursor: pointer; border: 2px solid transparent;
+            opacity: 0.7; transition: 0.3s;
+        }
+        .thumb-strip img.active { border-color: var(--gold); opacity: 1; transform: scale(1.1); }
 
-        .card:hover .icon-circle { transform: rotateY(180deg); background: rgba(255,255,255,0.2); }
-
-        /* Buttons */
-        .btn-primary { background: var(--primary-blue); border: none; border-radius: 14px; font-weight: 700; padding: 12px 30px; }
-        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--primary-blue); }
+        /* Text Glows */
+        .live-txt-badge { color: red; font-weight: bold; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
         
-        /* Floating AI Effect */
-        .ai-status {
-            position: fixed; bottom: 20px; right: 20px;
-            background: rgba(0, 255, 0, 0.1);
-            border: 1px solid var(--neon-green);
-            padding: 10px 20px; border-radius: 50px;
-            font-size: 12px; font-family: 'Orbitron', sans-serif;
-            animation: pulse-border 2s infinite;
-        }
-
-        @keyframes pulse-border {
-            0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
-        }
+        .dua-arabic { font-size: 1.7rem; color: var(--emerald); font-weight: bold; font-family: 'Inter'; }
     </style>
-</head>
-<body class="bg-dark-theme">
-<div class="content-wrapper">
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-          
-            <a class="navbar-brand" href="index.html">
-                <img src="ABID KHAN.png" alt="Logo" width="50" height="50" class="rounded-circle">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="ITCOURSES.html">IT Lab</a></li>
-                    <li class="nav-item"><a class="nav-link" href="islamic_studies.html">Islamic Studies</a></li>
-                    <li class="nav-item"><a class="nav-link" href="jobs.html">Jobs</a></li>
-                </ul>
-                
+    </head>
+<body>
+
+<div id="header"></div>
+
+<header class="bg-white text-center py-5 border-bottom">
+    <div class="container">
+        <h1 class="display-4 orbitron fw-bold text-success">ABID KHAN INSTITUTE HUB</h1>
+        <p class="lead">Elite Pedagogy & Secure Digital Architecture</p>
+    </div>
+</header>
+
+<div class="container py-5">
+    <div class="row g-4 text-center">
+        <div class="col-md-3">
+            <div class="card feature-card p-4" onclick="showModule('nimaz-box')">
+                <i class="fas fa-mosque fa-3x text-primary mb-3"></i>
+                <h5 class="fw-bold">NIMAZ ACCESS</h5>
+                <p class="small">Interactive Step-by-Step Prayer Mastery</p>
             </div>
         </div>
-        <div class="auth-actions">
-    <button onclick="navigateTo('signup')" class="btn-auth btn-signup">
-        <i class="fas fa-user-plus"></i> SIGNUP HUB
-    </button>
-    
-    <button onclick="navigateTo('signin')" class="btn-auth btn-signin">
-        <i class="fas fa-key"></i> SIGNIN PORTAL
-    </button>
-</div>
-    </nav>
 
-    <section class="container text-center pt-5 mt-5">
-        <div class="py-5">
-            <h1 class="hero-title text-uppercase">Abid Khan E-Pedagogy Hub</h1>
-            <p class="lead text-secondary px-md-5">The global gateway for secure alphanumeric systems, advanced pedagogy, and spiritual excellence.</p>
-            <div class="mt-4">
-                <a href="#explore" class="btn btn-primary btn-lg px-5">Explore Modules</a>
-                <a href="jobs.html" class="btn btn-outline-light btn-lg ms-3">Global Careers</a>
+        <div class="col-md-3">
+            <div class="card feature-card p-4" onclick="showModule('dua-box')">
+                <i class="fas fa-hand-holding-heart fa-3x text-warning mb-3"></i>
+                <h5 class="fw-bold">DAILY DUAS (30+)</h5>
+                <p class="small">Arabic, Urdu & English Translations</p>
             </div>
         </div>
-    </section>
 
-    <section class="container mb-5" id="explore">
-        <div class="row g-4">
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body it-panel text-center">
-                        <div class="icon-circle">
-                            <i class="fas fa-terminal" style="color:var(--it-purple)"></i>
-                        </div>
-                        <h4 style="color:var(--it-purple); font-family: 'Orbitron'">IT Lab</h4>
-                        <p class="small text-secondary">Advanced full-stack systems and secure terminal architecture.</p>
-                        <a href="ITCOURSES.html" class="btn btn-outline-light w-100 mt-3" style="border-color:var(--it-purple)">Enter Lab</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body islamic text-center">
-                        <div class="icon-circle">
-                            <i class="fas fa-mosque" style="color:var(--islamic-green)"></i>
-                        </div>
-                        <h4 style="color:var(--islamic-green)">Madrasa</h4>
-                        <p class="small text-secondary">Expert Tajweed, Hifz, and Authentic Islamic Pedagogy.</p>
-                        <a href="islamic_studies.html" class="btn btn-outline-light w-100 mt-3" style="border-color:var(--islamic-green)">Enter Madrasa</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body quran text-center">
-                        <div class="icon-circle text-primary">
-                            <i class="fas fa-headset"></i>
-                        </div>
-                        <h4 class="text-primary">Live Help</h4>
-                        <p class="small text-secondary">Direct access to male and female master trainers.</p>
-                        <a href="livetutors.html" class="btn btn-outline-primary w-100 mt-3">Find Tutors</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body careers text-center">
-                        <div class="icon-circle text-white">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <h4 class="text-white">Jobs</h4>
-                        <p class="small text-secondary">Logistics, IT, and Educational opportunities worldwide.</p>
-                        <a href="jobs.html" class="btn btn-outline-light w-100 mt-3">View Openings</a>
-                    </div>
-                </div>
+        <div class="col-md-3">
+            <div class="card feature-card p-4" onclick="showModule('tajweed-box')">
+                <i class="fas fa-microphone-alt fa-3x text-danger mb-3"></i>
+                <h5 class="fw-bold">TAJWEED & QAEDHA</h5>
+                <p class="small">Nazara HD Pics & Vocal Arabic Sounds</p>
             </div>
         </div>
-    </section>
 
-    <div class="ai-status">
-        <span class="text-success">●</span> SYSTEM ONLINE: BYPASS ACTIVE
+        <div class="col-md-3">
+            <div class="card feature-card p-4" onclick="showModule('security-box')">
+                <i class="fas fa-user-shield fa-3x text-dark mb-3"></i>
+                <h5 class="fw-bold">SECURE GATEWAY</h5>
+                <p class="small">Alphanumeric OTP & Pedagogy DB Login</p>
+            </div>
+        </div>
+    </div>
+    <div id="tajweed-box" class="module-section mt-5">
+        <div class="nazara-container">
+            <div class="d-flex justify-content-between text-white mb-3">
+                <span class="live-txt-badge">LIVE TXT FEED</span>
+                <h4 class="orbitron m-0">Tajweed & Noorani Qaedha Gallery</h4>
+            </div>
+            <img id="mainMediaDisplay" src="https://via.placeholder.com/1200x700/111/fff?text=Touch+Thumbnail+to+Teach" alt="Main View">
+            
+            <div class="thumb-strip">
+                <img src="qaeda_p1.jpg" class="active" onclick="syncView(this)">
+                <img src="qaeda_p2.jpg" onclick="syncView(this)">
+                <img src="tajweed_rule1.jpg" onclick="syncView(this)">
+                <img src="nazara_pic1.jpg" onclick="syncView(this)">
+                <img src="nazara_pic2.jpg" onclick="syncView(this)">
+            </div>
+        </div>
+    </div>
+    <div id="dua-box" class="module-section mt-5 d-none">
+        <div class="card p-4 feature-card">
+            <h3 class="text-success fw-bold mb-4">Essential Daily Supplications</h3>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Moment</th>
+                            <th class="text-end">Arabic Supplication</th>
+                            <th>Translations</th>
+                        </tr>
+                    </thead>
+                    <tbody id="duaTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <div id="footer"></div>
-    <script>
-        fetch("footer.html").then(res => res.text()).then(data => document.getElementById("footer").innerHTML = data);
-    </script>
-    </div>
-    <script>
-    /* Start: Script for dynamic UI elements */
-document.addEventListener('DOMContentLoaded', () => {
-    // Logic for loading footer and initializing 'LIVE TXT'
-    console.log("Pedagogy Hub UI Loaded with Dark Grey Theme");
-});
-/* End: Script for dynamic UI elements */
-        /* START: SINGLE URL ROUTING LOGIC */
-function navigateTo(mode) {
-    const workerURL = "https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/"; // Replace with your actual URL
-    
-    if (mode === 'signup') {
-        // Routes to abid-khan-institute-hub logic
-        window.location.href = `${workerURL}?page=signup`;
-    } else if (mode === 'signin') {
-        // Routes to abid-pedagogy-db logic
-        window.location.href = `${workerURL}?page=signin`;
+<div id="footer"></div>
+
+<script>
+    // Constants for Project Memory
+    const SIGNUP_WORKER = "abid-khan-institute-hub";
+    const DB_WORKER = "abid-pedagogy-db";
+
+    // LIVE TXT Gallery Sync
+    function syncView(img) {
+        const viewer = document.getElementById('mainMediaDisplay');
+        viewer.style.opacity = '0.4';
+        setTimeout(() => {
+            viewer.src = img.src;
+            viewer.style.opacity = '1';
+            document.querySelectorAll('.thumb-strip img').forEach(i => i.classList.remove('active'));
+            img.classList.add('active');
+        }, 300);
     }
-}
-/* END: SINGLE URL ROUTING LOGIC */
-        </script>
-    <div class="construction-container">
-    <div class="construction-card">
-        <div class="loader-ring"></div>
-        <h1>SYSTEM STATUS: <span class="highlight">EVOLVING</span></h1>
-        <p>The <strong>Abid Pedagogy Portal</strong> is currently under heavy construction.</p>
-        <div class="status-bar">
-            <div class="progress"></div>
-        </div>
-        <small>From Worker: Abid-Pedagogy-DB | Integration in progress...</small>
-    </div>
-</div>
-    <style>
-        /* START: Construction Styles */
-.construction-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background: #0a0a0a; /* Matches your dashboard depth */
-    font-family: 'Segoe UI', sans-serif;
-    color: white;
-}
 
-.construction-card {
-    text-align: center;
-    padding: 40px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-}
+    // Module Toggling
+    function showModule(id) {
+        document.querySelectorAll('.module-section').forEach(s => s.classList.add('d-none'));
+        document.getElementById(id).classList.remove('d-none');
+        window.scrollTo({ top: document.getElementById(id).offsetTop - 50, behavior: 'smooth' });
+    }
 
-.highlight {
-    color: #00d4ff; /* Tech Blue */
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-}
+    // Populate 30 Duas (Sample logic - can be extended)
+    const duas = [
+        { occasion: "Before Eating", arabic: "بِسْمِ اللَّهِ", trans: "اللہ کے نام سے / In the name of Allah" },
+        { occasion: "After Eating", arabic: "الْحَمْدُ لِلَّهِ", trans: "تمام تعریفیں اللہ کے لیے / All praise to Allah" },
+        { occasion: "Before Sleeping", arabic: "بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا", trans: "اے اللہ تیرے نام سے مرتا اور جیتا ہوں / In Your name I die and live" }
+    ];
 
-.loader-ring {
-    width: 50px;
-    height: 50px;
-    border: 3px solid transparent;
-    border-top: 3px solid #00d4ff;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    animation: spin 1s linear infinite;
-}
+    const tbody = document.getElementById('duaTableBody');
+    duas.forEach(d => {
+        tbody.innerHTML += `
+            <tr>
+                <td class="fw-bold">${d.occasion}</td>
+                <td class="dua-arabic text-end">${d.arabic}</td>
+                <td class="small">${d.trans}</td>
+            </tr>
+        `;
+    });
 
-.status-bar {
-    width: 100%;
-    height: 6px;
-    background: #222;
-    border-radius: 10px;
-    margin: 20px 0;
-    overflow: hidden;
-}
-
-.progress {
-    width: 65%; /* Change this as you build */
-    height: 100%;
-    background: linear-gradient(90deg, #00d4ff, #0055ff);
-    box-shadow: 0 0 10px #00d4ff;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-/* END: Construction Styles */
-
-    </style>
-            <script>
-/* START: ADVANCED UI PROTECTION [2026-02-09 REPAIR] */
-(function() {
-    // 1. Disable Right Click
-    document.addEventListener('contextmenu', e => e.preventDefault());
-
-    // 2. Disable Keyboard Shortcuts
-    document.onkeydown = function(e) {
-        if (
-            e.keyCode === 123 || // F12
-            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || // Ctrl+Shift+I/J/C
-            (e.ctrlKey && e.keyCode === 85) // Ctrl+U (View Source)
-        ) {
-            e.preventDefault();
-            return false;
-        }
-    };
-
-    // 3. The "Debugger Trap"
-    // This creates an infinite loop that only triggers when DevTools is open
-    setInterval(function() {
-        const start = new Date();
-        debugger; // This pauses the browser IF DevTools is open
-        const end = new Date();
-        if (end - start > 100) {
-            // If the user resumed from debugger, we refresh or clear the UI
-            document.body.innerHTML = "<h1>SECURITY VIOLATION DETECTED</h1>";
-            window.location.reload();
-        }
-    }, 500);
-})();
-/* END: ADVANCED UI PROTECTION */
-            </script>
+    // Template Loading
+    function loadPart(id, file) {
+        fetch(file).then(r => r.text()).then(t => document.getElementById(id).innerHTML = t);
+    }
+    loadPart("header", "header.html");
+    loadPart("footer", "footer.html");
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
