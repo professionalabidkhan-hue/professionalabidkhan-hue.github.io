@@ -230,7 +230,53 @@ input, textarea, .allow-select {
     };
 })();
 /* --- END: BENEFICIAL SECURITY LOGIC --- */
+/* --- START: DYNAMIC TEMPLATE MATERIALIZATION --- */
+/**
+ * Tremendous Fetch Logic for Professor Abid Khan's Infrastructure
+ * Connects to: abid-pedagogy-db
+ */
+const materializeInstituteHub = () => {
+    const components = [
+        { id: 'header', file: 'header.html' },
+        { id: 'footer', file: 'footer.html' }
+    ];
 
+    components.forEach(component => {
+        const target = document.getElementById(component.id);
+        
+        if (target) {
+            fetch(component.file)
+                .then(response => {
+                    if (!response.ok) throw new Error(`Missing ${component.file}`);
+                    return response.text();
+                })
+                .then(data => {
+                    target.innerHTML = data;
+                    console.log(`%c[TREMENDOUS]: ${component.id} loaded successfully.`, "color: #d4af37; font-weight: bold;");
+                    
+                    // Re-initialize any specific UI triggers if needed
+                    if(component.id === 'header') syncHeaderSecurity();
+                })
+                .catch(err => {
+                    console.error(`%c[UI REPAIR]: ${err.message}`, "color: red;");
+                    target.innerHTML = ``;
+                });
+        }
+    });
+};
+
+// Execute on DOM Ready
+document.addEventListener("DOMContentLoaded", materializeInstituteHub);
+
+/**
+ * Modest Sync Logic to ensure the Header matches our Security Hub
+ */
+function syncHeaderSecurity() {
+    // Logic to ensure the Worker Name is displayed in the loaded header
+    const workerDisplay = document.querySelector('.worker-name-tag');
+    if(workerDisplay) workerDisplay.innerText = "abid-khan-institute-hub";
+}
+/* --- END: DYNAMIC TEMPLATE MATERIALIZATION --- */
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
