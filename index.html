@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABID KHAN HUB | Master Hub & Security Portal</title>
+    <title>ABID KHAN HUB | Elite Security & Pedagogy</title>
     
-    <meta name="description" content="Official elite platform of Professor Doctor Abid Khan. Global expert in Pedagogy and Alphanumeric Security.">
-    <link rel="icon" type="image/png" href="ABID KHAN.png">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;800&display=swap" rel="stylesheet">
@@ -19,80 +16,65 @@
             --it-purple: #a855f7;
             --dark-bg: #030407;
             --gold: #FFD700;
-            --islamic-green: #10b981;
         }
 
-        body { 
-            background-color: var(--dark-bg); 
-            color: #fff; 
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            user-select: none; -webkit-user-select: none;
+        /* --- TREMENDOUS CUSTOM LOADER --- */
+        #loader-wrapper {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--dark-bg);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 9999; transition: opacity 0.8s ease;
         }
 
-        /* Clean Master Navigation */
-        .navbar-custom {
-            background: rgba(3, 4, 7, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 3px solid var(--it-purple);
-            padding: 15px 0;
+        .scanning-pulse {
+            width: 120px; height: 120px;
+            border: 4px solid var(--primary-blue);
+            border-radius: 50%;
+            position: relative;
+            animation: pulse 1.5s infinite;
         }
 
-        .nav-link { 
-            color: #FFFFFF !important; 
-            font-weight: 800 !important; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0 15px;
+        .scanning-line {
+            position: absolute; width: 100%; height: 2px;
+            background: var(--cyber-cyan);
+            top: 50%; box-shadow: 0 0 15px var(--cyber-cyan);
+            animation: scan 2s linear infinite;
         }
 
-        .nav-link:hover { color: var(--cyber-cyan) !important; transform: scale(1.05); }
-
-        /* Hero Effect */
-        .hero-title {
-            font-weight: 900;
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(to right, #fff, var(--primary-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: clamp(1.8rem, 6vw, 3.5rem);
-            margin-top: 50px;
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(11, 99, 211, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(11, 99, 211, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(11, 99, 211, 0); }
         }
 
-        /* Premium Module Cards */
-        .module-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            transition: 0.4s;
-            height: 100%;
-            text-align: center;
+        @keyframes scan {
+            0% { top: 0%; } 100% { top: 100%; }
         }
 
-        .module-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--cyber-cyan);
-            background: rgba(11, 99, 211, 0.1);
+        .loader-text {
+            margin-top: 20px; font-family: 'Orbitron'; color: var(--gold);
+            letter-spacing: 3px; font-size: 0.8rem; text-transform: uppercase;
         }
 
-        .it-panel-btn {
-            background: linear-gradient(45deg, var(--it-purple), var(--primary-blue));
-            border: none; color: white; font-weight: bold;
-        }
-
-        /* Floating Status */
-        .ai-status {
-            position: fixed; bottom: 20px; left: 20px;
-            background: rgba(0, 255, 0, 0.1);
-            border: 1px solid #00ff00;
-            padding: 8px 15px; border-radius: 50px;
-            font-size: 10px; font-family: 'Orbitron';
-            z-index: 1000;
-        }
+        /* --- MAIN UI --- */
+        body { background-color: var(--dark-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; user-select: none; }
+        .navbar-custom { background: rgba(3, 4, 7, 0.95); border-bottom: 3px solid var(--it-purple); padding: 15px 0; }
+        .hero-title { font-weight: 900; font-family: 'Orbitron'; background: linear-gradient(to right, #fff, var(--primary-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: clamp(1.8rem, 6vw, 3.5rem); margin-top: 50px; }
+        
+        .module-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 30px; transition: 0.4s; height: 100%; text-align: center; }
+        .module-card:hover { transform: translateY(-10px); border-color: var(--cyber-cyan); }
+        
+        .ai-status { position: fixed; bottom: 20px; left: 20px; background: rgba(0, 255, 0, 0.1); border: 1px solid #00ff00; padding: 8px 15px; border-radius: 50px; font-size: 10px; font-family: 'Orbitron'; }
     </style>
 </head>
 <body>
+
+<div id="loader-wrapper">
+    <div class="scanning-pulse">
+        <div class="scanning-line"></div>
+    </div>
+    <div class="loader-text">Initializing Secure Hub...</div>
+</div>
 
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
     <div class="container">
@@ -100,68 +82,70 @@
             <img src="ABID KHAN.png" alt="Abid Khan" width="50" height="50" class="rounded-circle me-2" style="border: 2px solid var(--gold);">
             <span class="fw-bold" style="font-family:'Orbitron'">ABID KHAN HUB</span>
         </a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
-                <li class="nav-item"><a class="nav-link" href="https://abidkhaneinstitute.qzz.io/it_panel.html" style="color:var(--gold) !important;">IT PANEL</a></li>
-                <li class="nav-item"><a class="nav-link" href="jobs.html">CAREERS</a></li>
-            </ul>
+        <div class="ms-auto">
+            <a href="IT.html" class="btn btn-outline-info btn-sm fw-bold">IT LAB ACCESS</a>
         </div>
     </div>
 </nav>
 
 <div class="container text-center">
     <h1 class="hero-title">PROFESSOR DOCTOR ABID KHAN</h1>
-    <p class="text-secondary lead">Global Pedagogy Institute & Security Hub Architecture</p>
+    <p class="text-secondary lead">Distinguished Global Pedagogy & Security Hub</p>
 
     <div class="row g-4 mt-4">
         <div class="col-md-4">
             <div class="module-card">
-                <i class="fas fa-user-shield fa-3x mb-3 text-primary"></i>
-                <h4>Access Portal</h4>
-                <p class="small text-muted">Worker: abid-pedagogy-db</p>
-                <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-primary w-100">Login Now</a>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="module-card">
                 <i class="fas fa-microchip fa-3x mb-3" style="color:var(--it-purple)"></i>
                 <h4>IT Academy</h4>
-                <p class="small text-muted">Advanced Digital Infrastructure</p>
-                <a href="https://abidkhaneinstitute.qzz.io/it_panel.html" class="btn it-panel-btn w-100">Launch IT Panel</a>
+                <p class="small text-muted">Worker: abid-khan-institute-hub</p>
+                <a href="IT.html" class="btn btn-primary w-100">Launch IT.html</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="module-card" style="border: 1px solid var(--gold);">
+                <i class="fas fa-user-shield fa-3x mb-3 text-warning"></i>
+                <h4>Management</h4>
+                <p class="small text-muted">Worker: abid-pedagogy-db</p>
+                <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-warning w-100">Portal Login</a>
             </div>
         </div>
         <div class="col-md-4">
             <div class="module-card">
-                <i class="fas fa-book-quran fa-3x mb-3" style="color:var(--islamic-green)"></i>
-                <h4>Islamic Archive</h4>
-                <p class="small text-muted">Hadeece & Pedagogy</p>
-                <a href="islamic_studies.html" class="btn btn-success w-100">Explore</a>
+                <i class="fas fa-book-quran fa-3x mb-3 text-success"></i>
+                <h4>Islamic Studies</h4>
+                <p class="small text-muted">Sovereign Pedagogy</p>
+                <a href="islamic_studies.html" class="btn btn-success w-100">Enter Archive</a>
             </div>
         </div>
     </div>
 </div>
 
 <div class="ai-status">
-    <span class="text-success">●</span> SYSTEM: SECURE | WORKER: abid-khan-institute-hub
+    <span class="text-success">●</span> SYSTEM: UNIQUE | STATUS: DISTINGUISHED
 </div>
 
 <footer class="mt-5 py-4 text-center" style="border-top: 1px solid rgba(255,255,255,0.1); background: #000;">
     <p class="small text-secondary mb-0">
-        &copy; 2026 Abid Khan Institute Hub. All Rights Reserved. <br>
-        <span style="color: var(--primary-blue)">Authorized Access Only. Alphanumeric OTP Protection Active.</span>
+        &copy; 2026 <strong>Abid Khan Hub</strong>. The Richest Globally in Intellectual & Digital Assets.
     </p>
 </footer>
 
 <script>
-    /* START: Anti-Theft Security Logic */
+    // --- DISTINGUISHED LOADER LOGIC ---
+    window.addEventListener('load', function() {
+        const loader = document.getElementById('loader-wrapper');
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 800);
+        }, 1500); // Pulse for 1.5 seconds for elite effect
+    });
+
+    // --- ANTI-THEFT ---
     document.addEventListener('contextmenu', e => e.preventDefault());
     document.onkeydown = function(e) {
         if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) || (e.ctrlKey && [85, 83].includes(e.keyCode))) return false;
     };
-    /* END: Anti-Theft Security Logic */
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
