@@ -11,10 +11,6 @@ id = "68cf91c6f606eb4c30cc5bf692045694"
 
 [vars]
 EMAIL_FROM = "verify@abid-pedagogy-hub.com"
-# Optional: R2 Bucket for storing recordings
-# [[r2_buckets]]
-# binding = "RECORDINGS_BUCKET"
-# bucket_name = "institute-recordings"
 
 [observability]
 enabled = true
