@@ -167,4 +167,44 @@ if (file_exists('../header.html')) {
     }
     loadComponent("header-placeholder", "header.html");
     loadComponent("footer-placeholder", "footer.html");
+    /* --- START: ELITE SECURITY & ANTI-INSPECT LOGIC --- */
+
+// 1. Disable Right-Click (Context Menu)
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    alert("Security Alert: Right-click is disabled to protect Professor Abid Khan's intellectual property.");
+}, false);
+
+// 2. Disable Keyboard Shortcuts for DevTools
+document.onkeydown = function(e) {
+    // Disable F12
+    if (e.keyCode == 123) {
+        return false;
+    }
+    // Disable Ctrl+Shift+I (Inspect)
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+        return false;
+    }
+    // Disable Ctrl+Shift+C (Inspect Element)
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+        return false;
+    }
+    // Disable Ctrl+Shift+J (Console)
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+        return false;
+    }
+    // Disable Ctrl+U (View Source)
+    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        return false;
+    }
+};
+
+// 3. Constant Monitoring for DevTools Opening
+// This is a "Tremendous" trick to crash the debugger if someone forces it open
+setInterval(function() {
+    debugger;
+}, 100);
+
+console.log("Shield Active: Worker abid-khan-institute-hub is now protected.");
+/* --- END: ELITE SECURITY & ANTI-INSPECT LOGIC --- */
     </script>
