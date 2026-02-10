@@ -2,14 +2,19 @@ name = "abid-khan-institute-hub"
 main = "worker.js"
 compatibility_date = "2026-02-10"
 
-# Bindings for AI (Llama/Mistral)
 [ai]
 binding = "AI"
 
-# Bindings for your Database (KV Namespace)
 [[kv_namespaces]]
 binding = "abid_pedagogy_db"
 id = "68cf91c6f606eb4c30cc5bf692045694"
+
+[vars]
+EMAIL_FROM = "verify@abid-pedagogy-hub.com"
+# Optional: R2 Bucket for storing recordings
+# [[r2_buckets]]
+# binding = "RECORDINGS_BUCKET"
+# bucket_name = "institute-recordings"
 
 [observability]
 enabled = true
