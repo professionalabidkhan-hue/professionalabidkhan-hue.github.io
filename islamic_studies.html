@@ -11,24 +11,22 @@
         /* --- START: UI REPAIRING & RICH ANIMATIONS --- */
         :root { --emerald: #1a5d1a; --gold: #d4af37; --deep-dark: #0a0a0a; }
     
-/* --- START: UI REPAIRING & ANTI-COPY PROTECTION --- */
-
 /* --- START: UI REPAIRING & ELITE PROTECTION --- */
 body { 
-    /* Typography & Aesthetics */
     font-family: 'Inter', sans-serif; 
     background: #f4f7f6; 
     color: #333; 
 
-    /* Tremendous Security Layer */
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none;     /* IE 10 and 11 */
-    user-select: none;         /* Standard - Blocks copy/paste */
-    -webkit-user-drag: none;   /* Blocks dragging of Nazara Images */
+    /* Security: Blocks Copy/Paste & Dragging */
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
     
-    /* Smooth rendering for Pedagogy visuals */
+    /* Performance Aesthetics */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden; /* Prevents Tremendous layout from shaking */
 }
 
 /* Elite Typography for Professor Abid Khan's Branding */
@@ -37,31 +35,36 @@ body {
     letter-spacing: 1px;
 }
 
-/* Allow interaction with form inputs so students can still type */
+/* Form Interactivity: Students MUST be able to type */
 input, textarea, .allow-select {
     -webkit-user-select: text;
     -ms-user-select: text;
     user-select: text;
+    pointer-events: auto;
+}
+
+/* Card System: Interactive & Tremendous */
+.tremendous-card {
+    border: none; 
+    border-radius: 20px;
+    background: #ffffff;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    pointer-events: auto; /* CRITICAL REPAIR: Ensures buttons are clickable */
+}
+
+.tremendous-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(26, 93, 26, 0.15);
+    border-bottom: 5px solid #d4af37; /* Gold Trim */
+}
+
+/* Specific Interactivity for Islamic Content */
+.dua-arabic, .pedagogy-box, iframe {
+    pointer-events: auto; /* Allows scrolling and Archive.org interaction */
 }
 /* --- END: UI REPAIRING & ELITE PROTECTION --- */
-/* Specifically protect the Arabic text and Archive frame */
-.dua-arabic, .pedagogy-box, iframe {
-    pointer-events: auto; /* Keeps clicks working but blocks selection */
-}
-/* --- END: UI REPAIRING & ANTI-COPY PROTECTION --- */
-        /* Card System */
-        .tremendous-card {
-            border: none; border-radius: 20px;
-            background: #ffffff;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-        .tremendous-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(26, 93, 26, 0.15);
-            border-bottom: 5px solid var(--gold);
-        }
-
         /* LIVE TXT & FRAME BOX */
         .pedagogy-box {
             background: var(--deep-dark); border: 4px solid var(--gold);
@@ -200,49 +203,34 @@ input, textarea, .allow-select {
     names.forEach(n => {
         namesGrid.innerHTML += `<div class="name-item"><h4>${n.ar}</h4><div class="small">${n.en}</div></div>`;
     });
+/* --- START: BENEFICIAL SECURITY LOGIC --- */
+(function() {
+    // Disable Right-Click but keep buttons functional
+    document.addEventListener('contextmenu', function(e) {
+        // If the user clicks a button, we can let it pass, otherwise block
+        if (!e.target.closest('.btn, .tremendous-card')) {
+            e.preventDefault();
+        }
+    }, false);
 
-    // Yearly DB Connection Placeholder
-    console.log("DB STATUS: Connected to abid-pedagogy-db (Yearly Package Active)");
-    /* --- START: ELITE SECURITY & ANTI-INSPECT LOGIC --- */
+    // Block keyboard "stealing" shortcuts but allow "Enter" and "Tab"
+    window.addEventListener('keydown', function(e) {
+        const forbiddenKeys = [123, 85]; // F12 and Ctrl+U
+        if (forbiddenKeys.includes(e.keyCode) || (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode))) {
+            e.preventDefault();
+            return false;
+        }
+    });
 
-// 1. Disable Right-Click (Context Menu)
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    alert("Security Alert: Right-click is disabled to protect Professor Abid Khan's intellectual property.");
-}, false);
+    // Mobile Long-Press Protection (Prevents "Save Image As" popup)
+    window.oncontextmenu = function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+    };
+})();
+/* --- END: BENEFICIAL SECURITY LOGIC --- */
 
-// 2. Disable Keyboard Shortcuts for DevTools
-document.onkeydown = function(e) {
-    // Disable F12
-    if (e.keyCode == 123) {
-        return false;
-    }
-    // Disable Ctrl+Shift+I (Inspect)
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-        return false;
-    }
-    // Disable Ctrl+Shift+C (Inspect Element)
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-        return false;
-    }
-    // Disable Ctrl+Shift+J (Console)
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-        return false;
-    }
-    // Disable Ctrl+U (View Source)
-    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-        return false;
-    }
-};
-
-// 3. Constant Monitoring for DevTools Opening
-// This is a "Tremendous" trick to crash the debugger if someone forces it open
-setInterval(function() {
-    debugger;
-}, 100);
-
-console.log("Shield Active: Worker abid-khan-institute-hub is now protected.");
-/* --- END: ELITE SECURITY & ANTI-INSPECT LOGIC --- */
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
