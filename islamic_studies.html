@@ -19,7 +19,11 @@
             --dark-bg: #030407;
             --gold: #FFD700;
         }
-
+/* Green Arrow Hover Pulse */
+.btn-nav:active {
+    transform: scale(0.9);
+    background: var(--cyber-cyan);
+}
         body { 
             background-color: var(--dark-bg); 
             color: #fff; 
@@ -157,41 +161,61 @@
         </div>
     </div>
 </div>
-
 <script>
-    // Qaida Logic
-    let currentPage = 0;
-    const totalPages = 31;
+    // DOM Elements
+const imgElement = document.getElementById(&#39;qaida-display&#39;);
+const pageDisplay = document.getElementById(&#39;page-num&#39;);
+const liveTxt = document.getElementById(&#39;live-txt&#39;);
 
-    function changePage(step) {
-        currentPage += step;
-        if(currentPage < 0) currentPage = 0;
-        if(currentPage > totalPages) currentPage = totalPages;
-        
-        const img = document.getElementById('qaida-display');
-        img.style.opacity = '0.3';
-        
-        setTimeout(() => {
-            img.src = `https://archive.org/download/noorani-qaida_202104/page/n${currentPage}_w600.jpg`;
-            document.getElementById('page-num').innerText = currentPage + 1;
-            img.style.opacity = '1';
-        }, 200);
-    }
+// 1. OPTIMIZED SLIDER LOGIC
+function changePage(step) {
+    let nextPage = currentPage + step;
+    if(nextPage &lt; 0) nextPage = 0;
+    if(nextPage &gt; totalPages) nextPage = totalPages;
+    
+    // Break if already on that page
+    if (nextPage === currentPage) return; 
+    
+    currentPage = nextPage;
+    
+    // SPEED ADJUSTMENT: Subtle fade and instant source swap
+    imgElement.style.opacity = &#39;0.7&#39;; 
+    imgElement.src = `https://archive.org/download/noorani-qaida_202104/page/n${currentPage}_w600.jpg`;
+    
+    // Update UI Text
+    if(pageDisplay) pageDisplay.innerText = currentPage + 1;
 
-    // LIVE TXT REPAIR
-    const liveTxt = document.getElementById('live-txt');
-    const states = ["ENCRYPTED", "PEDAGOGY ACTIVE", "GATEWAY: OPEN", "HUB ONLINE"];
-    let stateIdx = 0;
-    setInterval(() => {
-        liveTxt.innerText = "SYSTEM: " + states[stateIdx];
-        stateIdx = (stateIdx + 1) % states.length;
-    }, 4000);
-
-    // Sovereign Security
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.onkeydown = function(e) {
-        if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) || (e.ctrlKey && [85, 83].includes(e.keyCode))) return false;
+    // Visual Restore: Snaps back to 100% as soon as image loads
+    imgElement.onload = () =&gt; {
+        imgElement.style.opacity = &#39;1&#39;;
     };
+}
+
+// 2. LIVE TXT REPAIR (Memory Sync)
+const states = [&quot;ENCRYPTED&quot;, &quot;PEDAGOGY ACTIVE&quot;, &quot;GATEWAY: OPEN&quot;, &quot;HUB ONLINE&quot;];
+let stateIdx = 0;
+setInterval(() =&gt; {
+    if(liveTxt) {
+        liveTxt.innerText = &quot;SYSTEM: &quot; + states[stateIdx];
+        stateIdx = (stateIdx + 1) % states.length;
+    }
+}, 3000); 
+
+// 3. SOVEREIGN SECURITY (Anti-Inspect &amp; Anti-Right Click)
+document.addEventListener(&#39;contextmenu&#39;, e =&gt; e.preventDefault());
+document.onkeydown = function(e) {
+    // Blocks F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+U (View Source), Ctrl+S
+    if(e.keyCode == 123 || 
+      (e.ctrlKey &amp;&amp; e.shiftKey &amp;&amp; [73, 74, 67].includes(e.keyCode)) || 
+      (e.ctrlKey &amp;&amp; [85, 83].includes(e.keyCode))) {
+        return false;
+    }
+};
 </script>
+
+6. UI Repairing (Slider Performance CSS)
+<style> /* Essential for smooth, fast transitions / #qaida-display { will-change: opacity; / Prepares browser for changes / transition: opacity 0.15s ease-in-out; image-rendering: -webkit-optimize-contrast; / Sharper text for Qaida / min-height: 450px; / Prevents "jumping" layout while image loads */ }
+</script>
+
 </body>
 </html>
