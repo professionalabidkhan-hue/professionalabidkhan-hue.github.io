@@ -32,6 +32,23 @@
             overflow-x: hidden;
         }
 
+/* Essential for smooth, fast transitions */
+#qaida-display { 
+    will-change: opacity; 
+    transition: opacity 0.15s ease-in-out; 
+    image-rendering: -webkit-optimize-contrast; /* Sharper text for Qaida */
+    min-height: 450px; /* Prevents "jumping" layout while image loads */
+    background-color: #ffffff; /* Contrast for the white book pages */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Green Arrow Hover Pulse & Button Active State */
+.btn-nav:active { 
+    transform: scale(0.9); 
+    background: var(--cyber-cyan) !important; 
+}
+
         /* Navbar Enhancements */
         .navbar-custom {
             background: rgba(3, 4, 7, 0.95);
