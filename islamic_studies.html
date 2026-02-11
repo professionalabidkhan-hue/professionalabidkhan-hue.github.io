@@ -40,23 +40,30 @@
             background: rgba(3, 4, 7, 0.98); border-bottom: 3px solid var(--islamic-green);
             padding: 15px 0; backdrop-filter: blur(10px);
         }
-        .nav-link { font-family: 'Orbitron'; color: #fff !important; text-transform: uppercase; font-size: 0.8rem; }
-        .nav-link:hover { color: var(--gold) !important; }
 
-        /* Unified Slider Interface */
+        /* Unified Slider & Iframe Interface */
         .qaida-box {
             background: radial-gradient(circle, #0a1f12 0%, #030407 100%);
             border: 2px solid rgba(0, 200, 83, 0.3); border-radius: 25px; padding: 40px; margin-top: 30px;
         }
+
+        .viewer-container {
+            background: #000; padding: 10px; border-radius: 15px; 
+            box-shadow: 0 0 30px rgba(0, 200, 83, 0.4);
+            overflow: hidden; margin-bottom: 20px;
+        }
+
+        iframe { width: 100%; border-radius: 10px; min-height: 450px; }
+
         .img-container {
             background: #fff; padding: 15px; border-radius: 15px; 
             display: inline-block; box-shadow: 0 0 30px rgba(0, 200, 83, 0.4);
             transition: 0.4s ease; min-width: 320px;
         }
+
         #qaida-display { 
             will-change: transform, opacity; transition: 0.4s; 
             max-width: 100%; height: auto; max-height: 70vh;
-            image-rendering: -webkit-optimize-contrast;
         }
 
         /* Sovereign Glow Cards */
@@ -74,20 +81,13 @@
         .gallery-card:hover i { color: var(--gold); transform: scale(1.2) rotate(10deg); }
         .card-title { font-family: 'Orbitron'; color: #fff; margin-top: 15px; font-size: 1.2rem; }
 
-        /* tEST Mode Visuals */
-        .test-mode-on .meaning-text { filter: blur(12px); color: transparent; background: rgba(0, 212, 255, 0.1); }
-        .test-mode-on .meaning-text:hover { filter: blur(0px); color: var(--gold); }
-        .meaning-text { transition: 0.4s; padding: 2px 8px; border-radius: 4px; display: inline-block; }
-
         .footer-elite { background: #000; border-top: 2px solid var(--islamic-green); padding: 50px 0; margin-top: 80px; }
         .btn-nav { background: var(--islamic-green); color: white; width: 60px; height: 60px; border-radius: 50%; border: none; transition: 0.3s; }
-        .btn-nav:hover { background: var(--gold); transform: scale(1.1); }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        /* END: UI Repairing */
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
 <a href="https://abidkhaneinstitute.qzz.io/index.html" class="android-home-btn">
     <i class="fas fa-home"></i>
@@ -103,49 +103,54 @@
     </div>
 </nav>
 
-<div class="container py-5">
-    <div class="qaida-box text-center mb-5">
+<div class="container py-5 text-center">
+    <div class="qaida-box">
         <h1 id="gallery-title" class="display-5 fw-bold mb-4" style="font-family:'Orbitron'; color: var(--gold);">NOORANI QAEEDHA</h1>
-        <div class="img-container">
-            <img id="qaida-display" src="" alt="Learning Page">
-        </div>
         
-        <div class="mt-4 d-flex justify-content-center align-items-center gap-4">
+        <div id="viewer-window" class="viewer-container">
+            <div id="img-engine" class="img-container">
+                <img id="qaida-display" src="" alt="Learning Page">
+             </div>
+             <div id="iframe-engine" class="d-none">
+                <iframe id="ext-frame" src="" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+             </div>
+        </div>
+
+        <div id="img-controls" class="mt-4 d-flex justify-content-center align-items-center gap-4">
             <button class="btn-nav" onclick="changeImage(-1)"><i class="fas fa-chevron-left"></i></button>
             <div class="h4 mb-0" style="font-family:'Orbitron'; min-width: 140px; color: var(--cyber-cyan);">PAGE: <span id="page-num">1</span></div>
             <button class="btn-nav" onclick="changeImage(1)"><i class="fas fa-chevron-right"></i></button>
         </div>
-
+        
         <div class="mt-4">
-            <input type="number" id="jump-input" class="py-2 px-3 border-0 rounded text-center" style="background:var(--glass-white); color:var(--gold); width:80px;" placeholder="GO" onchange="jumpToPage(this.value)">
-            <button id="test-btn" class="btn btn-outline-info ms-3 px-4" onclick="toggleTestMode()">tEST Mode: OFF</button>
+            <button id="test-btn" class="btn btn-outline-info px-4" onclick="toggleTestMode()">tEST Mode: OFF</button>
         </div>
     </div>
 
     <div class="row g-4 mt-5">
         <div class="col-md-3">
-            <div class="gallery-card text-center" onclick="loadGallery('qaeedha')">
+            <div class="gallery-card" onclick="loadContent('qaeedha')">
                 <i class="fas fa-book-open"></i>
                 <h3 class="card-title">BASIC QAEEDHA</h3>
                 <p class="text-secondary small">Alphabet & Phonics.</p>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="gallery-card text-center" onclick="loadGallery('nimaz')">
+            <div class="gallery-card" onclick="window.location.href='https://abidkhaneinstitute.qzz.io/PRAYERS.html'">
                 <i class="fas fa-mosque"></i>
                 <h3 class="card-title">NIMAZ GUIDE</h3>
                 <p class="text-secondary small">Visual Salah Steps.</p>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="gallery-card text-center" onclick="loadGallery('tajweedh')">
+            <div class="gallery-card" onclick="loadContent('tajweedh')">
                 <i class="fas fa-microphone-lines"></i>
                 <h3 class="card-title">TAJWEEDH</h3>
                 <p class="text-secondary small">Rules of Recitation.</p>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="gallery-card text-center" onclick="loadGallery('dua')">
+            <div class="gallery-card" onclick="window.location.href='PRAYERS.html'">
                 <i class="fas fa-hands-praying"></i>
                 <h3 class="card-title">MASNOON DUA</h3>
                 <p class="text-secondary small">Daily Supplications.</p>
@@ -156,7 +161,7 @@
 
 <footer class="footer-elite text-center">
     <div class="container">
-        <a href="https://wa.me/923497469638" class="whatsapp-link" target="_blank">
+        <a href="https://wa.me/923497469638" class="text-decoration-none text-success fw-bold" target="_blank">
             <i class="fab fa-whatsapp"></i> +92 349 7469638
         </a>
         <p class="small text-secondary mt-3">Authenticated Worker: abid-khan-institute-hub</p>
@@ -165,72 +170,28 @@
 </footer>
 
 <script>
-/* START: SOVEREIGN ENGINE */
 const galleryData = {
     qaeedha: {
+        type: 'iframe',
         title: "NOORANI QAEEDHA",
-        baseUrl: "https://archive.org/download/noorani-qaida_202104/page/n",
-        suffix: "_w600.jpg",
-        total: 30
+        url: "https://archive.org/embed/noorani-qaida_202012"
     },
-    nimaz: {
-        title: "NIMAZ (SALAH) GUIDE",
-        images: [
-            "https://photos.app.goo.gl/fha6EYuXrriptv5p7", // Add your direct URLs
-           
-        ],
-        total: 2
-    }
-};
-        dua: {
-        title: "NIMAZ (SALAH) GUIDE",
-        images: [
-            "https://abidkhaneinstitute.qzz.io/PRAYERS.html", // Add your direct URLs
-           
-        ],
-        total: 2
+    tajweedh: {
+        type: 'iframe',
+        title: "TAJWEEDH RULES",
+        url: "https://archive.org/embed/tajweedrules-100517214532-phpapp01"
     }
 };
 
-let currentCat = 'qaeedha';
-let currentIndex = 0;
-
-function loadGallery(cat) {
-    currentCat = cat;
-    currentIndex = 0;
-    document.getElementById('gallery-title').innerText = galleryData[cat].title;
-    updateDisplay();
-}
-
-function updateDisplay() {
-    const img = document.getElementById('qaida-display');
-    img.style.opacity = '0';
+function loadContent(cat) {
+    const data = galleryData[cat];
+    document.getElementById('gallery-title').innerText = data.title;
     
-    let source = "";
-    if(galleryData[currentCat].baseUrl) {
-        source = `${galleryData[currentCat].baseUrl}${currentIndex}${galleryData[currentCat].suffix}`;
-    } else {
-        source = galleryData[currentCat].images[currentIndex];
-    }
-    
-    img.src = source;
-    document.getElementById('page-num').innerText = currentIndex + 1;
-    img.onload = () => { img.style.opacity = '1'; };
-}
-
-function changeImage(step) {
-    const total = galleryData[currentCat].total;
-    if(currentIndex + step >= 0 && currentIndex + step < total) {
-        currentIndex += step;
-        updateDisplay();
-    }
-}
-
-function jumpToPage(val) {
-    let p = parseInt(val) - 1;
-    if(p >= 0 && p < galleryData[currentCat].total) {
-        currentIndex = p;
-        updateDisplay();
+    if(data.type === 'iframe') {
+        document.getElementById('img-engine').classList.add('d-none');
+        document.getElementById('img-controls').classList.add('d-none');
+        document.getElementById('iframe-engine').classList.remove('d-none');
+        document.getElementById('ext-frame').src = data.url;
     }
 }
 
@@ -239,11 +200,17 @@ function toggleTestMode() {
     document.body.classList.toggle('test-mode-on');
     b.innerText = document.body.classList.contains('test-mode-on') ? "tEST Mode: ON" : "tEST Mode: OFF";
     if(document.body.classList.contains('test-mode-on')) {
-        window.open("https://gemini.google.com/share/3dff81f93382", "_blank");
+        alert("tEST Mode Active: Focus on your memory!");
     }
 }
 
-// LIVE Status
+/* SOVEREIGN SECURITY - ANTI-COPY */
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.onkeydown = function(e) {
+    if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) || (e.ctrlKey && [85, 83].includes(e.keyCode))) return false;
+};
+
+// LIVE Status logic
 const sys = ["ACTIVE", "SECURE", "abid-khan-institute-hub", "OPTIMIZED"];
 let si = 0;
 setInterval(() => {
@@ -251,8 +218,7 @@ setInterval(() => {
     si = (si + 1) % sys.length;
 }, 3000);
 
-window.onload = () => loadGallery('qaeedha');
-/* END: SOVEREIGN ENGINE */
+window.onload = () => loadContent('qaeedha');
 </script>
 </body>
 </html>
