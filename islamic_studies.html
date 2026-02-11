@@ -268,14 +268,9 @@ window.onload = () => {
         .catch(() => console.log("Standard Footer Operational."));
 };
 
-// 5. SECURITY & OPTIMIZATION
-imgElement.onload = () => { imgElement.style.opacity = '1'; };
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.onkeydown = function(e) {
-    if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) || (e.ctrlKey && [85, 83].includes(e.keyCode))) return false;
-};
 
-/* END: Sovereign Logic Block */
+
+
 </script>
 </body>
 </html>
