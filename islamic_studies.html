@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Studies | Professor Doctor Abid Khan Hub</title>
+    <title>Islamic Studies | Professor Abid Khan Hub</title>
     
     <link rel="icon" type="image/png" href="ABID KHAN.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -162,16 +162,23 @@
     </div>
 </div>
 <script>
-    // DOM Elements
-const imgElement = document.getElementById(&#39;qaida-display&#39;);
-const pageDisplay = document.getElementById(&#39;page-num&#39;);
-const liveTxt = document.getElementById(&#39;live-txt&#39;);
+   /* START: JavaScript Logic - Slider & Hub System */
+
+// Global State Initialization
+let currentPage = 0; 
+const totalPages = 30; // Defined limit for Noorani Qaida pages
+
+const imgElement = document.getElementById('qaida-display');
+const pageDisplay = document.getElementById('page-num');
+const liveTxt = document.getElementById('live-txt');
 
 // 1. OPTIMIZED SLIDER LOGIC
 function changePage(step) {
     let nextPage = currentPage + step;
-    if(nextPage &lt; 0) nextPage = 0;
-    if(nextPage &gt; totalPages) nextPage = totalPages;
+    
+    // Bounds Check
+    if(nextPage < 0) nextPage = 0;
+    if(nextPage > totalPages) nextPage = totalPages;
     
     // Break if already on that page
     if (nextPage === currentPage) return; 
@@ -179,38 +186,46 @@ function changePage(step) {
     currentPage = nextPage;
     
     // SPEED ADJUSTMENT: Subtle fade and instant source swap
-    imgElement.style.opacity = &#39;0.7&#39;; 
+    imgElement.style.opacity = '0.5'; 
     imgElement.src = `https://archive.org/download/noorani-qaida_202104/page/n${currentPage}_w600.jpg`;
     
     // Update UI Text
     if(pageDisplay) pageDisplay.innerText = currentPage + 1;
 
     // Visual Restore: Snaps back to 100% as soon as image loads
-    imgElement.onload = () =&gt; {
-        imgElement.style.opacity = &#39;1&#39;;
+    imgElement.onload = () => {
+        imgElement.style.opacity = '1';
     };
 }
 
-// 2. LIVE TXT REPAIR (Memory Sync)
-const states = [&quot;ENCRYPTED&quot;, &quot;PEDAGOGY ACTIVE&quot;, &quot;GATEWAY: OPEN&quot;, &quot;HUB ONLINE&quot;];
+// 2. LIVE TXT REPAIR (Memory Sync & Worker Identity)
+const states = [
+    "ENCRYPTED", 
+    "PEDAGOGY ACTIVE", 
+    "GATEWAY: OPEN", 
+    "HUB ONLINE", 
+    "WORKER: ABID-KHAN-INSTITUTE-HUB"
+];
 let stateIdx = 0;
-setInterval(() =&gt; {
+setInterval(() => {
     if(liveTxt) {
-        liveTxt.innerText = &quot;SYSTEM: &quot; + states[stateIdx];
+        liveTxt.innerText = "SYSTEM: " + states[stateIdx];
         stateIdx = (stateIdx + 1) % states.length;
     }
 }, 3000); 
 
-// 3. SOVEREIGN SECURITY (Anti-Inspect &amp; Anti-Right Click)
-document.addEventListener(&#39;contextmenu&#39;, e =&gt; e.preventDefault());
+// 3. SOVEREIGN SECURITY (Anti-Inspect & Anti-Right Click)
+document.addEventListener('contextmenu', e => e.preventDefault());
 document.onkeydown = function(e) {
-    // Blocks F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+U (View Source), Ctrl+S
+    // Blocks F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+U, Ctrl+S
     if(e.keyCode == 123 || 
-      (e.ctrlKey &amp;&amp; e.shiftKey &amp;&amp; [73, 74, 67].includes(e.keyCode)) || 
-      (e.ctrlKey &amp;&amp; [85, 83].includes(e.keyCode))) {
+      (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) || 
+      (e.ctrlKey && [85, 83].includes(e.keyCode))) {
         return false;
     }
 };
+
+/* END: JavaScript Logic */
 </script>
 
 6. UI Repairing (Slider Performance CSS)
@@ -219,3 +234,5 @@ document.onkeydown = function(e) {
 
 </body>
 </html>
+
+    
