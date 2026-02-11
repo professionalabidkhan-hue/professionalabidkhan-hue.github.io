@@ -8,236 +8,228 @@
     <link rel="icon" type="image/png" href="ABID KHAN.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
 
     <style>
-        /* START: UI Repairing - Global Elite Styling */
+        /* START: UI Repairing (Part 6) - Global Sovereign CSS */
         :root {
-            --primary-blue: #0b63d3;
-            --cyber-cyan: #00d4ff;
             --islamic-green: #00c853;
             --dark-bg: #030407;
             --gold: #FFD700;
+            --cyber-cyan: #00d4ff;
         }
 
         body { 
             background-color: var(--dark-bg); 
             color: #fff; 
             font-family: 'Inter', sans-serif;
+            margin: 0; padding: 0;
             -webkit-user-select: none; user-select: none;
             overflow-x: hidden;
         }
 
-        /* 6. UI Repairing (Visual Stability & Performance) */
-        #qaida-display { 
-            will-change: opacity; 
-            transition: opacity 0.25s ease-in-out; 
-            image-rendering: -webkit-optimize-contrast; 
-            min-height: 500px; 
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 0 25px rgba(0, 200, 83, 0.3);
-        }
-
-        #page-num { transition: 0.3s; text-shadow: 0 0 10px var(--islamic-green); }
-        .qaida-box:hover #page-num { color: var(--gold); }
-
-        .jump-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--islamic-green);
-            color: var(--gold);
-            border-radius: 5px;
-            text-align: center;
-            width: 85px;
-            font-family: 'Orbitron';
-        }
-
+        /* Navbar Styling */
         .navbar-custom {
-            background: rgba(3, 4, 7, 0.95);
-            backdrop-filter: blur(20px);
+            background: rgba(3, 4, 7, 0.98);
             border-bottom: 3px solid var(--islamic-green);
             padding: 15px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
         }
 
+        .nav-link { font-family: 'Orbitron'; color: #fff !important; transition: 0.3s; text-transform: uppercase; font-size: 0.8rem; }
+        .nav-link:hover { color: var(--gold) !important; }
+
+        /* Main Container */
         .qaida-box {
             background: radial-gradient(circle, #0a1f12 0%, #030407 100%);
             border: 2px solid rgba(0, 200, 83, 0.3);
             border-radius: 25px;
             padding: 40px;
             margin-top: 50px;
-            transition: 0.4s ease;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
-        .qaida-box:hover { border-color: var(--islamic-green); }
 
-        .book-frame {
-            background: #fff;
-            border: 12px solid #1a1a1a;
-            border-radius: 15px;
-            max-width: 650px;
-            margin: 0 auto;
+        #qaida-display { 
+            will-change: opacity; transition: opacity 0.25s ease-in-out; 
+            min-height: 500px; background-color: #ffffff;
+            border-radius: 12px; box-shadow: 0 0 25px rgba(0, 200, 83, 0.3);
+        }
+
+        /* tEST Mode & Hover Logic */
+        .meaning-text { transition: all 0.4s ease; display: inline-block; padding: 2px 8px; border-radius: 4px; }
+        .test-mode-on .meaning-text { 
+            filter: blur(12px); color: transparent; cursor: pointer; 
+            background: rgba(0, 212, 255, 0.05); 
+        }
+        .test-mode-on .meaning-text:hover { filter: blur(0px); color: var(--gold); background: transparent; }
+
+        /* Achievement Certificate Overlay */
+        #cert-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98); z-index: 10000;
+            justify-content: center; align-items: center; backdrop-filter: blur(20px);
+        }
+        .cert-card {
+            background: linear-gradient(135deg, #0a1f12 0%, #030407 100%);
+            border: 8px double var(--gold); padding: 50px; text-align: center;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.3); max-width: 800px;
+        }
+
+        /* Navigation Buttons */
+        .jump-box {
+            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--islamic-green);
+            color: var(--gold); border-radius: 5px; text-align: center;
+            width: 85px; font-family: 'Orbitron';
         }
 
         .btn-nav {
-            background: var(--islamic-green);
-            color: white;
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
+            background: var(--islamic-green); color: white; border: none;
+            width: 60px; height: 60px; border-radius: 50%;
+            transition: 0.3s; display: flex; align-items: center; justify-content: center;
         }
-
         .btn-nav:hover { background: var(--gold); color: #000; transform: scale(1.1); }
 
-        .badge-cyber {
-            font-family: 'Orbitron';
-            background: rgba(0, 212, 255, 0.1);
-            color: var(--cyber-cyan);
-            border: 1px solid var(--cyber-cyan);
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-        }
-
-        .course-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 200, 83, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-            transition: 0.3s;
-            height: 100%;
-        }
-        .course-card:hover { border-color: var(--gold); background: rgba(255, 215, 0, 0.02); }
-        /* END: UI Repairing */
+        .footer-elite { background: #000; border-top: 1px solid rgba(0, 200, 83, 0.3); padding: 50px 0; margin-top: 80px; }
+        .footer-link { color: #888; text-decoration: none; transition: 0.3s; font-size: 0.85rem; }
+        .footer-link:hover { color: var(--islamic-green); }
+        /* END: UI Repairing (Part 6) */
     </style>
 </head>
 <body>
 
+<div id="cert-overlay">
+    <div class="cert-card">
+        <h1 style="font-family:'Amiri'; font-size: 3.5rem; color: var(--gold);">شهادة إنجاز</h1>
+        <p style="font-family:'Orbitron'; letter-spacing: 4px; color: var(--cyber-cyan);">ABID KHAN INSTITUTE HUB</p>
+        <hr style="border-color: var(--gold); opacity: 0.5;">
+        <h2 class="my-4">QAIDA MASTERY ACHIEVED</h2>
+        <p class="text-secondary small">Officially Authenticated for worker: abid-khan-institute-hub</p>
+        <button class="btn btn-outline-warning mt-4 px-5" onclick="closeCert()">REMAIN MODEST</button>
+    </div>
+</div>
+
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
-            <img src="ABID KHAN.png" width="55" height="55" class="rounded-circle me-3" style="border: 2px solid var(--gold);">
-            <span style="font-family:'Orbitron'; letter-spacing: 1px;">ABID KHAN HUB</span>
+            <img src="ABID KHAN.png" width="50" height="50" class="rounded-circle me-3" style="border: 2px solid var(--gold);">
+            <span style="font-family:'Orbitron';">ABID KHAN HUB</span>
         </a>
-        <div id="live-txt" class="ms-auto text-success fw-bold d-none d-md-block" style="font-family:'Orbitron'; font-size: 0.85rem;">
-            SYSTEM: ACTIVE
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link px-3" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="dashboard.html">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link px-3 text-success active" href="islamic_studies.html">Islamic Studies</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="signup.html">Register</a></li>
+            </ul>
         </div>
+        <div id="live-txt" class="ms-auto text-success fw-bold d-none d-md-block" style="font-family:'Orbitron'; font-size: 0.8rem;">SYSTEM: ONLINE</div>
     </div>
 </nav>
 
 <div class="container py-5">
     <div class="text-center mb-5">
         <h1 class="display-4 fw-bold" style="font-family:'Orbitron'; color: var(--gold);">ISLAMIC STUDIES PORTAL</h1>
-        <p class="text-secondary fw-bold">Official Digital Pedagogy of Professor Doctor Abid Khan</p>
+        <div class="progress mt-4" style="height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px;">
+            <div id="inner-progress" class="progress-bar" style="background: var(--islamic-green); width: 0%; transition: 0.8s;"></div>
+        </div>
     </div>
 
     <div class="qaida-box text-center">
         <h3 class="mb-4" style="color: var(--islamic-green); font-family: 'Orbitron';">Digital Noorani Qaida</h3>
-        <div class="book-frame">
-            <img id="qaida-display" src="https://archive.org/download/noorani-qaida_202104/page/n0_w600.jpg" class="img-fluid" alt="Lesson Display">
+        <div style="background: #fff; padding: 10px; border-radius: 15px; display: inline-block;">
+            <img id="qaida-display" src="https://archive.org/download/noorani-qaida_202104/page/n0_w600.jpg" class="img-fluid" style="max-height: 500px;">
         </div>
         
         <div class="mt-4">
             <div class="d-flex justify-content-center align-items-center gap-4">
                 <button class="btn-nav" onclick="changePage(-1)"><i class="fas fa-chevron-left"></i></button>
-                <div class="h5 mb-0" style="font-family:'Orbitron'; min-width: 140px;">PAGE: <span id="page-num">1</span></div>
+                <div class="h4 mb-0" style="font-family:'Orbitron'; min-width: 140px;">PAGE: <span id="page-num">1</span></div>
                 <button class="btn-nav" onclick="changePage(1)"><i class="fas fa-chevron-right"></i></button>
             </div>
-            
             <div class="mt-4">
-                <span class="small text-secondary me-2 font-family-orbitron">DIRECT ACCESS:</span>
-                <input type="number" id="jump-input" class="jump-box px-2" placeholder="NO." onchange="jumpToPage(this.value)">
+                <span class="small text-secondary me-2" style="font-family:'Orbitron';">JUMP TO:</span>
+                <input type="number" id="jump-input" class="jump-box px-2" placeholder="PAGE" onchange="jumpToPage(this.value)">
             </div>
         </div>
     </div>
 
-    <div class="row mt-5">
-        <div class="col-12">
-            <div class="qaida-box p-4">
-                <h3 class="mb-4 text-center" style="font-family:'Orbitron'; color: var(--gold);">
-                    <i class="fas fa-database me-2"></i> PEDAGOGY VOCABULARY
-                </h3>
-                <div class="table-responsive">
-                    <table class="table table-dark table-borderless align-middle" style="background: rgba(0,0,0,0.2);">
-                        <thead style="border-bottom: 2px solid var(--islamic-green);">
-                            <tr style="font-family:'Orbitron'; color: var(--cyber-cyan); font-size: 0.8rem;">
-                                <th>ARABIC TERM</th>
-                                <th>PHONETIC TRANSCRIPTION</th>
-                                <th>CORE MEANING</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td class="h4 text-success">مخارج</td><td><span class="badge-cyber">Makharij</span></td><td class="text-secondary">Specific points of origin for letter sounds.</td></tr>
-                            <tr><td class="h4 text-success">تجويد</td><td><span class="badge-cyber">Tajweed</span></td><td class="text-secondary">The art of beautifying recitation through rules.</td></tr>
-                            <tr><td class="h4 text-success">حركات</td><td><span class="badge-cyber">Harakat</span></td><td class="text-secondary">Short vowel movements (Fatha, Kasra, Damma).</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+    <div id="vocab-section" class="qaida-box p-4 mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 style="font-family:'Orbitron'; color: var(--gold); margin:0;">PEDAGOGY VOCABULARY</h4>
+            <button id="test-btn" class="btn btn-outline-info btn-sm" onclick="toggleTestMode()">tEST Mode: OFF</button>
         </div>
-    </div>
-
-    <div class="row mt-5 g-4">
-        <div class="col-md-4">
-            <div class="course-card text-center">
-                <i class="fas fa-book-open fa-3x text-success mb-3"></i>
-                <h4 style="font-family:'Orbitron'; font-size: 1.1rem;">Tajweed Mastery</h4>
-                <p class="small text-secondary">Advanced articulation logic for professional reciters.</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="course-card text-center">
-                <i class="fas fa-scroll fa-3x text-success mb-3"></i>
-                <h4 style="font-family:'Orbitron'; font-size: 1.1rem;">Hadith Archive</h4>
-                <p class="small text-secondary">Verified digital repository of Prophetic traditions.</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="course-card text-center">
-                <i class="fas fa-shield-halved fa-3x text-success mb-3"></i>
-                <h4 style="font-family:'Orbitron'; font-size: 1.1rem;">Sovereign Support</h4>
-                <p class="small text-secondary">Secure direct gateway to the Pedagogy support team.</p>
-            </div>
+        <div class="table-responsive">
+            <table class="table table-dark table-borderless align-middle mb-0">
+                <thead class="border-bottom border-success">
+                    <tr style="font-family:'Orbitron'; color: var(--cyber-cyan); font-size: 0.8rem;">
+                        <th>ARABIC TERM</th><th>TRANSCRIPTION</th><th>MEANING (HOVER TO REVEAL)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="h4 text-success">مخارج</td><td>Makharij</td><td><span class="meaning-text">Points of sound articulation.</span></td></tr>
+                    <tr><td class="h4 text-success">تجويد</td><td>Tajweed</td><td><span class="meaning-text">The science of recitation.</span></td></tr>
+                    <tr><td class="h4 text-success">حركات</td><td>Harakat</td><td><span class="meaning-text">Short vowel movements.</span></td></tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 
-<div id="footer-placeholder"></div>
+<footer class="footer-elite text-center">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <h6 style="font-family:'Orbitron';">AUTHENTICATION</h6>
+                <p class="small text-secondary">Worker: abid-khan-institute-hub</p>
+            </div>
+            <div class="col-md-4">
+                <h6 style="font-family:'Orbitron';">RESOURCES</h6>
+                <div class="d-flex flex-column">
+                    <a href="dashboard.html" class="footer-link">Dashboard</a>
+                    <a href="signup.html" class="footer-link">Enrollment</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <p class="small text-secondary mb-0">© 2026 ABID KHAN INSTITUTE HUB</p>
+                <div class="text-success small fw-bold">REPUTED & MODEST</div>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <script>
+/* START: SOVEREIGN JAVASCRIPT ENGINE */
 
+let currentPage = parseInt(localStorage.getItem('last_qaida_page')) || 0;
+const totalPages = 30;
 
-// 1. MEMORY & GLOBAL STATE
-let currentPage = parseInt(localStorage.getItem('last_qaida_page')) || 0; 
-const totalPages = 30; 
-
-const imgElement = document.getElementById('qaida-display');
-const pageDisplay = document.getElementById('page-num');
-const liveTxt = document.getElementById('live-txt');
-
-// 2. NAVIGATIONAL ENGINE
+// Engine: Update Visuals
 function updateDisplay() {
-    if(!imgElement) return;
-    imgElement.style.opacity = '0.3'; 
-    // Archive link for Noorani Qaida
-    imgElement.src = `https://archive.org/download/noorani-qaida_202104/page/n${currentPage}_w600.jpg`;
-    if(pageDisplay) pageDisplay.innerText = currentPage + 1;
+    const img = document.getElementById('qaida-display');
+    img.style.opacity = '0.3'; // Instant dim for change
+    img.src = `https://archive.org/download/noorani-qaida_202104/page/n${currentPage}_w600.jpg`;
+    
+    document.getElementById('page-num').innerText = currentPage + 1;
+    document.getElementById('inner-progress').style.width = ((currentPage + 1) / (totalPages + 1) * 100) + "%";
+    
+    // Achievement Logic
+    if(currentPage === totalPages) {
+        setTimeout(() => { document.getElementById('cert-overlay').style.display = 'flex'; }, 1000);
+    }
+    
     localStorage.setItem('last_qaida_page', currentPage);
+    img.onload = () => { img.style.opacity = '1'; }; // Direct Root Visibility
 }
 
+// Navigation Logic
 function changePage(step) {
-    let nextPage = currentPage + step;
-    if(nextPage >= 0 && nextPage <= totalPages) {
-        currentPage = nextPage;
+    if(currentPage + step >= 0 && currentPage + step <= totalPages) {
+        currentPage += step;
         updateDisplay();
     }
 }
 
+// Jump Logic
 function jumpToPage(val) {
     let target = parseInt(val) - 1;
     if(!isNaN(target) && target >= 0 && target <= totalPages) {
@@ -246,31 +238,34 @@ function jumpToPage(val) {
     }
 }
 
-// 3. LIVE TXT ROTATION (Identity: abid-khan-institute-hub)
-const systemStates = ["ENCRYPTED", "PEDAGOGY ACTIVE", "SYNCED: HUB", "PROGRESS SAVED", "ABID-KHAN-INSTITUTE-HUB"];
-let stateIdx = 0;
-function rotateSystemStatus() {
-    if(liveTxt) {
-        liveTxt.innerText = "SYSTEM: " + systemStates[stateIdx];
-        stateIdx = (stateIdx + 1) % systemStates.length;
-    }
+// tEST Mode Logic
+function toggleTestMode() {
+    const btn = document.getElementById('test-btn');
+    const container = document.getElementById('vocab-section');
+    container.classList.toggle('test-mode-on');
+    btn.innerText = container.classList.contains('test-mode-on') ? "tEST Mode: ON" : "tEST Mode: OFF";
+    btn.classList.toggle('btn-info');
+    btn.classList.toggle('btn-outline-info');
 }
 
-// 4. LIFECYCLE INITIALIZATION
-window.onload = () => {
-    updateDisplay();
-    setInterval(rotateSystemStatus, 3000);
-    
-    // FETCH ROOT FOOTER
-    fetch('footer.html')
-        .then(response => { if(response.ok) return response.text(); })
-        .then(data => { if(data) document.getElementById('footer-placeholder').innerHTML = data; })
-        .catch(() => console.log("Standard Footer Operational."));
-};
+// Certificate UI
+function closeCert() { document.getElementById('cert-overlay').style.display = 'none'; }
 
+// LIVE TXT Status Rotation
+const systemStates = ["ACTIVE", "ENCRYPTED", "abid-khan-institute-hub", "SECURE", "PEDAGOGY READY"];
+let sIdx = 0;
+setInterval(() => {
+    document.getElementById('live-txt').innerText = "SYSTEM: " + systemStates[sIdx];
+    sIdx = (sIdx + 1) % systemStates.length;
+}, 3500);
 
+// Initialize Sovereign State
+window.onload = updateDisplay;
+document.addEventListener('contextmenu', e => e.preventDefault());
 
-
+/* END: SOVEREIGN JAVASCRIPT ENGINE */
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
