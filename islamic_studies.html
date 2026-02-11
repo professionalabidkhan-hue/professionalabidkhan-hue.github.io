@@ -33,15 +33,20 @@
         }
 
 /* Essential for smooth, fast transitions */
+/* START: UI Repairing - Part 6 */
 #qaida-display { 
     will-change: opacity; 
-    transition: opacity 0.15s ease-in-out; 
-    image-rendering: -webkit-optimize-contrast; /* Sharper text for Qaida */
-    min-height: 450px; /* Prevents "jumping" layout while image loads */
-    background-color: #ffffff; /* Contrast for the white book pages */
-    display: block;
-    margin: 0 auto;
+    transition: opacity 0.2s ease-in-out; 
+    image-rendering: -webkit-optimize-contrast; 
+    min-height: 450px; 
+    background-color: #ffffff;
+    border-radius: 8px;
 }
+#jump-input:focus {
+    box-shadow: 0 0 10px var(--islamic-green);
+    outline: none;
+}
+/* END: UI Repairing - Part 6 */
 
 /* Green Arrow Hover Pulse & Button Active State */
 .btn-nav:active { 
@@ -179,42 +184,60 @@
     </div>
 </div>
 <script>
-   /* START: JavaScript Logic - Slider & Hub System */
+  /* START: JavaScript Logic - Slider & Hub System */
 
 // Global State Initialization
 let currentPage = 0; 
-const totalPages = 30; // Defined limit for Noorani Qaida pages
+const totalPages = 30; 
 
 const imgElement = document.getElementById('qaida-display');
 const pageDisplay = document.getElementById('page-num');
 const liveTxt = document.getElementById('live-txt');
 
 // 1. OPTIMIZED SLIDER LOGIC
-function changePage(step) {
-    let nextPage = currentPage + step;
-    
-    // Bounds Check
-    if(nextPage < 0) nextPage = 0;
-    if(nextPage > totalPages) nextPage = totalPages;
-    
-    // Break if already on that page
-    if (nextPage === currentPage) return; 
-    
-    currentPage = nextPage;
-    
-    // SPEED ADJUSTMENT: Subtle fade and instant source swap
+function updateDisplay() {
     imgElement.style.opacity = '0.5'; 
     imgElement.src = `https://archive.org/download/noorani-qaida_202104/page/n${currentPage}_w600.jpg`;
-    
-    // Update UI Text
     if(pageDisplay) pageDisplay.innerText = currentPage + 1;
-
-    // Visual Restore: Snaps back to 100% as soon as image loads
-    imgElement.onload = () => {
-        imgElement.style.opacity = '1';
-    };
 }
 
+function changePage(step) {
+    let nextPage = currentPage + step;
+    if(nextPage < 0 || nextPage > totalPages) return;
+    currentPage = nextPage;
+    updateDisplay();
+}
+
+// Jump to Specific Page Logic
+function jumpToPage(val) {
+    let target = parseInt(val) - 1;
+    if(target >= 0 && target <= totalPages) {
+        currentPage = target;
+        updateDisplay();
+    }
+}
+
+imgElement.onload = () => { imgElement.style.opacity = '1'; };
+
+// 2. LIVE TXT REPAIR (Memory Sync: abid-khan-institute-hub)
+const states = ["ENCRYPTED", "PEDAGOGY ACTIVE", "GATEWAY: OPEN", "HUB ONLINE", "ABID-KHAN-INSTITUTE-HUB"];
+let stateIdx = 0;
+setInterval(() => {
+    if(liveTxt) {
+        liveTxt.innerText = "SYSTEM: " + states[stateIdx];
+        stateIdx = (stateIdx + 1) % states.length;
+    }
+}, 3000); 
+
+// 3. SOVEREIGN SECURITY
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.onkeydown = function(e) {
+    if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) || (e.ctrlKey && [85, 83].includes(e.keyCode))) {
+        return false;
+    }
+};
+
+/* END: JavaScript Logic */
 // 2. LIVE TXT REPAIR (Memory Sync & Worker Identity)
 const states = [
     "ENCRYPTED", 
@@ -247,7 +270,7 @@ document.onkeydown = function(e) {
 
 6. UI Repairing (Slider Performance CSS)
 <style> /* Essential for smooth, fast transitions / #qaida-display { will-change: opacity; / Prepares browser for changes / transition: opacity 0.15s ease-in-out; image-rendering: -webkit-optimize-contrast; / Sharper text for Qaida / min-height: 450px; / Prevents "jumping" layout while image loads */ }
-</script>
+
 
 </body>
 </html>
