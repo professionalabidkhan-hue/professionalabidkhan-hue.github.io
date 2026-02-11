@@ -17,6 +17,7 @@
             --dark-bg: #030407;
             --gold: #FFD700;
             --cyber-cyan: #00d4ff;
+            --glass-white: rgba(255, 255, 255, 0.05);
         }
 
         body { 
@@ -44,24 +45,35 @@
         .nav-link { font-family: 'Orbitron'; color: #fff !important; text-transform: uppercase; font-size: 0.8rem; }
         .nav-link:hover { color: var(--gold) !important; }
 
-        /* 3. Qaida Interface */
+        /* 3. High-Definition Qaida Interface */
         .qaida-box {
             background: radial-gradient(circle, #0a1f12 0%, #030407 100%);
             border: 2px solid rgba(0, 200, 83, 0.3); border-radius: 25px; padding: 40px; margin-top: 30px;
         }
+        .img-container {
+            background: #fff; padding: 15px; border-radius: 15px; 
+            display: inline-block; box-shadow: 0 0 30px rgba(0, 200, 83, 0.4);
+            transition: 0.3s ease;
+        }
         #qaida-display { 
-            will-change: opacity; transition: 0.25s; min-height: 450px; 
-            background-color: #fff; border-radius: 12px;
+            will-change: transform, opacity; transition: 0.4s; 
+            min-height: 500px; width: 100%; max-width: 600px;
+            image-rendering: -webkit-optimize-contrast; /* Fix for blury images */
         }
 
-        /* 4. tEST Mode */
-        .meaning-text { transition: 0.4s; padding: 2px 8px; }
-        .test-mode-on .meaning-text { filter: blur(12px); color: transparent; cursor: pointer; }
+        /* 4. tEST Mode & Vocabulary Table */
+        .vocab-table-container {
+            background: var(--glass-white); border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.2); padding: 25px; margin-top: 40px;
+            animation: fadeIn 1.5s ease;
+        }
+        .meaning-text { transition: 0.4s; padding: 2px 8px; border-radius: 4px; display: inline-block; }
+        .test-mode-on .meaning-text { filter: blur(15px); color: transparent; cursor: pointer; background: rgba(0, 212, 255, 0.1); }
         .test-mode-on .meaning-text:hover { filter: blur(0px); color: var(--gold); }
 
         /* 5. Animated Sovereign Gallery Cards */
         .gallery-card {
-            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 200, 83, 0.2);
+            background: var(--glass-white); border: 1px solid rgba(0, 200, 83, 0.2);
             border-radius: 20px; padding: 30px; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer; position: relative; overflow: hidden; height: 100%;
             text-decoration: none; display: block;
@@ -73,10 +85,19 @@
         .gallery-card i { font-size: 3.5rem; color: var(--islamic-green); transition: 0.5s; }
         .gallery-card:hover i { color: var(--gold); transform: scale(1.2) rotate(10deg); }
         .card-title { font-family: 'Orbitron'; color: #fff; margin-top: 15px; font-size: 1.4rem; }
-        .card-desc { color: #aaa; font-size: 0.9rem; margin-top: 10px; }
 
-        .jump-box { background: rgba(255,255,255,0.05); border: 1px solid var(--islamic-green); color: var(--gold); font-family: 'Orbitron'; width: 80px; text-align: center; }
-        .btn-nav { background: var(--islamic-green); color: white; width: 55px; height: 55px; border-radius: 50%; border: none; }
+        /* 6. Footer & WhatsApp */
+        .footer-elite { background: #000; border-top: 2px solid var(--islamic-green); padding: 50px 0; margin-top: 80px; }
+        .whatsapp-link {
+            color: #25d366; text-decoration: none; font-family: 'Orbitron';
+            font-size: 1.2rem; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px;
+        }
+        .whatsapp-link:hover { color: var(--gold); transform: scale(1.05); }
+
+        .btn-nav { background: var(--islamic-green); color: white; width: 60px; height: 60px; border-radius: 50%; border: none; transition: 0.3s; }
+        .btn-nav:hover { background: var(--gold); transform: scale(1.1); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         /* END: UI Repairing */
     </style>
 </head>
@@ -107,50 +128,63 @@
 <div class="container py-5">
     <div class="qaida-box text-center mb-5">
         <h1 class="display-5 fw-bold mb-4" style="font-family:'Orbitron'; color: var(--gold);">NOORANI QAEEDHA GALLERY</h1>
-        <div style="background: #fff; padding: 10px; border-radius: 15px; display: inline-block;">
-            <img id="qaida-display" src="https://archive.org/download/noorani-qaida_202104/page/n0_w600.jpg" class="img-fluid">
+        <div class="img-container">
+            <img id="qaida-display" src="https://archive.org/download/noorani-qaida_202104/page/n0_w600.jpg" alt="Noorani Qaida Page">
         </div>
+        
         <div class="mt-4 d-flex justify-content-center align-items-center gap-4">
-            <button class="btn-nav" onclick="changePage(-1)"><i class="fas fa-arrow-left"></i></button>
-            <div class="h4 mb-0" style="font-family:'Orbitron'; min-width: 140px;">PAGE: <span id="page-num">1</span></div>
-            <button class="btn-nav" onclick="changePage(1)"><i class="fas fa-arrow-right"></i></button>
+            <button class="btn-nav" onclick="changePage(-1)"><i class="fas fa-chevron-left"></i></button>
+            <div class="h4 mb-0" style="font-family:'Orbitron'; min-width: 140px; color: var(--cyber-cyan);">PAGE: <span id="page-num">1</span></div>
+            <button class="btn-nav" onclick="changePage(1)"><i class="fas fa-chevron-right"></i></button>
         </div>
-        <div class="mt-3">
-            <input type="number" id="jump-input" class="jump-box" placeholder="PAGE" onchange="jumpToPage(this.value)">
-            <button id="test-btn" class="btn btn-outline-info btn-sm ms-3" onclick="toggleTestMode()">tEST Mode: OFF</button>
+
+        <div class="mt-4">
+            <input type="number" id="jump-input" class="jump-box py-2 px-3 border-0 rounded text-center" style="background:var(--glass-white); color:var(--gold); width:100px;" placeholder="GOTO" onchange="jumpToPage(this.value)">
+            <button id="test-btn" class="btn btn-outline-info ms-3 px-4" onclick="toggleTestMode()">tEST Mode: OFF</button>
+        </div>
+    </div>
+
+    <div class="vocab-table-container">
+        <h3 class="mb-4" style="font-family:'Orbitron'; color: var(--islamic-green);"><i class="fas fa-Table me-2"></i> LESSON PROGRESSION & TERMS</h3>
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle">
+                <thead>
+                    <tr style="color: var(--gold); border-bottom: 2px solid var(--gold);">
+                        <th>MODULE</th><th>ARABIC TERM</th><th>TRANSCRIPTION</th><th>tEST MEANING</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Alphabet</td><td class="h4">الحروف</td><td>Al-Huroof</td><td><span class="meaning-text">The Arabic Letters</span></td></tr>
+                    <tr><td>Vowels</td><td class="h4">فتحة</td><td>Fatha</td><td><span class="meaning-text">The 'A' sound accent</span></td></tr>
+                    <tr><td>Rules</td><td class="h4">قواعد</td><td>Qawaid</td><td><span class="meaning-text">Grammar & Recitation Rules</span></td></tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
     <div class="row g-4 mt-5">
-        <div class="col-12 text-center mb-3">
-            <h2 style="font-family:'Orbitron'; color: var(--cyber-cyan);">SOVEREIGN LEARNING MODULES</h2>
-            <p class="text-secondary">Click any module to access the animated digital gallery</p>
-        </div>
-        
         <div class="col-md-4">
             <a href="nimaz_gallery.html" class="gallery-card text-center">
                 <i class="fas fa-mosque"></i>
                 <h3 class="card-title">1. NIMAZ</h3>
-                <p class="card-desc">Visual step-by-step guide to perfect Salah with authentic posture and timing.</p>
-                <div class="mt-3 text-success fw-bold small">ACCESS GALLERY <i class="fas fa-external-link-alt ms-1"></i></div>
+                <p class="text-secondary small">Step-by-step visual Salah guide.</p>
+                <div class="mt-3 text-success fw-bold small">OPEN GALLERY <i class="fas fa-chevron-right"></i></div>
             </a>
         </div>
-
         <div class="col-md-4">
             <a href="dua_gallery.html" class="gallery-card text-center">
                 <i class="fas fa-hands-praying"></i>
                 <h3 class="card-title">2. DUA</h3>
-                <p class="card-desc">Tremendous collection of daily Masnoon Duas with translation and audio logic.</p>
-                <div class="mt-3 text-success fw-bold small">ACCESS GALLERY <i class="fas fa-external-link-alt ms-1"></i></div>
+                <p class="text-secondary small">Masnoon Duas for daily success.</p>
+                <div class="mt-3 text-success fw-bold small">OPEN GALLERY <i class="fas fa-chevron-right"></i></div>
             </a>
         </div>
-
         <div class="col-md-4">
             <a href="tajweedh_gallery.html" class="gallery-card text-center">
                 <i class="fas fa-microphone-lines"></i>
                 <h3 class="card-title">3. TAJWEEDH</h3>
-                <p class="card-desc">Master the Makharij and rules of recitation with our perfect digital articulation maps.</p>
-                <div class="mt-3 text-success fw-bold small">ACCESS GALLERY <i class="fas fa-external-link-alt ms-1"></i></div>
+                <p class="text-secondary small">Perfect articulation & Makharij.</p>
+                <div class="mt-3 text-success fw-bold small">OPEN GALLERY <i class="fas fa-chevron-right"></i></div>
             </a>
         </div>
     </div>
@@ -158,8 +192,15 @@
 
 <footer class="footer-elite text-center">
     <div class="container">
-        <p class="small text-secondary">Authenticated Worker: abid-khan-institute-hub</p>
-        <div class="text-gold small" style="font-family:'Orbitron';">© 2026 PROFESSOR DR. ABID KHAN</div>
+        <div class="mb-4">
+            <a href="https://wa.me/923497469638" class="whatsapp-link" target="_blank">
+                <i class="fab fa-whatsapp"></i> +92 349 7469638
+            </a>
+            <p class="text-secondary mt-2">Contact Professor Abid Khan for Direct Support</p>
+        </div>
+        <hr style="background: var(--gold); opacity: 0.2;">
+        <p class="small text-secondary mb-1">Authenticated Worker: abid-khan-institute-hub</p>
+        <div class="text-gold small" style="font-family:'Orbitron';">© 2026 PROFESSOR DR. ABID KHAN | ALL RIGHTS RESERVED</div>
     </div>
 </footer>
 
@@ -170,11 +211,11 @@ const totalPages = 30;
 
 function updateDisplay() {
     const img = document.getElementById('qaida-display');
-    img.style.opacity = '0.3';
-    img.src = `https://archive.org/download/noorani-qaida_202104/page/n${currentPage}_w600.jpg`;
+    img.style.opacity = '0'; // Smooth transition
+    // Appending timestamp to force high-res reload and bypass cache blur
+    img.src = `https://archive.org/download/noorani-qaida_202104/page/n${currentPage}_w600.jpg?t=${new Date().getTime()}`;
     document.getElementById('page-num').innerText = currentPage + 1;
-    document.getElementById('inner-progress').style.width = ((currentPage + 1) / (totalPages + 1) * 100) + "%";
-    img.onload = () => img.style.opacity = '1';
+    img.onload = () => { img.style.opacity = '1'; };
 }
 
 function changePage(step) {
@@ -191,12 +232,13 @@ function jumpToPage(val) {
 
 function toggleTestMode() {
     const b = document.getElementById('test-btn');
-    const c = document.body;
-    c.classList.toggle('test-mode-on');
-    b.innerText = c.classList.contains('test-mode-on') ? "tEST Mode: ON" : "tEST Mode: OFF";
+    document.body.classList.toggle('test-mode-on');
+    b.innerText = document.body.classList.contains('test-mode-on') ? "tEST Mode: ON" : "tEST Mode: OFF";
+    b.className = document.body.classList.contains('test-mode-on') ? "btn btn-info ms-3 px-4" : "btn btn-outline-info ms-3 px-4";
 }
 
-const sys = ["ACTIVE", "ENCRYPTED", "abid-khan-institute-hub", "SECURE"];
+// Live Status Rotation
+const sys = ["ACTIVE", "ENCRYPTED", "abid-khan-institute-hub", "SECURE", "OPTIMIZED"];
 let si = 0;
 setInterval(() => {
     document.getElementById('live-txt').innerText = "SYSTEM: " + sys[si];
@@ -204,7 +246,6 @@ setInterval(() => {
 }, 3500);
 
 window.onload = updateDisplay;
-document.addEventListener('contextmenu', e => e.preventDefault());
 /* END: SOVEREIGN ENGINE */
 </script>
 </body>
