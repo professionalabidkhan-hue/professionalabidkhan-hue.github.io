@@ -19,7 +19,15 @@
             --dark-bg: #030407;
             --gold: #FFD700;
         }
-
+/* START: UI Repairing - Part 6 Progress Glow */
+#page-num {
+    transition: 0.3s;
+    text-shadow: 0 0 10px var(--islamic-green);
+}
+.qaida-box:hover #page-num {
+    color: var(--gold);
+}
+/* END: UI Repairing */
         body { 
             background-color: var(--dark-bg); 
             color: #fff; 
@@ -138,20 +146,30 @@
 </div>
 
 <script>
-/* START: JavaScript Logic - Optimized Hub Slider */
+/* START: JavaScript Logic - Digital Hub with Persistence */
 
-let currentPage = 0; 
-const totalPages = 30; // 31 pages total (0-30)
+// Global State (Auto-Sync with Browser Memory)
+let currentPage = parseInt(localStorage.getItem('last_qaida_page')) || 0; 
+const totalPages = 30; 
 
 const imgElement = document.getElementById('qaida-display');
 const pageDisplay = document.getElementById('page-num');
 const liveTxt = document.getElementById('live-txt');
 
-// 1. NAVIGATION LOGIC
-function updateDisplay() {
-    imgElement.style.opacity = '0.3'; // Visual feedback of loading
+// 1. NAVIGATION & MEMORY LOGIC
+function updateDisplay(isInitial = false) {
+    imgElement.style.opacity = '0.3'; 
     imgElement.src = `https://archive.org/download/noorani-qaida_202104/page/n${currentPage}_w600.jpg`;
+    
     if(pageDisplay) pageDisplay.innerText = currentPage + 1;
+    
+    // Save to Local Storage (Memory Sync)
+    localStorage.setItem('last_qaida_page', currentPage);
+    
+    // Visual Notification for Hub
+    if(!isInitial) {
+        console.log(`Progress Saved: Page ${currentPage + 1}`);
+    }
 }
 
 function changePage(step) {
@@ -164,16 +182,27 @@ function changePage(step) {
 
 function jumpToPage(val) {
     let target = parseInt(val) - 1;
-    if(target >= 0 && target <= totalPages) {
+    if(!isNaN(target) && target >= 0 && target <= totalPages) {
         currentPage = target;
         updateDisplay();
     }
 }
 
+// Initial Load Trigger
+window.onload = () => {
+    updateDisplay(true);
+};
+
 imgElement.onload = () => { imgElement.style.opacity = '1'; };
 
-// 2. LIVE TXT REPAIR (Branding: abid-khan-institute-hub)
-const states = ["ENCRYPTED", "PEDAGOGY ACTIVE", "GATEWAY: OPEN", "HUB ONLINE", "ABID-KHAN-INSTITUTE-HUB"];
+// 2. LIVE TXT REPAIR (Worker: abid-khan-institute-hub)
+const states = [
+    "ENCRYPTED", 
+    "PEDAGOGY ACTIVE", 
+    "GATEWAY: OPEN", 
+    "PROGRESS SAVED",
+    "ABID-KHAN-INSTITUTE-HUB"
+];
 let stateIdx = 0;
 setInterval(() => {
     if(liveTxt) {
@@ -189,6 +218,7 @@ document.onkeydown = function(e) {
         return false;
     }
 };
+
 /* END: JavaScript Logic */
 </script>
 </body>
