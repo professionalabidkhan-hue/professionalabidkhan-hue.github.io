@@ -19,11 +19,7 @@
             --dark-bg: #030407;
             --gold: #FFD700;
         }
-/* Green Arrow Hover Pulse */
-.btn-nav:active {
-    transform: scale(0.9);
-    background: var(--cyber-cyan);
-}
+
         body { 
             background-color: var(--dark-bg); 
             color: #fff; 
@@ -32,27 +28,26 @@
             overflow-x: hidden;
         }
 
-/* Essential for smooth, fast transitions */
-/* START: UI Repairing - Part 6 */
-#qaida-display { 
-    will-change: opacity; 
-    transition: opacity 0.2s ease-in-out; 
-    image-rendering: -webkit-optimize-contrast; 
-    min-height: 450px; 
-    background-color: #ffffff;
-    border-radius: 8px;
-}
-#jump-input:focus {
-    box-shadow: 0 0 10px var(--islamic-green);
-    outline: none;
-}
-/* END: UI Repairing - Part 6 */
+        /* 6. UI Repairing (Slider Performance & Visuals) */
+        #qaida-display { 
+            will-change: opacity; 
+            transition: opacity 0.25s ease-in-out; 
+            image-rendering: -webkit-optimize-contrast; 
+            min-height: 500px; 
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 200, 83, 0.2);
+        }
 
-/* Green Arrow Hover Pulse & Button Active State */
-.btn-nav:active { 
-    transform: scale(0.9); 
-    background: var(--cyber-cyan) !important; 
-}
+        .jump-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--islamic-green);
+            color: var(--gold);
+            border-radius: 5px;
+            text-align: center;
+            width: 80px;
+            font-family: 'Orbitron';
+        }
 
         /* Navbar Enhancements */
         .navbar-custom {
@@ -63,67 +58,42 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
-        .nav-link { 
-            color: #FFFFFF !important; 
-            font-weight: 800 !important; 
-            font-size: 1.1rem !important; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.4s ease;
-        }
-
-        .nav-link:hover { color: var(--gold) !important; transform: scale(1.05); }
-
-        /* Qaida Viewer UI Repair */
         .qaida-box {
             background: radial-gradient(circle, #0a1f12 0%, #030407 100%);
             border: 2px solid rgba(0, 200, 83, 0.3);
             border-radius: 25px;
             padding: 30px;
             margin-top: 50px;
-            box-shadow: 0 0 40px rgba(0, 200, 83, 0.1);
         }
 
         .book-frame {
             background: #fff;
             border: 10px solid #1a1a1a;
             border-radius: 15px;
-            position: relative;
             max-width: 650px;
             margin: 0 auto;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
         }
-
-        .qaida-img { width: 100%; height: auto; transition: 0.3s; }
 
         .btn-nav {
             background: var(--islamic-green);
             color: white;
             border: none;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
-            font-weight: bold;
             transition: 0.3s;
         }
 
         .btn-nav:hover { background: var(--gold); color: #000; transform: scale(1.1); }
-
-        /* Card Repairs */
+        .btn-nav:active { transform: scale(0.9); background: var(--cyber-cyan) !important; }
+        
         .course-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(0, 200, 83, 0.2);
             border-radius: 15px;
             transition: 0.3s;
-            height: 100%;
         }
-
-        .course-card:hover {
-            border-color: var(--gold);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
-            transform: translateY(-5px);
-        }
-        /* END: UI Repairing - Global Elite Styling */
+        /* END: UI Repairing */
     </style>
 </head>
 <body>
@@ -135,7 +105,7 @@
             <span style="font-family:'Orbitron';">ABID KHAN HUB</span>
         </a>
         <div id="live-txt" class="ms-auto text-success fw-bold d-none d-md-block" style="font-family:'Orbitron'; font-size: 0.8rem;">
-            SYSTEM: SECURE
+            SYSTEM: INITIALIZING...
         </div>
     </div>
 </nav>
@@ -149,66 +119,49 @@
     <div class="qaida-box text-center">
         <h3 class="mb-4" style="color: var(--islamic-green);">Digital Noorani Qaida</h3>
         <div class="book-frame">
-            <img id="qaida-display" src="https://archive.org/download/noorani-qaida_202104/page/n0_w500.jpg" class="qaida-img">
+            <img id="qaida-display" src="https://archive.org/download/noorani-qaida_202104/page/n0_w600.jpg" class="img-fluid">
         </div>
         
-        <div class="d-flex justify-content-center align-items-center mt-4 gap-4">
-            <button class="btn-nav" onclick="changePage(-1)"><i class="fas fa-arrow-left"></i></button>
-            <div class="h5 mb-0" style="font-family:'Orbitron';">PAGE: <span id="page-num">1</span></div>
-            <button class="btn-nav" onclick="changePage(1)"><i class="fas fa-arrow-right"></i></button>
-        </div>
-    </div>
-
-    <div class="row mt-5 g-4">
-        <div class="col-md-4">
-            <div class="course-card p-4 text-center">
-                <i class="fas fa-book-quran fa-3x text-success mb-3"></i>
-                <h4>Tajweed Rules</h4>
-                <p class="small text-secondary">Master the science of Quranic pronunciation with Alphanumeric logic.</p>
+        <div class="mt-4">
+            <div class="d-flex justify-content-center align-items-center gap-4">
+                <button class="btn-nav" onclick="changePage(-1)"><i class="fas fa-arrow-left"></i></button>
+                <div class="h5 mb-0" style="font-family:'Orbitron'; min-width: 100px;">PAGE: <span id="page-num">1</span></div>
+                <button class="btn-nav" onclick="changePage(1)"><i class="fas fa-arrow-right"></i></button>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="course-card p-4 text-center">
-                <i class="fas fa-mosque fa-3x text-success mb-3"></i>
-                <h4>Hadeece Archive</h4>
-                <p class="small text-secondary">Verified collections preserved in the sovereign digital vault.</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="course-card p-4 text-center">
-                <i class="fas fa-user-shield fa-3x text-success mb-3"></i>
-                <h4>Expert Support</h4>
-                <p class="small text-secondary">24/7 access to the Pedagogy Team via Secure Gateway.</p>
+            
+            <div class="mt-3">
+                <span class="small text-secondary me-2">JUMP TO:</span>
+                <input type="number" id="jump-input" class="jump-box px-2" placeholder="No." onchange="jumpToPage(this.value)">
             </div>
         </div>
     </div>
 </div>
-<script>
-  /* START: JavaScript Logic - Slider & Hub System */
 
-// Global State Initialization
+<script>
+/* START: JavaScript Logic - Optimized Hub Slider */
+
 let currentPage = 0; 
-const totalPages = 30; 
+const totalPages = 30; // 31 pages total (0-30)
 
 const imgElement = document.getElementById('qaida-display');
 const pageDisplay = document.getElementById('page-num');
 const liveTxt = document.getElementById('live-txt');
 
-// 1. OPTIMIZED SLIDER LOGIC
+// 1. NAVIGATION LOGIC
 function updateDisplay() {
-    imgElement.style.opacity = '0.5'; 
+    imgElement.style.opacity = '0.3'; // Visual feedback of loading
     imgElement.src = `https://archive.org/download/noorani-qaida_202104/page/n${currentPage}_w600.jpg`;
     if(pageDisplay) pageDisplay.innerText = currentPage + 1;
 }
 
 function changePage(step) {
     let nextPage = currentPage + step;
-    if(nextPage < 0 || nextPage > totalPages) return;
-    currentPage = nextPage;
-    updateDisplay();
+    if(nextPage >= 0 && nextPage <= totalPages) {
+        currentPage = nextPage;
+        updateDisplay();
+    }
 }
 
-// Jump to Specific Page Logic
 function jumpToPage(val) {
     let target = parseInt(val) - 1;
     if(target >= 0 && target <= totalPages) {
@@ -219,7 +172,7 @@ function jumpToPage(val) {
 
 imgElement.onload = () => { imgElement.style.opacity = '1'; };
 
-// 2. LIVE TXT REPAIR (Memory Sync: abid-khan-institute-hub)
+// 2. LIVE TXT REPAIR (Branding: abid-khan-institute-hub)
 const states = ["ENCRYPTED", "PEDAGOGY ACTIVE", "GATEWAY: OPEN", "HUB ONLINE", "ABID-KHAN-INSTITUTE-HUB"];
 let stateIdx = 0;
 setInterval(() => {
@@ -236,43 +189,7 @@ document.onkeydown = function(e) {
         return false;
     }
 };
-
-/* END: JavaScript Logic */
-// 2. LIVE TXT REPAIR (Memory Sync & Worker Identity)
-const states = [
-    "ENCRYPTED", 
-    "PEDAGOGY ACTIVE", 
-    "GATEWAY: OPEN", 
-    "HUB ONLINE", 
-    "WORKER: ABID-KHAN-INSTITUTE-HUB"
-];
-let stateIdx = 0;
-setInterval(() => {
-    if(liveTxt) {
-        liveTxt.innerText = "SYSTEM: " + states[stateIdx];
-        stateIdx = (stateIdx + 1) % states.length;
-    }
-}, 3000); 
-
-// 3. SOVEREIGN SECURITY (Anti-Inspect & Anti-Right Click)
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.onkeydown = function(e) {
-    // Blocks F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+U, Ctrl+S
-    if(e.keyCode == 123 || 
-      (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) || 
-      (e.ctrlKey && [85, 83].includes(e.keyCode))) {
-        return false;
-    }
-};
-
 /* END: JavaScript Logic */
 </script>
-
-6. UI Repairing (Slider Performance CSS)
-<style> /* Essential for smooth, fast transitions / #qaida-display { will-change: opacity; / Prepares browser for changes / transition: opacity 0.15s ease-in-out; image-rendering: -webkit-optimize-contrast; / Sharper text for Qaida / min-height: 450px; / Prevents "jumping" layout while image loads */ }
-
-
 </body>
 </html>
-
-    
