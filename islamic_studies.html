@@ -28,7 +28,7 @@
             overflow-x: hidden;
         }
 
-        /* 6. UI Repairing (Visual Stability & Slider Performance) */
+        /* 6. UI Repairing (Visual Stability & Performance) */
         #qaida-display { 
             will-change: opacity; 
             transition: opacity 0.25s ease-in-out; 
@@ -36,7 +36,7 @@
             min-height: 500px; 
             background-color: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 200, 83, 0.2);
+            box-shadow: 0 0 25px rgba(0, 200, 83, 0.3);
         }
 
         #page-num { transition: 0.3s; text-shadow: 0 0 10px var(--islamic-green); }
@@ -48,11 +48,10 @@
             color: var(--gold);
             border-radius: 5px;
             text-align: center;
-            width: 80px;
+            width: 85px;
             font-family: 'Orbitron';
         }
 
-        /* Navbar & General Boxes */
         .navbar-custom {
             background: rgba(3, 4, 7, 0.95);
             backdrop-filter: blur(20px);
@@ -65,15 +64,15 @@
             background: radial-gradient(circle, #0a1f12 0%, #030407 100%);
             border: 2px solid rgba(0, 200, 83, 0.3);
             border-radius: 25px;
-            padding: 30px;
+            padding: 40px;
             margin-top: 50px;
-            transition: box-shadow 0.4s ease;
+            transition: 0.4s ease;
         }
-        .qaida-box:hover { box-shadow: 0 0 50px rgba(0, 200, 83, 0.2); }
+        .qaida-box:hover { border-color: var(--islamic-green); }
 
         .book-frame {
             background: #fff;
-            border: 10px solid #1a1a1a;
+            border: 12px solid #1a1a1a;
             border-radius: 15px;
             max-width: 650px;
             margin: 0 auto;
@@ -83,33 +82,37 @@
             background: var(--islamic-green);
             color: white;
             border: none;
-            width: 55px;
-            height: 55px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
         }
 
         .btn-nav:hover { background: var(--gold); color: #000; transform: scale(1.1); }
-        .btn-nav:active { transform: scale(0.9); background: var(--cyber-cyan) !important; }
 
-        /* Vocabulary Table */
         .badge-cyber {
             font-family: 'Orbitron';
             background: rgba(0, 212, 255, 0.1);
             color: var(--cyber-cyan);
             border: 1px solid var(--cyber-cyan);
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 4px;
             font-size: 0.75rem;
         }
 
         .course-card {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 200, 83, 0.2);
+            border: 1px solid rgba(0, 200, 83, 0.1);
             border-radius: 15px;
+            padding: 30px;
             transition: 0.3s;
             height: 100%;
         }
+        .course-card:hover { border-color: var(--gold); background: rgba(255, 215, 0, 0.02); }
         /* END: UI Repairing */
     </style>
 </head>
@@ -118,11 +121,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
-            <img src="ABID KHAN.png" width="50" height="50" class="rounded-circle me-3" style="border: 2px solid var(--gold);">
-            <span style="font-family:'Orbitron';">ABID KHAN HUB</span>
+            <img src="ABID KHAN.png" width="55" height="55" class="rounded-circle me-3" style="border: 2px solid var(--gold);">
+            <span style="font-family:'Orbitron'; letter-spacing: 1px;">ABID KHAN HUB</span>
         </a>
-        <div id="live-txt" class="ms-auto text-success fw-bold d-none d-md-block" style="font-family:'Orbitron'; font-size: 0.8rem;">
-            SYSTEM: SECURE
+        <div id="live-txt" class="ms-auto text-success fw-bold d-none d-md-block" style="font-family:'Orbitron'; font-size: 0.85rem;">
+            SYSTEM: ACTIVE
         </div>
     </div>
 </nav>
@@ -130,25 +133,25 @@
 <div class="container py-5">
     <div class="text-center mb-5">
         <h1 class="display-4 fw-bold" style="font-family:'Orbitron'; color: var(--gold);">ISLAMIC STUDIES PORTAL</h1>
-        <p class="text-secondary">Official Pedagogy Hub of Professor Doctor Abid Khan</p>
+        <p class="text-secondary fw-bold">Official Digital Pedagogy of Professor Doctor Abid Khan</p>
     </div>
 
     <div class="qaida-box text-center">
         <h3 class="mb-4" style="color: var(--islamic-green); font-family: 'Orbitron';">Digital Noorani Qaida</h3>
         <div class="book-frame">
-            <img id="qaida-display" src="https://archive.org/download/noorani-qaida_202104/page/n0_w600.jpg" class="img-fluid">
+            <img id="qaida-display" src="https://archive.org/download/noorani-qaida_202104/page/n0_w600.jpg" class="img-fluid" alt="Lesson Display">
         </div>
         
         <div class="mt-4">
             <div class="d-flex justify-content-center align-items-center gap-4">
-                <button class="btn-nav" onclick="changePage(-1)"><i class="fas fa-arrow-left"></i></button>
-                <div class="h5 mb-0" style="font-family:'Orbitron'; min-width: 120px;">PAGE: <span id="page-num">1</span></div>
-                <button class="btn-nav" onclick="changePage(1)"><i class="fas fa-arrow-right"></i></button>
+                <button class="btn-nav" onclick="changePage(-1)"><i class="fas fa-chevron-left"></i></button>
+                <div class="h5 mb-0" style="font-family:'Orbitron'; min-width: 140px;">PAGE: <span id="page-num">1</span></div>
+                <button class="btn-nav" onclick="changePage(1)"><i class="fas fa-chevron-right"></i></button>
             </div>
             
-            <div class="mt-3">
-                <span class="small text-secondary me-2">JUMP TO:</span>
-                <input type="number" id="jump-input" class="jump-box px-2" placeholder="No." onchange="jumpToPage(this.value)">
+            <div class="mt-4">
+                <span class="small text-secondary me-2 font-family-orbitron">DIRECT ACCESS:</span>
+                <input type="number" id="jump-input" class="jump-box px-2" placeholder="NO." onchange="jumpToPage(this.value)">
             </div>
         </div>
     </div>
@@ -157,21 +160,21 @@
         <div class="col-12">
             <div class="qaida-box p-4">
                 <h3 class="mb-4 text-center" style="font-family:'Orbitron'; color: var(--gold);">
-                    <i class="fas fa-microchip me-2"></i> VOCABULARY VAULT
+                    <i class="fas fa-database me-2"></i> PEDAGOGY VOCABULARY
                 </h3>
                 <div class="table-responsive">
-                    <table class="table table-dark table-borderless align-middle" style="background: rgba(0,0,0,0.3);">
+                    <table class="table table-dark table-borderless align-middle" style="background: rgba(0,0,0,0.2);">
                         <thead style="border-bottom: 2px solid var(--islamic-green);">
                             <tr style="font-family:'Orbitron'; color: var(--cyber-cyan); font-size: 0.8rem;">
-                                <th>TERM (ARABIC)</th>
-                                <th>PHONETIC</th>
-                                <th>PEDAGOGY MEANING</th>
+                                <th>ARABIC TERM</th>
+                                <th>PHONETIC TRANSCRIPTION</th>
+                                <th>CORE MEANING</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td class="h4 text-success">مخارج</td><td><span class="badge-cyber">Makharij</span></td><td class="text-secondary">Articulation points of Arabic letters.</td></tr>
-                            <tr><td class="h4 text-success">تجويد</td><td><span class="badge-cyber">Tajweed</span></td><td class="text-secondary">The science of Quranic pronunciation.</td></tr>
-                            <tr><td class="h4 text-success">حركات</td><td><span class="badge-cyber">Harakat</span></td><td class="text-secondary">Vowel marks: Fatha, Kasra, Damma.</td></tr>
+                            <tr><td class="h4 text-success">مخارج</td><td><span class="badge-cyber">Makharij</span></td><td class="text-secondary">Specific points of origin for letter sounds.</td></tr>
+                            <tr><td class="h4 text-success">تجويد</td><td><span class="badge-cyber">Tajweed</span></td><td class="text-secondary">The art of beautifying recitation through rules.</td></tr>
+                            <tr><td class="h4 text-success">حركات</td><td><span class="badge-cyber">Harakat</span></td><td class="text-secondary">Short vowel movements (Fatha, Kasra, Damma).</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -181,24 +184,24 @@
 
     <div class="row mt-5 g-4">
         <div class="col-md-4">
-            <div class="course-card p-4 text-center">
-                <i class="fas fa-book-quran fa-3x text-success mb-3"></i>
-                <h4>Tajweed Rules</h4>
-                <p class="small text-secondary">Master Quranic pronunciation with logic.</p>
+            <div class="course-card text-center">
+                <i class="fas fa-book-open fa-3x text-success mb-3"></i>
+                <h4 style="font-family:'Orbitron'; font-size: 1.1rem;">Tajweed Mastery</h4>
+                <p class="small text-secondary">Advanced articulation logic for professional reciters.</p>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="course-card p-4 text-center">
-                <i class="fas fa-mosque fa-3x text-success mb-3"></i>
-                <h4>Hadeece Archive</h4>
-                <p class="small text-secondary">Verified sovereign collections vault.</p>
+            <div class="course-card text-center">
+                <i class="fas fa-scroll fa-3x text-success mb-3"></i>
+                <h4 style="font-family:'Orbitron'; font-size: 1.1rem;">Hadith Archive</h4>
+                <p class="small text-secondary">Verified digital repository of Prophetic traditions.</p>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="course-card p-4 text-center">
-                <i class="fas fa-user-shield fa-3x text-success mb-3"></i>
-                <h4>Expert Support</h4>
-                <p class="small text-secondary">24/7 Access to Pedagogy Hub.</p>
+            <div class="course-card text-center">
+                <i class="fas fa-shield-halved fa-3x text-success mb-3"></i>
+                <h4 style="font-family:'Orbitron'; font-size: 1.1rem;">Sovereign Support</h4>
+                <p class="small text-secondary">Secure direct gateway to the Pedagogy support team.</p>
             </div>
         </div>
     </div>
@@ -209,7 +212,7 @@
 <script>
 /* START: Sovereign Logic Block */
 
-// 1. STATE & PERSISTENCE
+// 1. MEMORY & GLOBAL STATE
 let currentPage = parseInt(localStorage.getItem('last_qaida_page')) || 0; 
 const totalPages = 30; 
 
@@ -217,10 +220,11 @@ const imgElement = document.getElementById('qaida-display');
 const pageDisplay = document.getElementById('page-num');
 const liveTxt = document.getElementById('live-txt');
 
-// 2. SLIDER & JUMP LOGIC
+// 2. NAVIGATIONAL ENGINE
 function updateDisplay() {
     if(!imgElement) return;
     imgElement.style.opacity = '0.3'; 
+    // Archive link for Noorani Qaida
     imgElement.src = `https://archive.org/download/noorani-qaida_202104/page/n${currentPage}_w600.jpg`;
     if(pageDisplay) pageDisplay.innerText = currentPage + 1;
     localStorage.setItem('last_qaida_page', currentPage);
@@ -242,29 +246,29 @@ function jumpToPage(val) {
     }
 }
 
-// 3. SYSTEM STATUS (LIVE TXT)
-const states = ["ENCRYPTED", "PEDAGOGY ACTIVE", "VOCABULARY SYNCED", "PROGRESS SAVED", "ABID-KHAN-INSTITUTE-HUB"];
+// 3. LIVE TXT ROTATION (Identity: abid-khan-institute-hub)
+const systemStates = ["ENCRYPTED", "PEDAGOGY ACTIVE", "SYNCED: HUB", "PROGRESS SAVED", "ABID-KHAN-INSTITUTE-HUB"];
 let stateIdx = 0;
-function rotateStatus() {
+function rotateSystemStatus() {
     if(liveTxt) {
-        liveTxt.innerText = "SYSTEM: " + states[stateIdx];
-        stateIdx = (stateIdx + 1) % states.length;
+        liveTxt.innerText = "SYSTEM: " + systemStates[stateIdx];
+        stateIdx = (stateIdx + 1) % systemStates.length;
     }
 }
 
-// 4. INITIALIZATION & FOOTER
+// 4. LIFECYCLE INITIALIZATION
 window.onload = () => {
     updateDisplay();
-    setInterval(rotateStatus, 3000);
+    setInterval(rotateSystemStatus, 3000);
     
-    // ROOT FOOTER FETCH
+    // FETCH ROOT FOOTER
     fetch('footer.html')
         .then(response => { if(response.ok) return response.text(); })
         .then(data => { if(data) document.getElementById('footer-placeholder').innerHTML = data; })
-        .catch(err => console.log("Footer link pending in root."));
+        .catch(() => console.log("Standard Footer Operational."));
 };
 
-// 5. SECURITY & IMAGE LOAD
+// 5. SECURITY & OPTIMIZATION
 imgElement.onload = () => { imgElement.style.opacity = '1'; };
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.onkeydown = function(e) {
