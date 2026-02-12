@@ -164,17 +164,22 @@
 
 <script>
 /* Part 2: Dynamic Registry Data - NOORANI FIRST */
+/* Start: Dynamic Registry Data */
 const galleryData = [
-    { id: 'qaeedha', title: "NOORANI QAEEDHA", icon: "fa-book-open", desc: "Alphabet & Phonics", url: "https://archive.org/embed/noorani-qaida_202012" },
+    { id: 'noorani_pdf', title: "NOORANI QAEEDHA", icon: "fa-file-pdf", desc: "Official Rules PDF", url: "https://abidkhaneinstitute.qzz.io/noorani_qaida.pdf" },
     { id: 'tajweed_pdf', title: "TAJWEED PDF", icon: "fa-file-pdf", desc: "Official Rules PDF", url: "https://abidkhaneinstitute.qzz.io/tajweedrules.pdf" },
     { id: 'nimaz', title: "NIMAZ GUIDE", icon: "fa-mosque", desc: "Visual Salah Steps", url: "https://abidkhaneinstitute.qzz.io/NIMAZ.html" },
     { id: 'prayers', title: "MASNOON DUA", icon: "fa-hands-praying", desc: "Daily Supplications", url: "https://abidkhaneinstitute.qzz.io/PRAYERS.html" },
     { id: 'vocal', title: "TAJWEEDH VOCAL", icon: "fa-volume-high", desc: "Vocal Mastery", url: "https://abidkhaneinstitute.qzz.io/BASICSTAJWEEDHVOCALS.html" }
 ];
+/* End: Dynamic Registry Data */
 
 /* Part 6: UI Logic Update */
+/* Start: UI Logic Update */
 function initGallery() {
     const registry = document.getElementById('gallery-registry');
+    if (!registry) return; // UI Safety check
+    
     registry.innerHTML = "";
     galleryData.forEach(item => {
         const cardCol = document.createElement('div');
@@ -189,30 +194,40 @@ function initGallery() {
         registry.appendChild(cardCol);
     });
     
-    // Auto-load Noorani Qaeedha as the first Left Card
-    const defaultTarget = document.getElementById('card-qaeedha');
-    loadContent('qaeedha', defaultTarget);
+    // UI REPAIR: Fixed ID to match 'noorani_pdf' for auto-load
+    const defaultTarget = document.getElementById('card-noorani_pdf');
+    loadContent('noorani_pdf', defaultTarget);
 }
 
 function loadContent(id, element) {
     const data = galleryData.find(x => x.id === id);
-    document.getElementById('gallery-title').innerText = data.title;
-    document.getElementById('ext-frame').src = data.url;
+    if (!data) return;
+
+    const titleEl = document.getElementById('gallery-title');
+    const frameEl = document.getElementById('ext-frame');
+
+    if (titleEl) titleEl.innerText = data.title;
+    if (frameEl) frameEl.src = data.url;
     
     document.querySelectorAll('.gallery-card').forEach(c => c.classList.remove('active-card'));
     if(element) element.classList.add('active-card');
 }
 
+/* tEST Mode logic with specific naming constraint */
 function toggleTestMode() {
     const b = document.getElementById('test-btn');
     document.body.classList.toggle('test-mode-on');
     const isTest = document.body.classList.contains('test-mode-on');
-    b.innerText = isTest ? "tEST Mode: ON" : "tEST Mode: OFF";
-    document.getElementById('ext-frame').style.filter = isTest ? "blur(20px) grayscale(1)" : "none";
+    
+    // Using 'tEST Mode' as per your requirements
+    if (b) b.innerText = isTest ? "tEST Mode: ON" : "tEST Mode: OFF";
+    
+    const frame = document.getElementById('ext-frame');
+    if (frame) frame.style.filter = isTest ? "blur(20px) grayscale(1)" : "none";
 }
 
 document.addEventListener('contextmenu', e => e.preventDefault());
 window.onload = initGallery;
-</script>
+/* End: UI Logic Update */
 </body>
 </html>
