@@ -17,7 +17,7 @@
             --dark-bg: #030407;
             --gold: #FFD700;
             --cyber-cyan: #00d4ff;
-            --glass-white: rgba(255, 255, 255, 0.05);
+            --glass-white: rgba(255, 255, 255, 0.08);
         }
 
         body { 
@@ -26,58 +26,60 @@
             overflow-x: hidden;
         }
 
-        /* HEADER STYLING */
         .hub-header {
-            background: rgba(0, 0, 0, 0.9);
-            border-bottom: 2px solid var(--islamic-green);
-            padding: 15px 0;
-            backdrop-filter: blur(10px);
+            background: #000; border-bottom: 2px solid var(--islamic-green);
+            padding: 15px; position: sticky; top: 0; z-index: 1000;
         }
 
         .dua-header {
-            font-family: 'Amiri', serif; font-size: 2.2rem; color: var(--gold);
+            font-family: 'Amiri', serif; font-size: 2rem; color: var(--gold);
             padding: 20px; text-shadow: 0 0 15px rgba(255, 215, 0, 0.3); text-align: center;
         }
 
-        .qaida-box {
-            background: radial-gradient(circle, #0a1f12 0%, #030407 100%);
-            border: 2px solid rgba(0, 200, 83, 0.3); border-radius: 25px; padding: 20px;
+        /* VERTICAL STACKED CARDS REPAIR */
+        .vertical-stack-container {
+            max-width: 1000px; margin: 0 auto; padding: 20px;
+        }
+
+        .feature-card {
+            background: radial-gradient(circle at top left, #0a1f12 0%, #030407 100%);
+            border: 2px solid rgba(0, 200, 83, 0.3); border-radius: 25px;
+            margin-bottom: 40px; padding: 20px;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .feature-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
+            transform: scale(1.01);
+        }
+
+        .card-header-title {
+            font-family: 'Orbitron'; font-size: 1.2rem; color: var(--gold);
+            display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
         }
 
         .viewer-container {
             background: #000; border-radius: 15px; 
-            box-shadow: 0 0 30px rgba(0, 200, 83, 0.4);
-            min-height: 500px; display: flex; align-items: center; justify-content: center;
             overflow: hidden; position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        iframe { width: 100%; height: 75vh; border-radius: 10px; border: none; }
+        iframe { width: 100%; height: 75vh; border: none; }
 
-        .mobile-scroll-row { display: flex; gap: 15px; padding: 20px 0; overflow-x: auto; scrollbar-width: none; }
-        .mobile-scroll-row::-webkit-scrollbar { display: none; }
-        .col-custom-card { flex: 0 0 220px; }
-
-        .gallery-card {
-            background: var(--glass-white); border: 1px solid rgba(0, 200, 83, 0.2);
-            border-radius: 20px; padding: 15px; transition: 0.4s; cursor: pointer; text-align: center;
+        /* ANDROID MEDIA QUERIES */
+        @media (max-width: 768px) {
+            .dua-header { font-size: 1.4rem; }
+            iframe { height: 60vh; }
+            .feature-card { padding: 10px; border-radius: 15px; margin-bottom: 25px; }
+            .card-header-title { font-size: 0.9rem; }
         }
-        .active-card { border-color: var(--gold); background: rgba(255, 215, 0, 0.08); transform: translateY(-5px); }
-        
-        #skype-panel { display: none; border: 2px solid var(--cyber-cyan); background: rgba(0, 212, 255, 0.1); }
 
-        /* FOOTER STYLING */
+        #skype-panel { display: none; border: 2px solid var(--cyber-cyan); background: rgba(0, 0, 0, 0.95); }
+
         .hub-footer {
-            background: #000;
-            border-top: 2px solid var(--islamic-green);
-            padding: 40px 0 20px 0;
-            margin-top: 50px;
-        }
-
-        .android-home-btn {
-            position: fixed; bottom: 20px; right: 20px; z-index: 10001;
-            background: var(--gold); color: #000; width: 55px; height: 55px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center; text-decoration: none;
-            box-shadow: 0 0 15px var(--gold);
+            background: #000; border-top: 2px solid var(--islamic-green);
+            padding: 40px 20px; margin-top: 50px;
         }
         /* END: UI Repairing (Part 6) */
     </style>
@@ -86,127 +88,92 @@
 
 <header class="hub-header text-center">
     <div class="container d-flex justify-content-between align-items-center">
-        <img src="ABID KHAN.png" alt="Logo" width="50" class="rounded-circle" style="border: 2px solid var(--gold);">
-        <h1 style="font-family:'Orbitron'; font-size: 1rem; color: #fff; margin: 0;">ABID KHAN INSTITUTE HUB</h1>
-        <div class="text-success small fw-bold">LIVE SESSION ACTIVE</div>
+        <img src="ABID KHAN.png" alt="Logo" width="45" class="rounded-circle" style="border: 2px solid var(--gold);">
+        <h1 style="font-family:'Orbitron'; font-size: 0.9rem; color: #fff; margin: 0;">ABID KHAN INSTITUTE HUB</h1>
+        <div class="text-success small fw-bold"><i class="fas fa-circle blink"></i> LIVE</div>
     </div>
 </header>
 
 <div class="dua-header">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالعَزِيمَةَ عَلَى الرُّشْدِ</div>
 
 <div class="container text-center mb-4">
-    <div class="btn-group shadow" style="border: 1px solid var(--gold); border-radius: 12px; overflow: hidden;">
-        <button class="btn btn-dark text-gold" onclick="switchDept('Islamic')">QURANIC</button>
-        <button class="btn btn-dark text-info" onclick="switchDept('O/A Levels')">O/A LEVELS</button>
-        <button class="btn btn-dark text-success" onclick="switchDept('IELTS')">IELTS/TOEFL</button>
-        <button class="btn btn-dark text-warning" onclick="toggleSkype()">SKYPE CHAT</button>
+    <div class="btn-group" style="border: 1px solid var(--gold); border-radius: 10px; overflow: hidden;">
+        <button class="btn btn-dark text-info" onclick="toggleSkype()">OPEN SKYPE CHATROOM</button>
+        <button class="btn btn-dark text-warning" onclick="toggleTestMode()">tEST Mode: TOGGLE</button>
     </div>
 </div>
 
-<div class="container-fluid py-2">
-    <div class="qaida-box mx-auto" style="max-width: 1150px;">
-        <h2 id="gallery-title" class="text-center h5 fw-bold mb-3" style="font-family:'Orbitron'; color: var(--gold);">LOADING RESOURCES...</h2>
-        
+<div class="vertical-stack-container">
+    
+    <div class="feature-card">
+        <div class="card-header-title">
+            <i class="fas fa-book-open text-success"></i> NOORANI QAEEDHA (32 PAGES)
+        </div>
         <div class="viewer-container">
-            <iframe id="ext-frame" src="" allow="autoplay"></iframe>
-        </div>
-
-        <div id="skype-panel" class="p-3 mt-3 rounded-3">
-            <div class="d-flex justify-content-between mb-2">
-                <span class="text-info small"><i class="fas fa-video"></i> Skype LIVE TXT</span>
-                <span class="badge bg-info">abid-pedagogy-db</span>
-            </div>
-            <div id="chat-display" style="height: 150px; overflow-y: auto; background: #000; padding: 10px; font-size: 0.8rem;" class="mb-2 rounded text-secondary">
-                Welcome to the trainer-learner panel.
-            </div>
-            <div class="input-group input-group-sm">
-                <input type="text" id="chat-input" class="form-control bg-dark text-white border-info" placeholder="Message Professor...">
-                <button class="btn btn-info" onclick="sendMsg()">SEND</button>
-            </div>
-        </div>
-
-        <div class="mt-3 text-center">
-            <button id="test-btn" class="btn btn-sm btn-outline-info px-4" onclick="toggleTestMode()">tEST Mode: OFF</button>
+            <iframe src="https://drive.google.com/embeddedfolderview?id=1iAosnQD4NR-duT3bAvVqzviXIDlY_bT1#grid" allow="autoplay"></iframe>
         </div>
     </div>
 
-    <div class="mobile-scroll-row px-4" id="gallery-registry"></div>
+    <div class="feature-card">
+        <div class="card-header-title">
+            <i class="fas fa-microphone-lines text-success"></i> TAJWEEDH RULES (9 PAGES)
+        </div>
+        <div class="viewer-container">
+            <iframe src="https://drive.google.com/embeddedfolderview?id=1UcHwcR4nuaB9mnZvqG1fL7ZdY7x1ono0#grid" allow="autoplay"></iframe>
+        </div>
+    </div>
+
+    <div class="feature-card">
+        <div class="card-header-title">
+            <i class="fas fa-mosque text-success"></i> NIMAZ STEP-BY-STEP GUIDE
+        </div>
+        <div class="viewer-container">
+            <iframe src="https://abidkhaneinstitute.qzz.io/NIMAZ.html" allow="autoplay"></iframe>
+        </div>
+    </div>
+
+    <div class="feature-card">
+        <div class="card-header-title">
+            <i class="fas fa-hands-praying text-success"></i> DAILY MASNOON DUA
+        </div>
+        <div class="viewer-container">
+            <iframe src="https://abidkhaneinstitute.qzz.io/PRAYERS.html" allow="autoplay"></iframe>
+        </div>
+    </div>
+
+</div>
+
+<div id="skype-panel" class="p-3 fixed-bottom m-3 rounded-4 shadow-lg">
+    <div class="d-flex justify-content-between mb-2">
+        <span class="text-info fw-bold">Skype LIVE TXT Channel</span>
+        <button class="btn-close btn-close-white" onclick="toggleSkype()"></button>
+    </div>
+    <div id="chat-display" style="height: 200px; overflow-y: auto; background: #000;" class="p-2 mb-2 rounded small text-secondary"></div>
+    <div class="input-group input-group-sm">
+        <input type="text" id="chat-input" class="form-control bg-dark text-white border-info" placeholder="Message Professor...">
+        <button class="btn btn-info" onclick="sendMsg()">SEND</button>
+    </div>
 </div>
 
 <footer class="hub-footer text-center">
     <div class="container">
-        <div class="row mb-4">
-            <div class="col-md-4">
-                <h5 class="text-gold" style="font-family:'Orbitron'; font-size: 0.8rem;">CONTACT US</h5>
-                <p class="small text-secondary"><i class="fab fa-whatsapp"></i> +92 349 7469638</p>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <h5 class="text-gold" style="font-family:'Orbitron'; font-size: 0.8rem;">CONTACT ABID KHAN HUB</h5>
+                <p class="small text-secondary">+92 349 7469638 | abid-khan-institute-hub</p>
             </div>
-            <div class="col-md-4">
-                <h5 class="text-gold" style="font-family:'Orbitron'; font-size: 0.8rem;">RESOURCES</h5>
-                <p class="small text-secondary">Quranic | O/A Levels | IELTS</p>
-            </div>
-            <div class="col-md-4">
-                <h5 class="text-gold" style="font-family:'Orbitron'; font-size: 0.8rem;">SYSTEM INFO</h5>
-                <p class="x-small text-secondary">Worker: abid-khan-institute-hub</p>
+            <div class="col-md-6 mb-3">
+                <h5 class="text-gold" style="font-family:'Orbitron'; font-size: 0.8rem;">ACADEMIC DOMAINS</h5>
+                <p class="small text-secondary">Quranic | O/A Levels | IELTS | TOEFL</p>
             </div>
         </div>
-        <div class="pt-3 border-top border-secondary">
-            <p style="font-family:'Orbitron'; font-size: 0.6rem; color: var(--gold);">© 2026 PROFESSOR DR. ABID KHAN | ALL RIGHTS RESERVED</p>
-        </div>
+        <hr class="border-secondary">
+        <p class="x-small text-muted">Worker ID: abid-pedagogy-db | © 2026 PROFESSOR DR. ABID KHAN</p>
     </div>
 </footer>
 
-<a href="#" class="android-home-btn"><i class="fas fa-home"></i></a>
-
 <script>
-/* START: Registry with Integrated Folder URLs */
-const galleryData = [
-    { 
-        id: 'qaeedha', 
-        title: "NOORANI QAEEDHA (32 PAGES)", 
-        type: 'folder', 
-        icon: "fa-book-open", 
-        // UI Repair: Folder embedded view
-        url: "https://drive.google.com/embeddedfolderview?id=1iAosnQD4NR-duT3bAvVqzviXIDlY_bT1#grid" 
-    },
-    { 
-        id: 'tajweedh', 
-        title: "TAJWEEDH RULES (9 PICS)", 
-        type: 'folder', 
-        icon: "fa-microphone-lines", 
-        url: "https://drive.google.com/embeddedfolderview?id=1UcHwcR4nuaB9mnZvqG1fL7ZdY7x1ono0#grid" 
-    },
-    { id: 'nimaz', title: "NIMAZ GUIDE", type: 'internal', icon: "fa-mosque", url: "https://abidkhaneinstitute.qzz.io/NIMAZ.html" },
-    { id: 'prayers', title: "MASNOON DUA", type: 'internal', icon: "fa-hands-praying", url: "https://abidkhaneinstitute.qzz.io/PRAYERS.html" }
-];
-
-function init() {
-    const reg = document.getElementById('gallery-registry');
-    galleryData.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'col-custom-card';
-        div.innerHTML = `
-            <div class="gallery-card" onclick="loadContent('${item.id}', this)">
-                <i class="fas ${item.icon} mb-2" style="font-size: 1.5rem; color: var(--islamic-green);"></i>
-                <div style="font-family:'Orbitron'; font-size:0.7rem;">${item.title}</div>
-            </div>`;
-        reg.appendChild(div);
-    });
-    loadContent(galleryData[0].id, reg.querySelector('.gallery-card'));
-}
-
-function loadContent(id, el) {
-    const item = galleryData.find(x => x.id === id);
-    document.getElementById('gallery-title').innerText = item.title;
-    document.getElementById('ext-frame').src = item.url;
-    document.querySelectorAll('.gallery-card').forEach(c => c.classList.remove('active-card'));
-    el.classList.add('active-card');
-}
-
-function switchDept(name) {
-    document.getElementById('gallery-title').innerText = "SWITCHING TO " + name + "...";
-    // Logic for page redirection goes here
-}
-
+/* START: UI Repairing (Part 6) - Global Logic */
 function toggleSkype() {
     const p = document.getElementById('skype-panel');
     p.style.display = (p.style.display === 'block') ? 'none' : 'block';
@@ -216,21 +183,21 @@ function sendMsg() {
     const input = document.getElementById('chat-input');
     const display = document.getElementById('chat-display');
     if(input.value.trim() !== "") {
-        display.innerHTML += `<div class="mb-1"><span class="text-info">Learner:</span> ${input.value}</div>`;
+        display.innerHTML += `<div class="mb-1"><span class="text-gold">Boss:</span> ${input.value}</div>`;
         input.value = "";
         display.scrollTop = display.scrollHeight;
     }
 }
 
 function toggleTestMode() {
-    const b = document.getElementById('test-btn');
-    const isTest = document.body.classList.toggle('test-mode-on');
-    b.innerText = isTest ? "tEST Mode: ON" : "tEST Mode: OFF";
-    document.getElementById('ext-frame').style.filter = isTest ? "blur(30px) brightness(0.5)" : "none";
+    const frames = document.querySelectorAll('iframe');
+    const isActive = document.body.classList.toggle('test-mode-on');
+    frames.forEach(f => {
+        f.style.filter = isActive ? "blur(35px) grayscale(1)" : "none";
+    });
+    alert("tEST Mode " + (isActive ? "Enabled" : "Disabled"));
 }
-
-window.onload = init;
-/* END: UI Repairing JS */
+/* END: UI Repairing (Part 6) */
 </script>
 </body>
 </html>
