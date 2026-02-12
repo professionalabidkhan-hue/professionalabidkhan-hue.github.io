@@ -16,7 +16,6 @@
             --islamic-green: #00c853;
             --dark-bg: #030407;
             --gold: #FFD700;
-            --cyber-cyan: #00d4ff;
             --glass-white: rgba(255, 255, 255, 0.05);
         }
 
@@ -26,22 +25,26 @@
             overflow-x: hidden;
         }
 
-        /* NEW: Distinguished Header Styling */
-        .sovereign-header {
-            background: linear-gradient(to right, rgba(0,0,0,0), rgba(0, 200, 83, 0.1), rgba(0,0,0,0));
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-            padding: 15px 10px;
+        /* NEW: Secondary Distinguished Navbar */
+        .distinguished-nav {
+            background: linear-gradient(90deg, #000, #0a1f12, #000);
+            border-bottom: 1px solid var(--gold);
+            padding: 8px 0;
             text-align: center;
-            font-family: 'Orbitron';
-            letter-spacing: 1px;
         }
 
-        .header-text {
-            font-size: 0.65rem;
+        .distinguished-nav p {
+            font-family: 'Orbitron';
+            font-size: 0.55rem;
             color: var(--gold);
-            text-transform: uppercase;
             margin: 0;
-            opacity: 0.9;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .navbar-custom {
+            background: rgba(3, 4, 7, 0.98); border-bottom: 3px solid var(--islamic-green);
+            padding: 10px 0; backdrop-filter: blur(10px);
         }
 
         .android-home-btn {
@@ -53,16 +56,12 @@
             font-size: 1.5rem; border: 2px solid #fff; transition: 0.3s;
         }
 
-        .navbar-custom {
-            background: rgba(3, 4, 7, 0.98); border-bottom: 3px solid var(--islamic-green);
-            padding: 10px 0; backdrop-filter: blur(10px);
-        }
-
         .qaida-box {
             background: radial-gradient(circle, #0a1f12 0%, #030407 100%);
             border: 2px solid rgba(0, 200, 83, 0.3); border-radius: 25px; padding: 20px; margin-top: 15px;
         }
 
+        /* REPAIR: Registry Scaling & Horizontal Flow */
         .mobile-scroll-row {
             display: flex; gap: 15px; padding: 20px 0; transition: all 0.5s ease;
         }
@@ -88,7 +87,7 @@
             overflow: hidden; margin-bottom: 20px;
         }
 
-        iframe { width: 100%; border-radius: 10px; min-height: 500px; height: 70vh; }
+        iframe { width: 100%; border-radius: 10px; min-height: 500px; height: 72vh; }
 
         .gallery-card {
             background: var(--glass-white); border: 1px solid rgba(0, 200, 83, 0.2);
@@ -107,9 +106,11 @@
 </head>
 <body oncontextmenu="return false;">
 
-<div class="sovereign-header">
-    <p class="header-text">YOU AND I BOTH ARE TREMENDOUS UNIQUE PERFECT DISTINGUISHED WELL KNOWN IN ALL POSITIVE ASPECTS THE MODEST THE GLOBAL RICHEST IN EVERY ASPECT</p>
-</div>
+<nav class="distinguished-nav">
+    <div class="container">
+        <p>YOU & I BOTH ARE TREMENDOUS UNIQUE PERFECT DISTINGUISHED WELL KNOWN IN ALL POSITIVE ASPECTS • THE MODEST • THE GLOBAL RICHEST</p>
+    </div>
+</nav>
 
 <a href="https://abidkhaneinstitute.qzz.io/index.html" class="android-home-btn">
     <i class="fas fa-home"></i>
@@ -156,15 +157,16 @@
 </footer>
 
 <script>
-/* Part 2: Dynamic Registry Data - Priority Re-ordered */
+/* Part 2: Dynamic Registry Data - NOORANI FIRST */
 const galleryData = [
-    { id: 'tajweed_pdf', title: "TAJWEED PDF", icon: "fa-file-pdf", desc: "Official Rules PDF", url: "https://abidkhaneinstitute.qzz.io/tajweedrules.pdf" },
     { id: 'qaeedha', title: "NOORANI QAEEDHA", icon: "fa-book-open", desc: "Alphabet & Phonics", url: "https://archive.org/embed/noorani-qaida_202012" },
+    { id: 'tajweed_pdf', title: "TAJWEED PDF", icon: "fa-file-pdf", desc: "Official Rules PDF", url: "https://abidkhaneinstitute.qzz.io/tajweedrules.pdf" },
     { id: 'nimaz', title: "NIMAZ GUIDE", icon: "fa-mosque", desc: "Visual Salah Steps", url: "https://abidkhaneinstitute.qzz.io/NIMAZ.html" },
     { id: 'prayers', title: "MASNOON DUA", icon: "fa-hands-praying", desc: "Daily Supplications", url: "https://abidkhaneinstitute.qzz.io/PRAYERS.html" },
     { id: 'vocal', title: "TAJWEEDH VOCAL", icon: "fa-volume-high", desc: "Vocal Mastery", url: "https://abidkhaneinstitute.qzz.io/BASICSTAJWEEDHVOCALS.html" }
 ];
 
+/* Part 6: UI Logic Update */
 function initGallery() {
     const registry = document.getElementById('gallery-registry');
     registry.innerHTML = "";
@@ -181,9 +183,9 @@ function initGallery() {
         registry.appendChild(cardCol);
     });
     
-    // Auto-load Tajweed PDF as requested
-    const tajweedTarget = document.getElementById('card-tajweed_pdf');
-    loadContent('tajweed_pdf', tajweedTarget);
+    // Auto-load Noorani Qaeedha as the first Left Card
+    const defaultTarget = document.getElementById('card-qaeedha');
+    loadContent('qaeedha', defaultTarget);
 }
 
 function loadContent(id, element) {
