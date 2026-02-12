@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIMAZ | ABID KHAN E-INSTITUTE</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Part 6: UI Repairing & Sovereign Master CSS */
+        :root { 
+            --gold: #FFD700; --islamic-green: #00c853; --dark-bg: #030407; 
+            --it-purple: #6f42c1; --glass: rgba(255, 255, 255, 0.05); 
+        }
+
+        body { 
+            background-color: var(--dark-bg); color: #fff; 
+            font-family: 'Inter', sans-serif; overflow-x: hidden;
+            -webkit-user-select: none; user-select: none;
+        }
+
+        .navbar-custom { background: rgba(3, 4, 7, 0.98); border-bottom: 2px solid var(--gold); backdrop-filter: blur(15px); }
+        
+        .dua-vault { 
+            background: linear-gradient(145deg, #0a1f12, #030407);
+            border: 2px solid var(--islamic-green); border-radius: 30px; 
+            padding: 30px; box-shadow: 0 0 40px rgba(0, 200, 83, 0.15);
+            min-height: 620px; position: sticky; top: 90px;
+        }
+
+        /* Smaller Font Strategy for Completion */
+        .arabic-text { 
+            font-family: 'Amiri', serif; font-size: 1.9rem; color: #fff; 
+            line-height: 1.6; direction: rtl; margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .translation-box { border-left: 2px solid var(--islamic-green); padding-left: 15px; margin-bottom: 15px; transition: 0.4s; }
+        
+        .english-text { font-size: 0.85rem; color: #ccc; font-style: italic; line-height: 1.4; }
+        
+        .urdu-text-box { 
+            font-family: 'Amiri', serif; font-size: 1.4rem; color: #00ff88; 
+            direction: rtl; text-align: right; border-right: 2px solid var(--gold); 
+            padding-right: 15px; margin-top: 10px;
+        }
+
+        /* tEST Mode - Absolute Hiding for Pedagogy */
+        .hidden-for-test { filter: blur(30px) grayscale(1); opacity: 0; pointer-events: none; }
+
+        .dua-btn { 
+            background: var(--glass); border: 1px solid rgba(0, 212, 255, 0.2); 
+            color: #fff; padding: 10px; border-radius: 12px; transition: 0.3s;
+            width: 100%; text-align: left; font-family: 'Orbitron'; font-size: 0.65rem; margin-bottom: 6px;
+            display: flex; align-items: center;
+        }
+        .dua-btn:hover, .active-step { background: var(--gold); color: #000; box-shadow: 0 0 15px var(--gold); }
+        .dua-btn .num { font-weight: 900; margin-right: 10px; width: 20px; }
+
+        .scroll-registry { max-height: 650px; overflow-y: auto; padding-right: 10px; }
+        .scroll-registry::-webkit-scrollbar { width: 3px; }
+        .scroll-registry::-webkit-scrollbar-thumb { background: var(--gold); }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="ABID KHAN.png" width="45" height="45" class="rounded-circle me-3" style="border: 2px solid var(--gold);">
+            <span class="fw-bold" style="font-family:'Orbitron'; font-size: 0.9rem;">ABID KHAN E-INSTITUTE</span>
+        </a>
+        <div class="ms-auto">
+            <div id="live-txt" class="text-success small fw-bold" style="font-family:'Orbitron';">STATUS: LIVE</div>
+        </div>
+    </div>
+</nav>
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="dua-vault text-center">
+                <div class="text-warning x-small mb-2" id="posture-hint" style="font-family:'Orbitron'; font-size: 0.7rem;">SYSTEM READY</div>
+                <div id="arabic-display" class="arabic-text">...</div>
+                
+                <div id="trans-parent">
+                    <div class="translation-box text-start">
+                        <small class="text-info" style="font-family:'Orbitron'; font-size:0.55rem;">ENGLISH TRANSLATION</small>
+                        <div id="english-display" class="english-text">...</div>
+                    </div>
+                    <div class="urdu-text-box">
+                        <small class="text-warning" style="font-family:'Orbitron'; font-size:0.55rem; text-align:left; display:block;">اردو ترجمہ</small>
+                        <div id="urdu-display">...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="p-3 mb-3 border border-warning rounded text-center" style="background: rgba(111,66,193,0.15);">
+                <div class="form-check form-switch d-inline-block">
+                    <input class="form-check-input" type="checkbox" id="testModeToggle" onchange="toggleTestMode()">
+                    <label class="form-check-label fw-bold text-gold ms-2" style="font-family:'Orbitron'; font-size: 0.75rem;">ACTIVATE tEST MODE</label>
+                </div>
+            </div>
+            <h6 class="text-gold mb-3 ps-1" style="font-family:'Orbitron'; font-size: 0.8rem;">SALAH REGISTRY</h6>
+            <div class="scroll-registry" id="registry"></div>
+        </div>
+    </div>
+</div>
+
+<footer class="mt-4 py-3" style="background: rgba(3, 4, 7, 0.98); border-top: 1px solid var(--it-purple);">
+    <div class="container text-center">
+        <p class="text-secondary x-small mb-1">Worker: abid-pedagogy-db | Database: Nimaz-v2.0</p>
+        <a href="https://wa.me/923497469638" class="text-success text-decoration-none fw-bold small" style="font-family:'Orbitron';">
+            <i class="fab fa-whatsapp me-1"></i>WHATSAPP SUPPORT
+        </a>
+    </div>
+</footer>
+
+<script>
+const nimazVault = [
+    { title: "Takbeerat", pos: "Posture 1: Starting", arabic: "اَللّٰهُ اَكْبَرُ", eng: "Allah is the Greatest. (Bring hands, palms open, up to ears, and place thumbs behind earlobes).", urdu: "اللہ سب سے بڑا ہے (ہاتھوں کو کانوں تک اٹھائیں اور انگوٹھے کانوں کی لو کے پیچھے رکھیں)" },
+    { title: "Sana", pos: "Posture 2: Standing", arabic: "سُبْحَانَكَ اللّٰهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَىٰ جَدُّكَ وَلَا إِلٰهَ غَيْرُكَ", eng: "O Allah, Glorified, praise worthy and blessed is Thy Name and exalted Thy Majesty and there is no deity worthy of worship except Thee.", urdu: "اے اللہ! تو پاک ہے، میں تیری تعریف کرتا ہوں، تیرا نام برکت والا ہے، تیری شان بلند ہے اور تیرے سوا کوئی معبود نہیں" },
+    { title: "Ta'awwuz & Tasmiyah", pos: "Posture 2: Standing", arabic: "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ ۔ بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ", eng: "I seek refuge in Allah from Satan the rejected. In the Name of Allah, the Beneficent, the Merciful.", urdu: "میں شیطان مردود سے اللہ کی پناہ مانگتا ہوں۔ اللہ کے نام سے شروع جو بڑا مہربان نہایت رحم والا ہے" },
+    { title: "Surah Al-Fatihah", pos: "Posture 2: Recitation", arabic: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ۔ الرَّحْمَنِ الرَّحِيمِ ۔ مَالِكِ يَوْمِ الدِّينِ ۔ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ۔ اهدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ۔ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ", eng: "All praise is due to Allah, Lord of the worlds. The Beneficent, the Merciful. Master of the Day of Judgement. Thee alone we worship and to Thee alone we turn for help. Guide us in the straight path. The path of those whom You favored and who did not deserve Thy anger or went astray.", urdu: "تمام تعریفیں اللہ کے لیے ہیں جو تمام جہانوں کا رب ہے۔ بڑا مہربان، نہایت رحم والا۔ روزِ جزا کا مالک۔ ہم تیری ہی عبادت کرتے ہیں اور تجھ ہی سے مدد چاہتے ہیں۔ ہمیں سیدھے راستے پر چلا۔ ان لوگوں کے راستے پر جن پر تو نے انعام کیا، نہ کہ ان کے جن پر غضب ہوا اور نہ ہی گمراہوں کے۔" },
+    { title: "Surah Al-Ikhlas", pos: "Posture 2: Recitation", arabic: "قُلْ هُوَ اللَّهُ أَحَدٌ ۔ اللَّهُ الصَّمَدُ ۔ لَمْ يَلِدْ وَلَمْ يُولَدْ ۔ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ", eng: "Say: He is Allah, the One and Only. Allah, the Eternal, Absolute. He begetteth not, nor is He begotten; And there is none like unto Him.", urdu: "کہہ دیجئے: وہ اللہ ایک ہے۔ اللہ بے نیاز ہے۔ نہ اس کی کوئی اولاد ہے اور نہ وہ کسی کی اولاد ہے۔ اور اس کا کوئی ہمسر نہیں۔" },
+    { title: "Ruku", pos: "Posture 3: Bowing", arabic: "سُبْحَانَ رَبِّيَ الْعَظِيمِ", eng: "Glory to my Lord, the Greatest (3 Times). (Bend down at waist, placing palms over knees. Back parallel to ground).", urdu: "پاک ہے میرا پروردگار عظمت والا (رکوع میں تین بار کہیں)" },
+    { title: "Tasmee & Tahmeed", pos: "Posture 4: Rising", arabic: "سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ ۔ رَبَّنَا لَكَ الْحَمْدُ", eng: "Allah has heard all who praise Him. Our Lord: Praise be to Thee. (Return to standing position, arms at side).", urdu: "اللہ نے اس کی سن لی جس نے اس کی تعریف کی۔ اے ہمارے رب! تیرے ہی لئے تمام تعریفیں ہیں" },
+    { title: "Sajdah", pos: "Posture 5 & 7: Prostration", arabic: "سُبْحَانَ رَبِّيَ الْأَعْلَى", eng: "Glory to my Lord, the Most High (3 Times). (Forehead, nose, two palms, two knees, and toes touching ground).", urdu: "پاک ہے میرا پروردگار سب سے بلند (سجدے میں تین بار کہیں)" },
+    { title: "Jalsa", pos: "Posture 6: Sitting", arabic: "اللَّهُمَّ اغْفِرْ لِي وَارْحَمْنِي وَاهْدِنِي وَعَافِنِي وَارْزُقْنِي", eng: "O Allah, forgive me, have mercy on me, guide me, grant me safety and provide for me.", urdu: "اے اللہ! مجھے بخش دے، مجھ پر رحم فرما، مجھے ہدایت دے، مجھے عافیت دے اور مجھے رزق عطا فرما" },
+    { title: "Tashahhud", pos: "Posture 8: Sitting", arabic: "التَّحِيَّاتُ لِلَّهِ وَالصَّلَواتُ وَالطَّيِّباتُ، السَّلامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكاتُهُ، السَّلامُ عَلَيْنا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لا إِلَهَ إِلا اللَّهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ", eng: "All prayers and worship through words, action and sanctity are for Allah only. Peace be on you, O Prophet, and Mercy of Allah and His blessings. Peace be on us and on those who are righteous servants of Allah. I bear witness that there is no deity but Allah, and Muhammad is His slave and messenger.", urdu: "تمام قولی، فعلی اور مالی عبادتیں اللہ ہی کے لئے ہیں۔ سلام ہو آپ پر اے نبی اور اللہ کی رحمتیں اور برکتیں۔ سلام ہو ہم پر اور اللہ کے نیک بندوں پر۔ میں گواہی دیتا ہوں کہ اللہ کے سوا کوئی معبود نہیں اور محمد ﷺ اس کے بندے اور رسول ہیں۔" },
+    { title: "Durood Ibrahim", pos: "Posture 8: Sitting", arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ ۔ اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ", eng: "O Allah, exalt Muhammad and the followers of Muhammad as Thou did exalt Ibrahim and his followers. Thou art the Praised, the Glorious. O Allah, bless Muhammad and his followers as Thou has blest Ibrahim and his followers. Thou art the Praised, the Glorious.", urdu: "اے اللہ! حضرت محمد ﷺ اور ان کی آل پر رحمت نازل فرما جس طرح تو نے ابراہیم علیہ السلام اور ان کی آل پر رحمت نازل کی۔ بیشک تو تعریف کے لائق اور بڑی شان والا ہے۔ اے اللہ! حضرت محمد ﷺ اور ان کی آل پر برکت نازل فرما جس طرح تو نے ابراہیم علیہ السلام اور ان کی آل پر برکت نازل کی۔" },
+    { title: "Dua-e-Masura", pos: "Posture 8: Final Dua", arabic: "رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِنْ ذُرِّيَّتِي رَبَّنَا وَتَقَبَّلْ دُعَاءِ ۔ رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ", eng: "O Lord! Make me one who establishes regular Prayer, and also from my offspring. O our Lord! and accept Thou my Prayer. O Lord! forgive me, my parents and all believers on the Day of Reckoning.", urdu: "اے میرے رب! مجھے اور میری اولاد کو نماز قائم کرنے والا بنا۔ اے ہمارے رب! میری دعا قبول فرما۔ اے ہمارے رب! مجھے، میرے والدین کو اور سب ایمان والوں کو اس دن بخش دے جس دن حساب قائم ہوگا۔" },
+    { title: "Salam (Right)", pos: "Posture 9: Finish", arabic: "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ", eng: "Peace be on you and Allah's blessings. (Turn your face to the right).", urdu: "تم پر سلامتی ہو اور اللہ کی رحمت (دائیں طرف منہ پھیریں)" },
+    { title: "Salam (Left)", pos: "Posture 9: Finish", arabic: "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ", eng: "Peace be on you and Allah's blessings. (Turn your face to the left).", urdu: "تم پر سلامتی ہو اور اللہ کی رحمت (بائیں طرف منہ پھیریں)" },
+    { title: "Dua-e-Qunoot", pos: "Witr: Standing", arabic: "اللَّهُمَّ إِنَّا نَسْتَعِينُكَ وَنَسْتَغْفِرُكَ وَنُؤْمِنُ بِكَ وَنَتَوَكَّلُ عَلَيْكَ وَنُثْنِي عَلَيْكَ الْخَيْرَ وَنَشْكُرُكَ وَلَا نَكْفُرُكَ وَنَخْلَعُ وَنَتْرُكُ مَنْ يَّفْجُرُكَ ۔ اللَّهُمَّ إِيَّاكَ نَعْبُدُ وَلَكَ نُصَلِّي وَنَسْجُدُ وَإِلَيْكَ نَسْعَى وَنَحْفِدُ وَنَرْجُو رَحْمَتَكَ وَنَخْشَى عَذَابَكَ إِنَّ عَذَابَكَ بِالْكُفَّارِ مُلْحِقٌ", eng: "O Allah! We implore You for help and beg forgiveness of You and believe in You and rely on You and extol You and we are grateful to You and are not ungrateful to You... Thee alone we worship and to Thee we pray and prostrate... we hope for Your mercy and fear Your punishment.", urdu: "اے اللہ! ہم تجھ سے مدد چاہتے ہیں، تجھ سے معافی مانگتے ہیں، تجھ پر ایمان لاتے ہیں، تجھ پر بھروسہ کرتے ہیں اور تیری بہت اچھی تعریف کرتے ہیں۔ ہم تیرا شکر ادا کرتے ہیں اور تیری ناشکری نہیں کرتے... اے اللہ! ہم تیری ہی عبادت کرتے ہیں، تیرے ہی لیے نماز پڑھتے ہیں اور سجدہ کرتے ہیں..." }
+];
+
+function initRegistry() {
+    const reg = document.getElementById('registry');
+    nimazVault.forEach((step, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'dua-btn';
+        btn.innerHTML = `<span class="num">${i + 1}</span> <span>${step.title.toUpperCase()}</span>`;
+        btn.onclick = () => loadStep(i, btn);
+        reg.appendChild(btn);
+    });
+    loadStep(0, reg.firstChild);
+}
+
+function loadStep(i, btn) {
+    const data = nimazVault[i];
+    document.querySelectorAll('.dua-btn').forEach(b => b.classList.remove('active-step'));
+    btn.classList.add('active-step');
+    
+    document.getElementById('posture-hint').innerText = data.pos;
+    document.getElementById('arabic-display').innerText = data.arabic;
+    document.getElementById('english-display').innerText = data.eng;
+    document.getElementById('urdu-display').innerText = data.urdu;
+    
+    toggleTestMode();
+}
+
+function toggleTestMode() {
+    const isTest = document.getElementById('testModeToggle').checked;
+    const transParent = document.getElementById('trans-parent');
+    if (isTest) {
+        transParent.classList.add('hidden-for-test');
+    } else {
+        transParent.classList.remove('hidden-for-test');
+    }
+}
+
+window.onload = initRegistry;
+</script>
+</body>
+</html>
