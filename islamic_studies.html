@@ -27,64 +27,65 @@
         }
 
         .android-home-btn {
-            position: fixed; bottom: 30px; right: 30px; z-index: 10001;
+            position: fixed; bottom: 20px; right: 20px; z-index: 10001;
             background: linear-gradient(135deg, var(--gold), #b8860b);
-            color: #000; width: 65px; height: 65px; border-radius: 50%;
+            color: #000; width: 55px; height: 55px; border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4); text-decoration: none;
-            font-size: 1.8rem; border: 2px solid #fff; transition: 0.3s;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); text-decoration: none;
+            font-size: 1.5rem; border: 2px solid #fff; transition: 0.3s;
         }
-        .android-home-btn:hover { transform: scale(1.1) rotate(360deg); color: #000; }
 
         .navbar-custom {
             background: rgba(3, 4, 7, 0.98); border-bottom: 3px solid var(--islamic-green);
-            padding: 15px 0; backdrop-filter: blur(10px);
+            padding: 10px 0; backdrop-filter: blur(10px);
         }
 
-        /* Unified Slider & Iframe Interface */
         .qaida-box {
             background: radial-gradient(circle, #0a1f12 0%, #030407 100%);
-            border: 2px solid rgba(0, 200, 83, 0.3); border-radius: 25px; padding: 40px; margin-top: 30px;
+            border: 2px solid rgba(0, 200, 83, 0.3); border-radius: 25px; padding: 20px; margin-top: 15px;
+        }
+
+        .mobile-scroll-row {
+            display: flex; gap: 15px; padding: 20px 0; transition: all 0.5s ease;
+        }
+
+        /* UI REPAIR: Responsive Registry Control */
+        @media (max-width: 991px) {
+            .mobile-scroll-row {
+                overflow-x: auto; flex-wrap: nowrap;
+                scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+                padding-left: 10px; padding-right: 10px;
+            }
+            .mobile-scroll-row::-webkit-scrollbar { display: none; }
+            .col-custom-card { flex: 0 0 75%; scroll-snap-align: center; }
+        }
+
+        @media (min-width: 992px) {
+            .mobile-scroll-row { flex-wrap: wrap; justify-content: center; }
+            .col-custom-card { flex: 0 0 calc(16.66% - 15px); } /* Adjusted for 6 cards */
         }
 
         .viewer-container {
-            background: #000; padding: 10px; border-radius: 15px; 
+            background: #000; padding: 5px; border-radius: 15px; 
             box-shadow: 0 0 30px rgba(0, 200, 83, 0.4);
             overflow: hidden; margin-bottom: 20px;
         }
 
-        iframe { width: 100%; border-radius: 10px; min-height: 450px; }
+        iframe { width: 100%; border-radius: 10px; min-height: 500px; height: 70vh; }
 
-        .img-container {
-            background: #fff; padding: 15px; border-radius: 15px; 
-            display: inline-block; box-shadow: 0 0 30px rgba(0, 200, 83, 0.4);
-            transition: 0.4s ease; min-width: 320px;
-        }
-
-        #qaida-display { 
-            will-change: transform, opacity; transition: 0.4s; 
-            max-width: 100%; height: auto; max-height: 70vh;
-        }
-
-        /* Sovereign Glow Cards */
         .gallery-card {
             background: var(--glass-white); border: 1px solid rgba(0, 200, 83, 0.2);
-            border-radius: 20px; padding: 30px; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer; position: relative; overflow: hidden; height: 100%;
-            text-decoration: none; display: block;
+            border-radius: 20px; padding: 15px; transition: 0.4s;
+            cursor: pointer; text-decoration: none; display: block; height: 100%; text-align: center;
         }
-        .gallery-card:hover {
-            transform: translateY(-15px); border-color: var(--gold);
-            background: rgba(255, 215, 0, 0.05); box-shadow: 0 15px 40px rgba(0, 200, 83, 0.2);
+        .gallery-card:hover, .active-card {
+            transform: translateY(-8px); border-color: var(--gold);
+            background: rgba(255, 215, 0, 0.08); box-shadow: 0 10px 30px rgba(0, 200, 83, 0.3);
         }
-        .gallery-card i { font-size: 3.5rem; color: var(--islamic-green); transition: 0.5s; }
-        .gallery-card:hover i { color: var(--gold); transform: scale(1.2) rotate(10deg); }
-        .card-title { font-family: 'Orbitron'; color: #fff; margin-top: 15px; font-size: 1.2rem; }
+        .gallery-card i { font-size: 1.8rem; color: var(--islamic-green); margin-bottom: 8px; }
+        .card-title { font-family: 'Orbitron'; color: #fff; font-size: 0.75rem; margin-top: 5px; }
 
-        .footer-elite { background: #000; border-top: 2px solid var(--islamic-green); padding: 50px 0; margin-top: 80px; }
-        .btn-nav { background: var(--islamic-green); color: white; width: 60px; height: 60px; border-radius: 50%; border: none; transition: 0.3s; }
-        
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .footer-elite { background: #000; border-top: 2px solid var(--islamic-green); padding: 40px 0; margin-top: 50px; }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -94,150 +95,93 @@
 </a>
 
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="ABID KHAN.png" width="50" height="50" class="rounded-circle me-3" style="border: 2px solid var(--gold);" onerror="this.src='https://via.placeholder.com/50'">
-            <span style="font-family:'Orbitron';">ABID KHAN HUB</span>
+    <div class="container text-center">
+        <a class="navbar-brand d-flex align-items-center mx-auto" href="#">
+            <img src="ABID KHAN.png" width="40" height="40" class="rounded-circle me-2" style="border: 2px solid var(--gold);">
+            <span style="font-family:'Orbitron'; font-size: 0.9rem;">ABID KHAN HUB</span>
         </a>
-        <div id="live-txt" class="ms-auto text-success fw-bold d-none d-md-block" style="font-family:'Orbitron'; font-size: 0.8rem;">SYSTEM: ACTIVE</div>
     </div>
 </nav>
 
-<div class="container py-5 text-center">
-    <div class="qaida-box">
-        <h1 id="gallery-title" class="display-5 fw-bold mb-4" style="font-family:'Orbitron'; color: var(--gold);">NOORANI QAEEDHA</h1>
+<div class="container-fluid py-3 text-center">
+    <div class="qaida-box mx-auto" style="max-width: 1150px;">
+        <h2 id="gallery-title" class="h4 fw-bold mb-3" style="font-family:'Orbitron'; color: var(--gold);">ABID KHAN PEDAGOGY</h2>
         
         <div id="viewer-window" class="viewer-container">
-            <div id="img-engine" class="img-container">
-                <img id="qaida-display" src="" alt="Learning Page">
-             </div>
-             <div id="iframe-engine" class="d-none">
-                <iframe id="ext-frame" src="" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+             <div id="iframe-engine">
+                <iframe id="ext-frame" src="" frameborder="0" allowfullscreen></iframe>
              </div>
         </div>
 
-        <div id="img-controls" class="mt-4 d-flex justify-content-center align-items-center gap-4">
-            <button class="btn-nav" onclick="changeImage(-1)"><i class="fas fa-chevron-left"></i></button>
-            <div class="h4 mb-0" style="font-family:'Orbitron'; min-width: 140px; color: var(--cyber-cyan);">PAGE: <span id="page-num">1</span></div>
-            <button class="btn-nav" onclick="changeImage(1)"><i class="fas fa-chevron-right"></i></button>
-        </div>
-        
-        <div class="mt-4">
-            <button id="test-btn" class="btn btn-outline-info px-4" onclick="toggleTestMode()">tEST Mode: OFF</button>
+        <div class="mt-2 d-flex justify-content-center gap-3">
+            <button id="test-btn" class="btn btn-sm btn-outline-info px-4" onclick="toggleTestMode()" style="font-family:'Orbitron'; font-size: 0.6rem;">tEST Mode: OFF</button>
         </div>
     </div>
 
-    <div class="row g-4 mt-5">
-        <div class="col-md-3">
-            <div class="gallery-card" onclick="loadContent('qaeedha')">
-                <i class="fas fa-book-open"></i>
-                <h3 class="card-title">BASIC QAEEDHA</h3>
-                <p class="text-secondary small">Alphabet & Phonics.</p>
+    <div class="container">
+        <div class="mobile-scroll-row" id="gallery-registry">
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="gallery-card" onclick="window.location.href='NIMAZ'">
-                <i class="fas fa-mosque"></i>
-                <h3 class="card-title">NIMAZ GUIDE</h3>
-                <p class="text-secondary small">Visual Salah Steps.</p>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="gallery-card" onclick="loadContent('tajweedh')">
-                <i class="fas fa-microphone-lines"></i>
-                <h3 class="card-title">TAJWEEDH</h3>
-                <p class="text-secondary small">Rules of Recitation.</p>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="gallery-card" onclick="window.location.href='PRAYERS.html'">
-                <i class="fas fa-hands-praying"></i>
-                <h3 class="card-title">MASNOON DUA</h3>
-                <p class="text-secondary small">Daily Supplications.</p>
-            </div>
-        </div>
-             <div class="col-md-3">
-            <div class="gallery-card" onclick="window.location.href='BASICSTJAWEEDHVOCAL'">
-                <i class="fas fa-hands-praying"></i>
-                <h3 class="card-title">BASICS TJAWEEDH VOCAL</h3>
-                <p class="text-secondary small">Daily Supplications.</p>
-            </div>
-        </div>
     </div>
 </div>
 
 <footer class="footer-elite text-center">
     <div class="container">
-        <a href="https://wa.me/923497469638" class="text-decoration-none text-success fw-bold" target="_blank">
-            <i class="fab fa-whatsapp"></i> +92 349 7469638
+        <a href="https://wa.me/923497469638" class="text-decoration-none text-success fw-bold small">
+            <i class="fab fa-whatsapp"></i> WhatsApp Support
         </a>
-        <p class="small text-secondary mt-3">Authenticated Worker: abid-khan-institute-hub</p>
-        <div class="text-gold small" style="font-family:'Orbitron';">© 2026 PROFESSOR DR. ABID KHAN</div>
+        <p class="x-small text-secondary mt-2">Worker: abid-khan-institute-hub</p>
+        <div class="text-gold" style="font-family:'Orbitron'; font-size: 0.7rem;">© 2026 PROFESSOR DR. ABID KHAN</div>
     </div>
 </footer>
 
 <script>
-const galleryData = {
-    qaeedha: {
-        type: 'iframe',
-        title: "NOORANI QAEEDHA",
-        url: "https://archive.org/embed/noorani-qaida_202012"
-    },
-      NIMAZ: {
-        type: 'iframe',
-        title: "NIMAZ",
-        url: "https://abidkhaneinstitute.qzz.io/NIMAZ.html"
-    },
-    tajweedh: {
-        type: 'iframe',
-        title: "TAJWEEDH RULES",
-        url: "https://archive.org/embed/tajweedrules-100517214532-phpapp01"
-    }
-};
-      BASICSTJAWEEDHVOCAL: {
-        type: 'iframe',
-        title: "BASICSTJAWEEDHVOCAL",
-        url: "https://abidkhaneinstitute.qzz.io/BASICSTAJWEEDHVOCALS.html"
-    }
-};
+/* Part 2: Dynamic Registry Data - TAJWEED PDF ADDED */
+const galleryData = [
+    { id: 'qaeedha', title: "NOORANI QAEEDHA", icon: "fa-book-open", desc: "Alphabet & Phonics", url: "https://archive.org/embed/noorani-qaida_202012" },
+    { id: 'nimaz', title: "NIMAZ GUIDE", icon: "fa-mosque", desc: "Visual Salah Steps", url: "https://abidkhaneinstitute.qzz.io/NIMAZ.html" },
+    { id: 'tajweed_pdf', title: "TAJWEED PDF", icon: "fa-file-pdf", desc: "Official Rules PDF", url: "https://abidkhaneinstitute.qzz.io/tajweedrules.pdf" },
+   
+    { id: 'prayers', title: "MASNOON DUA", icon: "fa-hands-praying", desc: "Daily Supplications", url: "https://abidkhaneinstitute.qzz.io/PRAYERS.html" },
+    { id: 'vocal', title: "TAJWEEDH VOCAL", icon: "fa-volume-high", desc: "Vocal Mastery", url: "https://abidkhaneinstitute.qzz.io/BASICSTAJWEEDHVOCALS.html" }
+];
 
-  
-function loadContent(cat) {
-    const data = galleryData[cat];
+function initGallery() {
+    const registry = document.getElementById('gallery-registry');
+    registry.innerHTML = "";
+    galleryData.forEach(item => {
+        const cardCol = document.createElement('div');
+        cardCol.className = 'col-custom-card';
+        cardCol.innerHTML = `
+            <div class="gallery-card" onclick="loadContent('${item.id}', this)">
+                <i class="fas ${item.icon}"></i>
+                <div class="card-title">${item.title}</div>
+                <p class="text-secondary" style="font-size:0.55rem;">${item.desc}</p>
+            </div>
+        `;
+        registry.appendChild(cardCol);
+    });
+    loadContent(galleryData[0].id, registry.querySelector('.gallery-card'));
+}
+
+function loadContent(id, element) {
+    const data = galleryData.find(x => x.id === id);
     document.getElementById('gallery-title').innerText = data.title;
+    document.getElementById('ext-frame').src = data.url;
     
-    if(data.type === 'iframe') {
-        document.getElementById('img-engine').classList.add('d-none');
-        document.getElementById('img-controls').classList.add('d-none');
-        document.getElementById('iframe-engine').classList.remove('d-none');
-        document.getElementById('ext-frame').src = data.url;
-    }
+    document.querySelectorAll('.gallery-card').forEach(c => c.classList.remove('active-card'));
+    if(element) element.classList.add('active-card');
 }
 
 function toggleTestMode() {
     const b = document.getElementById('test-btn');
     document.body.classList.toggle('test-mode-on');
-    b.innerText = document.body.classList.contains('test-mode-on') ? "tEST Mode: ON" : "tEST Mode: OFF";
-    if(document.body.classList.contains('test-mode-on')) {
-        alert("tEST Mode Active: Focus on your memory!");
-    }
+    const isTest = document.body.classList.contains('test-mode-on');
+    b.innerText = isTest ? "tEST Mode: ON" : "tEST Mode: OFF";
+    document.getElementById('ext-frame').style.filter = isTest ? "blur(20px) grayscale(1)" : "none";
 }
 
-/* SOVEREIGN SECURITY - ANTI-COPY */
 document.addEventListener('contextmenu', e => e.preventDefault());
-document.onkeydown = function(e) {
-    if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) || (e.ctrlKey && [85, 83].includes(e.keyCode))) return false;
-};
-
-// LIVE Status logic
-const sys = ["ACTIVE", "SECURE", "abid-khan-institute-hub", "OPTIMIZED"];
-let si = 0;
-setInterval(() => {
-    document.getElementById('live-txt').innerText = "SYSTEM: " + sys[si];
-    si = (si + 1) % sys.length;
-}, 3000);
-
-window.onload = () => loadContent('qaeedha');
+window.onload = initGallery;
 </script>
 </body>
 </html>
