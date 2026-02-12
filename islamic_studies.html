@@ -156,6 +156,13 @@
                 <p class="text-secondary small">Daily Supplications.</p>
             </div>
         </div>
+             <div class="col-md-3">
+            <div class="gallery-card" onclick="window.location.href='BASICSTJAWEEDHVOCAL'">
+                <i class="fas fa-hands-praying"></i>
+                <h3 class="card-title">BASICS TJAWEEDH VOCAL</h3>
+                <p class="text-secondary small">Daily Supplications.</p>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -187,7 +194,14 @@ const galleryData = {
         url: "https://archive.org/embed/tajweedrules-100517214532-phpapp01"
     }
 };
+      BASICSTJAWEEDHVOCAL: {
+        type: 'iframe',
+        title: "BASICSTJAWEEDHVOCAL",
+        url: "https://abidkhaneinstitute.qzz.io/BASICSTAJWEEDHVOCALS.html"
+    }
+};
 
+  
 function loadContent(cat) {
     const data = galleryData[cat];
     document.getElementById('gallery-title').innerText = data.title;
