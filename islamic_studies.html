@@ -153,18 +153,49 @@
         <div class="text-gold" style="font-family:'Orbitron'; font-size: 0.7rem;">© 2026 PROFESSOR DR. ABID KHAN</div>
     </div>
 </footer>
+
 <script>
 /* START: Part 2 Dynamic Registry Data */
 const galleryData = [
-    { id: 'qaeedha', title: "NOORANI QAEEDHA", icon: "fa-book-open", desc: "Official Rules PDF", url: "https://drive.google.com/drive/folders/1iAosnQD4NR-duT3bAvVqzviXIDlY_bT1?usp=sharing" },
-    { id: 'nimaz', title: "NIMAZ GUIDE", icon: "fa-mosque", desc: "Visual Salah Steps", url: "https://abidkhaneinstitute.qzz.io/NIMAZ.html" },
-    { id: 'tajweedh', title: "TAJWEEDH RULES", icon: "fa-microphone-lines", desc: "Rules of Recitation", url: "https://drive.google.com/drive/folders/1UcHwcR4nuaB9mnZvqG1fL7ZdY7x1ono0?usp=sharing" },
-    { id: 'prayers', title: "MASNOON DUA", icon: "fa-hands-praying", desc: "Daily Supplications", url: "https://abidkhaneinstitute.qzz.io/PRAYERS.html" },
-    { id: 'vocal', title: "TAJWEEDH VOCAL", icon: "fa-volume-high", desc: "Audio Integration", url: "https://abidkhaneinstitute.qzz.io/BASICSTAJWEEDHVOCALS.html" }
+    { 
+        id: 'qaeedha', 
+        title: "NOORANI QAEEDHA", 
+        icon: "fa-book-open", 
+        desc: "Interactive Qaeedha", 
+        url: "https://archive.org/embed/noorani_qaida_202010" 
+    },
+    { 
+        id: 'tajweedh', 
+        title: "TAJWEEDH RULES", 
+        icon: "fa-microphone-lines", 
+        desc: "Rules of Recitation", 
+        url: "https://archive.org/embed/tajweedrules-100517214532-phpapp01" 
+    },
+    { 
+        id: 'nimaz', 
+        title: "NIMAZ GUIDE", 
+        icon: "fa-mosque", 
+        desc: "Visual Salah Steps", 
+        url: "https://abidkhaneinstitute.qzz.io/NIMAZ.html" 
+    },
+    { 
+        id: 'prayers', 
+        title: "MASNOON DUA", 
+        icon: "fa-hands-praying", 
+        desc: "Daily Supplications", 
+        url: "https://abidkhaneinstitute.qzz.io/PRAYERS.html" 
+    },
+    { 
+        id: 'vocal', 
+        title: "TAJWEEDH VOCAL", 
+        icon: "fa-volume-high", 
+        desc: "Audio Integration", 
+        url: "https://abidkhaneinstitute.qzz.io/BASICSTAJWEEDHVOCALS.html" 
+    }
 ];
 /* END: Part 2 Dynamic Registry Data */
 
-/* START: Part 6 UI Repairing JS & LIVE TXT Logic */
+/* START: Part 6 UI Repairing & LIVE TXT Logic */
 function initGallery() {
     const registry = document.getElementById('gallery-registry');
     if(!registry) return;
@@ -183,7 +214,7 @@ function initGallery() {
         registry.appendChild(cardCol);
     });
     
-    // Auto-load first entry
+    // Auto-load Noorani Qaeedha as default
     const firstCard = registry.querySelector('.gallery-card');
     loadContent(galleryData[0].id, firstCard);
 }
@@ -198,7 +229,6 @@ function loadContent(id, element) {
     document.querySelectorAll('.gallery-card').forEach(c => c.classList.remove('active-card'));
     if(element) element.classList.add('active-card');
     
-    // Logic for LIVE TXT status
     console.log("LIVE TXT: Content " + id + " synchronized with abid-pedagogy-db.");
 }
 
@@ -207,14 +237,13 @@ function toggleTestMode() {
     document.body.classList.toggle('test-mode-on');
     const isTest = document.body.classList.contains('test-mode-on');
     
-    // Applied "tEST Mode" constraint
     b.innerText = isTest ? "tEST Mode: ON" : "tEST Mode: OFF";
     document.getElementById('ext-frame').style.filter = isTest ? "blur(20px) grayscale(1)" : "none";
 }
 
 document.addEventListener('contextmenu', e => e.preventDefault());
 window.onload = initGallery;
-/* END: Part 6 UI Repairing JS & LIVE TXT Logic */
+/* END: Part 6 UI Repairing & LIVE TXT Logic */
 </script>
 </body>
 </html>
