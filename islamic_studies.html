@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Studies | Professor Abid Khan Hub</title>
+    <title>Global Education Hub | Professor Abid Khan</title>
     
     <link rel="icon" type="image/png" href="ABID KHAN.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,6 +16,7 @@
             --islamic-green: #00c853;
             --dark-bg: #030407;
             --gold: #FFD700;
+            --cyber-cyan: #00d4ff;
             --glass-white: rgba(255, 255, 255, 0.05);
         }
 
@@ -37,74 +38,91 @@
         .viewer-container {
             background: #000; border-radius: 15px; 
             box-shadow: 0 0 30px rgba(0, 200, 83, 0.4);
-            min-height: 400px; display: flex; align-items: center; justify-content: center;
+            min-height: 500px; display: flex; align-items: center; justify-content: center;
             overflow: hidden; position: relative;
         }
 
-        /* UI Repair: Placeholder for Google Photos */
-        .photo-placeholder {
-            text-align: center; padding: 40px; display: none;
-        }
-        .photo-placeholder i { font-size: 5rem; color: var(--gold); margin-bottom: 20px; }
-
-        iframe { width: 100%; height: 70vh; border-radius: 10px; border: none; }
+        iframe { width: 100%; height: 75vh; border-radius: 10px; border: none; }
 
         .mobile-scroll-row { display: flex; gap: 15px; padding: 20px 0; overflow-x: auto; }
-        .col-custom-card { flex: 0 0 250px; }
+        .col-custom-card { flex: 0 0 220px; }
 
         .gallery-card {
             background: var(--glass-white); border: 1px solid rgba(0, 200, 83, 0.2);
-            border-radius: 20px; padding: 20px; transition: 0.4s; cursor: pointer; text-align: center;
+            border-radius: 20px; padding: 15px; transition: 0.4s; cursor: pointer; text-align: center;
         }
-        .active-card { border-color: var(--gold); background: rgba(255, 215, 0, 0.08); }
-
-        .android-home-btn {
-            position: fixed; bottom: 20px; right: 20px; z-index: 10001;
-            background: var(--gold); color: #000; width: 55px; height: 55px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center; text-decoration: none;
-        }
+        .active-card { border-color: var(--gold); background: rgba(255, 215, 0, 0.08); transform: translateY(-5px); }
+        
+        /* Skype Panel Styling */
+        #skype-panel { display: none; border: 2px solid var(--cyber-cyan); background: rgba(0, 212, 255, 0.05); }
         /* END: UI Repairing (Part 6) */
     </style>
 </head>
 <body>
 
-<div class="dua-header">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ</div>
+<div class="dua-header">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالعَزِيمَةَ عَلَى الرُّشْدِ</div>
 
-<div class="container-fluid py-3">
-    <div class="qaida-box mx-auto" style="max-width: 1100px;">
-        <h2 id="gallery-title" class="text-center h4 fw-bold mb-3" style="font-family:'Orbitron'; color: var(--gold);">SECURE LOAD...</h2>
+<div class="container text-center mb-4">
+    <div class="btn-group shadow" style="border: 1px solid var(--gold); border-radius: 12px; overflow: hidden;">
+        <button class="btn btn-dark text-gold" onclick="alert('Islamic Hub Active')">QURANIC</button>
+        <button class="btn btn-dark text-info" onclick="alert('Switching to O/A Levels...')">O/A LEVELS</button>
+        <button class="btn btn-dark text-success" onclick="alert('Switching to IELTS...')">IELTS/TOEFL</button>
+        <button class="btn btn-dark text-warning" onclick="toggleSkype()">SKYPE CHAT</button>
+    </div>
+</div>
+
+<div class="container-fluid py-2">
+    <div class="qaida-box mx-auto" style="max-width: 1150px;">
+        <h2 id="gallery-title" class="text-center h5 fw-bold mb-3" style="font-family:'Orbitron'; color: var(--gold);">AUTHENTICATING...</h2>
         
         <div class="viewer-container">
-            <iframe id="ext-frame" src=""></iframe>
-            
-            <div id="photo-ui" class="photo-placeholder">
-                <i class="fas fa-images"></i>
-                <h3>Secure Google Album</h3>
-                <p class="text-secondary">Google requires a direct connection to view this album.</p>
-                <button class="btn btn-warning fw-bold px-5" onclick="openExternal()">OPEN GALLERY NOW</button>
+            <iframe id="ext-frame" src="" allow="autoplay"></iframe>
+        </div>
+
+        <div id="skype-panel" class="p-3 mt-3 rounded-3">
+            <div class="d-flex justify-content-between mb-2">
+                <span class="text-info small"><i class="fas fa-video"></i> Skype LIVE TXT Channel</span>
+                <span class="badge bg-info">Trainer Online</span>
+            </div>
+            <div id="chat-display" style="height: 150px; overflow-y: auto; background: #000; padding: 10px; font-size: 0.8rem;" class="mb-2 rounded"></div>
+            <div class="input-group input-group-sm">
+                <input type="text" id="chat-input" class="form-control bg-dark text-white border-info" placeholder="Message Professor Abid...">
+                <button class="btn btn-info" onclick="sendMsg()">SEND</button>
             </div>
         </div>
 
         <div class="mt-3 text-center">
-            <button id="test-btn" class="btn btn-sm btn-outline-info" onclick="toggleTestMode()">tEST Mode: OFF</button>
+            <button id="test-btn" class="btn btn-sm btn-outline-info px-4" onclick="toggleTestMode()">tEST Mode: OFF</button>
         </div>
     </div>
 
     <div class="mobile-scroll-row px-4" id="gallery-registry"></div>
 </div>
 
-<a href="#" class="android-home-btn"><i class="fas fa-home"></i></a>
+<footer class="text-center p-4">
+    <p class="small text-secondary">Worker: abid-khan-institute-hub | Database: abid-pedagogy-db</p>
+</footer>
 
 <script>
-/* START: Registry with your provided Google Photo Links */
+/* START: Registry with Integrated Drive Links */
 const galleryData = [
-    { id: 'qaeedha', title: "NOORANI QAEEDHA", type: 'google', icon: "fa-book-open", url: "https://photos.app.goo.gl/zBbpvNwCzK5T2B3b7" },
-    { id: 'tajweedh', title: "TAJWEEDH GALLERY", type: 'google', icon: "fa-microphone-lines", url: "https://photos.app.goo.gl/abj74ZkQYFgY1qr7A" },
+    { 
+        id: 'qaeedha', 
+        title: "NOORANI QAEEDHA", 
+        type: 'drive', 
+        icon: "fa-book-open", 
+        url: "https://drive.google.com/file/d/1TPPzRB6CXSpzP9NYc7OMUubIW5VjrtzT/preview" 
+    },
+    { 
+        id: 'tajweedh', 
+        title: "TAJWEEDH RULES", 
+        type: 'drive', 
+        icon: "fa-microphone-lines", 
+        url: "https://drive.google.com/file/d/1ZpPA14NEte1jxLgL0eSIDYNjiIzS8mBv/preview" 
+    },
     { id: 'nimaz', title: "NIMAZ GUIDE", type: 'internal', icon: "fa-mosque", url: "https://abidkhaneinstitute.qzz.io/NIMAZ.html" },
     { id: 'prayers', title: "MASNOON DUA", type: 'internal', icon: "fa-hands-praying", url: "https://abidkhaneinstitute.qzz.io/PRAYERS.html" }
 ];
-
-let activeUrl = "";
 
 function init() {
     const reg = document.getElementById('gallery-registry');
@@ -113,8 +131,8 @@ function init() {
         div.className = 'col-custom-card';
         div.innerHTML = `
             <div class="gallery-card" onclick="loadContent('${item.id}', this)">
-                <i class="fas ${item.icon} mb-2"></i>
-                <div style="font-family:'Orbitron'; font-size:0.8rem;">${item.title}</div>
+                <i class="fas ${item.icon} mb-2" style="font-size: 1.5rem; color: var(--islamic-green);"></i>
+                <div style="font-family:'Orbitron'; font-size:0.75rem; letter-spacing:1px;">${item.title}</div>
             </div>`;
         reg.appendChild(div);
     });
@@ -123,32 +141,33 @@ function init() {
 
 function loadContent(id, el) {
     const item = galleryData.find(x => x.id === id);
-    activeUrl = item.url;
     document.getElementById('gallery-title').innerText = item.title;
-    
-    const frame = document.getElementById('ext-frame');
-    const photoUI = document.getElementById('photo-ui');
-
-    if(item.type === 'google') {
-        frame.style.display = 'none';
-        photoUI.style.display = 'block';
-    } else {
-        frame.style.display = 'block';
-        photoUI.style.display = 'none';
-        frame.src = item.url;
-    }
+    document.getElementById('ext-frame').src = item.url;
 
     document.querySelectorAll('.gallery-card').forEach(c => c.classList.remove('active-card'));
     el.classList.add('active-card');
 }
 
-function openExternal() { window.open(activeUrl, '_blank'); }
+function toggleSkype() {
+    const p = document.getElementById('skype-panel');
+    p.style.display = (p.style.display === 'block') ? 'none' : 'block';
+}
+
+function sendMsg() {
+    const input = document.getElementById('chat-input');
+    const display = document.getElementById('chat-display');
+    if(input.value.trim() !== "") {
+        display.innerHTML += `<div class="mb-1"><span class="text-gold">Boss:</span> ${input.value}</div>`;
+        input.value = "";
+        display.scrollTop = display.scrollHeight;
+    }
+}
 
 function toggleTestMode() {
     const b = document.getElementById('test-btn');
     const isTest = document.body.classList.toggle('test-mode-on');
     b.innerText = isTest ? "tEST Mode: ON" : "tEST Mode: OFF";
-    document.querySelector('.viewer-container').style.filter = isTest ? "blur(20px)" : "none";
+    document.getElementById('ext-frame').style.filter = isTest ? "blur(25px) grayscale(1)" : "none";
 }
 
 window.onload = init;
