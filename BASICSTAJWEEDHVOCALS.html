@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAJWEED MASTER | ABID KHAN E-INSTITUTE</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Part 6: UI Repairing & Sovereign Master CSS */
+        :root { 
+            --gold: #FFD700; --islamic-green: #00c853; --dark-bg: #030407; 
+            --it-purple: #6f42c1; --glass: rgba(255, 255, 255, 0.05); 
+        }
+
+        body { 
+            background-color: var(--dark-bg); color: #fff; 
+            font-family: 'Inter', sans-serif; overflow-x: hidden;
+            -webkit-user-select: none; user-select: none;
+        }
+
+        .navbar-custom { background: rgba(3, 4, 7, 0.98); border-bottom: 2px solid var(--gold); backdrop-filter: blur(15px); }
+        
+        .rule-vault { 
+            background: linear-gradient(145deg, #0a1f12, #030407);
+            border: 2px solid var(--islamic-green); border-radius: 30px; 
+            padding: 30px; box-shadow: 0 0 40px rgba(0, 200, 83, 0.15);
+            min-height: 620px; position: sticky; top: 90px;
+        }
+
+        .arabic-text { 
+            font-family: 'Amiri', serif; font-size: 2.8rem; color: #fff; 
+            line-height: 1.6; direction: rtl; margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(0, 200, 83, 0.4);
+        }
+
+        .translation-box { border-left: 2px solid var(--islamic-green); padding-left: 15px; margin-bottom: 15px; transition: 0.4s; }
+        .english-text { font-size: 0.85rem; color: #ccc; font-style: italic; line-height: 1.4; }
+        .urdu-text-box { 
+            font-family: 'Amiri', serif; font-size: 1.5rem; color: #00ff88; 
+            direction: rtl; text-align: right; border-right: 2px solid var(--gold); 
+            padding-right: 15px; margin-top: 10px;
+        }
+
+        /* Search Bar UI Repairing */
+        .search-container { position: relative; margin-bottom: 15px; }
+        .search-bar { 
+            background: var(--glass); border: 1px solid var(--gold); color: #fff; 
+            border-radius: 10px; padding: 10px 15px 10px 40px; width: 100%; font-family: 'Orbitron'; font-size: 0.7rem;
+        }
+        .search-icon { position: absolute; left: 15px; top: 12px; color: var(--gold); }
+
+        /* tEST Mode - Absolute Hiding for Pedagogy */
+        .hidden-for-test { filter: blur(35px) grayscale(1); opacity: 0; pointer-events: none; }
+
+        .rule-btn { 
+            background: var(--glass); border: 1px solid rgba(0, 212, 255, 0.2); 
+            color: #fff; padding: 12px; border-radius: 12px; transition: 0.3s;
+            width: 100%; text-align: left; font-family: 'Orbitron'; font-size: 0.65rem; margin-bottom: 8px;
+            display: flex; align-items: center;
+        }
+        .rule-btn:hover, .active-rule { background: var(--gold); color: #000; box-shadow: 0 0 15px var(--gold); transform: translateX(5px); }
+        .rule-btn .num { font-weight: 900; margin-right: 10px; width: 25px; color: var(--gold); }
+        .active-rule .num { color: #000; }
+
+        .scroll-registry { max-height: 580px; overflow-y: auto; padding-right: 10px; }
+        .scroll-registry::-webkit-scrollbar { width: 4px; }
+        .scroll-registry::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="https://abidkhaneinstitute.qzz.io/">
+            <img src="ABID KHAN.png" width="45" height="45" class="rounded-circle me-3" style="border: 2px solid var(--gold);">
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <span class="fw-bold" style="font-family:'Orbitron'; font-size: 0.9rem;">ABID KHAN E-INSTITUTE</span>
+            </a>
+        </a>
+        <div class="ms-auto d-flex align-items-center">
+            <div id="live-txt" class="text-success small fw-bold me-4" style="font-family:'Orbitron';">STATUS: MASTER ACTIVE</div>
+            <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-outline-info btn-sm fw-bold">DASHBOARD</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="rule-vault text-center">
+                <div class="text-warning mb-2" id="rule-category" style="font-family:'Orbitron'; font-size: 0.75rem; letter-spacing: 2px;">PEDAGOGY FOCUS</div>
+                <div id="arabic-display" class="arabic-text">... LOADING ...</div>
+                
+                <div id="trans-parent">
+                    <div class="translation-box text-start">
+                        <small class="text-info" style="font-family:'Orbitron'; font-size:0.55rem;">ENGLISH TECHNICAL DEFINITION</small>
+                        <div id="english-display" class="english-text">...</div>
+                    </div>
+                    <div class="urdu-text-box">
+                        <small class="text-warning" style="font-family:'Orbitron'; font-size:0.55rem; text-align:left; display:block;">اردو وضاحت</small>
+                        <div id="urdu-display">...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="p-3 mb-2 border border-warning rounded text-center" style="background: rgba(111,66,193,0.15);">
+                <div class="form-check form-switch d-inline-block">
+                    <input class="form-check-input" type="checkbox" id="testModeToggle" onchange="toggleTestMode()">
+                    <label class="form-check-label fw-bold text-gold ms-2" style="font-family:'Orbitron'; font-size: 0.75rem;">ACTIVATE tEST MODE</label>
+                </div>
+            </div>
+
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="ruleSearch" class="search-bar" placeholder="SEARCH 150 LESSONS..." onkeyup="filterRules()">
+            </div>
+
+            <h6 class="text-gold mb-3 ps-1" style="font-family:'Orbitron'; font-size: 0.8rem;">TAJWEED REGISTRY</h6>
+            <div class="scroll-registry" id="registry"></div>
+        </div>
+    </div>
+</div>
+
+<footer class="mt-4 py-3" style="background: rgba(3, 4, 7, 0.98); border-top: 1px solid var(--it-purple);">
+    <div class="container text-center">
+        <p class="text-secondary x-small mb-1">Worker: abid-pedagogy-db | Module: Tajweed-v3.1</p>
+        <div class="text-success small fw-bold" style="font-family:'Orbitron'; font-size: 0.6rem;">SOVEREIGN PEDAGOGY ARCHITECT</div>
+    </div>
+</footer>
+
+<script>
+const tajweedVault = [
+    { title: "Throatal Letters", category: "Huroof-e-Halqi", arabic: "ء هـ ع ح غ خ", eng: "There are six (6) throatal letters pronounced from the bottom, middle, and top of the throat.", urdu: "حروفِ حلقی: وہ چھ حروف جو حلق کے مختلف حصوں سے ادا ہوتے ہیں۔" },
+    { title: "Qalqalah (Bouncing)", category: "Huroof-e-Qalqalah", arabic: "ق ط ب ج د", eng: "When these letters have a Sakoon (Jazm), a bouncing sound is produced during pronunciation.", urdu: "قلقلہ: ان پانچ حروف پر جزم ہو تو آواز پلٹ کر نکلتی ہے۔" },
+    { title: "Bold Letters", category: "Musta'liyah", arabic: "خ ص ض غ ط ق ظ", eng: "Huroof-e-Musta'liyah: Seven heavy letters always pronounced with a full mouth.", urdu: "حروفِ مستعلیہ: وہ سات حروف جو ہمیشہ موٹے پڑھے جاتے ہیں۔" },
+    { title: "Alif Maddah", category: "Rules of Madd", arabic: "بَا - تَا - ثَا", eng: "Alif Maddah occurs when Alif is preceded by a Fathah (Zabar). Stretch for one Alif length.", urdu: "الف مدہ: جب الف سے پہلے زبر ہو تو اسے ایک الف کے برابر کھینچ کر پڑھیں۔" },
+    { title: "Ghunnah", category: "Noon & Meem", arabic: "نّ - مّ", eng: "Nasal sound produced for two counts whenever Noon or Meem has a Tashdeed.", urdu: "غنہ: نون اور میم مشدد پر دو حرکات کے برابر آواز ناک میں چھپانا۔" },
+    { title: "The Madd (Extra)", category: "Madd-e-Muttasil", arabic: "آ - إي - أُو", eng: "Used for extra stretching (4-5 counts) when a Hamzah or Sakoon follows a Madd letter.", urdu: "مد: حروفِ مدہ کے بعد ہمزہ یا جزم آئے تو آواز کو زیادہ کھینچ کر پڑھنا۔" },
+    { title: "Makhraj", category: "Articulation Points", arabic: "مخرج", eng: "The origin point of a letter. Letters with similar sounds must be distinguished clearly.", urdu: "مخرج: حروف کے نکلنے کی جگہ کو پہچاننا اور ان کے درمیان واضح فرق کرنا۔" },
+    { title: "Iqlab (Conversion)", category: "Rules of Noon Sakin", arabic: "نْ ← م", eng: "Conversion to a tiny Meem sound when a Noon Sakin is followed by the letter Ba.", urdu: "اقلاب: نون ساکن یا تنوین کے بعد 'ب' آئے تو اسے چھوٹی 'میم' سے بدل کر پڑھنا۔" },
+    { title: "Waqf (The Pause)", category: "Stopping Rules", arabic: "ط ج م قف", eng: "Rules for pausing: Usually the last vowel becomes a Sakoon for a correct stop.", urdu: "وقف: کلمہ کے آخر پر رکنے کے قواعد، جہاں آخری حرکت جزم میں بدل جاتی ہے۔" },
+    /* DAILY ADDITIONS: LESSONS 10-15 */
+    { title: "Ikhfa-e-Shafawi", category: "Meem Sakin", arabic: "مْ + ب", eng: "When Meem Sakin is followed by Ba, hide the Meem sound with Ghunnah.", urdu: "اخفاءِ شفوی: میم ساکن کے بعد 'ب' آئے تو غنہ کے ساتھ چھپا کر پڑھنا۔" },
+    { title: "Idgham-e-Shafawi", category: "Meem Sakin", arabic: "مْ + م", eng: "When Meem Sakin is followed by another Meem, merge them with Ghunnah.", urdu: "ادغامِ شفوی: میم ساکن کے بعد 'م' آئے تو دونوں کو ملا کر غنہ کے ساتھ پڑھنا۔" },
+    { title: "Izhar-e-Shafawi", category: "Meem Sakin", arabic: "مْ + Other", eng: "When Meem Sakin is followed by any letter except Ba or Meem, pronounce clearly.", urdu: "اظہارِ شفوی: 'ب' اور 'م' کے علاوہ کسی بھی حرف پر میم ساکن کو واضح پڑھنا۔" },
+    { title: "Madd-e-Lazim", category: "Advanced Madd", arabic: "الْآنَ - طٰسٓ", eng: "Compulsory long stretch (6 counts) due to a permanent Sakoon or Tashdeed.", urdu: "مدِ لازم: کلمہ میں حرفِ مد کے بعد جزم یا تشدید ہو تو اسے خوب لمبا کریں۔" },
+    { title: "Madd-e-Arid", category: "Stopping Madd", arabic: "الْعَالَمِينَ", eng: "Temporary stretch (2-6 counts) created only when stopping at the end of a verse.", urdu: "مدِ عارض: وقف کی صورت میں آخری حرف کے جزم کی وجہ سے پیدا ہونے والی مد۔" },
+    { title: "Madd-e-Leen", category: "Soft Madd", arabic: "قُرَيْشٍ - خَوْفٍ", eng: "Soft stretch on Waw or Ya Sakin preceded by a Fathah, only when stopping.", urdu: "مدِ لین: حروفِ لین کے بعد وقف کی صورت میں نرمی سے کھینچ کر پڑھنا۔" }
+];
+
+function initRegistry(data = tajweedVault) {
+    const reg = document.getElementById('registry');
+    reg.innerHTML = "";
+    data.forEach((step, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'rule-btn';
+        btn.innerHTML = `<span class="num">${i + 1}</span> <span>${step.title.toUpperCase()}</span>`;
+        btn.onclick = () => loadRule(tajweedVault.indexOf(step), btn);
+        reg.appendChild(btn);
+    });
+}
+
+function loadRule(i, btn) {
+    const data = tajweedVault[i];
+    document.querySelectorAll('.rule-btn').forEach(b => b.classList.remove('active-rule'));
+    if(btn) btn.classList.add('active-rule');
+    
+    document.getElementById('rule-category').innerText = data.category.toUpperCase();
+    document.getElementById('arabic-display').innerText = data.arabic;
+    document.getElementById('english-display').innerText = data.eng;
+    document.getElementById('urdu-display').innerText = data.urdu;
+    toggleTestMode();
+}
+
+function filterRules() {
+    const query = document.getElementById('ruleSearch').value.toUpperCase();
+    const filtered = tajweedVault.filter(item => 
+        item.title.toUpperCase().includes(query) || item.category.toUpperCase().includes(query)
+    );
+    initRegistry(filtered);
+}
+
+function toggleTestMode() {
+    const isTest = document.getElementById('testModeToggle').checked;
+    const transParent = document.getElementById('trans-parent');
+    const liveTxt = document.getElementById('live-txt');
+    if (isTest) {
+        transParent.classList.add('hidden-for-test');
+        liveTxt.innerText = "tEST MODE: ACTIVE";
+        liveTxt.style.color = "var(--gold)";
+    } else {
+        transParent.classList.remove('hidden-for-test');
+        liveTxt.innerText = "STATUS: MASTER ACTIVE";
+        liveTxt.style.color = "var(--islamic-green)";
+    }
+}
+
+window.onload = () => { initRegistry(); loadRule(0, document.querySelector('.rule-btn')); };
+</script>
+</body>
+</html>
