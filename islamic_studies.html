@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Education Hub | Professor Dr. Abid Khan</title>
+    <title>Islamic Studies | Professor Abid Khan Hub</title>
     
     <link rel="icon" type="image/png" href="ABID KHAN.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,13 +11,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
 
     <style>
-        /* START: UI Repairing (Part 6) - Global Sovereign CSS */
         :root {
             --islamic-green: #00c853;
             --dark-bg: #030407;
             --gold: #FFD700;
             --cyber-cyan: #00d4ff;
-            --glass-white: rgba(255, 255, 255, 0.08);
+            --glass-white: rgba(255, 255, 255, 0.05);
         }
 
         body { 
@@ -26,178 +25,192 @@
             overflow-x: hidden;
         }
 
-        .hub-header {
-            background: #000; border-bottom: 2px solid var(--islamic-green);
-            padding: 15px; position: sticky; top: 0; z-index: 1000;
-        }
-
         .dua-header {
-            font-family: 'Amiri', serif; font-size: 2rem; color: var(--gold);
-            padding: 20px; text-shadow: 0 0 15px rgba(255, 215, 0, 0.3); text-align: center;
+            font-size: 2.5rem;
+            text-align: center;
+            padding: 20px;
+            color: var(--gold);
+            font-family: 'Amiri', serif;
+            animation: glow 2s ease-in-out infinite alternate;
         }
 
-        /* VERTICAL STACKED CARDS REPAIR */
-        .vertical-stack-container {
-            max-width: 1000px; margin: 0 auto; padding: 20px;
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+            to { text-shadow: 0 0 20px rgba(255, 215, 0, 0.7); }
         }
 
-        .feature-card {
-            background: radial-gradient(circle at top left, #0a1f12 0%, #030407 100%);
-            border: 2px solid rgba(0, 200, 83, 0.3); border-radius: 25px;
-            margin-bottom: 40px; padding: 20px;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .android-home-btn {
+            position: fixed; bottom: 20px; right: 20px; z-index: 10001;
+            background: linear-gradient(135deg, var(--gold), #b8860b);
+            color: #000; width: 55px; height: 55px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); text-decoration: none;
+            font-size: 1.5rem; border: 2px solid #fff; transition: 0.3s;
         }
 
-        .feature-card:hover {
-            border-color: var(--gold);
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
-            transform: scale(1.01);
+        .navbar-custom {
+            background: rgba(3, 4, 7, 0.98); border-bottom: 3px solid var(--islamic-green);
+            padding: 10px 0; backdrop-filter: blur(10px);
         }
 
-        .card-header-title {
-            font-family: 'Orbitron'; font-size: 1.2rem; color: var(--gold);
-            display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
+        .qaida-box {
+            background: radial-gradient(circle, #0a1f12 0%, #030407 100%);
+            border: 2px solid rgba(0, 200, 83, 0.3); border-radius: 25px; padding: 20px; margin-top: 15px;
+        }
+
+        .live-txt-indicator {
+            color: var(--cyber-cyan); font-family: 'Orbitron'; font-size: 0.7rem; letter-spacing: 2px;
+        }
+
+        .mobile-scroll-row {
+            display: flex; gap: 15px; padding: 20px 0; transition: all 0.5s ease;
+        }
+
+        @media (max-width: 991px) {
+            .mobile-scroll-row {
+                overflow-x: auto; flex-wrap: nowrap; scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch; padding-left: 15px; padding-right: 15px;
+            }
+            .mobile-scroll-row::-webkit-scrollbar { display: none; }
+            .col-custom-card { flex: 0 0 80%; scroll-snap-align: center; }
+        }
+
+        @media (min-width: 992px) {
+            .mobile-scroll-row { flex-wrap: wrap; justify-content: center; }
+            .col-custom-card { flex: 0 0 calc(20% - 15px); }
         }
 
         .viewer-container {
-            background: #000; border-radius: 15px; 
-            overflow: hidden; position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #000; padding: 5px; border-radius: 15px; 
+            box-shadow: 0 0 30px rgba(0, 200, 83, 0.4);
+            overflow: hidden; margin-bottom: 20px;
         }
 
-        iframe { width: 100%; height: 75vh; border: none; }
+        iframe { width: 100%; border-radius: 10px; min-height: 500px; height: 70vh; transition: filter 0.3s ease; }
 
-        /* ANDROID MEDIA QUERIES */
-        @media (max-width: 768px) {
-            .dua-header { font-size: 1.4rem; }
-            iframe { height: 60vh; }
-            .feature-card { padding: 10px; border-radius: 15px; margin-bottom: 25px; }
-            .card-header-title { font-size: 0.9rem; }
+        .gallery-card {
+            background: var(--glass-white); border: 1px solid rgba(0, 200, 83, 0.2);
+            border-radius: 20px; padding: 20px; transition: 0.4s;
+            cursor: pointer; text-align: center; height: 100%;
         }
-
-        #skype-panel { display: none; border: 2px solid var(--cyber-cyan); background: rgba(0, 0, 0, 0.95); }
-
-        .hub-footer {
-            background: #000; border-top: 2px solid var(--islamic-green);
-            padding: 40px 20px; margin-top: 50px;
+        .gallery-card:hover, .active-card {
+            transform: translateY(-8px); border-color: var(--gold);
+            background: rgba(255, 215, 0, 0.08); box-shadow: 0 10px 30px rgba(0, 200, 83, 0.3);
         }
-        /* END: UI Repairing (Part 6) */
+        .gallery-card i { font-size: 2rem; color: var(--islamic-green); margin-bottom: 10px; }
+        .card-title { font-family: 'Orbitron'; color: #fff; font-size: 0.85rem; margin-top: 5px; }
+
+        .footer-elite { background: #000; border-top: 2px solid var(--islamic-green); padding: 40px 0; margin-top: 50px; }
     </style>
-</head>
-<body>
+    </head>
+<body oncontextmenu="return false;">
 
-<header class="hub-header text-center">
-    <div class="container d-flex justify-content-between align-items-center">
-        <img src="ABID KHAN.png" alt="Logo" width="45" class="rounded-circle" style="border: 2px solid var(--gold);">
-        <h1 style="font-family:'Orbitron'; font-size: 0.9rem; color: #fff; margin: 0;">ABID KHAN INSTITUTE HUB</h1>
-        <div class="text-success small fw-bold"><i class="fas fa-circle blink"></i> LIVE</div>
+<div class="dua-header">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ</div>
+
+<a href="https://abidkhaneinstitute.qzz.io/index.html" class="android-home-btn">
+    <i class="fas fa-home"></i>
+</a>
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+    <div class="container text-center">
+        <a class="navbar-brand d-flex align-items-center mx-auto" href="#">
+            <img src="ABID KHAN.png" width="40" height="40" class="rounded-circle me-2" style="border: 2px solid var(--gold);">
+            <span style="font-family:'Orbitron'; font-size: 0.9rem;">ABID KHAN HUB</span>
+        </a>
     </div>
-</header>
-
-<div class="dua-header">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالعَزِيمَةَ عَلَى الرُّشْدِ</div>
-
-<div class="container text-center mb-4">
-    <div class="btn-group" style="border: 1px solid var(--gold); border-radius: 10px; overflow: hidden;">
-        <button class="btn btn-dark text-info" onclick="toggleSkype()">OPEN SKYPE CHATROOM</button>
-        <button class="btn btn-dark text-warning" onclick="toggleTestMode()">tEST Mode: TOGGLE</button>
-    </div>
-</div>
-
-<div class="vertical-stack-container">
-    
-    <div class="feature-card">
-        <div class="card-header-title">
-            <i class="fas fa-book-open text-success"></i> NOORANI QAEEDHA (32 PAGES)
+</nav>
+<div class="container-fluid py-3 text-center">
+    <div class="qaida-box mx-auto" style="max-width: 1100px;">
+        <div class="live-txt-indicator mb-2"><i class="fas fa-bolt"></i> LIVE TXT ACTIVE</div>
+        <h2 id="gallery-title" class="h4 fw-bold mb-3" style="font-family:'Orbitron'; color: var(--gold);">SECURE LOAD...</h2>
+        
+        <div id="viewer-window" class="viewer-container">
+             <div id="iframe-engine">
+                <iframe id="ext-frame" src="" frameborder="0" allowfullscreen></iframe>
+             </div>
         </div>
-        <div class="viewer-container">
-            <iframe src="https://drive.google.com/embeddedfolderview?id=1iAosnQD4NR-duT3bAvVqzviXIDlY_bT1#grid" allow="autoplay"></iframe>
-        </div>
-    </div>
 
-    <div class="feature-card">
-        <div class="card-header-title">
-            <i class="fas fa-microphone-lines text-success"></i> TAJWEEDH RULES (9 PAGES)
-        </div>
-        <div class="viewer-container">
-            <iframe src="https://drive.google.com/embeddedfolderview?id=1UcHwcR4nuaB9mnZvqG1fL7ZdY7x1ono0#grid" allow="autoplay"></iframe>
+        <div class="mt-2 d-flex justify-content-center gap-3">
+            <button id="test-btn" class="btn btn-sm btn-outline-info px-4" onclick="toggleTestMode()" style="font-family:'Orbitron'; font-size: 0.6rem;">tEST Mode: OFF</button>
         </div>
     </div>
 
-    <div class="feature-card">
-        <div class="card-header-title">
-            <i class="fas fa-mosque text-success"></i> NIMAZ STEP-BY-STEP GUIDE
-        </div>
-        <div class="viewer-container">
-            <iframe src="https://abidkhaneinstitute.qzz.io/NIMAZ.html" allow="autoplay"></iframe>
-        </div>
-    </div>
-
-    <div class="feature-card">
-        <div class="card-header-title">
-            <i class="fas fa-hands-praying text-success"></i> DAILY MASNOON DUA
-        </div>
-        <div class="viewer-container">
-            <iframe src="https://abidkhaneinstitute.qzz.io/PRAYERS.html" allow="autoplay"></iframe>
-        </div>
-    </div>
-
-</div>
-
-<div id="skype-panel" class="p-3 fixed-bottom m-3 rounded-4 shadow-lg">
-    <div class="d-flex justify-content-between mb-2">
-        <span class="text-info fw-bold">Skype LIVE TXT Channel</span>
-        <button class="btn-close btn-close-white" onclick="toggleSkype()"></button>
-    </div>
-    <div id="chat-display" style="height: 200px; overflow-y: auto; background: #000;" class="p-2 mb-2 rounded small text-secondary"></div>
-    <div class="input-group input-group-sm">
-        <input type="text" id="chat-input" class="form-control bg-dark text-white border-info" placeholder="Message Professor...">
-        <button class="btn btn-info" onclick="sendMsg()">SEND</button>
-    </div>
-</div>
-
-<footer class="hub-footer text-center">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <h5 class="text-gold" style="font-family:'Orbitron'; font-size: 0.8rem;">CONTACT ABID KHAN HUB</h5>
-                <p class="small text-secondary">+92 349 7469638 | abid-khan-institute-hub</p>
-            </div>
-            <div class="col-md-6 mb-3">
-                <h5 class="text-gold" style="font-family:'Orbitron'; font-size: 0.8rem;">ACADEMIC DOMAINS</h5>
-                <p class="small text-secondary">Quranic | O/A Levels | IELTS | TOEFL</p>
-            </div>
-        </div>
-        <hr class="border-secondary">
-        <p class="x-small text-muted">Worker ID: abid-pedagogy-db | © 2026 PROFESSOR DR. ABID KHAN</p>
+        <div class="mobile-scroll-row" id="gallery-registry"></div>
+    </div>
+</div>
+
+<footer class="footer-elite text-center">
+    <div class="container">
+        <a href="https://wa.me/923497469638" class="text-decoration-none text-success fw-bold small">
+            <i class="fab fa-whatsapp"></i> WhatsApp: +92 349 7469638
+        </a>
+        <p class="x-small text-secondary mt-2">Authenticated Worker: abid-khan-institute-hub</p>
+        <div class="text-gold" style="font-family:'Orbitron'; font-size: 0.7rem;">© 2026 PROFESSOR DR. ABID KHAN</div>
     </div>
 </footer>
-
 <script>
-/* START: UI Repairing (Part 6) - Global Logic */
-function toggleSkype() {
-    const p = document.getElementById('skype-panel');
-    p.style.display = (p.style.display === 'block') ? 'none' : 'block';
+/* START: Part 2 Dynamic Registry Data */
+const galleryData = [
+    { id: 'qaeedha', title: "NOORANI QAEEDHA", icon: "fa-book-open", desc: "Official Rules PDF", url: "https://drive.google.com/drive/folders/1iAosnQD4NR-duT3bAvVqzviXIDlY_bT1?usp=sharing" },
+    { id: 'nimaz', title: "NIMAZ GUIDE", icon: "fa-mosque", desc: "Visual Salah Steps", url: "https://abidkhaneinstitute.qzz.io/NIMAZ.html" },
+    { id: 'tajweedh', title: "TAJWEEDH RULES", icon: "fa-microphone-lines", desc: "Rules of Recitation", url: "https://drive.google.com/drive/folders/1UcHwcR4nuaB9mnZvqG1fL7ZdY7x1ono0?usp=sharing" },
+    { id: 'prayers', title: "MASNOON DUA", icon: "fa-hands-praying", desc: "Daily Supplications", url: "https://abidkhaneinstitute.qzz.io/PRAYERS.html" },
+    { id: 'vocal', title: "TAJWEEDH VOCAL", icon: "fa-volume-high", desc: "Audio Integration", url: "https://abidkhaneinstitute.qzz.io/BASICSTAJWEEDHVOCALS.html" }
+];
+/* END: Part 2 Dynamic Registry Data */
+
+/* START: Part 6 UI Repairing JS & LIVE TXT Logic */
+function initGallery() {
+    const registry = document.getElementById('gallery-registry');
+    if(!registry) return;
+    
+    registry.innerHTML = "";
+    galleryData.forEach(item => {
+        const cardCol = document.createElement('div');
+        cardCol.className = 'col-custom-card';
+        cardCol.innerHTML = `
+            <div class="gallery-card" onclick="loadContent('${item.id}', this)">
+                <i class="fas ${item.icon}"></i>
+                <div class="card-title">${item.title}</div>
+                <p class="text-secondary" style="font-size:0.6rem;">${item.desc}</p>
+            </div>
+        `;
+        registry.appendChild(cardCol);
+    });
+    
+    // Auto-load first entry
+    const firstCard = registry.querySelector('.gallery-card');
+    loadContent(galleryData[0].id, firstCard);
 }
 
-function sendMsg() {
-    const input = document.getElementById('chat-input');
-    const display = document.getElementById('chat-display');
-    if(input.value.trim() !== "") {
-        display.innerHTML += `<div class="mb-1"><span class="text-gold">Boss:</span> ${input.value}</div>`;
-        input.value = "";
-        display.scrollTop = display.scrollHeight;
-    }
+function loadContent(id, element) {
+    const data = galleryData.find(x => x.id === id);
+    if(!data) return;
+    
+    document.getElementById('gallery-title').innerText = data.title;
+    document.getElementById('ext-frame').src = data.url;
+    
+    document.querySelectorAll('.gallery-card').forEach(c => c.classList.remove('active-card'));
+    if(element) element.classList.add('active-card');
+    
+    // Logic for LIVE TXT status
+    console.log("LIVE TXT: Content " + id + " synchronized with abid-pedagogy-db.");
 }
 
 function toggleTestMode() {
-    const frames = document.querySelectorAll('iframe');
-    const isActive = document.body.classList.toggle('test-mode-on');
-    frames.forEach(f => {
-        f.style.filter = isActive ? "blur(35px) grayscale(1)" : "none";
-    });
-    alert("tEST Mode " + (isActive ? "Enabled" : "Disabled"));
+    const b = document.getElementById('test-btn');
+    document.body.classList.toggle('test-mode-on');
+    const isTest = document.body.classList.contains('test-mode-on');
+    
+    // Applied "tEST Mode" constraint
+    b.innerText = isTest ? "tEST Mode: ON" : "tEST Mode: OFF";
+    document.getElementById('ext-frame').style.filter = isTest ? "blur(20px) grayscale(1)" : "none";
 }
-/* END: UI Repairing (Part 6) */
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+window.onload = initGallery;
+/* END: Part 6 UI Repairing JS & LIVE TXT Logic */
 </script>
 </body>
 </html>
