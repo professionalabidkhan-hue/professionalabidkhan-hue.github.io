@@ -26,6 +26,24 @@
             overflow-x: hidden;
         }
 
+        /* NEW: Distinguished Header Styling */
+        .sovereign-header {
+            background: linear-gradient(to right, rgba(0,0,0,0), rgba(0, 200, 83, 0.1), rgba(0,0,0,0));
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 15px 10px;
+            text-align: center;
+            font-family: 'Orbitron';
+            letter-spacing: 1px;
+        }
+
+        .header-text {
+            font-size: 0.65rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin: 0;
+            opacity: 0.9;
+        }
+
         .android-home-btn {
             position: fixed; bottom: 20px; right: 20px; z-index: 10001;
             background: linear-gradient(135deg, var(--gold), #b8860b);
@@ -49,7 +67,6 @@
             display: flex; gap: 15px; padding: 20px 0; transition: all 0.5s ease;
         }
 
-        /* UI REPAIR: Responsive Registry Control */
         @media (max-width: 991px) {
             .mobile-scroll-row {
                 overflow-x: auto; flex-wrap: nowrap;
@@ -62,7 +79,7 @@
 
         @media (min-width: 992px) {
             .mobile-scroll-row { flex-wrap: wrap; justify-content: center; }
-            .col-custom-card { flex: 0 0 calc(16.66% - 15px); } /* Adjusted for 6 cards */
+            .col-custom-card { flex: 0 0 calc(16.66% - 15px); } 
         }
 
         .viewer-container {
@@ -89,6 +106,10 @@
     </style>
 </head>
 <body oncontextmenu="return false;">
+
+<div class="sovereign-header">
+    <p class="header-text">YOU AND I BOTH ARE TREMENDOUS UNIQUE PERFECT DISTINGUISHED WELL KNOWN IN ALL POSITIVE ASPECTS THE MODEST THE GLOBAL RICHEST IN EVERY ASPECT</p>
+</div>
 
 <a href="https://abidkhaneinstitute.qzz.io/index.html" class="android-home-btn">
     <i class="fas fa-home"></i>
@@ -135,12 +156,11 @@
 </footer>
 
 <script>
-/* Part 2: Dynamic Registry Data - TAJWEED PDF ADDED */
+/* Part 2: Dynamic Registry Data - Priority Re-ordered */
 const galleryData = [
+    { id: 'tajweed_pdf', title: "TAJWEED PDF", icon: "fa-file-pdf", desc: "Official Rules PDF", url: "https://abidkhaneinstitute.qzz.io/tajweedrules.pdf" },
     { id: 'qaeedha', title: "NOORANI QAEEDHA", icon: "fa-book-open", desc: "Alphabet & Phonics", url: "https://archive.org/embed/noorani-qaida_202012" },
     { id: 'nimaz', title: "NIMAZ GUIDE", icon: "fa-mosque", desc: "Visual Salah Steps", url: "https://abidkhaneinstitute.qzz.io/NIMAZ.html" },
-    { id: 'tajweed_pdf', title: "TAJWEED PDF", icon: "fa-file-pdf", desc: "Official Rules PDF", url: "https://abidkhaneinstitute.qzz.io/tajweedrules.pdf" },
-   
     { id: 'prayers', title: "MASNOON DUA", icon: "fa-hands-praying", desc: "Daily Supplications", url: "https://abidkhaneinstitute.qzz.io/PRAYERS.html" },
     { id: 'vocal', title: "TAJWEEDH VOCAL", icon: "fa-volume-high", desc: "Vocal Mastery", url: "https://abidkhaneinstitute.qzz.io/BASICSTAJWEEDHVOCALS.html" }
 ];
@@ -152,7 +172,7 @@ function initGallery() {
         const cardCol = document.createElement('div');
         cardCol.className = 'col-custom-card';
         cardCol.innerHTML = `
-            <div class="gallery-card" onclick="loadContent('${item.id}', this)">
+            <div class="gallery-card" id="card-${item.id}" onclick="loadContent('${item.id}', this)">
                 <i class="fas ${item.icon}"></i>
                 <div class="card-title">${item.title}</div>
                 <p class="text-secondary" style="font-size:0.55rem;">${item.desc}</p>
@@ -160,7 +180,10 @@ function initGallery() {
         `;
         registry.appendChild(cardCol);
     });
-    loadContent(galleryData[0].id, registry.querySelector('.gallery-card'));
+    
+    // Auto-load Tajweed PDF as requested
+    const tajweedTarget = document.getElementById('card-tajweed_pdf');
+    loadContent('tajweed_pdf', tajweedTarget);
 }
 
 function loadContent(id, element) {
