@@ -23,7 +23,41 @@
         font-family: 'Inter', sans-serif; -webkit-user-select: none; user-select: none;
         overflow-x: hidden;
     }
+/* START: Part 6 UI Repairing - Vertical Stack Logic */
+@media (max-width: 991px) {
+    .mobile-scroll-row {
+        display: flex;
+        flex-direction: column; /* This forces vertical stacking */
+        gap: 15px;
+        padding: 15px;
+        overflow-x: hidden; /* Disable horizontal scroll */
+    }
 
+    .col-custom-card {
+        flex: 0 0 100%; /* Each card takes full width */
+        width: 100%;
+        scroll-snap-align: none;
+    }
+
+    .gallery-card {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        padding: 15px;
+    }
+
+    .gallery-card i {
+        margin-bottom: 0;
+        margin-right: 15px;
+        font-size: 1.5rem;
+    }
+
+    .card-title {
+        margin-top: 0;
+        font-size: 0.9rem;
+    }
+}
+/* END: Part 6 UI Repairing */
     /* Standardized Large Dua Font */
     .dua-header {
         font-size: clamp(1.8rem, 5vw, 3rem); /* Responsive Large Font */
