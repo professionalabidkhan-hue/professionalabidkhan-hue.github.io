@@ -21,7 +21,7 @@
 
         body { background-color: var(--dark-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; user-select: none; -webkit-user-select: none; }
 
-        /* START: TREMENDOUS SCANNING LOADER */
+        /* TREMENDOUS SCANNING LOADER */
         #loader-wrapper {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--dark-bg); display: flex; flex-direction: column;
@@ -65,17 +65,13 @@
             text-transform: uppercase;
         }
 
-        .construction-vault {
-            background: rgba(255, 255, 255, 0.03);
-            border: 2px solid var(--islamic-green);
-            border-radius: 30px; padding: 40px; text-align: center;
-            backdrop-filter: blur(15px); margin: 40px auto; max-width: 800px;
-        }
-
-        /* 6th PART: UI REPAIRING - FINANCIAL MODULES */
+        /* 6th PART: UI REPAIRING - TICKER & FORMS */
+        .ticker-wrap { background: rgba(168, 85, 247, 0.1); border-radius: 50px; padding: 8px 20px; display: inline-block; border: 1px solid rgba(168, 85, 247, 0.3); }
         .x-small { font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; }
         #wire-proof-form .form-control { border-radius: 8px; font-size: 0.9rem; margin-bottom: 10px; background: #000; color: #fff; border: 1px solid #444; }
         #wire-proof-form .form-control:focus { border-color: var(--gold); box-shadow: none; }
+        .copy-btn { cursor: pointer; transition: 0.3s; }
+        .copy-btn:active { transform: scale(0.9); color: var(--islamic-green); }
     </style>
 </head>
 <body>
@@ -92,6 +88,7 @@
             <span class="fw-bold" style="font-family:'Orbitron'">ABID KHAN E-INSTITUTE</span>
         </a>
         <div class="ms-auto">
+            <span class="badge bg-dark border border-secondary text-info me-2 x-small">WORKER: abid-khan-institute-hub</span>
             <a href="IT.html" class="btn btn-outline-info btn-sm">IT LAB</a>
         </div>
     </div>
@@ -101,6 +98,13 @@
     <h1 id="main-portal-title" style="font-family:'Orbitron'; font-weight:900; margin-top:40px; letter-spacing: 2px; cursor: pointer;">DISTINGUISHED GENIUS PORTAL</h1>
     <p class="text-secondary">Global Sovereign Architecture & Security Hub</p>
     
+    <div class="ticker-wrap mt-3">
+        <span class="x-small text-secondary">LIVE FEED: </span>
+        <marquee style="width: 300px; vertical-align: middle;" class="x-small text-info fw-bold">
+            User ID:778X Procured USA Proxy Number... Student Enrolled in abid-pedagogy-db... UK Number Provisioning Active...
+        </marquee>
+    </div>
+
     <div class="row g-4 mt-4">
         <div class="col-md-6">
             <div class="p-4 rounded-3 success-card">
@@ -123,83 +127,37 @@
 
 <section class="container py-5 mt-5">
     <div class="row text-center mb-4">
-        <h2 class="glitch-text" style="color: var(--cyber-cyan);">Global Communication Assets</h2>
-        <p class="text-secondary small">Secure UK, USA, & CANADA identity layers for elite global operations.</p>
+        <h2 class="glitch-text" style="color: var(--cyber-cyan);">Global Proxy Identity</h2>
+        <p class="text-secondary small">Provisioning Virtual UK, USA, & CANADA Alphanumeric Numbers.</p>
     </div>
 
     <div class="row g-4">
         <div class="col-md-4">
             <div class="p-4 success-card bg-dark rounded-3 text-center border border-primary">
-                <i class="fas fa-flag-usa fa-3x text-primary mb-3"></i>
-                <h4 style="font-family:'Orbitron'">USA LAYER</h4>
+                <i class="fas fa-phone-alt fa-3x text-primary mb-3"></i>
+                <h4 style="font-family:'Orbitron'">USA PROXY NUMBER</h4>
                 <p class="text-warning fw-bold mb-2">$15.00 / Activation</p>
-                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('USA Number', '$15.00')">PROCURE NOW</button>
+                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('USA Proxy Number', '$15.00')">PROCURE NOW</button>
             </div>
         </div>
         <div class="col-md-4">
             <div class="p-4 success-card bg-dark rounded-3 text-center border border-danger">
-                <i class="fas fa-gbp fa-3x text-danger mb-3"></i>
-                <h4 style="font-family:'Orbitron'">UK LAYER</h4>
+                <i class="fas fa-phone-alt fa-3x text-danger mb-3"></i>
+                <h4 style="font-family:'Orbitron'">UK PROXY NUMBER</h4>
                 <p class="text-warning fw-bold mb-2">$12.00 / Activation</p>
-                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('UK Number', '$12.00')">PROCURE NOW</button>
+                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('UK Proxy Number', '$12.00')">PROCURE NOW</button>
             </div>
         </div>
         <div class="col-md-4">
             <div class="p-4 success-card bg-dark rounded-3 text-center border border-light">
-                <i class="fas fa-leaf fa-3x text-white mb-3"></i>
-                <h4 style="font-family:'Orbitron'">CANADA LAYER</h4>
+                <i class="fas fa-phone-alt fa-3x text-white mb-3"></i>
+                <h4 style="font-family:'Orbitron'">CANADA PROXY NUMBER</h4>
                 <p class="text-warning fw-bold mb-2">$18.00 / Activation</p>
-                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('Canada Number', '$18.00')">PROCURE NOW</button>
+                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('Canada Proxy Number', '$18.00')">PROCURE NOW</button>
             </div>
         </div>
     </div>
 </section>
-
-<section class="container py-5 mt-5">
-    <div class="row text-center mb-4">
-        <h2 class="glitch-text" style="color: var(--it-purple);">Academic Enrollment</h2>
-    </div>
-    <div class="row g-4 justify-content-center">
-        <div class="col-md-5">
-            <div class="p-5 success-card bg-dark rounded-3 text-center border border-info h-100">
-                <i class="fas fa-user-graduate fa-4x text-info mb-4"></i>
-                <h3 style="font-family:'Orbitron'">STUDENT REG</h3>
-                <p class="text-muted small">Access Elite Wisdom Modules and Sovereign Certifications.</p>
-                <div class="my-4"><span class="display-6 fw-bold text-white">$50.00</span></div>
-                <button class="btn btn-info w-100 fw-bold py-3" onclick="initiatePurchase('Student Registration', '$50.00')">SECURE ENROLLMENT</button>
-            </div>
-        </div>
-        <div class="col-md-5">
-            <div class="p-5 success-card bg-dark rounded-3 text-center border border-warning h-100">
-                <i class="fas fa-chalkboard-teacher fa-4x text-warning mb-4"></i>
-                <h3 style="font-family:'Orbitron'">TRAINER REG</h3>
-                <p class="text-muted small">Authority to manage Alphanumeric Pedagogy streams.</p>
-                <div class="my-4"><span class="display-6 fw-bold text-white">$150.00</span></div>
-                <button class="btn btn-warning w-100 fw-bold py-3" onclick="initiatePurchase('Trainer Registration', '$150.00')">CLAIM AUTHORITY</button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="container mt-5">
-    <div class="construction-vault">
-        <h2 class="glitch-text mb-3">Sovereign Upgrade</h2>
-        <p class="text-light">Websoft is under intensive architecture. Launching March 2026.</p>
-        <div class="d-flex justify-content-center gap-3 my-4">
-            <div class="p-2 border border-secondary rounded" style="min-width: 60px;"><span id="days" class="d-block fw-bold">00</span><small>Days</small></div>
-            <div class="p-2 border border-secondary rounded" style="min-width: 60px;"><span id="hours" class="d-block fw-bold">00</span><small>Hrs</small></div>
-            <div class="p-2 border border-secondary rounded" style="min-width: 60px;"><span id="minutes" class="d-block fw-bold">00</span><small>Min</small></div>
-            <div class="p-2 border border-secondary rounded" style="min-width: 60px;"><span id="seconds" class="d-block fw-bold">00</span><small>Sec</small></div>
-        </div>
-        <div id="live-txt-construction" class="small" style="font-family: 'Orbitron'; color: var(--cyber-cyan);">SYSTEM STATUS: INITIALIZING...</div>
-    </div>
-</div>
-
-<div class="container mb-5">
-    <div class="bg-black p-3 border border-secondary rounded-2" style="font-family: 'Courier New', monospace; font-size: 0.7rem; height: 100px; overflow: hidden;">
-        <div id="security-pings" class="text-success"></div>
-    </div>
-</div>
 
 <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -209,19 +167,27 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body p-4 text-center">
-                <p class="small text-secondary mb-1">OFFICIAL RECEIVER: <span class="text-warning">ABID KHAN</span></p>
+                <p class="small text-secondary mb-1">RECEIVER: <span class="text-warning">ABID KHAN</span></p>
                 <div class="p-3 mb-3 rounded-3" style="background: rgba(255, 215, 0, 0.05); border: 2px solid var(--gold);">
-                    <h6 class="text-muted small mb-1">GOOGLE PAY / WALLET ID</h6>
-                    <h3 class="text-white fw-bold">923497469638</h3> 
+                    <h6 class="text-muted small mb-1">GOOGLE PAY WALLET ID</h6>
+                    <h3 class="text-white fw-bold d-inline-block" id="wallet-id">923497469638</h3>
+                    <i class="fas fa-copy ms-2 text-info copy-btn" onclick="copyWalletID()" title="Copy ID"></i>
                 </div>
-                <div class="row g-2 mb-4">
-                    <div class="col-6"><div class="p-2 border border-secondary bg-black small"><span class="text-muted d-block">AMOUNT</span><span id="wire-amount" class="fw-bold">$0.00</span></div></div>
-                    <div class="col-6"><div class="p-2 border border-secondary bg-black small"><span class="text-muted d-block">PURCHASE</span><span id="wire-service" class="fw-bold">---</span></div></div>
-                </div>
+                
                 <form id="wire-proof-form">
+                    <div class="row g-2 mb-3">
+                        <div class="col-6"><div class="p-2 border border-secondary bg-black x-small"><span class="text-muted d-block">AMOUNT</span><span id="wire-amount" class="fw-bold">$0.00</span></div></div>
+                        <div class="col-6"><div class="p-2 border border-secondary bg-black x-small"><span class="text-muted d-block">PURCHASE</span><span id="wire-service" class="fw-bold">---</span></div></div>
+                    </div>
                     <input type="text" class="form-control" placeholder="Sender Full Name" required>
-                    <input type="text" class="form-control" placeholder="Transaction ID / Ref" required>
-                    <div class="text-start mb-3"><label class="x-small text-muted">Proof Screenshot</label><input type="file" class="form-control" required></div>
+                    <input type="text" class="form-control" placeholder="Transaction ID" required>
+                    <div class="text-start mb-2"><label class="x-small text-muted">Proof Screenshot</label><input type="file" class="form-control" required></div>
+                    
+                    <div class="form-check text-start mb-3">
+                        <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                        <label class="form-check-label x-small text-muted" for="termsCheck">I agree to the 12H Secure Routing period.</label>
+                    </div>
+                    
                     <button type="submit" class="btn btn-warning w-100 fw-bold">FINALIZE PROCUREMENT</button>
                 </form>
             </div>
@@ -232,8 +198,7 @@
 <footer class="mt-5 pt-5 pb-4 border-top border-secondary text-center">
     <div class="container">
         <h4 class="glitch-text" style="font-size: 1rem;">ABID KHAN E-INSTITUTE</h4>
-        <p class="small text-secondary">&copy; 2026 Sovereign Architecture.</p>
-        <a href="https://wa.me/923497469638" class="btn-whatsapp-elite"><i class="fab fa-whatsapp me-2"></i> WHATSAPP OFFICE</a>
+        <a href="https://wa.me/923497469638" class="btn-whatsapp-elite mt-2"><i class="fab fa-whatsapp me-2"></i> WHATSAPP OFFICE</a>
     </div>
 </footer>
 
@@ -242,59 +207,41 @@
     // 1. LOADER
     window.addEventListener('load', () => { setTimeout(() => { document.getElementById('loader-wrapper').style.display = 'none'; }, 1000); });
 
-    // 2. AUTH & PURCHASE GATE
+    // 2. PURCHASE TRIGGER
     function initiatePurchase(serviceType, amount) {
-        // Logic: Redirect to signup if not logged in
-        const isLoggedIn = false; 
-        if (!isLoggedIn) {
-            alert("SECURITY PROTOCOL: You must sign in to the abid-pedagogy-db first.");
-            window.location.href = "https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/";
-            return;
-        }
         document.getElementById('wire-amount').innerText = amount;
         document.getElementById('wire-service').innerText = serviceType.toUpperCase();
         new bootstrap.Modal(document.getElementById('paymentModal')).show();
     }
 
-    // 3. FORM SUBMISSION
+    // 3. COPY WALLET ID
+    function copyWalletID() {
+        const id = document.getElementById('wallet-id').innerText;
+        navigator.clipboard.writeText(id);
+        alert("Wallet ID Copied to Clipboard!");
+    }
+
+    // 4. FORM SUBMISSION & REDIRECT
     document.getElementById('wire-proof-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        alert("WIRE RECEIVED: Activation clock started. Redirecting to IT LAB.");
+        alert("WIRE PROOF LOGGED: Initializing 12-Hour Activation Sequence.");
         window.location.href = "IT.html";
     });
 
-    // 4. tEST MODE TRIGGER (5 Clicks)
+    // 5. tEST MODE TRIGGER (5 Clicks)
     let tCount = 0;
     document.getElementById('main-portal-title').addEventListener('click', () => {
         tCount++;
-        if(tCount === 5) { alert("tEST Mode Activated for Worker abid-khan-institute-hub"); document.body.style.border = "2px solid var(--gold)"; }
+        if(tCount === 5) { 
+            alert("tEST Mode Activated: Handshaking with abid-khan-institute-hub"); 
+            document.body.style.border = "4px solid var(--gold)"; 
+        }
     });
-
-    // 5. LIVE PINGS
-    const statuses = ["ENCRYPTING...", "SYNCING DB...", "OTP READY...", "tEST MODE READY."];
-    let sIdx = 0;
-    setInterval(() => {
-        document.getElementById('live-txt-construction').innerText = "SYSTEM STATUS: " + statuses[sIdx];
-        const pingLog = document.getElementById('security-pings');
-        const entry = document.createElement('div');
-        entry.innerHTML = `> [${new Date().toLocaleTimeString()}] SEC_PING: ${statuses[sIdx]}`;
-        pingLog.prepend(entry);
-        if(pingLog.children.length > 4) pingLog.removeChild(pingLog.lastChild);
-        sIdx = (sIdx + 1) % statuses.length;
-    }, 3000);
-
-    // 6. COUNTDOWN
-    const launchDate = new Date("March 1, 2026 00:00:00").getTime();
-    setInterval(() => {
-        const now = new Date().getTime();
-        const dist = launchDate - now;
-        document.getElementById("days").innerText = Math.floor(dist / (86400000)).toString().padStart(2, '0');
-        document.getElementById("hours").innerText = Math.floor((dist % 86400000) / 3600000).toString().padStart(2, '0');
-        document.getElementById("minutes").innerText = Math.floor((dist % 3600000) / 60000).toString().padStart(2, '0');
-        document.getElementById("seconds").innerText = Math.floor((dist % 60000) / 1000).toString().padStart(2, '0');
-    }, 1000);
 </script>
 
-<h1 style="text-align:center; font-size: 40px; color: var(--gold); margin-top: 40px;">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ</h1>
+<div class="container text-center py-5">
+    <h1 style="font-size: 42px; color: var(--gold); font-family: serif;">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ</h1>
+</div>
+
 </body>
 </html>
