@@ -21,7 +21,7 @@
 
         body { background-color: var(--dark-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; user-select: none; -webkit-user-select: none; }
 
-        /* TREMENDOUS SCANNING LOADER */
+        /* START: TREMENDOUS SCANNING LOADER */
         #loader-wrapper {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--dark-bg); display: flex; flex-direction: column;
@@ -39,9 +39,6 @@
         @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
 
         .navbar-custom { background: rgba(3, 4, 7, 0.95); border-bottom: 2px solid var(--it-purple); padding: 15px 0; }
-        .footer-link { transition: 0.3s ease; color: #6c757d !important; text-decoration: none; }
-        .footer-link:hover { color: var(--gold) !important; padding-left: 5px; }
-        
         .btn-whatsapp-elite {
             background: linear-gradient(45deg, #128C7E, #075E54);
             color: white; padding: 10px 20px; border-radius: 5px;
@@ -52,6 +49,7 @@
             transition: 0.4s;
             border: 1px solid rgba(168, 85, 247, 0.2);
             background: rgba(255, 255, 255, 0.02);
+            position: relative; overflow: hidden;
         }
         .success-card:hover {
             transform: translateY(-5px);
@@ -70,13 +68,14 @@
         .construction-vault {
             background: rgba(255, 255, 255, 0.03);
             border: 2px solid var(--islamic-green);
-            border-radius: 30px;
-            padding: 40px;
-            text-align: center;
-            backdrop-filter: blur(15px);
-            margin: 40px auto;
-            max-width: 800px;
+            border-radius: 30px; padding: 40px; text-align: center;
+            backdrop-filter: blur(15px); margin: 40px auto; max-width: 800px;
         }
+
+        /* 6th PART: UI REPAIRING - FINANCIAL MODULES */
+        .x-small { font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; }
+        #wire-proof-form .form-control { border-radius: 8px; font-size: 0.9rem; margin-bottom: 10px; background: #000; color: #fff; border: 1px solid #444; }
+        #wire-proof-form .form-control:focus { border-color: var(--gold); box-shadow: none; }
     </style>
 </head>
 <body>
@@ -134,7 +133,7 @@
                 <i class="fas fa-flag-usa fa-3x text-primary mb-3"></i>
                 <h4 style="font-family:'Orbitron'">USA LAYER</h4>
                 <p class="text-warning fw-bold mb-2">$15.00 / Activation</p>
-                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('USA')">PROCURE NOW</button>
+                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('USA Number', '$15.00')">PROCURE NOW</button>
             </div>
         </div>
         <div class="col-md-4">
@@ -142,7 +141,7 @@
                 <i class="fas fa-gbp fa-3x text-danger mb-3"></i>
                 <h4 style="font-family:'Orbitron'">UK LAYER</h4>
                 <p class="text-warning fw-bold mb-2">$12.00 / Activation</p>
-                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('UK')">PROCURE NOW</button>
+                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('UK Number', '$12.00')">PROCURE NOW</button>
             </div>
         </div>
         <div class="col-md-4">
@@ -150,61 +149,42 @@
                 <i class="fas fa-leaf fa-3x text-white mb-3"></i>
                 <h4 style="font-family:'Orbitron'">CANADA LAYER</h4>
                 <p class="text-warning fw-bold mb-2">$18.00 / Activation</p>
-                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('CANADA')">PROCURE NOW</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="procurement-status" class="mt-4 p-4 rounded-3 d-none" style="background: rgba(255, 215, 0, 0.05); border: 1px solid var(--gold);">
-        <h5 class="text-warning" style="font-family:'Orbitron'"><i class="fas fa-clock me-2"></i> ARCHITECTURAL SETUP INITIALIZED</h5>
-        <p class="small mb-0">Your request for a <span id="selected-region"></span> layer has been sent to the Abid Khan Command Center. Please wait **12 Hours** for the Global Sovereign Activation process to complete. You will be notified via your registered credentials.</p>
-    </div>
-</section>
-<section class="container py-5">
-    <div class="row mb-5 justify-content-center">
-        <div class="col-lg-10 text-center">
-            <h2 class="glitch-text mb-4" style="font-size: 2rem;">The Sovereign Manifesto</h2>
-            <div class="p-4 rounded-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(168, 85, 247, 0.3);">
-                <p class="lead mb-4" style="border-left: 3px solid var(--it-purple); padding-left: 15px; font-style: italic;">
-                    "Alphanumeric Pedagogy is the fusion of mathematical precision and linguistic mastery, designed to decode the complexities of modern global systems."
-                </p>
-                <p class="text-secondary">At the Abid Khan E-Institute, we believe that education is not merely the acquisition of data, but the architectural restructuring of the mind. By implementing sovereign learning protocols, we empower our students to navigate the alphanumeric landscape of the 21st century with the authority of a global architect.</p>
-                <p class="text-secondary">Our framework transcends traditional boundaries, merging Elite Security Hub protocols with profound wisdom, ensuring data sovereignty via <strong>abid-pedagogy-db</strong>.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="row g-4 text-center">
-        <div class="col-md-4">
-            <div class="p-4 h-100 success-card rounded-3">
-                <i class="fas fa-brain fa-2x text-info mb-3"></i>
-                <h5 style="font-family: 'Orbitron';">Neural Security</h5>
-                <p class="small text-muted">Powered by <strong>abid-pedagogy-db</strong> infrastructure.</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="p-4 h-100 success-card rounded-3">
-                <i class="fas fa-microchip fa-2x text-warning mb-3"></i>
-                <h5 style="font-family: 'Orbitron';">Elite Framework</h5>
-                <p class="small text-muted">Proprietary curriculum focused on high-level logic.</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="p-4 h-100 success-card rounded-3">
-                <i class="fas fa-network-wired fa-2x text-success mb-3"></i>
-                <h5 style="font-family: 'Orbitron';">Global Access</h5>
-                <p class="small text-muted">Tiered entry systems for global genius collaboration.</p>
+                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('Canada Number', '$18.00')">PROCURE NOW</button>
             </div>
         </div>
     </div>
 </section>
 
-<div class="container">
+<section class="container py-5 mt-5">
+    <div class="row text-center mb-4">
+        <h2 class="glitch-text" style="color: var(--it-purple);">Academic Enrollment</h2>
+    </div>
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-5">
+            <div class="p-5 success-card bg-dark rounded-3 text-center border border-info h-100">
+                <i class="fas fa-user-graduate fa-4x text-info mb-4"></i>
+                <h3 style="font-family:'Orbitron'">STUDENT REG</h3>
+                <p class="text-muted small">Access Elite Wisdom Modules and Sovereign Certifications.</p>
+                <div class="my-4"><span class="display-6 fw-bold text-white">$50.00</span></div>
+                <button class="btn btn-info w-100 fw-bold py-3" onclick="initiatePurchase('Student Registration', '$50.00')">SECURE ENROLLMENT</button>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="p-5 success-card bg-dark rounded-3 text-center border border-warning h-100">
+                <i class="fas fa-chalkboard-teacher fa-4x text-warning mb-4"></i>
+                <h3 style="font-family:'Orbitron'">TRAINER REG</h3>
+                <p class="text-muted small">Authority to manage Alphanumeric Pedagogy streams.</p>
+                <div class="my-4"><span class="display-6 fw-bold text-white">$150.00</span></div>
+                <button class="btn btn-warning w-100 fw-bold py-3" onclick="initiatePurchase('Trainer Registration', '$150.00')">CLAIM AUTHORITY</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container mt-5">
     <div class="construction-vault">
-        <img src="ABID KHAN.png" width="80" height="80" class="rounded-circle mb-3" style="border: 2px solid var(--gold); animation: pulse 2s infinite;">
         <h2 class="glitch-text mb-3">Sovereign Upgrade</h2>
         <p class="text-light">Websoft is under intensive architecture. Launching March 2026.</p>
-
         <div class="d-flex justify-content-center gap-3 my-4">
             <div class="p-2 border border-secondary rounded" style="min-width: 60px;"><span id="days" class="d-block fw-bold">00</span><small>Days</small></div>
             <div class="p-2 border border-secondary rounded" style="min-width: 60px;"><span id="hours" class="d-block fw-bold">00</span><small>Hrs</small></div>
@@ -221,51 +201,89 @@
     </div>
 </div>
 
-<footer class="mt-5 pt-5 pb-4" style="background: rgba(3, 4, 7, 0.98); border-top: 2px solid var(--it-purple); backdrop-filter: blur(15px);">
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark border border-warning" style="border-radius: 20px;">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title glitch-text" style="font-size: 0.9rem;"><i class="fas fa-vault me-2"></i> GOOGLE WALLET WIRE</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4 text-center">
+                <p class="small text-secondary mb-1">OFFICIAL RECEIVER: <span class="text-warning">ABID KHAN</span></p>
+                <div class="p-3 mb-3 rounded-3" style="background: rgba(255, 215, 0, 0.05); border: 2px solid var(--gold);">
+                    <h6 class="text-muted small mb-1">GOOGLE PAY / WALLET ID</h6>
+                    <h3 class="text-white fw-bold">923497469638</h3> 
+                </div>
+                <div class="row g-2 mb-4">
+                    <div class="col-6"><div class="p-2 border border-secondary bg-black small"><span class="text-muted d-block">AMOUNT</span><span id="wire-amount" class="fw-bold">$0.00</span></div></div>
+                    <div class="col-6"><div class="p-2 border border-secondary bg-black small"><span class="text-muted d-block">PURCHASE</span><span id="wire-service" class="fw-bold">---</span></div></div>
+                </div>
+                <form id="wire-proof-form">
+                    <input type="text" class="form-control" placeholder="Sender Full Name" required>
+                    <input type="text" class="form-control" placeholder="Transaction ID / Ref" required>
+                    <div class="text-start mb-3"><label class="x-small text-muted">Proof Screenshot</label><input type="file" class="form-control" required></div>
+                    <button type="submit" class="btn btn-warning w-100 fw-bold">FINALIZE PROCUREMENT</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="mt-5 pt-5 pb-4 border-top border-secondary text-center">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-5 col-md-12 mb-4">
-                <div class="d-flex align-items-center mb-3">
-                    <img src="ABID KHAN.png" width="70" height="70" class="rounded-circle me-3" style="border: 2px solid var(--gold);">
-                    <div>
-                        <h4 class="fw-bold mb-0" style="font-family: 'Orbitron'; color: #fff;">ABID KHAN E-INSTITUTE</h4>
-                        <small class="text-info fw-bold">DISTINGUISHED GLOBAL ARCHITECT</small>
-                    </div>
-                </div>
-                <p class="text-secondary small">Merging Alphanumeric Security with Sovereign Pedagogy.</p>
-                <div class="badge bg-dark text-warning p-2 border border-warning">
-                    <i class="fas fa-globe-americas me-2"></i> USA REGISTRATION APPLIED
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <h6 class="text-uppercase fw-bold mb-4" style="color: var(--gold);">Command Center</h6>
-                <ul class="list-unstyled small">
-                    <li><a href="IT.html" class="footer-link">IT Laboratory</a></li>
-                    <li><a href="jobs.html" class="footer-link">Careers</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4 text-lg-end">
-                <h6 class="text-uppercase fw-bold mb-4" style="color: var(--cyber-cyan);">Global Support</h6>
-                <a href="https://wa.me/923497469638" class="btn-whatsapp-elite">
-                    <i class="fab fa-whatsapp me-2"></i> WHATSAPP OFFICE
-                </a>
-            </div>
-        </div>
-        <div class="row mt-4 pt-4 border-top border-secondary text-center">
-            <p class="small text-secondary">&copy; 2026 <strong>ABID KHAN E-INSTITUTE</strong>.</p>
-        </div>
+        <h4 class="glitch-text" style="font-size: 1rem;">ABID KHAN E-INSTITUTE</h4>
+        <p class="small text-secondary">&copy; 2026 Sovereign Architecture.</p>
+        <a href="https://wa.me/923497469638" class="btn-whatsapp-elite"><i class="fab fa-whatsapp me-2"></i> WHATSAPP OFFICE</a>
     </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // 1. LOADER & SECURITY
-    window.addEventListener('load', () => {
-        setTimeout(() => { document.getElementById('loader-wrapper').style.display = 'none'; }, 1000);
-    });
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.onkeydown = e => { if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) || (e.ctrlKey && [85, 83].includes(e.keyCode))) return false; };
+    // 1. LOADER
+    window.addEventListener('load', () => { setTimeout(() => { document.getElementById('loader-wrapper').style.display = 'none'; }, 1000); });
 
-    // 2. COUNTDOWN LOGIC
+    // 2. AUTH & PURCHASE GATE
+    function initiatePurchase(serviceType, amount) {
+        // Logic: Redirect to signup if not logged in
+        const isLoggedIn = false; 
+        if (!isLoggedIn) {
+            alert("SECURITY PROTOCOL: You must sign in to the abid-pedagogy-db first.");
+            window.location.href = "https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/";
+            return;
+        }
+        document.getElementById('wire-amount').innerText = amount;
+        document.getElementById('wire-service').innerText = serviceType.toUpperCase();
+        new bootstrap.Modal(document.getElementById('paymentModal')).show();
+    }
+
+    // 3. FORM SUBMISSION
+    document.getElementById('wire-proof-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert("WIRE RECEIVED: Activation clock started. Redirecting to IT LAB.");
+        window.location.href = "IT.html";
+    });
+
+    // 4. tEST MODE TRIGGER (5 Clicks)
+    let tCount = 0;
+    document.getElementById('main-portal-title').addEventListener('click', () => {
+        tCount++;
+        if(tCount === 5) { alert("tEST Mode Activated for Worker abid-khan-institute-hub"); document.body.style.border = "2px solid var(--gold)"; }
+    });
+
+    // 5. LIVE PINGS
+    const statuses = ["ENCRYPTING...", "SYNCING DB...", "OTP READY...", "tEST MODE READY."];
+    let sIdx = 0;
+    setInterval(() => {
+        document.getElementById('live-txt-construction').innerText = "SYSTEM STATUS: " + statuses[sIdx];
+        const pingLog = document.getElementById('security-pings');
+        const entry = document.createElement('div');
+        entry.innerHTML = `> [${new Date().toLocaleTimeString()}] SEC_PING: ${statuses[sIdx]}`;
+        pingLog.prepend(entry);
+        if(pingLog.children.length > 4) pingLog.removeChild(pingLog.lastChild);
+        sIdx = (sIdx + 1) % statuses.length;
+    }, 3000);
+
+    // 6. COUNTDOWN
     const launchDate = new Date("March 1, 2026 00:00:00").getTime();
     setInterval(() => {
         const now = new Date().getTime();
@@ -275,47 +293,8 @@
         document.getElementById("minutes").innerText = Math.floor((dist % 3600000) / 60000).toString().padStart(2, '0');
         document.getElementById("seconds").innerText = Math.floor((dist % 60000) / 1000).toString().padStart(2, '0');
     }, 1000);
-
-    // 3. PURCHASE LOGIC & LIVE TXT
-    const statuses = ["ENCRYPTING GATEWAY...", "SYNCING DB...", "OTP SERVERS READY.", "tEST MODE STANDBY."];
-    let sIdx = 0;
-
-    function initiatePurchase(region) {
-        // Trigger visual status box
-        const statusBox = document.getElementById('procurement-status');
-        document.getElementById('selected-region').innerText = region;
-        statusBox.classList.remove('d-none');
-        statusBox.scrollIntoView({ behavior: 'smooth' });
-
-        // Update Security Pings immediately
-        const pingLog = document.getElementById('security-pings');
-        const entry = document.createElement('div');
-        entry.style.color = "var(--gold)";
-        entry.innerHTML = `> [${new Date().toLocaleTimeString()}] PROCURE_REQ: ${region} LAYER INITIALIZED (12H CLOCK ACTIVE)`;
-        pingLog.prepend(entry);
-    }
-
-    setInterval(() => {
-        document.getElementById('live-txt-construction').innerText = "SYSTEM STATUS: " + statuses[sIdx];
-        sIdx = (sIdx + 1) % statuses.length;
-        
-        const pingLog = document.getElementById('security-pings');
-        const entry = document.createElement('div');
-        entry.innerHTML = `> [${new Date().toLocaleTimeString()}] SEC_PING: ${statuses[sIdx]}`;
-        pingLog.prepend(entry);
-        if(pingLog.children.length > 4) pingLog.removeChild(pingLog.lastChild);
-    }, 3000);
-
-    // 4. tEST MODE TRIGGER (Click Title 5 Times)
-    let tCount = 0;
-    document.getElementById('main-portal-title').addEventListener('click', () => {
-        tCount++;
-        if(tCount === 5) { alert("tEST Mode Activated for Worker abid-khan-institute-hub"); document.body.style.border = "2px solid var(--gold)"; }
-    });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<div style="display:none">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ</div>
-<h1 style="text-align:center; font-size: 40px; color: var(--gold); margin-top: 20px;">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ</h1>
+<h1 style="text-align:center; font-size: 40px; color: var(--gold); margin-top: 40px;">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ</h1>
 </body>
 </html>
