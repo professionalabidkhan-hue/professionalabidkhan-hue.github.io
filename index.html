@@ -159,6 +159,7 @@
 <section class="container py-5">
     <div class="text-center mb-5">
         <h2 class="fw-bold text-white" style="font-family: 'Orbitron'; letter-spacing: 3px;">SELECT YOUR VIRTUAL ORIGIN</h2>
+        <p class="x-small text-info opacity-75">PREMIUM YEARLY SUBSCRIPTIONS FOR BUSINESS VERIFICATION</p>
     </div>
 
     <div class="row g-4">
@@ -166,37 +167,51 @@
             <div class="card h-100 border-secondary bg-dark text-white p-3 shadow-lg hover-glow" style="border-radius: 15px; background: linear-gradient(145deg, #0a0c10, #14181c);">
                 <div class="card-body text-center">
                     <i class="fas fa-flag-usa fa-3x text-primary mb-3"></i>
-                    <h4 class="fw-bold" style="font-family: 'Orbitron';">USA PROXY</h4>
+                    <h4 class="fw-bold" style="font-family: 'Orbitron';">USA VIRTUAL NUMBER</h4>
                     <div class="mb-4">
                         <span class="h3 fw-bold text-info">$120</span>
                         <span class="x-small text-secondary">/ YEARLY</span>
                     </div>
+                    <ul class="list-unstyled x-small text-start mb-4 opacity-75">
+                        <li><i class="fas fa-check text-success me-2"></i>Unlimited SMS Receiving</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Amazon/Stripe Verified</li>
+                    </ul>
                     <button class="btn btn-primary w-100 fw-bold" onclick="initiatePurchase('USA', '$120')">BUY NOW</button>
                 </div>
             </div>
         </div>
+
         <div class="col-md-4">
             <div class="card h-100 border-info bg-dark text-white p-3 shadow-lg hover-glow" style="border-radius: 15px; border-width: 2px;">
                 <div class="card-body text-center">
-                    <i class="fas fa-crown fa-3x text-warning mb-3"></i>
-                    <h4 class="fw-bold" style="font-family: 'Orbitron';">UK ROYAL</h4>
+                    <i class="fas fa-gb-england fa-3x text-warning mb-3" style="color:#cf142b !important;"></i>
+                    <h4 class="fw-bold" style="font-family: 'Orbitron';">UK VIRTUAL NUMBER</h4>
                     <div class="mb-4">
                         <span class="h3 fw-bold text-info">$110</span>
                         <span class="x-small text-secondary">/ YEARLY</span>
                     </div>
+                    <ul class="list-unstyled x-small text-start mb-4 opacity-75">
+                        <li><i class="fas fa-check text-success me-2"></i>UK LTD Ready</li>
+                        <li><i class="fas fa-check text-success me-2"></i>WhatsApp Business Active</li>
+                    </ul>
                     <button class="btn btn-info text-white w-100 fw-bold" onclick="initiatePurchase('UK', '$110')">BUY NOW</button>
                 </div>
             </div>
         </div>
+
         <div class="col-md-4">
             <div class="card h-100 border-secondary bg-dark text-white p-3 shadow-lg hover-glow" style="border-radius: 15px;">
                 <div class="card-body text-center">
                     <i class="fab fa-canadian-maple-leaf fa-3x text-danger mb-3"></i>
-                    <h4 class="fw-bold" style="font-family: 'Orbitron';">CANADA EDGE</h4>
+                    <h4 class="fw-bold" style="font-family: 'Orbitron';">CANADA VIRTUAL NUMBER</h4>
                     <div class="mb-4">
                         <span class="h3 fw-bold text-info">$105</span>
                         <span class="x-small text-secondary">/ YEARLY</span>
                     </div>
+                    <ul class="list-unstyled x-small text-start mb-4 opacity-75">
+                        <li><i class="fas fa-check text-success me-2"></i>2FA Secure Access</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Low Latency Calls</li>
+                    </ul>
                     <button class="btn btn-danger w-100 fw-bold" onclick="initiatePurchase('Canada', '$105')">BUY NOW</button>
                 </div>
             </div>
@@ -204,6 +219,15 @@
     </div>
 </section>
 
+<style>
+/* Part 6: UI Repairing - Card Hover & Font Fixes */
+.hover-glow:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2) !important;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+.x-small { font-size: 0.75rem; letter-spacing: 1px; }
+</style>
 <section class="container py-5 mt-2">
     <div class="p-4 rounded-3 border border-info" style="background: rgba(0, 212, 255, 0.05);">
         <h5 class="fw-bold text-white mb-4" style="font-family:'Orbitron';"><i class="fas fa-shield-alt me-2 text-info"></i>IDENTITY ACTIVITY LOG</h5>
