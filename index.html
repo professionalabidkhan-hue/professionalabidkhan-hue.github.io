@@ -68,8 +68,8 @@
         /* 6th PART: UI REPAIRING - TICKER & FORMS */
         .ticker-wrap { background: rgba(168, 85, 247, 0.1); border-radius: 50px; padding: 8px 20px; display: inline-block; border: 1px solid rgba(168, 85, 247, 0.3); }
         .x-small { font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; }
-        #wire-proof-form .form-control { border-radius: 8px; font-size: 0.9rem; margin-bottom: 10px; background: #000; color: #fff; border: 1px solid #444; }
-        #wire-proof-form .form-control:focus { border-color: var(--gold); box-shadow: none; }
+        #wire-proof-form .form-control, #wire-proof-form .form-select { border-radius: 8px; font-size: 0.9rem; margin-bottom: 10px; background: #000; color: #fff; border: 1px solid #444; }
+        #wire-proof-form .form-control:focus, #wire-proof-form .form-select:focus { border-color: var(--gold); box-shadow: none; }
         .copy-btn { cursor: pointer; transition: 0.3s; }
         .copy-btn:active { transform: scale(0.9); color: var(--islamic-green); }
     </style>
@@ -137,7 +137,7 @@
                 <i class="fas fa-phone-alt fa-3x text-primary mb-3"></i>
                 <h4 style="font-family:'Orbitron'">USA Virtual NUMBER</h4>
                 <p class="text-warning fw-bold mb-2">$15.00 / Activation</p>
-                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('USA Virtual Number', '$15.00')">PROCURE NOW</button>
+                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('USA', '$15.00')">PROCURE NOW</button>
             </div>
         </div>
         <div class="col-md-4">
@@ -145,7 +145,7 @@
                 <i class="fas fa-phone-alt fa-3x text-danger mb-3"></i>
                 <h4 style="font-family:'Orbitron'">UK Virtual NUMBER</h4>
                 <p class="text-warning fw-bold mb-2">$12.00 / Activation</p>
-                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('UK Virtual Number', '$12.00')">PROCURE NOW</button>
+                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('UK', '$12.00')">PROCURE NOW</button>
             </div>
         </div>
         <div class="col-md-4">
@@ -153,7 +153,7 @@
                 <i class="fas fa-phone-alt fa-3x text-white mb-3"></i>
                 <h4 style="font-family:'Orbitron'">CANADA Virtual NUMBER</h4>
                 <p class="text-warning fw-bold mb-2">$18.00 / Activation</p>
-                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('Canada Virtual Number', '$18.00')">PROCURE NOW</button>
+                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('Canada', '$18.00')">PROCURE NOW</button>
             </div>
         </div>
     </div>
@@ -177,8 +177,14 @@
                 <form id="wire-proof-form">
                     <div class="row g-2 mb-3">
                         <div class="col-6"><div class="p-2 border border-secondary bg-black x-small"><span class="text-muted d-block">AMOUNT</span><span id="wire-amount" class="fw-bold">$0.00</span></div></div>
-                        <div class="col-6"><div class="p-2 border border-secondary bg-black x-small"><span class="text-muted d-block">PURCHASE</span><span id="wire-service" class="fw-bold">---</span></div></div>
+                        <div class="col-6"><div class="p-2 border border-secondary bg-black x-small"><span class="text-muted d-block">REGION</span><span id="wire-service" class="fw-bold">---</span></div></div>
                     </div>
+
+                    <div class="text-start mb-2"><label class="x-small text-info fw-bold">SELECT YOUR PREFERRED PROXY NUMBER</label></div>
+                    <select class="form-select mb-3" id="number-selector" required>
+                        <option value="" selected disabled>Scanning Available Slots...</option>
+                        </select>
+
                     <input type="text" class="form-control" placeholder="Sender Full Name" required>
                     <input type="text" class="form-control" placeholder="Transaction ID" required>
                     <div class="text-start mb-2"><label class="x-small text-muted">Proof Screenshot</label><input type="file" class="form-control" required></div>
@@ -207,10 +213,27 @@
     // 1. LOADER
     window.addEventListener('load', () => { setTimeout(() => { document.getElementById('loader-wrapper').style.display = 'none'; }, 1000); });
 
-    // 2. PURCHASE TRIGGER
-    function initiatePurchase(serviceType, amount) {
+    // 2. PURCHASE TRIGGER & DYNAMIC NUMBER POOL
+    const numberPool = {
+        "USA": ["+1 (202) 555-0144", "+1 (415) 555-0198", "+1 (646) 555-0121"],
+        "UK": ["+44 7700 900077", "+44 7700 900123", "+44 7700 900555"],
+        "Canada": ["+1 (613) 555-0177", "+1 (416) 555-0102", "+1 (778) 555-0189"]
+    };
+
+    function initiatePurchase(region, amount) {
         document.getElementById('wire-amount').innerText = amount;
-        document.getElementById('wire-service').innerText = serviceType.toUpperCase();
+        document.getElementById('wire-service').innerText = region.toUpperCase();
+        
+        // Populate Dropdown based on Region
+        const selector = document.getElementById('number-selector');
+        selector.innerHTML = '<option value="" selected disabled>Select Available ' + region + ' Number</option>';
+        numberPool[region].forEach(num => {
+            let opt = document.createElement('option');
+            opt.value = num;
+            opt.innerHTML = num + " [AVAILABLE]";
+            selector.appendChild(opt);
+        });
+
         new bootstrap.Modal(document.getElementById('paymentModal')).show();
     }
 
@@ -224,7 +247,8 @@
     // 4. FORM SUBMISSION & REDIRECT
     document.getElementById('wire-proof-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        alert("WIRE PROOF LOGGED: Initializing 12-Hour Activation Sequence.");
+        const selectedNum = document.getElementById('number-selector').value;
+        alert("SECURE LOG: Number " + selectedNum + " reserved. Initializing 12-Hour Routing.");
         window.location.href = "IT.html";
     });
 
