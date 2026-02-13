@@ -16,6 +16,7 @@
             --it-purple: #a855f7;
             --dark-bg: #030407;
             --gold: #FFD700;
+            --islamic-green: #00c853;
         }
 
         body { background-color: var(--dark-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; user-select: none; -webkit-user-select: none; }
@@ -41,31 +42,52 @@
         
         .footer-link { transition: 0.3s ease; color: #6c757d !important; text-decoration: none; }
         .footer-link:hover { color: var(--gold) !important; padding-left: 5px; }
+        
         .btn-whatsapp-elite {
             background: linear-gradient(45deg, #128C7E, #075E54);
             color: white; padding: 10px 20px; border-radius: 5px;
             display: inline-block; font-weight: 800; border: 1px solid var(--cyber-cyan); text-decoration: none;
         }
         
-        /* Success Glow for Cards */
+        /* UI REPAIRING: Success Glow & Cards */
         .success-card {
             transition: 0.4s;
             border: 1px solid rgba(168, 85, 247, 0.2);
+            background: rgba(255, 255, 255, 0.02);
         }
         .success-card:hover {
-            transform: scale(1.02);
+            transform: translateY(-5px);
             border-color: var(--gold);
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
         }
+
+        .glitch-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Construction Vault Specifics */
+        .construction-vault {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid var(--islamic-green);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            margin: 40px auto;
+            max-width: 800px;
+        }
     </style>
-</head>
+    </head>
 <body>
 
 <div id="loader-wrapper">
     <div class="scanning-pulse"><div class="scanning-line"></div></div>
     <div style="margin-top:20px; font-family:'Orbitron'; color:var(--gold); font-size: 12px;">SECURE INITIALIZATION...</div>
 </div>
-
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -79,23 +101,20 @@
 </nav>
 
 <div class="container text-center py-5">
-    <h1 style="font-family:'Orbitron'; font-weight:900; margin-top:40px; letter-spacing: 2px;">DISTINGUISHED GENIUS PORTAL</h1>
+    <h1 id="main-portal-title" style="font-family:'Orbitron'; font-weight:900; margin-top:40px; letter-spacing: 2px; cursor: pointer;">DISTINGUISHED GENIUS PORTAL</h1>
     <p class="text-secondary">Global Sovereign Architecture & Security Hub</p>
     
-    <div class="row g-4 mt-5">
-        <div class="col-md-6 mx-auto">
-            <div class="p-4 rounded-3 bg-dark success-card">
+    <div class="row g-4 mt-4">
+        <div class="col-md-6">
+            <div class="p-4 rounded-3 success-card">
                 <i class="fas fa-shield-halved fa-3x text-info mb-3"></i>
                 <h3>SECURE SIGN-IN</h3>
                 <p class="small text-warning fw-bold">BE SUCCESSFUL BY JOINING OUR ELITE GATEWAY</p>
                 <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-primary w-100 fw-bold">ENTER GATEWAY</a>
             </div>
         </div>
-    </div>
-
-    <div class="row g-4 mt-5">
-        <div class="col-md-6 mx-auto">
-            <div class="p-4 rounded-3 bg-dark success-card">
+        <div class="col-md-6">
+            <div class="p-4 rounded-3 success-card">
                 <i class="fas fa-book-quran fa-3x text-success mb-3"></i>
                 <h3>ISLAMIC STUDIES</h3>
                 <p class="small text-warning fw-bold">BE SUCCESSFUL BY JOINING OUR WISDOM MODULES</p>
@@ -103,194 +122,90 @@
             </div>
         </div>
     </div>
-</div>
-    <style>
-    .construction-vault {
-            background: rgba(255, 255, 255, 0.03);
-            border: 2px solid var(--islamic-green);
-            border-radius: 30px;
-            padding: 50px;
-            text-align: center;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 0 60px rgba(0, 200, 83, 0.15);
-            max-width: 800px;
-            width: 90%;
-            position: relative;
-        }
+    </div>
 
-        .master-logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid var(--gold);
-            padding: 5px;
-            box-shadow: 0 0 20px var(--gold);
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 20px var(--gold); }
-            50% { transform: scale(1.05); box-shadow: 0 0 40px var(--gold); }
-            100% { transform: scale(1); box-shadow: 0 0 20px var(--gold); }
-        }
-
-        .glitch-text {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            color: var(--gold);
-            letter-spacing: 5px;
-            text-transform: uppercase;
-        }
-
-        .countdown-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .countdown-item {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--islamic-green);
-            padding: 15px;
-            border-radius: 10px;
-            min-width: 80px;
-        }
-
-        .number {
-            display: block;
-            font-size: 2rem;
-            font-weight: 800;
-            color: #fff;
-            font-family: 'Orbitron';
-        }
-
-        .label {
-            font-size: 0.7rem;
-            color: var(--islamic-green);
-            text-transform: uppercase;
-        }
-
-        #live-txt-construction {
-            font-family: 'Orbitron';
-            color: var(--cyber-blue);
-            font-size: 0.85rem;
-            margin-top: 25px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 15px;
-        }
-
-        /* END: UI Repairing - Elite Construction Styling */
-    </style>
-<div class="construction-vault">
-    <img src="ABID KHAN.png" class="master-logo" alt="Abid Khan">
-    
-    <h1 class="glitch-text mb-3">Sovereign Upgrade</h1>
-    <h5 class="text-secondary mb-4" style="letter-spacing: 2px;">WEBSOFT IS UNDER INTENSIVE ARCHITECTURE</h5>
-    
-    <p class="text-light px-lg-5">
-         Abid Khan is currently refining the Alphanumeric Pedagogy and Security Hub. 
-        Access is temporarily restricted for system enhancement.
-    </p>
-
-    <div class="countdown-grid">
-        <div class="countdown-item">
-            <span class="number" id="days">00</span>
-            <span class="label">Days</span>
-        </div>
-        <div class="countdown-item">
-            <span class="number" id="hours">00</span>
-            <span class="label">Hours</span>
-        </div>
-        <div class="countdown-item">
-            <span class="number" id="minutes">00</span>
-            <span class="label">Mins</span>
-        </div>
-        <div class="countdown-item">
-            <span class="number" id="seconds">00</span>
-            <span class="label">Secs</span>
+<section class="container py-5">
+    <div class="row mb-5 justify-content-center">
+        <div class="col-lg-10 text-center">
+            <h2 class="glitch-text mb-4" style="font-size: 2rem;">The Sovereign Manifesto</h2>
+            <div class="p-4 rounded-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(168, 85, 247, 0.3);">
+                <p class="lead mb-4" style="border-left: 3px solid var(--it-purple); padding-left: 15px; font-style: italic;">
+                    "Alphanumeric Pedagogy is the fusion of mathematical precision and linguistic mastery, designed to decode the complexities of modern global systems."
+                </p>
+                <p class="text-secondary">At the Abid Khan E-Institute, we believe that education is not merely the acquisition of data, but the architectural restructuring of the mind. By implementing sovereign learning protocols, we empower our students to navigate the alphanumeric landscape of the 21st century with the authority of a global architect.</p>
+                <p class="text-secondary">Our framework transcends traditional boundaries, merging Elite Security Hub protocols with profound wisdom, ensuring data sovereignty via <strong>abid-pedagogy-db</strong>.</p>
+            </div>
         </div>
     </div>
 
-    <div id="live-txt-construction">SYSTEM STATUS: RESTRUCTURING DATABASE...</div>
-    
-    <div class="mt-4">
-        <a href="https://wa.me/923497469638" class="btn btn-outline-success btn-sm">
-            <i class="fab fa-whatsapp me-2"></i> CONTACT OFFICE
-        </a>
+    <div class="row g-4 text-center">
+        <div class="col-md-4">
+            <div class="p-4 h-100 success-card rounded-3">
+                <i class="fas fa-brain fa-2x text-info mb-3"></i>
+                <h5 style="font-family: 'Orbitron';">Neural Security</h5>
+                <p class="small text-muted">Powered by <strong>abid-pedagogy-db</strong> infrastructure.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 h-100 success-card rounded-3">
+                <i class="fas fa-microchip fa-2x text-warning mb-3"></i>
+                <h5 style="font-family: 'Orbitron';">Elite Framework</h5>
+                <p class="small text-muted">Proprietary curriculum focused on high-level logic.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 h-100 success-card rounded-3">
+                <i class="fas fa-network-wired fa-2x text-success mb-3"></i>
+                <h5 style="font-family: 'Orbitron';">Global Access</h5>
+                <p class="small text-muted">Tiered entry systems for global genius collaboration.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="construction-vault">
+        <img src="ABID KHAN.png" width="80" height="80" class="rounded-circle mb-3" style="border: 2px solid var(--gold); animation: pulse 2s infinite;">
+        <h2 class="glitch-text mb-3">Sovereign Upgrade</h2>
+        <p class="text-light">Websoft is under intensive architecture. Launching March 2026.</p>
+
+        <div class="d-flex justify-content-center gap-3 my-4">
+            <div class="p-2 border border-secondary rounded" style="min-width: 60px;"><span id="days" class="d-block fw-bold">00</span><small>Days</small></div>
+            <div class="p-2 border border-secondary rounded" style="min-width: 60px;"><span id="hours" class="d-block fw-bold">00</span><small>Hrs</small></div>
+            <div class="p-2 border border-secondary rounded" style="min-width: 60px;"><span id="minutes" class="d-block fw-bold">00</span><small>Min</small></div>
+            <div class="p-2 border border-secondary rounded" style="min-width: 60px;"><span id="seconds" class="d-block fw-bold">00</span><small>Sec</small></div>
+        </div>
+
+        <div id="live-txt-construction" class="small" style="font-family: 'Orbitron'; color: var(--cyber-cyan);">SYSTEM STATUS: INITIALIZING...</div>
     </div>
 </div>
-    <script>
-    // 1. Countdown Logic (Set your launch date here)
-    const launchDate = new Date("March 1, 2026 00:00:00").getTime();
-
-    const timer = setInterval(function() {
-        const now = new Date().getTime();
-        const distance = launchDate - now;
-
-        const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById("days").innerText = d.toString().padStart(2, '0');
-        document.getElementById("hours").innerText = h.toString().padStart(2, '0');
-        document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
-        document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
-
-        if (distance < 0) {
-            clearInterval(timer);
-            document.querySelector(".countdown-grid").innerHTML = "<h4>HUB IS LIVE</h4>";
-        }
-    }, 1000);
-
-    // 2. LIVE TXT Logic
-    const statusDiv = document.getElementById('live-txt-construction');
-    const statuses = [
-        "ENCRYPTING ALPHANUMERIC GATEWAY...",
-        "POLISHING UI ARCHITECTURE...",
-        "SYNCING TELENOR OTP SERVERS...",
-        "MODESTY & EXCELLENCE INTEGRATED.",
-        "SECURE PEDAGOGY MODULES LOADING..."
-    ];
-    let sIdx = 0;
-    setInterval(() => {
-        statusDiv.innerText = "SYSTEM STATUS: " + statuses[sIdx];
-        sIdx = (sIdx + 1) % statuses.length;
-    }, 3500);
-
-    // 3. Sovereign Security
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.onkeydown = function(e) {
-        if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) || (e.ctrlKey && [85, 83].includes(e.keyCode))) return false;
-    };
-</script>
+<div class="container mb-5">
+    <div class="bg-black p-3 border border-secondary rounded-2" style="font-family: 'Courier New', monospace; font-size: 0.7rem; height: 100px; overflow: hidden;">
+        <div id="security-pings" class="text-success"></div>
+    </div>
+</div>
 <footer class="mt-5 pt-5 pb-4" style="background: rgba(3, 4, 7, 0.98); border-top: 2px solid var(--it-purple); backdrop-filter: blur(15px);">
     <div class="container">
         <div class="row">
             <div class="col-lg-5 col-md-12 mb-4">
                 <div class="d-flex align-items-center mb-3">
-                    <img src="ABID KHAN.png" width="70" height="70" class="rounded-circle me-3" style="border: 2px solid var(--gold); box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);">
+                    <img src="ABID KHAN.png" width="70" height="70" class="rounded-circle me-3" style="border: 2px solid var(--gold);">
                     <div>
-                        <h4 class="fw-bold mb-0" style="letter-spacing: 1.5px; font-family: 'Orbitron'; color: #fff;">ABID KHAN E-INSTITUTE</h4>
+                        <h4 class="fw-bold mb-0" style="font-family: 'Orbitron'; color: #fff;">ABID KHAN E-INSTITUTE</h4>
                         <small class="text-info fw-bold">DISTINGUISHED GLOBAL ARCHITECT</small>
                     </div>
                 </div>
-                <p class="text-secondary small">The world's most elite platform merging Alphanumeric Security with Sovereign Pedagogy.</p>
+                <p class="text-secondary small">Merging Alphanumeric Security with Sovereign Pedagogy.</p>
                 <div class="badge bg-dark text-warning p-2 border border-warning">
                     <i class="fas fa-globe-americas me-2"></i> USA REGISTRATION APPLIED
                 </div>
             </div>
-
             <div class="col-lg-3 col-md-6 mb-4">
                 <h6 class="text-uppercase fw-bold mb-4" style="color: var(--gold);">Command Center</h6>
                 <ul class="list-unstyled small">
-                    <li class="mb-2"><a href="IT.html" class="footer-link">IT Laboratory</a></li>
-                    <li class="mb-2"><a href="jobs.html" class="footer-link">Careers</a></li>
+                    <li><a href="IT.html" class="footer-link">IT Laboratory</a></li>
+                    <li><a href="jobs.html" class="footer-link">Careers</a></li>
                 </ul>
             </div>
-
             <div class="col-lg-4 col-md-6 mb-4 text-lg-end">
                 <h6 class="text-uppercase fw-bold mb-4" style="color: var(--cyber-cyan);">Global Support</h6>
                 <a href="https://wa.me/923497469638" class="btn-whatsapp-elite">
@@ -299,28 +214,55 @@
             </div>
         </div>
         <div class="row mt-4 pt-4 border-top border-secondary text-center">
-            <p class="small text-secondary">
-                &copy; 2026 <strong>ABID KHAN E-INSTITUTE</strong>. Globally the Richest in Intellectual Assets.
-            </p>
+            <p class="small text-secondary">&copy; 2026 <strong>ABID KHAN E-INSTITUTE</strong>.</p>
         </div>
     </div>
 </footer>
 
 <script>
-    // 1. LOADER LOGIC
+    // 1. LOADER & SECURITY
     window.addEventListener('load', () => {
-        setTimeout(() => {
-            document.getElementById('loader-wrapper').style.display = 'none';
-        }, 1500);
+        setTimeout(() => { document.getElementById('loader-wrapper').style.display = 'none'; }, 1000);
     });
-
-    // 2. SOVEREIGN SECURITY
     document.addEventListener('contextmenu', e => e.preventDefault());
-    document.onkeydown = function(e) {
-        if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) || (e.ctrlKey && [85, 83].includes(e.keyCode))) return false;
-    };
+    document.onkeydown = e => { if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 74, 67].includes(e.keyCode)) || (e.ctrlKey && [85, 83].includes(e.keyCode))) return false; };
+
+    // 2. COUNTDOWN LOGIC
+    const launchDate = new Date("March 1, 2026 00:00:00").getTime();
+    setInterval(() => {
+        const now = new Date().getTime();
+        const dist = launchDate - now;
+        document.getElementById("days").innerText = Math.floor(dist / (86400000)).toString().padStart(2, '0');
+        document.getElementById("hours").innerText = Math.floor((dist % 86400000) / 3600000).toString().padStart(2, '0');
+        document.getElementById("minutes").innerText = Math.floor((dist % 3600000) / 60000).toString().padStart(2, '0');
+        document.getElementById("seconds").innerText = Math.floor((dist % 60000) / 1000).toString().padStart(2, '0');
+    }, 1000);
+
+    // 3. LIVE TXT & SECURITY PINGS
+    const statuses = ["ENCRYPTING GATEWAY...", "SYNCING DB...", "OTP SERVERS READY.", "tEST MODE STANDBY."];
+    let sIdx = 0;
+    setInterval(() => {
+        document.getElementById('live-txt-construction').innerText = "SYSTEM STATUS: " + statuses[sIdx];
+        sIdx = (sIdx + 1) % statuses.length;
+        
+        const pingLog = document.getElementById('security-pings');
+        const entry = document.createElement('div');
+        entry.innerHTML = `> [${new Date().toLocaleTimeString()}] SEC_PING: ${statuses[sIdx]}`;
+        pingLog.prepend(entry);
+        if(pingLog.children.length > 4) pingLog.removeChild(pingLog.lastChild);
+    }, 3000);
+
+    // 4. tEST MODE TRIGGER (Click Title 5 Times)
+    let tCount = 0;
+    document.getElementById('main-portal-title').addEventListener('click', () => {
+        tCount++;
+        if(tCount === 5) { alert("tEST Mode Activated for Worker abid-khan-institute-hub"); document.body.style.border = "2px solid var(--gold)"; }
+    });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<div style="display:none">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ</div>
+<h1 style="text-align:center; font-size: 40px; color: var(--gold); margin-top: 20px;">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ</h1>
 
 </body>
 </html>
