@@ -39,7 +39,6 @@
         @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
 
         .navbar-custom { background: rgba(3, 4, 7, 0.95); border-bottom: 2px solid var(--it-purple); padding: 15px 0; }
-        
         .footer-link { transition: 0.3s ease; color: #6c757d !important; text-decoration: none; }
         .footer-link:hover { color: var(--gold) !important; padding-left: 5px; }
         
@@ -49,7 +48,6 @@
             display: inline-block; font-weight: 800; border: 1px solid var(--cyber-cyan); text-decoration: none;
         }
         
-        /* UI REPAIRING: Success Glow & Cards */
         .success-card {
             transition: 0.4s;
             border: 1px solid rgba(168, 85, 247, 0.2);
@@ -69,7 +67,6 @@
             text-transform: uppercase;
         }
 
-        /* Construction Vault Specifics */
         .construction-vault {
             background: rgba(255, 255, 255, 0.03);
             border: 2px solid var(--islamic-green);
@@ -81,13 +78,14 @@
             max-width: 800px;
         }
     </style>
-    </head>
+</head>
 <body>
 
 <div id="loader-wrapper">
     <div class="scanning-pulse"><div class="scanning-line"></div></div>
     <div style="margin-top:20px; font-family:'Orbitron'; color:var(--gold); font-size: 12px;">SECURE INITIALIZATION...</div>
 </div>
+
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -122,8 +120,46 @@
             </div>
         </div>
     </div>
+</div>
+
+<section class="container py-5 mt-5">
+    <div class="row text-center mb-4">
+        <h2 class="glitch-text" style="color: var(--cyber-cyan);">Global Communication Assets</h2>
+        <p class="text-secondary small">Secure UK, USA, & CANADA identity layers for elite global operations.</p>
     </div>
 
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="p-4 success-card bg-dark rounded-3 text-center border border-primary">
+                <i class="fas fa-flag-usa fa-3x text-primary mb-3"></i>
+                <h4 style="font-family:'Orbitron'">USA LAYER</h4>
+                <p class="text-warning fw-bold mb-2">$15.00 / Activation</p>
+                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('USA')">PROCURE NOW</button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 success-card bg-dark rounded-3 text-center border border-danger">
+                <i class="fas fa-gbp fa-3x text-danger mb-3"></i>
+                <h4 style="font-family:'Orbitron'">UK LAYER</h4>
+                <p class="text-warning fw-bold mb-2">$12.00 / Activation</p>
+                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('UK')">PROCURE NOW</button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 success-card bg-dark rounded-3 text-center border border-light">
+                <i class="fas fa-leaf fa-3x text-white mb-3"></i>
+                <h4 style="font-family:'Orbitron'">CANADA LAYER</h4>
+                <p class="text-warning fw-bold mb-2">$18.00 / Activation</p>
+                <button class="btn btn-outline-info w-100 fw-bold" onclick="initiatePurchase('CANADA')">PROCURE NOW</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="procurement-status" class="mt-4 p-4 rounded-3 d-none" style="background: rgba(255, 215, 0, 0.05); border: 1px solid var(--gold);">
+        <h5 class="text-warning" style="font-family:'Orbitron'"><i class="fas fa-clock me-2"></i> ARCHITECTURAL SETUP INITIALIZED</h5>
+        <p class="small mb-0">Your request for a <span id="selected-region"></span> layer has been sent to the Abid Khan Command Center. Please wait **12 Hours** for the Global Sovereign Activation process to complete. You will be notified via your registered credentials.</p>
+    </div>
+</section>
 <section class="container py-5">
     <div class="row mb-5 justify-content-center">
         <div class="col-lg-10 text-center">
@@ -162,6 +198,7 @@
         </div>
     </div>
 </section>
+
 <div class="container">
     <div class="construction-vault">
         <img src="ABID KHAN.png" width="80" height="80" class="rounded-circle mb-3" style="border: 2px solid var(--gold); animation: pulse 2s infinite;">
@@ -174,15 +211,16 @@
             <div class="p-2 border border-secondary rounded" style="min-width: 60px;"><span id="minutes" class="d-block fw-bold">00</span><small>Min</small></div>
             <div class="p-2 border border-secondary rounded" style="min-width: 60px;"><span id="seconds" class="d-block fw-bold">00</span><small>Sec</small></div>
         </div>
-
         <div id="live-txt-construction" class="small" style="font-family: 'Orbitron'; color: var(--cyber-cyan);">SYSTEM STATUS: INITIALIZING...</div>
     </div>
 </div>
+
 <div class="container mb-5">
     <div class="bg-black p-3 border border-secondary rounded-2" style="font-family: 'Courier New', monospace; font-size: 0.7rem; height: 100px; overflow: hidden;">
         <div id="security-pings" class="text-success"></div>
     </div>
 </div>
+
 <footer class="mt-5 pt-5 pb-4" style="background: rgba(3, 4, 7, 0.98); border-top: 2px solid var(--it-purple); backdrop-filter: blur(15px);">
     <div class="container">
         <div class="row">
@@ -238,9 +276,25 @@
         document.getElementById("seconds").innerText = Math.floor((dist % 60000) / 1000).toString().padStart(2, '0');
     }, 1000);
 
-    // 3. LIVE TXT & SECURITY PINGS
+    // 3. PURCHASE LOGIC & LIVE TXT
     const statuses = ["ENCRYPTING GATEWAY...", "SYNCING DB...", "OTP SERVERS READY.", "tEST MODE STANDBY."];
     let sIdx = 0;
+
+    function initiatePurchase(region) {
+        // Trigger visual status box
+        const statusBox = document.getElementById('procurement-status');
+        document.getElementById('selected-region').innerText = region;
+        statusBox.classList.remove('d-none');
+        statusBox.scrollIntoView({ behavior: 'smooth' });
+
+        // Update Security Pings immediately
+        const pingLog = document.getElementById('security-pings');
+        const entry = document.createElement('div');
+        entry.style.color = "var(--gold)";
+        entry.innerHTML = `> [${new Date().toLocaleTimeString()}] PROCURE_REQ: ${region} LAYER INITIALIZED (12H CLOCK ACTIVE)`;
+        pingLog.prepend(entry);
+    }
+
     setInterval(() => {
         document.getElementById('live-txt-construction').innerText = "SYSTEM STATUS: " + statuses[sIdx];
         sIdx = (sIdx + 1) % statuses.length;
@@ -263,6 +317,5 @@
 
 <div style="display:none">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ</div>
 <h1 style="text-align:center; font-size: 40px; color: var(--gold); margin-top: 20px;">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ</h1>
-
 </body>
 </html>
