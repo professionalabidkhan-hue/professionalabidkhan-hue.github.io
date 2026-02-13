@@ -460,13 +460,10 @@
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script> 
-    /* START: MASTER LOGIC SCRIPT V3.6 (FINAL MERGE) */
-/* DESCRIPTION: Unified Session Persistence, Proxy Procurement, and Activity Logging.
-   WORKERS: abid-khan-institute-hub | abid-pedagogy-db
-   FEATURES: LIVE TXT, tEST Mode (5-Click), Activity Payloads.
-*/
+/* START: MASTER LOGIC SCRIPT V3.7 (CLEANED & DEDUPLICATED) */
+/* WORKERS: abid-khan-institute-hub | abid-pedagogy-db */
 
-// 1. GLOBAL STATE & CONFIGURATION
+// 1. GLOBAL STATE
 let currentUser = null;
 let tCount = 0;
 
@@ -485,8 +482,6 @@ function checkExistingSession() {
             name: savedName,
             email: "authenticated@institute-hub.com" 
         };
-        
-        // UI REPAIR: Update the portal title dynamically
         const title = document.getElementById('main-portal-title');
         if(title) {
             title.innerHTML = `WELCOME, <span style="color:var(--cyber-cyan)">${savedName.toUpperCase()}</span>`;
@@ -494,44 +489,26 @@ function checkExistingSession() {
     }
 }
 
-// 3. INITIALIZATION
-window.addEventListener('load', () => {
-    checkExistingSession(); 
-    startLiveTxt();         
-    
-    // Auto-log initial system handshake
-    if(currentUser) {
-        setTimeout(() => {
-            logActivity('UPLINK', 'SYSTEM', `Session Verified: ${currentUser.name}`);
-        }, 1500);
-    }
-
-    // Loader Cleanup
-    setTimeout(() => { 
-        const loader = document.getElementById('loader-wrapper');
-        if(loader) loader.style.display = 'none'; 
-    }, 1000);
-});
-
-// 4. LIVE TXT LOGIC: Real-time Marquee Updates
+// 3. LIVE TXT LOGIC (Integrated Marquee)
 function startLiveTxt() {
-    const marquee = document.getElementById('live-marquee'); // Ensure your HTML has id="live-marquee"
+    const marquee = document.getElementById('live-marquee');
     if(!marquee) return;
     const activities = [
         "New Student Enrolled via abid-khan-institute-hub...",
         "USA Number Secured via Proxy Routing...",
         "System Handshake with abid-pedagogy-db Successful...",
         "UK Identity Verified: User ID 992X...",
-        "Secure Gateway: Always use abid-pedagogy-db for login...",
         "LIVE TXT: Provisioning Virtual Proxy Asset..."
     ];
+    let i = 0;
     setInterval(() => {
-        const randomAct = activities[Math.floor(Math.random() * activities.length)];
-        marquee.innerHTML += ` &nbsp; | &nbsp; <span class="text-info">${randomAct}</span>`;
+        // Displays one activity at a time for clarity
+        marquee.innerHTML = `<span class="text-info">${activities[i]}</span>`;
+        i = (i + 1) % activities.length;
     }, 5000);
 }
 
-// 5. tEST MODE TRIGGER: 5 Clicks Handshake
+// 4. tEST MODE TRIGGER (5-Click Handshake)
 const titleElem = document.getElementById('main-portal-title');
 if(titleElem) {
     titleElem.addEventListener('click', () => {
@@ -539,26 +516,30 @@ if(titleElem) {
         if(tCount === 5) { 
             titleElem.innerText = "tEST MODE ACTIVE";
             document.body.style.border = "5px solid var(--gold)";
-            alert("tEST Mode Activated: Handshaking with abid-khan-institute-hub. Syncing with abid-pedagogy-db.");
+            alert("tEST Mode Activated: Linking abid-khan-institute-hub & abid-pedagogy-db.");
             logActivity('SMS', 'DEBUG', 'tEST Mode Admin Access Granted');
             tCount = 0; 
         }
     });
 }
 
-// 6. PROCUREMENT & MODAL HANDLING
+// 5. PROCUREMENT & MODAL HANDLING
 function initiatePurchase(region, amount) {
-    document.getElementById('wire-amount').innerText = amount;
+    const wireAmountElem = document.getElementById('wire-amount');
     const selector = document.getElementById('number-selector');
     
+    if(wireAmountElem) wireAmountElem.innerText = amount;
+    
     // Fill selector with regional pool
-    selector.innerHTML = `<option value="" selected disabled>Select Your ${region} Proxy</option>`;
-    if(numberPool[region]) {
-        numberPool[region].forEach(num => {
-            let opt = document.createElement('option');
-            opt.value = num; opt.innerHTML = num;
-            selector.appendChild(opt);
-        });
+    if(selector) {
+        selector.innerHTML = `<option value="" selected disabled>Select Your ${region} Proxy</option>`;
+        if(numberPool[region]) {
+            numberPool[region].forEach(num => {
+                let opt = document.createElement('option');
+                opt.value = num; opt.innerHTML = num;
+                selector.appendChild(opt);
+            });
+        }
     }
 
     // Modal UI Reset
@@ -568,56 +549,69 @@ function initiatePurchase(region, amount) {
 
     const pModal = new bootstrap.Modal(document.getElementById('paymentModal'));
     pModal.show();
-    
     logActivity('UPLINK', 'GATEWAY', `Initiated ${region} Procurement Flow`);
 }
 
-// 7. AUTHENTICATION GATE LOGIC
+// 6. AUTHENTICATION GATE LOGIC
 function checkAuthToProceed() {
     const selectedNum = document.getElementById('number-selector').value;
+    const chosenDisplay = document.getElementById('chosen-number-display');
+    const autoNameField = document.getElementById('auto-name');
+    
     if (!selectedNum) return;
 
     if (currentUser) {
         document.getElementById('guest-selection-view').style.display = 'none';
         document.getElementById('payment-gate-view').style.display = 'block';
-        document.getElementById('chosen-number-display').innerText = selectedNum;
-        document.getElementById('auto-name').value = currentUser.name;
+        if(chosenDisplay) chosenDisplay.innerText = selectedNum;
+        if(autoNameField) autoNameField.value = currentUser.name;
     } else {
         document.getElementById('auth-warning').style.display = 'block';
     }
 }
 
-// 8. ACTIVITY LOGGING ENGINE (UI REPAIR PART 6)
+// 7. ACTIVITY LOGGING ENGINE
 function logActivity(type, app, message) {
     const tableBody = document.getElementById('user-history-body');
     if(!tableBody) return;
 
     const now = new Date();
     const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    
-    const isUplink = type === 'UPLINK' || type === 'SMS';
-    const statusClass = isUplink ? 'bg-success-soft text-success' : 'bg-primary-soft text-primary';
-    const statusText = isUplink ? 'VERIFIED' : 'CLEARED';
+    const isUplink = (type === 'UPLINK' || type === 'SMS');
+    const statusClass = isUplink ? 'bg-success text-dark' : 'bg-primary text-white';
 
     const row = `
-        <tr style="background: transparent; animation: fadeIn 0.5s ease;">
+        <tr style="animation: fadeIn 0.5s ease;">
             <td><span class="text-success"><i class="fas fa-microchip me-2"></i>${type}</span></td>
             <td class="fw-bold text-uppercase">${app}</td>
-            <td class="text-muted font-monospace text-white">${message}</td>
-            <td><span class="badge rounded-pill ${statusClass} border border-info" style="font-size: 9px;">${statusText}</span></td>
+            <td class="text-white">${message}</td>
+            <td><span class="badge rounded-pill ${statusClass}" style="font-size: 9px;">VERIFIED</span></td>
             <td class="text-end text-secondary">${timeStr}</td>
-        </tr>
-    `;
-    
+        </tr>`;
     tableBody.innerHTML = row + tableBody.innerHTML;
 }
 
-// 9. UTILITIES & REDIRECTION
+// 8. INITIALIZATION & UTILITIES
+window.addEventListener('load', () => {
+    checkExistingSession();
+    startLiveTxt();
+    
+    // Auto-initialize system logs
+    setTimeout(() => logActivity('UPLINK', 'SYSTEM', 'abid-pedagogy-db Sync Complete'), 1000);
+    
+    // Loader Cleanup
+    const loader = document.getElementById('loader-wrapper');
+    if(loader) {
+        setTimeout(() => { loader.style.display = 'none'; }, 1000);
+    }
+});
+
 function copyWalletID() {
     navigator.clipboard.writeText("923497469638");
     alert("Wallet ID Copied!");
 }
 
+// Form Submission Redirect
 const wireForm = document.getElementById('wire-proof-form');
 if(wireForm) {
     wireForm.addEventListener('submit', (e) => {
@@ -627,14 +621,8 @@ if(wireForm) {
     });
 }
 
-// 10. UI REPAIRING - AUTO-INITIALIZE ACTIVITY LOGS
-window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => logActivity('SMS', 'WHATSAPP', 'Verification Code Sent to +1...0144'), 800);
-    setTimeout(() => logActivity('UPLINK', 'SYSTEM', 'abid-pedagogy-db Sync Complete'), 1500);
-});
-
-/* END: MASTER LOGIC SCRIPT V3.6 */
-</script>
+/* END: MASTER LOGIC SCRIPT V3.7 (CLEANED) */
+    </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"aa3921a6fe82429fb1627a0575b5610a","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
