@@ -152,6 +152,44 @@
         </div>
     </div>
 </section>
+    <section class="container mt-5">
+    <div class="p-4 rounded-3 border border-info" style="background: rgba(0, 212, 255, 0.05); backdrop-filter: blur(5px);">
+        <div class="row align-items-center">
+            <div class="col-md-2 text-center">
+                <i class="fas fa-universal-access fa-4x text-info"></i>
+            </div>
+            <div class="col-md-10">
+                <h4 class="fw-bold text-white" style="font-family: 'Orbitron';">VIRTUAL ASSET CAPABILITIES</h4>
+                <p class="small text-secondary mb-2">Each 1-YEAR activation provides a fully functional alphanumeric identity for the following purposes:</p>
+                <div class="row g-2">
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="badge bg-dark border border-success p-2 w-100 text-start">
+                            <i class="fab fa-whatsapp text-success me-2"></i> WHATSAPP / SOCIAL
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="badge bg-dark border border-primary p-2 w-100 text-start">
+                            <i class="fas fa-sms text-primary me-2"></i> SMS / OTP VERIFY
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="badge bg-dark border border-warning p-2 w-100 text-start">
+                            <i class="fas fa-phone-alt text-warning me-2"></i> VOICE CALLS
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="badge bg-dark border border-info p-2 w-100 text-start">
+                            <i class="fas fa-user-secret text-info me-2"></i> PRIVACY SHIELD
+                        </div>
+                    </div>
+                </div>
+                <p class="x-small text-muted mt-3 mb-0">
+                    *Users can receive unlimited incoming SMS and Voice calls for account verifications across all global platforms.*
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 <section class="container mt-5">
     <div class="p-4 rounded-3 border border-warning" style="background: rgba(255, 215, 0, 0.03); backdrop-filter: blur(10px);">
         <div class="row align-items-center">
@@ -286,6 +324,7 @@
     /* START: MASTER LOGIC SCRIPT
        VERSION: 3.0 (Session Persistence + LIVE TXT + tEST Mode)
        WORKERS: abid-khan-institute-hub | abid-pedagogy-db
+       REPAIR PART 6: Dynamic UI & Worker Handshake
     */
 
     // 1. GLOBAL STATE & SESSION HANDSHAKE
@@ -300,7 +339,7 @@
             };
             console.log("Handshake Successful: Welcome back, " + savedName);
             
-            // UI REPAIR: Update the portal title to reflect the user
+            // UI REPAIR: Update the portal title to reflect the user dynamically
             const title = document.getElementById('main-portal-title');
             if(title) {
                 title.innerHTML = `WELCOME, <span style="color:var(--cyber-cyan)">${savedName.toUpperCase()}</span>`;
@@ -310,22 +349,25 @@
 
     // 2. INITIALIZATION (On Page Load)
     window.addEventListener('load', () => {
-        checkExistingSession(); // Identify User
-        startLiveTxt();         // Start Marquee
+        checkExistingSession(); // Identify User Session from abid-pedagogy-db
+        startLiveTxt();         // Start the LIVE TXT logic
         setTimeout(() => { 
-            document.getElementById('loader-wrapper').style.display = 'none'; 
+            const loader = document.getElementById('loader-wrapper');
+            if(loader) loader.style.display = 'none'; 
         }, 1000);
     });
 
     // 3. LIVE TXT LOGIC: Real-time Marquee Updates
     function startLiveTxt() {
         const marquee = document.querySelector('marquee');
+        if(!marquee) return;
         const activities = [
             "New Student Enrolled via abid-khan-institute-hub...",
             "USA Number +1 (202) 555-0144 Secured...",
             "System Handshake with abid-pedagogy-db Successful...",
             "UK Identity Verified: User ID 992X...",
-            "Secure Gateway: Always use abid-pedagogy-db for login..."
+            "Secure Gateway: Always use abid-pedagogy-db for login...",
+            "LIVE TXT: Provisioning Virtual Proxy Asset..."
         ];
         setInterval(() => {
             const randomAct = activities[Math.floor(Math.random() * activities.length)];
@@ -371,7 +413,7 @@
         new bootstrap.Modal(document.getElementById('paymentModal')).show();
     }
 
-    // 6. AUTHENTICATION GATE LOGIC
+    // 6. AUTHENTICATION GATE LOGIC (REPAIRED)
     function checkAuthToProceed() {
         const selectedNum = document.getElementById('number-selector').value;
         if (!selectedNum) return;
@@ -384,7 +426,7 @@
             
             // Auto-fill from Persistence Logic
             document.getElementById('auto-name').value = currentUser.name;
-            document.getElementById('auto-email').value = "Verified via Institute Hub";
+            document.getElementById('auto-email').value = "Verified Session: abid-pedagogy-db";
         } else {
             // IF GUEST: Force Signup in abid-khan-institute-hub
             document.getElementById('auth-warning').style.display = 'block';
@@ -397,14 +439,16 @@
         alert("Wallet ID Copied!");
     }
 
-    document.getElementById('wire-proof-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert("Procurement Logged. Redirecting to IT LAB for Routing.");
-        window.location.href = "IT.html";
-    });
+    const wireForm = document.getElementById('wire-proof-form');
+    if(wireForm) {
+        wireForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("Procurement Logged. Redirecting to IT LAB for Routing.");
+            window.location.href = "IT.html";
+        });
+    }
 
     /* END: MASTER LOGIC SCRIPT */
 </script>
-
 </body>
 </html>
