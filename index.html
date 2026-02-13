@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,6 +64,46 @@
         #wire-proof-form .form-control:focus { border-color: var(--gold); box-shadow: none; }
         .copy-btn { cursor: pointer; transition: 0.3s; }
         .copy-btn:active { transform: scale(0.9); color: var(--islamic-green); }
+        /* START: VIRTUAL ORIGIN & ACTIVITY LOG CSS */
+.hover-glow {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.hover-glow:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2) !important;
+    border-color: var(--gold) !important;
+}
+
+/* Card Price Pulse */
+.text-info.h3 {
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* Activity Log Styling */
+#user-history-body tr {
+    border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+    transition: background 0.3s;
+}
+
+#user-history-body tr:hover {
+    background: rgba(168, 85, 247, 0.05);
+}
+
+.bg-success-soft { background: rgba(0, 200, 83, 0.1) !important; }
+.bg-primary-soft { background: rgba(11, 99, 211, 0.1) !important; }
+
+/* 6th PART: UI REPAIRING - TABLE SCROLLBAR */
+.table-responsive::-webkit-scrollbar {
+    height: 4px;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+    background: var(--it-purple);
+    border-radius: 10px;
+}
+/* END: VIRTUAL ORIGIN & ACTIVITY LOG CSS */
     </style>
     </head>
 <body>
@@ -110,6 +151,134 @@
                 <h3>ISLAMIC STUDIES</h3>
                 <p class="small text-warning fw-bold">WISDOM MODULES</p>
                 <a href="islamic_studies.html" class="btn btn-primary w-100 fw-bold">ENTER GATEWAY</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="container text-center py-5">
+    <h1 id="main-portal-title" style="font-family:'Orbitron'; font-weight:900; margin-top:40px; letter-spacing: 2px; cursor: pointer;">DISTINGUISHED GENIUS PORTAL</h1>
+    <p class="text-secondary">Global Sovereign Architecture & Security Hub</p>
+    
+    <div class="ticker-wrap mt-3">
+        <span class="x-small text-secondary">LIVE FEED: </span>
+        <marquee id="live-marquee" style="width: 300px; vertical-align: middle;" class="x-small text-info fw-bold">
+            Handshaking with abid-pedagogy-db... Uplink Secure...
+        </marquee>
+    </div>
+
+    <div class="row g-4 mt-4">
+        <div class="col-md-6">
+            <div class="p-4 rounded-3 success-card">
+                <i class="fas fa-shield-halved fa-3x text-info mb-3"></i>
+                <h3>REGISTRATION ABID KHAN</h3>
+                <p class="small text-warning fw-bold">JOIN OUR ELITE GATEWAY</p>
+                <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-primary w-100 fw-bold">ENTER GATEWAY</a>
+            </div>
+        </div>
+        <div class="col-md-6"> 
+            <div class="p-4 rounded-3 success-card">
+                <i class="fas fa-book-quran fa-3x text-success mb-3"></i>
+                <h3>ISLAMIC STUDIES</h3>
+                <p class="small text-warning fw-bold">WISDOM MODULES</p>
+                <a href="islamic_studies.html" class="btn btn-primary w-100 fw-bold">ENTER GATEWAY</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-white" style="font-family: 'Orbitron'; letter-spacing: 3px;">SELECT YOUR VIRTUAL ORIGIN</h2>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-secondary bg-dark text-white p-3 shadow-lg hover-glow" style="border-radius: 15px; background: linear-gradient(145deg, #0a0c10, #14181c);">
+                <div class="card-body text-center">
+                    <i class="fas fa-flag-usa fa-3x text-primary mb-3"></i>
+                    <h4 class="fw-bold" style="font-family: 'Orbitron';">USA PROXY</h4>
+                    <div class="mb-4">
+                        <span class="h3 fw-bold text-info">$120</span>
+                        <span class="x-small text-secondary">/ YEARLY</span>
+                    </div>
+                    <button class="btn btn-primary w-100 fw-bold" onclick="initiatePurchase('USA', '$120')">BUY NOW</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-info bg-dark text-white p-3 shadow-lg hover-glow" style="border-radius: 15px; border-width: 2px;">
+                <div class="card-body text-center">
+                    <i class="fas fa-crown fa-3x text-warning mb-3"></i>
+                    <h4 class="fw-bold" style="font-family: 'Orbitron';">UK ROYAL</h4>
+                    <div class="mb-4">
+                        <span class="h3 fw-bold text-info">$110</span>
+                        <span class="x-small text-secondary">/ YEARLY</span>
+                    </div>
+                    <button class="btn btn-info text-white w-100 fw-bold" onclick="initiatePurchase('UK', '$110')">BUY NOW</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-secondary bg-dark text-white p-3 shadow-lg hover-glow" style="border-radius: 15px;">
+                <div class="card-body text-center">
+                    <i class="fab fa-canadian-maple-leaf fa-3x text-danger mb-3"></i>
+                    <h4 class="fw-bold" style="font-family: 'Orbitron';">CANADA EDGE</h4>
+                    <div class="mb-4">
+                        <span class="h3 fw-bold text-info">$105</span>
+                        <span class="x-small text-secondary">/ YEARLY</span>
+                    </div>
+                    <button class="btn btn-danger w-100 fw-bold" onclick="initiatePurchase('Canada', '$105')">BUY NOW</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5 mt-2">
+    <div class="p-4 rounded-3 border border-info" style="background: rgba(0, 212, 255, 0.05);">
+        <h5 class="fw-bold text-white mb-4" style="font-family:'Orbitron';"><i class="fas fa-shield-alt me-2 text-info"></i>IDENTITY ACTIVITY LOG</h5>
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle" style="font-size: 12px;">
+                <thead class="text-info x-small">
+                    <tr>
+                        <th>PROTOCOL</th><th>SOURCE APP</th><th>DATA PAYLOAD</th><th>STATUS</th><th class="text-end">TIME</th>
+                    </tr>
+                </thead>
+                <tbody id="user-history-body">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark border border-warning" style="border-radius: 20px;">
+            <div class="modal-body p-4 text-center">
+                <div id="guest-selection-view">
+                    <p class="x-small text-info mb-3">VIRTUAL PROXY SELECTION</p>
+                    <select class="form-select mb-3" id="number-selector" onchange="checkAuthToProceed()"></select>
+                    <div id="auth-warning" class="p-3 mb-3 border border-danger rounded-3" style="display:none; background: rgba(255,0,0,0.1);">
+                        <p class="x-small text-danger fw-bold">IDENTIFICATION REQUIRED</p>
+                        <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-sm btn-danger w-100">SIGNUP NOW</a>
+                    </div>
+                </div>
+
+                <div id="payment-gate-view" style="display:none;">
+                    <div class="p-3 mb-3 rounded-3" style="border: 2px solid var(--gold);">
+                        <h3 class="text-white fw-bold d-inline-block">923497469638</h3>
+                        <i class="fas fa-copy ms-2 text-info copy-btn" onclick="copyWalletID()"></i>
+                    </div>
+                    <form id="wire-proof-form">
+                        <div class="row g-2 mb-3">
+                            <div class="col-6"><div class="p-2 border border-secondary x-small">AMOUNT <span id="wire-amount" class="d-block fw-bold"></span></div></div>
+                            <div class="col-6"><div class="p-2 border border-secondary x-small">RESERVED <span id="chosen-number-display" class="d-block fw-bold"></span></div></div>
+                        </div>
+                        <input type="text" id="auto-name" class="form-control" placeholder="Name" readonly>
+                        <input type="text" class="form-control" placeholder="Transaction ID" required>
+                        <button type="submit" class="btn btn-warning w-100 fw-bold">FINALIZE PROCUREMENT</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -320,135 +489,180 @@
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    /* START: MASTER LOGIC SCRIPT
-       VERSION: 3.0 (Session Persistence + LIVE TXT + tEST Mode)
-       WORKERS: abid-khan-institute-hub | abid-pedagogy-db
-       REPAIR PART 6: Dynamic UI & Worker Handshake
-    */
+/* START: MASTER LOGIC SCRIPT V3.6 (FINAL MERGE) */
+/* DESCRIPTION: Unified Session Persistence, Proxy Procurement, and Activity Logging.
+   WORKERS: abid-khan-institute-hub | abid-pedagogy-db
+   FEATURES: LIVE TXT, tEST Mode (5-Click), Activity Payloads.
+*/
 
-    // 1. GLOBAL STATE & SESSION HANDSHAKE
-    let currentUser = null;
+// 1. GLOBAL STATE & CONFIGURATION
+let currentUser = null;
+let tCount = 0;
 
-    function checkExistingSession() {
-        const savedName = localStorage.getItem('user_name');
-        if (savedName) {
-            currentUser = {
-                name: savedName,
-                email: "authenticated@institute-hub.com" 
-            };
-            console.log("Handshake Successful: Welcome back, " + savedName);
-            
-            // UI REPAIR: Update the portal title to reflect the user dynamically
-            const title = document.getElementById('main-portal-title');
-            if(title) {
-                title.innerHTML = `WELCOME, <span style="color:var(--cyber-cyan)">${savedName.toUpperCase()}</span>`;
-            }
+// Virtual Asset Pool (abid-khan-institute-hub standard)
+const numberPool = {
+    "USA": ["+1 (202) 555-0144", "+1 (415) 555-0198", "+1 (302) 444-0988"],
+    "UK": ["+44 7700 900077", "+44 7700 900555", "+44 7888 123456"],
+    "Canada": ["+1 (613) 555-0177", "+1 (778) 555-0189", "+1 (416) 999-8877"]
+};
+
+// 2. SESSION HANDSHAKE (abid-pedagogy-db Persistence)
+function checkExistingSession() {
+    const savedName = localStorage.getItem('user_name');
+    if (savedName) {
+        currentUser = { 
+            name: savedName,
+            email: "authenticated@institute-hub.com" 
+        };
+        
+        // UI REPAIR: Update the portal title dynamically
+        const title = document.getElementById('main-portal-title');
+        if(title) {
+            title.innerHTML = `WELCOME, <span style="color:var(--cyber-cyan)">${savedName.toUpperCase()}</span>`;
         }
     }
+}
 
-    // 2. INITIALIZATION (On Page Load)
-    window.addEventListener('load', () => {
-        checkExistingSession(); // Identify User Session from abid-pedagogy-db
-        startLiveTxt();         // Start the LIVE TXT logic
-        setTimeout(() => { 
-            const loader = document.getElementById('loader-wrapper');
-            if(loader) loader.style.display = 'none'; 
-        }, 1000);
-    });
-
-    // 3. LIVE TXT LOGIC: Real-time Marquee Updates
-    function startLiveTxt() {
-        const marquee = document.querySelector('marquee');
-        if(!marquee) return;
-        const activities = [
-            "New Student Enrolled via abid-khan-institute-hub...",
-            "USA Number +1 (202) 555-0144 Secured...",
-            "System Handshake with abid-pedagogy-db Successful...",
-            "UK Identity Verified: User ID 992X...",
-            "Secure Gateway: Always use abid-pedagogy-db for login...",
-            "LIVE TXT: Provisioning Virtual Proxy Asset..."
-        ];
-        setInterval(() => {
-            const randomAct = activities[Math.floor(Math.random() * activities.length)];
-            marquee.innerHTML += ` &nbsp; | &nbsp; <span class="text-info">${randomAct}</span>`;
-        }, 5000);
+// 3. INITIALIZATION
+window.addEventListener('load', () => {
+    checkExistingSession(); 
+    startLiveTxt();         
+    
+    // Auto-log initial system handshake
+    if(currentUser) {
+        setTimeout(() => {
+            logActivity('UPLINK', 'SYSTEM', `Session Verified: ${currentUser.name}`);
+        }, 1500);
     }
 
-    // 4. tEST MODE TRIGGER: 5 Clicks Handshake
-    let tCount = 0;
-    document.getElementById('main-portal-title').addEventListener('click', () => {
+    // Loader Cleanup
+    setTimeout(() => { 
+        const loader = document.getElementById('loader-wrapper');
+        if(loader) loader.style.display = 'none'; 
+    }, 1000);
+});
+
+// 4. LIVE TXT LOGIC: Real-time Marquee Updates
+function startLiveTxt() {
+    const marquee = document.getElementById('live-marquee'); // Ensure your HTML has id="live-marquee"
+    if(!marquee) return;
+    const activities = [
+        "New Student Enrolled via abid-khan-institute-hub...",
+        "USA Number Secured via Proxy Routing...",
+        "System Handshake with abid-pedagogy-db Successful...",
+        "UK Identity Verified: User ID 992X...",
+        "Secure Gateway: Always use abid-pedagogy-db for login...",
+        "LIVE TXT: Provisioning Virtual Proxy Asset..."
+    ];
+    setInterval(() => {
+        const randomAct = activities[Math.floor(Math.random() * activities.length)];
+        marquee.innerHTML += ` &nbsp; | &nbsp; <span class="text-info">${randomAct}</span>`;
+    }, 5000);
+}
+
+// 5. tEST MODE TRIGGER: 5 Clicks Handshake
+const titleElem = document.getElementById('main-portal-title');
+if(titleElem) {
+    titleElem.addEventListener('click', () => {
         tCount++;
         if(tCount === 5) { 
-            document.getElementById('main-portal-title').innerText = "tEST MODE ACTIVE";
+            titleElem.innerText = "tEST MODE ACTIVE";
             document.body.style.border = "5px solid var(--gold)";
-            console.log("HANDSHAKE: Connected to abid-khan-institute-hub");
             alert("tEST Mode Activated: Handshaking with abid-khan-institute-hub. Syncing with abid-pedagogy-db.");
+            logActivity('SMS', 'DEBUG', 'tEST Mode Admin Access Granted');
+            tCount = 0; 
         }
     });
+}
 
-    // 5. PURCHASE & MODAL HANDLING
-    const numberPool = {
-        "USA": ["+1 (202) 555-0144", "+1 (415) 555-0198"],
-        "UK": ["+44 7700 900077", "+44 7700 900555"],
-        "Canada": ["+1 (613) 555-0177", "+1 (778) 555-0189"]
-    };
-
-    function initiatePurchase(region, amount) {
-        document.getElementById('wire-amount').innerText = amount;
-        const selector = document.getElementById('number-selector');
-        
-        // Reset and populate number pool
-        selector.innerHTML = `<option value="" selected disabled>Select Your ${region} Proxy</option>`;
+// 6. PROCUREMENT & MODAL HANDLING
+function initiatePurchase(region, amount) {
+    document.getElementById('wire-amount').innerText = amount;
+    const selector = document.getElementById('number-selector');
+    
+    // Fill selector with regional pool
+    selector.innerHTML = `<option value="" selected disabled>Select Your ${region} Proxy</option>`;
+    if(numberPool[region]) {
         numberPool[region].forEach(num => {
             let opt = document.createElement('option');
             opt.value = num; opt.innerHTML = num;
             selector.appendChild(opt);
         });
-
-        document.getElementById('guest-selection-view').style.display = 'block';
-        document.getElementById('payment-gate-view').style.display = 'none';
-        document.getElementById('auth-warning').style.display = 'none';
-
-        new bootstrap.Modal(document.getElementById('paymentModal')).show();
     }
 
-    // 6. AUTHENTICATION GATE LOGIC (REPAIRED)
-    function checkAuthToProceed() {
-        const selectedNum = document.getElementById('number-selector').value;
-        if (!selectedNum) return;
+    // Modal UI Reset
+    document.getElementById('guest-selection-view').style.display = 'block';
+    document.getElementById('payment-gate-view').style.display = 'none';
+    document.getElementById('auth-warning').style.display = 'none';
 
-        if (currentUser) {
-            // IF LOGGED IN: Proceed to Payment View
-            document.getElementById('guest-selection-view').style.display = 'none';
-            document.getElementById('payment-gate-view').style.display = 'block';
-            document.getElementById('chosen-number-display').innerText = selectedNum;
-            
-            // Auto-fill from Persistence Logic
-            document.getElementById('auto-name').value = currentUser.name;
-            document.getElementById('auto-email').value = "Verified Session: abid-pedagogy-db";
-        } else {
-            // IF GUEST: Force Signup in abid-khan-institute-hub
-            document.getElementById('auth-warning').style.display = 'block';
-        }
+    const pModal = new bootstrap.Modal(document.getElementById('paymentModal'));
+    pModal.show();
+    
+    logActivity('UPLINK', 'GATEWAY', `Initiated ${region} Procurement Flow`);
+}
+
+// 7. AUTHENTICATION GATE LOGIC
+function checkAuthToProceed() {
+    const selectedNum = document.getElementById('number-selector').value;
+    if (!selectedNum) return;
+
+    if (currentUser) {
+        document.getElementById('guest-selection-view').style.display = 'none';
+        document.getElementById('payment-gate-view').style.display = 'block';
+        document.getElementById('chosen-number-display').innerText = selectedNum;
+        document.getElementById('auto-name').value = currentUser.name;
+    } else {
+        document.getElementById('auth-warning').style.display = 'block';
     }
+}
 
-    // 7. UTILITIES & FORM SUBMISSION
-    function copyWalletID() {
-        navigator.clipboard.writeText("923497469638");
-        alert("Wallet ID Copied!");
-    }
+// 8. ACTIVITY LOGGING ENGINE (UI REPAIR PART 6)
+function logActivity(type, app, message) {
+    const tableBody = document.getElementById('user-history-body');
+    if(!tableBody) return;
 
-    const wireForm = document.getElementById('wire-proof-form');
-    if(wireForm) {
-        wireForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert("Procurement Logged. Redirecting to IT LAB for Routing.");
-            window.location.href = "IT.html";
-        });
-    }
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+    const isUplink = type === 'UPLINK' || type === 'SMS';
+    const statusClass = isUplink ? 'bg-success-soft text-success' : 'bg-primary-soft text-primary';
+    const statusText = isUplink ? 'VERIFIED' : 'CLEARED';
 
-    /* END: MASTER LOGIC SCRIPT */
-</script>
+    const row = `
+        <tr style="background: transparent; animation: fadeIn 0.5s ease;">
+            <td><span class="text-success"><i class="fas fa-microchip me-2"></i>${type}</span></td>
+            <td class="fw-bold text-uppercase">${app}</td>
+            <td class="text-muted font-monospace text-white">${message}</td>
+            <td><span class="badge rounded-pill ${statusClass} border border-info" style="font-size: 9px;">${statusText}</span></td>
+            <td class="text-end text-secondary">${timeStr}</td>
+        </tr>
+    `;
+    
+    tableBody.innerHTML = row + tableBody.innerHTML;
+}
+
+// 9. UTILITIES & REDIRECTION
+function copyWalletID() {
+    navigator.clipboard.writeText("923497469638");
+    alert("Wallet ID Copied!");
+}
+
+const wireForm = document.getElementById('wire-proof-form');
+if(wireForm) {
+    wireForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert("Procurement Logged. Redirecting to IT LAB for Routing.");
+        window.location.href = "IT.html";
+    });
+}
+
+// 10. UI REPAIRING - AUTO-INITIALIZE ACTIVITY LOGS
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => logActivity('SMS', 'WHATSAPP', 'Verification Code Sent to +1...0144'), 800);
+    setTimeout(() => logActivity('UPLINK', 'SYSTEM', 'abid-pedagogy-db Sync Complete'), 1500);
+});
+
+/* END: MASTER LOGIC SCRIPT V3.6 */
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"aa3921a6fe82429fb1627a0575b5610a","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
