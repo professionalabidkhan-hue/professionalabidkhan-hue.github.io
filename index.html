@@ -16,8 +16,39 @@
     --gold: #FFD700; 
     --dark-bg: #030407; 
     --islamic-green: #00c853;
+        --gold: #FFD700;
+    --deep-blue: #001f3f;
+}
+.navbar-custom {
+    background-color: var(--deep-blue);
+    padding: 10px 0;
 }
 
+/* Unique Distinguished Online Shopping Button */
+.btn-online-shopping {
+    background: linear-gradient(45deg, #007bff, #00d4ff);
+    color: white !important;
+    border: none;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.btn-online-shopping:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
+    background: linear-gradient(45deg, #00d4ff, #007bff);
+}
+
+.gap-2 {
+    gap: 10px !important;
+}
+/* END: NAV REFINEMENT & SHOPPING BUTTON STYLES */
 body {
     background-color: var(--dark-bg); 
     color: #fff; 
@@ -113,10 +144,14 @@ body {
             <img src="ABID KHAN.png" width="40" height="40" class="rounded-circle me-2" style="border: 2px solid var(--gold);">
             <span class="fw-bold" style="font-family:'Orbitron'">ABID KHAN E-INSTITUTE</span>
         </a>
-        <a href="IT.html" class="btn btn-outline-info btn-sm x-small">IT LAB</a>
+
+        <div class="d-flex align-items-center gap-2">
+            <a href="products.html" class="btn btn-online-shopping btn-sm">ONLINE SHOPPING</a>
+            
+            <a href="IT.html" class="btn btn-outline-info btn-sm x-small">IT LAB</a>
+        </div>
     </div>
 </nav>
-
 <div class="container text-center py-4">
     <h1 id="main-portal-title" style="font-family:'Orbitron'; font-weight:900; letter-spacing: 2px; cursor: pointer;">
         DISTINGUISHED GENIUS PORTAL
@@ -592,7 +627,13 @@ function logActivity(type, app, message) {
     tableBody.innerHTML = `<tr><td>${type}</td><td class="fw-bold">${app}</td><td>${message}</td><td>VERIFIED</td><td>${timeStr}</td></tr>` + tableBody.innerHTML;
 }
 
-// END: MASTER SCRIPT V7.3
+    /* START: LOG NAVIGATION STATUS */
+document.querySelectorAll('.navbar a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        console.log(`Distinguished user navigating to: ${e.target.href}`);
+    });
+});
+/* END: LOG NAVIGATION STATUS */
 </script>
 
 
