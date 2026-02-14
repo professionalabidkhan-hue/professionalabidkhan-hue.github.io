@@ -1,343 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABID KHAN E-INSTITUTE | Elite Security Hub</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ABID KHAN E-INSTITUTE | Mobile Elite</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --primary-blue: #0b63d3;
-            --cyber-cyan: #00d4ff; 
-            --it-purple: #a855f7;
-            --dark-bg: #030407;
-            --gold: #FFD700;
-            --islamic-green: #00c853;
-        }
-/* START: UI REPAIR - SMART PROTECTION V2.0 */
-body {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    /* Prevents blue highlight on mobile/desktop but allows clicks */
-    -webkit-tap-highlight-color: transparent;
-}
+    /* START: SYSTEM CLEANUP - ANDROID OPTIMIZED */
+    :root {
+        --cyber-cyan: #00d4ff; --gold: #FFD700; --dark-bg: #030407; --islamic-green: #00c853;
+    }
 
-/* RE-ENABLE INTERACTION FOR BUTTONS AND LINKS */
-button, 
-a, 
-input, 
-select, 
-.copy-btn, 
-.clickable {
-    -webkit-user-select: auto !important;
-    -moz-user-select: auto !important;
-    -ms-user-select: auto !important;
-    user-select: auto !important;
-    pointer-events: auto !important; /* This ensures clicks pass through */
-    cursor: pointer;
-}
+    body {
+        background-color: var(--dark-bg); color: #fff; font-family: 'Inter', sans-serif;
+        margin: 0; padding: 0; overflow-x: hidden; width: 100%;
+        -webkit-font-smoothing: antialiased;
+    }
 
-/* END: UI REPAIR */
-        body { background-color: var(--dark-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; user-select: none; }
+    /* GLOBAL CLEANUP */
+    * { box-sizing: border-box; }
+    .glitch-text { font-family: 'Orbitron', sans-serif; color: var(--gold); letter-spacing: 1px; }
 
-        /* TREMENDOUS SCANNING LOADER */
-        #loader-wrapper {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--dark-bg); display: flex; flex-direction: column;
-            align-items: center; justify-content: center; z-index: 9999;
-        }
-        .scanning-pulse { width: 100px; height: 100px; border: 3px solid var(--primary-blue); border-radius: 50%; position: relative; animation: pulse 1.5s infinite; }
-        .scanning-line { position: absolute; width: 100%; height: 2px; background: var(--cyber-cyan); top: 50%; box-shadow: 0 0 15px var(--cyber-cyan); animation: scan 2s linear infinite; }
-        @keyframes pulse { 0% { transform: scale(0.9); opacity: 1; } 100% { transform: scale(1.2); opacity: 0; } }
-        @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
+    /* CARD ARCHITECTURE */
+    .it-btn {
+        transition: transform 0.3s ease;
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 15px;
+        width: 100%; /* Ensures full width on mobile stack */
+    }
 
-        .navbar-custom { background: rgba(3, 4, 7, 0.95); border-bottom: 2px solid var(--it-purple); padding: 15px 0; }
+    /* 6th PART: UI REPAIRING - MOBILE ONE-COLUMN LOGIC */
+    @media (max-width: 768px) {
+        .container { padding-left: 15px; padding-right: 15px; }
         
+        /* Forces Top-to-Bottom Stack */
+        .row { 
+            display: block !important; 
+            margin: 0 !important;
+        }
+        
+        .col-md-4, .col-md-6 { 
+            width: 100% !important; 
+            padding: 0 !important; 
+            margin-bottom: 20px;
+        }
+
+        h1#main-portal-title { font-size: 1.1rem !important; margin-top: 30px !important; }
+        
+        /* Fix Table for Mobile View */
+        .table-responsive { border: none; }
+        #user-history-body tr { 
+            display: block; 
+            border-bottom: 1px solid #222; 
+            padding: 10px 0; 
+            background: transparent;
+        }
+        #user-history-body td { 
+            display: inline-block; 
+            padding: 2px 10px; 
+            font-size: 9px;
+        }
+    }
+
+    /* BUTTONS */
+    .btn-green-pay { background: var(--islamic-green); color: #fff; border: none; font-weight: 700; border-radius: 8px; }
+    .btn-green-pay:hover { background: #00a041; color: #fff; }
+
+    /* INPUT GROUP CLEANUP */
+    .input-group .form-select { background: #000; color: #fff; border-color: #444; font-size: 0.8rem; }
+ /* Fix for large Dua and Android scaling */
+    .dua-header {
+        font-size: 28px !important; /* Scaled for Android mobile */
+        color: var(--gold);
+        font-family: serif;
+        text-align: center;
+        padding: 20px 10px;
+        line-height: 1.4;
+    }
+
+    /* Navbar Mobile Fix */
+    .navbar-custom {
+        background: rgba(3, 4, 7, 0.95);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+    }
+    
+    .navbar-brand span {
+        font-size: 0.8rem; /* Keeps name on one line on small phones */
+    }
+
+    /* One-Column Stack for Android */
+    @media (max-width: 768px) {
+        .dua-header { font-size: 22px !important; }
+        
+        /* Forces all cards to stack Top-to-Bottom */
+        .row {
+            display: flex !important;
+            flex-direction: column !important;
+            margin: 0 !important;
+        }
+        
+        .col-md-6 {
+            width: 100% !important;
+            padding: 10px 0 !important;
+        }
+
         .success-card {
-            transition: 0.4s;
-            border: 1px solid rgba(168, 85, 247, 0.2);
-            background: rgba(255, 255, 255, 0.02);
-            position: relative; overflow: hidden;
-        }
-        .success-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+            margin-bottom: 15px;
+            padding: 20px !important;
         }
 
-        .glitch-text {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            color: var(--gold);
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        h3 { font-size: 1.2rem !important; }
+        
+        #main-portal-title {
+            font-size: 1.3rem !important;
+            margin-top: 20px !important;
         }
+    }
 
-        /* 6th PART: UI REPAIRING - TICKER & FORMS */
-        .ticker-wrap { background: rgba(168, 85, 247, 0.1); border-radius: 50px; padding: 8px 20px; display: inline-block; border: 1px solid rgba(168, 85, 247, 0.3); }
-        .x-small { font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; }
-        #wire-proof-form .form-control, #wire-proof-form .form-select, #number-selector { 
-            border-radius: 8px; font-size: 0.9rem; margin-bottom: 10px; background: #000; color: #fff; border: 1px solid #444; 
-        }
-        #wire-proof-form .form-control:focus { border-color: var(--gold); box-shadow: none; }
-        .copy-btn { cursor: pointer; transition: 0.3s; }
-        .copy-btn:active { transform: scale(0.9); color: var(--islamic-green); }
-        /* START: VIRTUAL ORIGIN & ACTIVITY LOG CSS */
-.hover-glow {
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-}
-
-.hover-glow:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2) !important;
-    border-color: var(--gold) !important;
-}
-
-/* Card Price Pulse */
-.text-info.h3 {
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-}
-
-/* Activity Log Styling */
-#user-history-body tr {
-    border-bottom: 1px solid rgba(168, 85, 247, 0.1);
-    transition: background 0.3s;
-}
-
-#user-history-body tr:hover {
-    background: rgba(168, 85, 247, 0.05);
-}
-
-.bg-success-soft { background: rgba(0, 200, 83, 0.1) !important; }
-.bg-primary-soft { background: rgba(11, 99, 211, 0.1) !important; }
-
-/* 6th PART: UI REPAIRING - TABLE SCROLLBAR */
-.table-responsive::-webkit-scrollbar {
-    height: 4px;
-}
-.table-responsive::-webkit-scrollbar-thumb {
-    background: var(--it-purple);
-    border-radius: 10px;
-}
-/* END: VIRTUAL ORIGIN & ACTIVITY LOG CSS */
     </style>
-    </head>
+</head>
 <body>
+<style>
+    /* Fix for large Dua and Android scaling */
+    .dua-header {
+        font-size: 28px !important; /* Scaled for Android mobile */
+        color: var(--gold);
+        font-family: serif;
+        text-align: center;
+        padding: 20px 10px;
+        line-height: 1.4;
+    }
 
-<div id="loader-wrapper">
-    <div class="scanning-pulse"><div class="scanning-line"></div></div>
-    <div style="margin-top:20px; font-family:'Orbitron'; color:var(--gold); font-size: 12px;">SECURE INITIALIZATION...</div>
+    /* Navbar Mobile Fix */
+    .navbar-custom {
+        background: rgba(3, 4, 7, 0.95);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+    }
+    
+    .navbar-brand span {
+        font-size: 0.8rem; /* Keeps name on one line on small phones */
+    }
+
+    /* One-Column Stack for Android */
+    @media (max-width: 768px) {
+        .dua-header { font-size: 22px !important; }
+        
+        /* Forces all cards to stack Top-to-Bottom */
+        .row {
+            display: flex !important;
+            flex-direction: column !important;
+            margin: 0 !important;
+        }
+        
+        .col-md-6 {
+            width: 100% !important;
+            padding: 10px 0 !important;
+        }
+
+        .success-card {
+            margin-bottom: 15px;
+            padding: 20px !important;
+        }
+
+        h3 { font-size: 1.2rem !important; }
+        
+        #main-portal-title {
+            font-size: 1.3rem !important;
+            margin-top: 20px !important;
+        }
+    }
+</style>
+
+<div class="mt-5">
+    <h1 class="dua-header">
+        اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ
+    </h1>
 </div>
-      <div class="mt-5">
-            <h1 style="font-size: 38px; color: var(--gold); font-family: serif;"><cener>ا للَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ </cener></h1>
-        </div>
-    </div>
+
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
-    <div class="container">
+    <div class="container d-flex justify-content-between align-items-center">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
-            <img src="ABID KHAN.png" width="50" height="50" class="rounded-circle me-2" style="border: 2px solid var(--gold);">
+            <img src="ABID KHAN.png" width="40" height="40" class="rounded-circle me-2" style="border: 2px solid var(--gold);">
             <span class="fw-bold" style="font-family:'Orbitron'">ABID KHAN E-INSTITUTE</span>
         </a>
-        <div class="ms-auto">
-     
-            <a href="IT.html" class="btn btn-outline-info btn-sm">IT LAB</a>
-        </div>
+        <a href="IT.html" class="btn btn-outline-info btn-sm x-small">IT LAB</a>
     </div>
 </nav>
-     
-   <div class="container text-center py-5">
-    <h1 id="main-portal-title" style="font-family:'Orbitron'; font-weight:900; margin-top:40px; letter-spacing: 2px; cursor: pointer;">DISTINGUISHED GENIUS PORTAL</h1>
-    <p class="text-secondary">Global Sovereign Architecture & Security Hub</p>
+
+<div class="container text-center py-4">
+    <h1 id="main-portal-title" style="font-family:'Orbitron'; font-weight:900; letter-spacing: 2px; cursor: pointer;">
+        DISTINGUISHED GENIUS PORTAL
+    </h1>
+    <p class="text-secondary small">Global Sovereign Architecture & Security Hub</p>
     
-    <div class="ticker-wrap mt-3">
+    <div class="ticker-wrap mt-3" style="background: rgba(0,212,255,0.05); padding: 8px; border-radius: 50px; border: 1px solid #222;">
         <span class="x-small text-secondary">LIVE FEED: </span>
-        <marquee id="live-marquee" style="width: 300px; vertical-align: middle;" class="x-small text-info fw-bold">
+        <marquee id="live-marquee" style="width: 200px; vertical-align: middle;" class="x-small text-info fw-bold">
             Handshaking with abid-pedagogy-db... Uplink Secure...
         </marquee>
     </div>
 
     <div class="row g-4 mt-4">
         <div class="col-md-6">
-            <div class="p-4 rounded-3 success-card">
+            <div class="p-4 rounded-3 success-card h-100" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(0,212,255,0.2);">
                 <i class="fas fa-shield-halved fa-3x text-info mb-3"></i>
-                <h3>REGISTRATION ABID KHAN</h3>
-                <p class="small text-warning fw-bold">JOIN OUR ELITE GATEWAY</p>
-                <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-primary w-100 fw-bold">ENTER GATEWAY</a>
+                <h3 style="font-family:'Orbitron'">REGISTRATION</h3>
+                <p class="small text-warning fw-bold">ELITE WORKER ACCESS</p>
+                <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-primary w-100 fw-bold py-2">ENTER GATEWAY</a>
             </div>
         </div>
+
         <div class="col-md-6"> 
-            <div class="p-4 rounded-3 success-card">
+            <div class="p-4 rounded-3 success-card h-100" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(0,212,255,0.2);">
                 <i class="fas fa-book-quran fa-3x text-success mb-3"></i>
-                <h3>ISLAMIC STUDIES</h3>
+                <h3 style="font-family:'Orbitron'">ISLAMIC STUDIES</h3>
                 <p class="small text-warning fw-bold">WISDOM MODULES</p>
-                <a href="islamic_studies.html" class="btn btn-primary w-100 fw-bold">ENTER GATEWAY</a>
+                <a href="islamic_studies.html" class="btn btn-primary w-100 fw-bold py-2">ENTER GATEWAY</a>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container text-center mb-5">
-    <div class="currency-panel d-inline-flex align-items-center p-2 rounded-pill shadow-sm">
-        <span class="x-small fw-bold text-info me-3 ps-3"><i class="fas fa-sync-alt me-2"></i>MARKET SYNC:</span>
-        <div class="btn-group" role="group">
-            <button type="button" id="btn-usd" class="btn btn-sm btn-info active" onclick="setCurrency('USD')">USD ($)</button>
-            <button type="button" id="btn-pkr" class="btn btn-sm btn-outline-info" onclick="setCurrency('PKR')">PKR (Rs.)</button>
-        </div>
-    </div>
-</div>
+<script>
+    // Security and Android Error Watcher
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    
+    // Auto-fix for mobile height glitches
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+</script>
+<div class="container text-center py-4">
+    <h1 id="main-portal-title" class="glitch-text" style="cursor: pointer;">DISTINGUISHED GENIUS PORTAL</h1>
+    <p class="text-secondary small mb-3">abid-pedagogy-db | Hub v6.1</p>
 
-<div class="row g-4">
-    <div class="col-md-4">
-        <div class="it-btn text-center p-4">
-            <i class="fas fa-flag-usa fa-3x text-primary mb-3"></i>
-            <h4 class="fw-bold h5" style="font-family: 'Orbitron';">USA VIRTUAL NUMBER</h4>
-            <div class="price-display my-3">
-                <span class="symbol h3 text-info" id="sym-usa">$</span>
-                <span class="val h2 fw-bold text-white" id="val-usa">120</span>
-                <span class="x-small text-muted">/YR</span>
-            </div>
-            <button class="btn btn-primary w-100 fw-bold x-small" onclick="initiatePurchase('USA', 120)">BUY NOW</button>
-        </div>
+    <div style="background: rgba(0,212,255,0.05); border-radius: 50px; padding: 5px 15px; border: 1px solid #111; display: inline-block; width: 90%; max-width: 400px;">
+        <marquee id="live-marquee" class="small text-info fw-bold" scrollamount="4">
+            System Uplink Active... Synchronizing with abid-khan-institute-hub...
+        </marquee>
     </div>
 
-    <div class="col-md-4">
-        <div class="it-btn text-center p-4">
-            <i class="fas fa-gb-england fa-3x text-warning mb-3" style="color:#cf142b !important;"></i>
-            <h4 class="fw-bold h5" style="font-family: 'Orbitron';">UK VIRTUAL NUMBER</h4>
-            <div class="price-display my-3">
-                <span class="symbol h3 text-info" id="sym-uk">$</span>
-                <span class="val h2 fw-bold text-white" id="val-uk">110</span>
-                <span class="x-small text-muted">/YR</span>
-            </div>
-            <button class="btn btn-info text-white w-100 fw-bold x-small" onclick="initiatePurchase('UK', 110)">BUY NOW</button>
+    <div class="my-4">
+        <div class="btn-group w-75">
+            <button id="btn-usd" class="btn btn-sm btn-info active" onclick="syncPrice('USD')">USD</button>
+            <button id="btn-pkr" class="btn btn-sm btn-outline-info" onclick="syncPrice('PKR')">PKR</button>
         </div>
     </div>
 
-    <div class="col-md-4">
-        <div class="it-btn text-center p-4">
-            <i class="fab fa-canadian-maple-leaf fa-3x text-danger mb-3"></i>
-            <h4 class="fw-bold h5" style="font-family: 'Orbitron';">CANADA VIRTUAL NUMBER</h4>
-            <div class="price-display my-3">
-                <span class="symbol h3 text-info" id="sym-can">$</span>
-                <span class="val h2 fw-bold text-white" id="val-can">105</span>
-                <span class="x-small text-muted">/YR</span>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="it-btn">
+                <i class="fas fa-flag-usa fa-2x text-primary mb-2"></i>
+                <div class="small fw-bold">USA PROXY</div>
+                <div class="h4 my-2"><span id="sym-usa">$</span><span id="val-usa">120</span></div>
+                <button class="btn btn-primary btn-sm w-100" onclick="openAsset('USA', 120)">SELECT</button>
             </div>
-            <button class="btn btn-danger w-100 fw-bold x-small" onclick="initiatePurchase('Canada', 105)">BUY NOW</button>
         </div>
-    </div>
-</div>
-<style>
-    /* 6th PART: UI REPAIRING - GREEN PAYMENT MODAL */
-    .payment-confirmation-box {
-        background: rgba(0, 200, 83, 0.05);
-        border: 2px solid var(--islamic-green);
-        border-radius: 15px;
-        padding: 20px;
-        color: #fff;
-    }
-    .btn-green-pay {
-        background-color: var(--islamic-green);
-        color: white;
-        font-weight: 800;
-        border: none;
-        transition: 0.3s;
-    }
-    .btn-green-pay:hover {
-        background-color: #00a041;
-        box-shadow: 0 0 15px var(--islamic-green);
-        color: white;
-    }
-    .modal-backdrop.show { opacity: 0.8; backdrop-filter: blur(5px); }
-</style>
-
-<div class="modal fade" id="abidKhanPaymentModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark border-0 shadow-lg" style="border-radius: 25px; overflow: hidden;">
-            <div class="p-2 bg-success text-center text-white x-small fw-bold">
-                SECURE TRANSACTION GATEWAY
+        <div class="col-md-4">
+            <div class="it-btn">
+                <i class="fas fa-gb-england fa-2x text-warning mb-2"></i>
+                <div class="small fw-bold">UK PROXY</div>
+                <div class="h4 my-2"><span id="sym-uk">$</span><span id="val-uk">110</span></div>
+                <button class="btn btn-info text-white btn-sm w-100" onclick="openAsset('UK', 110)">SELECT</button>
             </div>
-            <div class="modal-body p-4 text-center">
-                <i class="fas fa-wallet fa-4x text-success mb-3"></i>
-                <h4 class="glitch-text mb-3" style="color: var(--islamic-green);">PAYMENT CONFIRMATION</h4>
-                
-                <div class="payment-confirmation-box mb-4 text-start">
-                    <p class="small mb-2"><i class="fas fa-info-circle me-2"></i> <b>INSTRUCTIONS:</b></p>
-                    <p class="x-small text-secondary">
-                        By clicking below, you acknowledge that you are sending this payment to 
-                        <b class="text-white">ABID KHAN GWALLET</b> to purchase a 
-                        <span id="popup-country-name" class="text-info fw-bold"></span> virtual number.
-                    </p>
-                    <hr class="border-secondary">
-                    <div class="d-flex justify-content-between">
-                        <span class="x-small">TARGET WALLET:</span>
-                        <span class="x-small fw-bold text-success">923497469638</span>
-                    </div>
-                </div>
-
-                <p class="small text-warning mb-4">"I understand the amount will be deducted from my account to finalize this asset procurement."</p>
-
-                <div class="d-grid gap-2">
-                    <button class="btn btn-green-pay py-3" onclick="proceedToSignup()">
-                        SUBMIT & GET NUMBER SIGNUP
-                    </button>
-                    <button class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">CANCEL</button>
-                </div>
+        </div>
+        <div class="col-md-4">
+            <div class="it-btn">
+                <i class="fab fa-canadian-maple-leaf fa-2x text-danger mb-2"></i>
+                <div class="small fw-bold">CANADA PROXY</div>
+                <div class="h4 my-2"><span id="sym-can">$</span><span id="val-can">105</span></div>
+                <button class="btn btn-danger btn-sm w-100" onclick="openAsset('Canada', 105)">SELECT</button>
             </div>
         </div>
     </div>
 </div>
-<style>
-/* Part 6: UI Repairing - Card Hover & Font Fixes */
-.hover-glow:hover {
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2) !important;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-}
-.x-small { font-size: 0.75rem; letter-spacing: 1px; }
-</style>
-<section class="container py-5 mt-2">
-    <div class="p-4 rounded-3 border border-info" style="background: rgba(0, 212, 255, 0.05);">
-        <h5 class="fw-bold text-white mb-4" style="font-family:'Orbitron';"><i class="fas fa-shield-alt me-2 text-info"></i>IDENTITY ACTIVITY LOG</h5>
-        <div class="table-responsive">
-            <table class="table table-dark table-hover align-middle" style="font-size: 12px;">
-                <thead class="text-info x-small">
-                    <tr>
-                        <th>PROTOCOL</th><th>SOURCE APP</th><th>DATA PAYLOAD</th><th>STATUS</th><th class="text-end">TIME</th>
-                    </tr>
-                </thead>
-                <tbody id="user-history-body">
-                    </tbody>
-            </table>
-        </div>
-    </div>
-</section>
-
 <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-dark border border-warning" style="border-radius: 20px;">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title glitch-text" style="font-size: 0.9rem;"><i class="fas fa-vault me-2"></i> GATEWAY ACCESS</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
             <div class="modal-body p-4 text-center">
+                
                 <div id="guest-selection-view">
-                    <p class="x-small text-info mb-3">VIRTUAL PROXY SELECTION</p>
-                    <select class="form-select mb-3" id="number-selector" onchange="checkAuthToProceed()"></select>
+                    <p class="x-small text-info mb-3">VIRTUAL PROXY NUMBER SELECTION</p>
+                    <select class="form-select mb-3" id="number-selector" onchange="checkAuthToProceed()">
+                        </select>
                     <div id="auth-warning" class="p-3 mb-3 border border-danger rounded-3" style="display:none; background: rgba(255,0,0,0.1);">
-                        <p class="x-small text-danger fw-bold">IDENTIFICATION REQUIRED</p>
-                        <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-sm btn-danger w-100">SIGNUP NOW</a>
+                        <p class="x-small text-danger fw-bold mb-2">IDENTIFICATION REQUIRED</p>
+                        <p class="small">You must register your profile in <b>abid-khan-institute-hub</b> to secure this number.</p>
+                        <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-sm btn-danger w-100">SIGNUP / LOGIN NOW</a>
                     </div>
                 </div>
 
                 <div id="payment-gate-view" style="display:none;">
-                    <div class="p-3 mb-3 rounded-3" style="border: 2px solid var(--gold);">
-                        <h3 class="text-white fw-bold d-inline-block">923497469638</h3>
-                        <i class="fas fa-copy ms-2 text-info copy-btn" onclick="copyWalletID()"></i>
+                    <p class="small text-secondary mb-1">RECEIVER: <span class="text-warning">ABID KHAN</span></p>
+                    <div class="p-3 mb-3 rounded-3" style="background: rgba(255, 215, 0, 0.05); border: 2px solid var(--gold);">
+                        <h6 class="text-muted small mb-1">GOOGLE PAY WALLET ID</h6>
+                        <h3 class="text-white fw-bold d-inline-block" id="wallet-id">923497469638</h3>
+                        <i class="fas fa-copy ms-2 text-info copy-btn" onclick="copyWalletID()" title="Copy ID"></i>
                     </div>
+                    
+                    <form id="wire-proof-form">
+                        <div class="row g-2 mb-3">
+                            <div class="col-6"><div class="p-2 border border-secondary bg-black x-small"><span class="text-muted d-block">AMOUNT</span><span id="wire-amount" class="fw-bold">$0.00</span></div></div>
+                            <div class="col-6"><div class="p-2 border border-secondary bg-black x-small"><span class="text-muted d-block">RESERVED</span><span id="chosen-number-display" class="fw-bold">---</span></div></div>
+                        </div>
+                        <input type="text" id="auto-name" class="form-control" placeholder="Full Name" required readonly>
+                        <input type="text" id="auto-email" class="form-control" placeholder="Email Address" required readonly>
+                        <input type="text" class="form-control" placeholder="Transaction ID" required>
+                        <div class="text-start mb-2"><label class="x-small text-muted">Proof Screenshot</label><input type="file" class="form-control" required></div>
+                        <button type="submit" class="btn btn-warning w-100 fw-bold">FINALIZE PROCUREMENT</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
                     <form id="wire-proof-form">
                         <div class="row g-2 mb-3">
                             <div class="col-6"><div class="p-2 border border-secondary x-small">AMOUNT <span id="wire-amount" class="d-block fw-bold"></span></div></div>
@@ -417,7 +404,7 @@ select,
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </section>
 
 <section class="container py-5 mt-2">
@@ -510,6 +497,7 @@ select,
         </div>
     </div>
 </div>
+
 <footer class="mt-5 pt-5 pb-4 border-top border-secondary text-center">
     <div class="container">
         <h4 class="glitch-text" style="font-size: 1rem;">ABID KHAN E-INSTITUTE</h4>
@@ -519,15 +507,17 @@ select,
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/* START: MASTER UNIFIED LOGIC V4.0 | ABID KHAN E-INSTITUTE */
-/* INTEGRATING: abid-khan-institute-hub & abid-pedagogy-db */
+/* START: TREMENDOUS MASTER UNIFIED LOGIC V5.0 | ABID KHAN E-INSTITUTE 
+   CORE: abid-khan-institute-hub & abid-pedagogy-db
+   FEATURES: Android Optimization, Currency Sync, Security Lockdown, & Session Management
+*/
 
 // 1. GLOBAL STATE & CONFIG
 let currentUser = null;
 let tCount = 0;
 let selectedCountry = "";
 const PKR_RATE = 285; 
-const data = { usa: 120, uk: 110, can: 105 };
+const assetPrices = { usa: 120, uk: 110, can: 105 };
 
 // Virtual Asset Pool
 const numberPool = {
@@ -541,8 +531,14 @@ window.addEventListener('load', () => {
     checkExistingSession();
     startLiveTxt();
     
+    // Initial UI Sync
+    syncCurrency('USD');
+    
     // System Handshake Log
-    setTimeout(() => logActivity('UPLINK', 'SYSTEM', 'abid-pedagogy-db Sync Complete'), 1000);
+    setTimeout(() => {
+        logActivity('UPLINK', 'SYSTEM', 'abid-pedagogy-db Sync Complete');
+        logActivity('AUTO', 'MOBILE', 'Android Interface Optimized');
+    }, 1000);
     
     // Loader Cleanup
     const loader = document.getElementById('loader-wrapper');
@@ -560,7 +556,7 @@ function checkExistingSession() {
     }
 }
 
-// 3. LIVE TXT LOGIC
+// 3. LIVE TXT ENGINE (Merged Logic)
 function startLiveTxt() {
     const marquee = document.getElementById('live-marquee');
     if(!marquee) return;
@@ -569,7 +565,8 @@ function startLiveTxt() {
         "USA Number Secured via Proxy Routing...",
         "System Handshake with abid-pedagogy-db Successful...",
         "UK Identity Verified: User ID 992X...",
-        "LIVE TXT: Provisioning Virtual Proxy Asset..."
+        "LIVE TXT: Provisioning Virtual Proxy Asset...",
+        "Android Interface Optimized for Security..."
     ];
     let i = 0;
     setInterval(() => {
@@ -593,51 +590,26 @@ if(titleElem) {
     });
 }
 
-// 5. GREEN PAYMENT & PROCUREMENT LOGIC
-function initiatePurchase(region, amount) {
-    selectedCountry = region;
+// 5. CURRENCY SYNC (Unified function)
+function syncCurrency(type) {
+    const btnUsd = document.getElementById('btn-usd');
+    const btnPkr = document.getElementById('btn-pkr');
     
-    // Update Popup Details
-    const countryNameDisplay = document.getElementById('popup-country-name');
-    if(countryNameDisplay) countryNameDisplay.innerText = region;
+    if(btnUsd) btnUsd.className = type === 'USD' ? 'btn btn-sm btn-info active' : 'btn btn-sm btn-outline-info';
+    if(btnPkr) btnPkr.className = type === 'PKR' ? 'btn btn-sm btn-info active' : 'btn btn-sm btn-outline-info';
 
-    // Open the Green Confirmation Popup
-    const payModal = new bootstrap.Modal(document.getElementById('abidKhanPaymentModal'));
-    payModal.show();
-    
-    logActivity('GATEWAY', 'ABID-GWALLET', `User viewing payment terms for ${region}`);
-}
-
-function proceedToSignup() {
-    const signupURL = "https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/"; 
-    alert("Terms Accepted. Redirecting to abid-khan-institute-hub for Signup.");
-    
-    logActivity('REDIRECT', 'SYSTEM', `Redirecting to Signup for ${selectedCountry} activation`);
-    
-    setTimeout(() => {
-        window.location.href = signupURL;
-    }, 800);
-}
-
-// 6. CURRENCY SYNC
-function setCurrency(type) {
-    document.getElementById('btn-usd').className = type === 'USD' ? 'btn btn-sm btn-info active' : 'btn btn-sm btn-outline-info';
-    document.getElementById('btn-pkr').className = type === 'PKR' ? 'btn btn-sm btn-info active' : 'btn btn-sm btn-outline-info';
-
-    for (let key in data) {
+    for (let key in assetPrices) {
         const valEl = document.getElementById(`val-${key}`);
         const symEl = document.getElementById(`sym-${key}`);
-        if (type === 'PKR') {
-            valEl.innerText = (data[key] * PKR_RATE).toLocaleString();
-            symEl.innerText = 'Rs.';
-        } else {
-            valEl.innerText = data[key];
-            symEl.innerText = '$';
+        if (valEl && symEl) {
+            const displayValue = type === 'PKR' ? (assetPrices[key] * PKR_RATE).toLocaleString() : assetPrices[key];
+            valEl.innerText = displayValue;
+            symEl.innerText = type === 'PKR' ? 'Rs.' : '$';
         }
     }
 }
 
-// 7. ACTIVITY LOGGING ENGINE
+// 6. ACTIVITY LOGGING ENGINE (Visual & Performance Cleaned)
 function logActivity(type, app, message) {
     const tableBody = document.getElementById('user-history-body');
     if(!tableBody) return;
@@ -658,49 +630,49 @@ function logActivity(type, app, message) {
     tableBody.innerHTML = row + tableBody.innerHTML;
 }
 
-// 8. UTILITIES
+// 7. PROCUREMENT & UTILITIES
+function initiatePurchase(region) {
+    selectedCountry = region;
+    const countryNameDisplay = document.getElementById('popup-country-name');
+    if(countryNameDisplay) countryNameDisplay.innerText = region;
+
+    const payModal = new bootstrap.Modal(document.getElementById('abidKhanPaymentModal'));
+    payModal.show();
+    logActivity('GATEWAY', 'ABID-GWALLET', `User initiating procurement for ${region}`);
+}
+
+function proceedToSignup() {
+    const signupURL = "https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/"; 
+    logActivity('REDIRECT', 'SYSTEM', `Handshaking with abid-khan-institute-hub`);
+    setTimeout(() => { window.location.href = signupURL; }, 800);
+}
+
 function copyWalletID() {
     navigator.clipboard.writeText("923497469638");
     alert("Abid Khan Wallet ID Copied!");
+    logActivity('BUFFER', 'SYNC', 'Wallet ID copied to clipboard');
 }
 
 /* START: MASTER SECURITY LOCKDOWN V6.0 */
-
-// 1. GLOBAL RIGHT-CLICK KILLER
-document.addEventListener('contextmenu', function(e) {
+document.addEventListener('contextmenu', e => {
     e.preventDefault();
     logActivity('SECURITY', 'MOUSE', 'Right-Click Attempt Blocked');
-    return false;
-}, false);
+});
 
-// 2. F12 & INSPECT KEY KILLER (Enhanced)
-document.addEventListener('keydown', function(e) {
-    // Disable F12
-    if(e.keyCode == 123) {
+document.addEventListener('keydown', e => {
+    // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+    if(e.keyCode == 123 || (e.ctrlKey && (e.shiftKey ? (e.keyCode == 73 || e.keyCode == 74) : e.keyCode == 85))) {
         e.preventDefault();
-        logActivity('SECURITY', 'CORE', 'F12 Lockdown Active');
-        return false;
+        logActivity('SECURITY', 'CORE', 'Developer Tools Lockdown');
     }
-    // Disable Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+U (Source)
-    if(e.ctrlKey && (e.shiftKey ? (e.keyCode == 73 || e.keyCode == 74) : e.keyCode == 85)) {
-        e.preventDefault();
-        logActivity('SECURITY', 'CORE', 'Source Protection Triggered');
-        return false;
-    }
-}, false);
+});
 
-// 3. ENSURE BUTTONS STILL WORK
-// This specifically allows your code to run even if 'select' is disabled
-document.addEventListener('mousedown', function(e) {
-    if (e.button === 2) { // Right click button index
-        e.preventDefault();
-    }
-}, false);
+// Android Error Watcher: Prevent Zoom-on-Input
+document.addEventListener('gesturestart', e => e.preventDefault());
 
-/* END: MASTER SECURITY LOCKDOWN */
-/* END: MASTER SECURITY HANDSHAKE */
-/* END: MASTER UNIFIED LOGIC V4.0 */
+/* END: MASTER UNIFIED LOGIC V5.0 */
 </script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"aa3921a6fe82429fb1627a0575b5610a","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
+
 </body>
 </html>
