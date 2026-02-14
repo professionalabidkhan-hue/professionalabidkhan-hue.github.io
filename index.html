@@ -183,7 +183,7 @@ body {
             <div class="it-btn">
                 <i class="fas fa-flag-usa fa-2x text-primary mb-2"></i>
                 <div class="small fw-bold">USA NUMBER</div>
-                <div class="h4 my-2"><span id="sym-usa">$</span><span id="val-usa">120</span></div>
+               <div class="h4 my-2"><span id="sym-usa">$</span><span id="val-usa">120</span></div>
                 <button class="btn btn-primary btn-sm w-100" onclick="openAsset('USA', 120)">SELECT</button>
             </div>
         </div>
@@ -191,7 +191,7 @@ body {
             <div class="it-btn">
                 <i class="fas fa-gb-england fa-2x text-warning mb-2"></i>
                 <div class="small fw-bold">UK NUMBER</div>
-                <div class="h4 my-2"><span id="sym-uk">$</span><span id="val-uk">110</span></div>
+               <div class="h4 my-2"><span id="sym-uk">$</span><span id="val-uk">110</span></div>
                 <button class="btn btn-info text-white btn-sm w-100" onclick="openAsset('UK', 110)">SELECT</button>
             </div>
         </div>
@@ -199,7 +199,7 @@ body {
             <div class="it-btn">
                 <i class="fab fa-canadian-maple-leaf fa-2x text-danger mb-2"></i>
                 <div class="small fw-bold">CANADA NUMBER</div>
-                <div class="h4 my-2"><span id="sym-can">$</span><span id="val-can">105</span></div>
+               <div class="h4 my-2"><span id="sym-can">$</span><span id="val-can">105</span></div>
                 <button class="btn btn-danger btn-sm w-100" onclick="openAsset('Canada', 105)">SELECT</button>
             </div>
         </div>
@@ -432,9 +432,9 @@ body {
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/* START: MASTER UNIFIED LOGIC V7.0 | ABID KHAN E-INSTITUTE 
+/* START: MASTER UNIFIED LOGIC V7.3 | ABID KHAN E-INSTITUTE 
    TARGET: abid-khan-institute-hub (Signup) & abid-pedagogy-db (Dashboard)
-   REPAIR: Added Live Exchange API & Fixed PKR Auto-Rate Logic
+   REPAIR: Live Exchange API, Fixed Symbol Swapping ($/Rs), & tEST Mode
 */
 
 // 1. GLOBAL STATE
@@ -454,7 +454,7 @@ window.addEventListener('load', async () => {
     // Await the live rate before syncing initial UI
     await fetchLiveExchangeRate();
     startLiveTxt();
-    syncCurrency('USD');
+    syncCurrency('USD'); // Default starting currency
     
     // Check for saved session
     const savedName = localStorage.getItem('user_name');
@@ -466,10 +466,9 @@ window.addEventListener('load', async () => {
     logActivity('UPLINK', 'SYSTEM', 'abid-pedagogy-db Handshake Complete');
 });
 
-// 3. LIVE EXCHANGE LOGIC (NEW)
+// 3. LIVE EXCHANGE LOGIC
 async function fetchLiveExchangeRate() {
     try {
-        // Fetching real-time USD to PKR rate
         const response = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json');
         const data = await response.json();
         livePkrRate = data.usd.pkr;
@@ -481,7 +480,7 @@ async function fetchLiveExchangeRate() {
     }
 }
 
-// 4. CURRENCY SYNC (REPAIRED)
+// 4. CURRENCY SYNC (DYNAMIC SYMBOLS & VALUES)
 function syncCurrency(type) {
     const btnUsd = document.getElementById('btn-usd');
     const btnPkr = document.getElementById('btn-pkr');
@@ -490,18 +489,26 @@ function syncCurrency(type) {
     if(btnUsd) btnUsd.className = type === 'USD' ? 'btn btn-sm btn-info active' : 'btn btn-sm btn-outline-info';
     if(btnPkr) btnPkr.className = type === 'PKR' ? 'btn btn-sm btn-info active' : 'btn btn-sm btn-outline-info';
 
-    // Update Display Prices across the Dashboard
+    // Target each country specifically to update Symbol AND Value
     ['usa', 'uk', 'can'].forEach(key => {
         const valEl = document.getElementById(`val-${key}`);
-        if (valEl) {
-            valEl.innerText = type === 'PKR' 
-                ? (assetPrices[key] * livePkrRate).toLocaleString(undefined, {maximumFractionDigits: 0}) 
-                : assetPrices[key];
+        const symEl = document.getElementById(`sym-${key}`);
+        
+        if (valEl && symEl) {
+            if (type === 'PKR') {
+                symEl.innerText = "Rs. ";
+                valEl.innerText = (assetPrices[key] * livePkrRate).toLocaleString(undefined, {maximumFractionDigits: 0});
+            } else {
+                symEl.innerText = "$";
+                valEl.innerText = assetPrices[key].toLocaleString();
+            }
         }
     });
+    
+    logActivity('SYNC', 'CURRENCY', `View switched to ${type}`);
 }
 
-// 5. MASTER MODAL & AUTH (FIXED)
+// 5. MASTER MODAL & AUTH
 function openAsset(country, price) {
     selectedCountry = country;
     const selector = document.getElementById('number-selector');
@@ -518,7 +525,7 @@ function openAsset(country, price) {
         selector.appendChild(opt);
     });
 
-    // Use Live Rate for Modal Price
+    // Update Modal Price based on active currency
     amountDisp.innerText = isPkrActive 
         ? `Rs. ${(price * livePkrRate).toLocaleString(undefined, {maximumFractionDigits:0})}` 
         : `$${price}.00`;
@@ -570,6 +577,7 @@ if(titleElem) {
     });
 }
 
+// LIVE TXT & UI REPAIRING LOGIC
 function startLiveTxt() {
     const marquee = document.getElementById('live-marquee');
     const activities = ["Syncing hub...", "USA Proxy Secured...", `PKR Rate: ${livePkrRate.toFixed(2)}`, "LIVE TXT Active"];
@@ -584,7 +592,7 @@ function logActivity(type, app, message) {
     tableBody.innerHTML = `<tr><td>${type}</td><td class="fw-bold">${app}</td><td>${message}</td><td>VERIFIED</td><td>${timeStr}</td></tr>` + tableBody.innerHTML;
 }
 
-// END: MASTER SCRIPT
+// END: MASTER SCRIPT V7.3
 </script>
 
 
