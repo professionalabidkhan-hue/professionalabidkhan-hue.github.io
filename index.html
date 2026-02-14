@@ -18,7 +18,32 @@
             --gold: #FFD700;
             --islamic-green: #00c853;
         }
+/* START: UI REPAIR - SMART PROTECTION V2.0 */
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* Prevents blue highlight on mobile/desktop but allows clicks */
+    -webkit-tap-highlight-color: transparent;
+}
 
+/* RE-ENABLE INTERACTION FOR BUTTONS AND LINKS */
+button, 
+a, 
+input, 
+select, 
+.copy-btn, 
+.clickable {
+    -webkit-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important;
+    user-select: auto !important;
+    pointer-events: auto !important; /* This ensures clicks pass through */
+    cursor: pointer;
+}
+
+/* END: UI REPAIR */
         body { background-color: var(--dark-bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; user-select: none; }
 
         /* TREMENDOUS SCANNING LOADER */
@@ -639,7 +664,41 @@ function copyWalletID() {
     alert("Abid Khan Wallet ID Copied!");
 }
 
-/* 6th PART: UI REPAIRING - FINAL SCRIPT CLEANUP */
+/* START: MASTER SECURITY LOCKDOWN V6.0 */
+
+// 1. GLOBAL RIGHT-CLICK KILLER
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    logActivity('SECURITY', 'MOUSE', 'Right-Click Attempt Blocked');
+    return false;
+}, false);
+
+// 2. F12 & INSPECT KEY KILLER (Enhanced)
+document.addEventListener('keydown', function(e) {
+    // Disable F12
+    if(e.keyCode == 123) {
+        e.preventDefault();
+        logActivity('SECURITY', 'CORE', 'F12 Lockdown Active');
+        return false;
+    }
+    // Disable Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+U (Source)
+    if(e.ctrlKey && (e.shiftKey ? (e.keyCode == 73 || e.keyCode == 74) : e.keyCode == 85)) {
+        e.preventDefault();
+        logActivity('SECURITY', 'CORE', 'Source Protection Triggered');
+        return false;
+    }
+}, false);
+
+// 3. ENSURE BUTTONS STILL WORK
+// This specifically allows your code to run even if 'select' is disabled
+document.addEventListener('mousedown', function(e) {
+    if (e.button === 2) { // Right click button index
+        e.preventDefault();
+    }
+}, false);
+
+/* END: MASTER SECURITY LOCKDOWN */
+/* END: MASTER SECURITY HANDSHAKE */
 /* END: MASTER UNIFIED LOGIC V4.0 */
 </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"aa3921a6fe82429fb1627a0575b5610a","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
