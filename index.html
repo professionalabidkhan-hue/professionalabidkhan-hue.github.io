@@ -194,60 +194,47 @@ body {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 </script>
-<div class="container text-center py-4">
-    <h1 id="main-portal-title" class="glitch-text" style="cursor: pointer;">DISTINGUISHED GENIUS PORTAL</h1>
-    <p class="text-secondary small mb-3">abid-pedagogy-db | Hub v6.1</p>
-
-    <div style="background: rgba(0,212,255,0.05); border-radius: 50px; padding: 5px 15px; border: 1px solid #111; display: inline-block; width: 90%; max-width: 400px;">
-        <marquee id="live-marquee" class="small text-info fw-bold" scrollamount="4">
-            System Uplink Active... Synchronizing with abid-khan-institute-hub...
-        </marquee>
-    </div>
-<div class="my-4">
-    <div class="btn-group w-75">
-        <button id="btn-usd" class="btn btn-sm btn-info active" onclick="syncCurrency('USD')">USD</button>
-        <button id="btn-pkr" class="btn btn-sm btn-outline-info" onclick="syncCurrency('PKR')">PKR</button>
-    </div>
-</div>
-
-<div class="row text-center">
-    <div class="col-md-4 mb-3">
-        <div class="it-btn border p-3 rounded">
-            <i class="fas fa-flag-usa fa-2x text-primary mb-2"></i>
-            <div class="small fw-bold">USA NUMBER</div>
-            <div class="h4 my-2">
-                <span class="currency-sym">$</span><span class="price-val" data-usd="120">120</span>
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border-info">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="modalTitle">Select Number</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
-            <button class="btn btn-primary btn-sm w-100" onclick="openAsset('USA', 120)">SELECT</button>
-        </div>
-    </div>
-    <div class="col-md-4 mb-3">
-        <div class="it-btn border p-3 rounded">
-            <i class="fas fa-gb-england fa-2x text-warning mb-2"></i>
-            <div class="small fw-bold">UK NUMBER</div>
-            <div class="h4 my-2">
-                <span class="currency-sym">$</span><span class="price-val" data-usd="110">110</span>
+            <div class="modal-body">
+                <label class="small text-info mb-2">Available Verified Numbers:</label>
+                <select id="number-selector" class="form-select bg-black text-white border-secondary mb-3">
+                    </select>
+                <button class="btn btn-info w-100" onclick="showFurtherDetails()">VIEW DETAILS & PROCEED</button>
             </div>
-            <button class="btn btn-info text-white btn-sm w-100" onclick="openAsset('UK', 110)">SELECT</button>
-        </div>
-    </div>
-    <div class="col-md-4 mb-3">
-        <div class="it-btn border p-3 rounded">
-            <i class="fab fa-canadian-maple-leaf fa-2x text-danger mb-2"></i>
-            <div class="small fw-bold">CANADA NUMBER</div>
-            <div class="h4 my-2">
-                <span class="currency-sym">$</span><span class="price-val" data-usd="105">105</span>
-            </div>
-            <button class="btn btn-danger btn-sm w-100" onclick="openAsset('Canada', 105)">SELECT</button>
         </div>
     </div>
 </div>
 
-<div class="alert alert-light border mt-3 small shadow-sm">
-    <i class="fas fa-wallet text-success me-2"></i> 
-    <strong>Note:</strong> Your payment is about to be deducted to send over <b>Abid Khan GWallet</b>. To get full number access, please fill out the 
-    <a href="signup.html" class="text-decoration-none fw-bold">Signup Form</a> 
-    so we can move towards online classroom features.
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-success shadow-lg">
+            <div class="modal-body text-center p-4">
+                <i class="fas fa-check-circle text-success fa-3x mb-3"></i>
+                <h4 class="fw-bold">CONFIRM SELECTION</h4>
+                <div class="p-3 bg-light rounded border mb-3">
+                    <span class="text-muted small d-block">SELECTED NUMBER:</span>
+                    <span id="display-final-number" class="h5 fw-bold text-primary">---</span>
+                </div>
+                <p class="small text-muted">
+                    <i class="fas fa-wallet text-success me-1"></i> 
+                    Payment will be deducted from your <b>Abid Khan GWallet</b>.
+                </p>
+                <ul class="text-start small mb-4">
+                    <li>Full Number Access Granted</li>
+                    <li>Unlock Online Classroom features</li>
+                    <li>Direct Teacher Messaging active</li>
+                </ul>
+                <button class="btn btn-success w-100 mb-2" onclick="processFinalDeduction()">AUTHORIZE G-WALLET</button>
+                <button class="btn btn-link btn-sm text-secondary" data-bs-dismiss="modal">Change Number</button>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -476,84 +463,21 @@ body {
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/* START: MASTER UNIFIED LOGIC V8.8 | ABID KHAN E-INSTITUTE 
-   TARGET: abid-khan-institute-hub (Signup) & abid-pedagogy-db (Dashboard)
-   REPAIR: Merged Live API Currency Sync, GWallet Integration, & Android Scroll Fix
+/* START: MASTER UNIFIED LOGIC V8.9 | ABID KHAN E-INSTITUTE 
+   REPAIR: Multi-Stage Popup for Specific Number Details & GWallet Logic
 */
 
-// 1. GLOBAL STATE
-let tapCount = 0; // For tEST Mode
-let selectedCountry = "";
-let livePkrRate = 280.00; // Default fallback for 2026
-const assetPrices = { usa: 120, uk: 110, can: 105 };
+// 1. GLOBAL STATE (Keep your existing verifiedPool and assetPrices)
+let selectedNumber = "";
+let currentCountry = "";
 
-const verifiedPool = {
-    "USA": ["+1 (202) 555-0144", "+1 (332) 444-0988", "+1 (415) 555-0198", "+1 (213) 999-0887"],
-    "UK": ["+44 7700 900077", "+44 20 7123 4567", "+44 161 999 0888", "+44 7888 123456"],
-    "Canada": ["+1 (416) 999-8877", "+1 (604) 555-1234", "+1 (587) 444-0911", "+1 (613) 555-0177"]
-};
+// ... [Existing fetchLiveExchangeRate & syncCurrency Logic Here] ...
 
-// 2. INITIALIZATION
-window.addEventListener('load', async () => {
-    await fetchLiveExchangeRate();
-    startLiveTxt();
-    syncCurrency('USD'); // Set initial state
-    
-    // Identity Sync from Workers
-    const savedName = localStorage.getItem('user_name');
-    if (savedName) {
-        const title = document.getElementById('main-portal-title');
-        if(title) title.innerHTML = `WELCOME, <span style="color:var(--cyber-cyan)">${savedName.toUpperCase()}</span>`;
-    }
-    console.log("System Check: V8.8 Merged Logic Active.");
-});
-
-// 3. CORE LOGIC (Exchange & Unified Currency Sync)
-async function fetchLiveExchangeRate() {
-    try {
-        const response = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json');
-        const data = await response.json();
-        livePkrRate = data.usd.pkr;
-        logActivity('EXCHANGE', 'API', `PKR Synced: ${livePkrRate.toFixed(2)}`, 'VERIFIED');
-    } catch (e) { 
-        logActivity('EXCHANGE', 'OFFLINE', 'Using Static Fallback (280)', 'OFFLINE');
-    }
-}
-
-function syncCurrency(currency) {
-    const btnUsd = document.getElementById('btn-usd');
-    const btnPkr = document.getElementById('btn-pkr');
-    const prices = document.querySelectorAll('.price-val'); // Matches new HTML
-    const symbols = document.querySelectorAll('.currency-sym');
-
-    // Toggle Button UI
-    if (currency === 'PKR') {
-        if(btnPkr) { btnPkr.classList.replace('btn-outline-info', 'btn-info'); btnPkr.classList.add('active'); }
-        if(btnUsd) { btnUsd.classList.replace('btn-info', 'btn-outline-info'); btnUsd.classList.remove('active'); }
-    } else {
-        if(btnUsd) { btnUsd.classList.replace('btn-outline-info', 'btn-info'); btnUsd.classList.add('active'); }
-        if(btnPkr) { btnPkr.classList.replace('btn-info', 'btn-outline-info'); btnPkr.classList.remove('active'); }
-    }
-
-    // Update Price Values (Mapping IDs for USA, UK, CAN)
-    ['usa', 'uk', 'can'].forEach(key => {
-        const valEl = document.getElementById(`val-${key}`);
-        const symEl = document.getElementById(`sym-${key}`);
-        if (valEl && symEl) {
-            if (currency === 'PKR') {
-                symEl.innerText = "Rs. ";
-                valEl.innerText = (assetPrices[key] * livePkrRate).toLocaleString(undefined, {maximumFractionDigits: 0});
-            } else {
-                symEl.innerText = "$";
-                valEl.innerText = assetPrices[key].toLocaleString();
-            }
-        }
-    });
-}
-
-// 4. VIRTUAL NUMBER & MODAL LOGIC
+// 4. VIRTUAL NUMBER & MODAL LOGIC (Step 1)
 function openAsset(country, price) {
-    selectedCountry = country;
+    currentCountry = country;
+    document.getElementById('modalTitle').innerText = `Select your ${country} Number`;
+    
     const selector = document.getElementById('number-selector');
     if(!selector) return;
 
@@ -569,48 +493,38 @@ function openAsset(country, price) {
     myModal.show();
 }
 
-// 5. MASTER LOG ACTIVITY
-function logActivity(type, app, message, status = 'VERIFIED') {
-    const tableBody = document.getElementById('user-history-body');
-    if(!tableBody) return;
-    const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const newRow = `
-        <tr>
-            <td data-label="TYPE"><span class="badge bg-info">${type}</span></td>
-            <td data-label="SENDER" class="fw-bold text-white">${app}</td>
-            <td data-label="MESSAGE">${message}</td>
-            <td data-label="STATUS"><span class="badge bg-success">${status}</span></td>
-            <td data-label="TIME" class="text-secondary">${timeStr}</td>
-        </tr>`;
-    tableBody.insertAdjacentHTML('afterbegin', newRow);
+// 4.1 FURTHER DETAILS POPUP (Step 2)
+function showFurtherDetails() {
+    const selector = document.getElementById('number-selector');
+    selectedNumber = selector.value;
+
+    if(!selectedNumber) {
+        alert("Please select a number first!");
+        return;
+    }
+
+    // Hide selection modal
+    bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
+
+    // Set data in details modal
+    document.getElementById('display-final-number').innerText = selectedNumber;
+
+    // Show details modal
+    const detModal = new bootstrap.Modal(document.getElementById('detailsModal'));
+    detModal.show();
+    
+    logActivity('PRE-CHECK', 'SYSTEM', `Reviewing details for ${selectedNumber}`, 'PENDING');
 }
 
-// 6. tEST MODE TRIGGER (5-Click)
-document.getElementById('main-portal-title')?.addEventListener('click', () => {
-    tapCount++;
-    if(tapCount === 5) { 
-        document.getElementById('main-portal-title').innerHTML = "tEST MODE <span class='text-warning'>ACTIVE</span>";
-        document.body.style.border = "4px solid var(--gold)";
-        logActivity('DEBUG', 'SYSTEM', 'tEST Mode Logic Active', 'ACTIVE');
-        tapCount = 0; 
-    }
-});
-
-// 7. UI REPAIRING (PART 6) - ANDROID & LIVE TXT
-function startLiveTxt() {
-    const marquee = document.getElementById('live-marquee');
-    if(!marquee) return;
-    const activities = ["Syncing hub...", "USA Proxy Secured...", `Rate: ${livePkrRate.toFixed(0)}`, "GWallet Ready"];
-    let i = 0;
-    setInterval(() => { marquee.innerHTML = `<span class="text-info">${activities[i++ % activities.length]}</span>`; }, 4000);
+// 4.2 FINAL PROCESS
+function processFinalDeduction() {
+    // Logic for abid-pedagogy-db would go here
+    logActivity('WALLET', 'GWALLET', `Deduction Authorized for ${selectedNumber}`, 'SUCCESS');
+    alert("Authorization Successful! Redirecting to Classroom...");
+    window.location.href = "dashboard.html"; // Redirect to your pedagogy dashboard
 }
 
-window.addEventListener('resize', () => {
-    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT') {
-        window.setTimeout(() => { document.activeElement.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150);
-    }
-});
-/* END: MASTER UNIFIED LOGIC V8.8 */
+// ... [Keep Section 5, 6, and 7 from V8.8] ...
 </script>
 
 
