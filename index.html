@@ -10,14 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-/* START: MASTER CSS V9.1 | ABID KHAN E-INSTITUTE */
+/* START: MASTER CSS V10.0 | PERMANENT FOUNDATION */
 :root {
     --cyber-cyan: #00d4ff; 
     --gold: #FFD700; 
     --dark-bg: #030407; 
     --islamic-green: #00c853;
     --deep-blue: #001f3f;
-    --modal-bg: #080a0f; /* Fixed deep modal background */
+    --modal-bg: #080a0f;
 }
 
 body {
@@ -26,9 +26,15 @@ body {
     font-family: 'Inter', sans-serif;
     margin: 0; padding: 0; overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
+    /* PART 6: UI REPAIR - ANTI COPY */
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-/* NAVBAR & BUTTONS */
+/* Allow interaction for inputs/modals */
+input, textarea, select, .modal-content { user-select: text !important; }
+
 .navbar-custom { background-color: var(--deep-blue); padding: 10px 0; }
 .btn-online-shopping {
     background: linear-gradient(45deg, #007bff, #00d4ff);
@@ -37,7 +43,6 @@ body {
     box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
-/* ASSET CARDS */
 .asset-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(0, 212, 255, 0.2);
@@ -51,41 +56,41 @@ body {
 }
 .flag-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
 
-/* MODAL BACKGROUND FIXES */
+/* MODAL FIXES */
 .modal-content {
     background-color: var(--modal-bg) !important;
     border: 1px solid var(--cyber-cyan) !important;
     border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
 }
-.modal-backdrop.show {
-    opacity: 0.85 !important;
-    background-color: #000 !important;
-}
-#number-selector {
-    background-color: #000 !important;
-    color: var(--cyber-cyan) !important;
-    border: 1px solid #333;
-}
+.modal-backdrop.show { opacity: 0.85 !important; background-color: #000 !important; }
+#number-selector { background-color: #000 !important; color: var(--cyber-cyan) !important; border: 1px solid #333; }
 
-/* 6. PART 6: UI REPAIRING (ANDROID FIX) */
+/* ANDROID MOBILE REPAIRS */
 @media (max-width: 768px) {
     .col-6 { width: 50% !important; }
-    #user-history-body tr {
-        display: block; background: rgba(0, 212, 255, 0.05);
-        border: 1px solid #222; margin-bottom: 10px; padding: 10px;
-    }
-    #user-history-body td {
-        display: block; padding: 4px 0; position: relative;
-        padding-left: 40%; font-size: 10px; text-align: right;
-    }
-    #user-history-body td::before {
-        content: attr(data-label); position: absolute; left: 0;
-        font-weight: bold; color: var(--cyber-cyan); font-size: 9px;
-    }
+    #user-history-body tr { display: block; background: rgba(0, 212, 255, 0.05); border: 1px solid #222; margin-bottom: 10px; padding: 10px; }
+    #user-history-body td { display: block; padding: 4px 0; position: relative; padding-left: 40%; font-size: 10px; text-align: right; }
+    #user-history-body td::before { content: attr(data-label); position: absolute; left: 0; font-weight: bold; color: var(--cyber-cyan); font-size: 9px; }
     #user-history-table thead { display: none; }
 }
-/* END: UI REPAIRING */
+/* END: MASTER CSS V10.0 */
+/* PART 6: VISITOR ATTENTION HOOK */
+.visitor-hook {
+    color: var(--cyber-cyan);
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: -10px; /* Pulls it closer to the main title */
+    margin-bottom: 25px;
+    text-shadow: 0 0 12px rgba(0, 212, 255, 0.6);
+    animation: pulseGlow 3s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; text-shadow: 0 0 18px rgba(0, 212, 255, 0.9); }
+}
     </style>
 </head>
 <body>
@@ -104,10 +109,8 @@ body {
 </nav>
 
 <div class="container text-center py-4">
-    <h1 id="main-portal-title" style="font-family:'Orbitron'; font-weight:900; letter-spacing: 2px; cursor: pointer; color: white;">
-        DISTINGUISHED GENIUS PORTAL
-    </h1>
-    <p class="text-info x-small">Global Sovereign Architecture | Worker: abid-pedagogy-db</p>
+ <p class="visitor-hook">Elite Research Hub | Secure Cloud Access: ABID KHAN HUB</p>
+    <p class="text-info x-small">Elite Research Hub | Secure Cloud Access: ABID KHAN HUB</p>
     
     <div class="row g-3 mt-2">
         <div class="col-md-6">
@@ -188,7 +191,9 @@ body {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/* START: MASTER LOGIC V9.1 */
+/* START: MASTER PERMANENT LOGIC V10.0 */
+
+// 1. Virtual Number Pool (Manual Update Area)
 const verifiedPool = {
     "USA": ["+1 (202) 555-0101", "+1 (332) 444-0988"],
     "UK": ["+44 7700 900077", "+44 20 7123 4567"],
@@ -197,12 +202,14 @@ const verifiedPool = {
     "AUSTRALIA": ["+61 2 9123 4567", "+61 3 8888 9999"]
 };
 
+// 2. tEST Mode Activation
 let taps = 0;
 document.getElementById('main-portal-title').addEventListener('click', () => {
     taps++; 
     if(taps === 5) { alert("tEST Mode Active"); taps = 0; }
 });
 
+// 3. Asset Handling Logic
 function openAsset(country) {
     document.getElementById('modalTitle').innerText = `${country} Selection`;
     const selector = document.getElementById('number-selector');
@@ -220,53 +227,26 @@ function showFurtherDetails() {
     bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
     setTimeout(() => {
         new bootstrap.Modal(document.getElementById('detailsModal')).show();
-    }, 400); // Small delay to prevent background flickering
+    }, 400);
 }
 
 function processFinalDeduction() {
     alert("Handshaking with abid-pedagogy-db... Success!");
     window.location.href = "https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/";
 }
-/* END: MASTER LOGIC V9.1 */
-/* START: SECURITY & ANTI-INSPECT V1.0 */
 
-// 1. Disable Right-Click (Context Menu)
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-}, false);
-
-// 2. Disable Keyboard Shortcuts
+// 4. PERMANENT SECURITY (RIGHT-CLICK / F12 / SHORTCUTS)
+document.addEventListener('contextmenu', e => e.preventDefault());
 document.onkeydown = function(e) {
-    // Disable F12 (Dev Tools)
-    if (e.keyCode == 123) {
-        return false;
-    }
-    
-    // Disable Ctrl+Shift+I (Inspect)
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-        return false;
-    }
-
-    // Disable Ctrl+Shift+J (Console)
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-        return false;
-    }
-
-    // Disable Ctrl+U (View Source)
-    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+    if (e.keyCode == 123 || 
+       (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) ||
+       (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {
         return false;
     }
 };
+setInterval(() => { console.clear(); console.log("%cSTOP!", "color:red;font-size:30px"); }, 1000);
 
-// 3. Console Warning & Clear (Stops users reading the console)
-setInterval(function() {
-    console.clear();
-    console.log("%cSTOP! ACCESS DENIED", "color: red; font-size: 40px; font-weight: bold;");
-    console.log("%cThis portal is property of ABID KHAN E-INSTITUTE. Unauthorized inspection is logged.", "color: yellow; font-size: 15px;");
-}, 1000);
-
-/* END: SECURITY & ANTI-INSPECT V1.0 */
+/* END: MASTER PERMANENT LOGIC V10.0 */
 </script>
-
 </body>
 </html>
