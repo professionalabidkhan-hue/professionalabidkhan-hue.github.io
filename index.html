@@ -210,35 +210,44 @@ body {
     </div>
 </div>
 
-<p>Price: <span class="price-value" data-usd="50">50</span> <span id="currency-label">USD</span></p>
-
-
-    <div class="row">
-        <div class="col-md-4">
-            <div class="it-btn">
-                <i class="fas fa-flag-usa fa-2x text-primary mb-2"></i>
-                <div class="small fw-bold">USA NUMBER</div>
-               <div class="h4 my-2"><span id="sym-usa">$</span><span id="val-usa">120</span></div>
-                <button class="btn btn-primary btn-sm w-100" onclick="openAsset('USA', 120)">SELECT</button>
+<div class="row text-center">
+    <div class="col-md-4 mb-3">
+        <div class="it-btn border p-3 rounded">
+            <i class="fas fa-flag-usa fa-2x text-primary mb-2"></i>
+            <div class="small fw-bold">USA NUMBER</div>
+            <div class="h4 my-2">
+                <span class="currency-sym">$</span><span class="price-val" data-usd="120">120</span>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="it-btn">
-                <i class="fas fa-gb-england fa-2x text-warning mb-2"></i>
-                <div class="small fw-bold">UK NUMBER</div>
-               <div class="h4 my-2"><span id="sym-uk">$</span><span id="val-uk">110</span></div>
-                <button class="btn btn-info text-white btn-sm w-100" onclick="openAsset('UK', 110)">SELECT</button>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="it-btn">
-                <i class="fab fa-canadian-maple-leaf fa-2x text-danger mb-2"></i>
-                <div class="small fw-bold">CANADA NUMBER</div>
-               <div class="h4 my-2"><span id="sym-can">$</span><span id="val-can">105</span></div>
-                <button class="btn btn-danger btn-sm w-100" onclick="openAsset('Canada', 105)">SELECT</button>
-            </div>
+            <button class="btn btn-primary btn-sm w-100" onclick="openAsset('USA', 120)">SELECT</button>
         </div>
     </div>
+    <div class="col-md-4 mb-3">
+        <div class="it-btn border p-3 rounded">
+            <i class="fas fa-gb-england fa-2x text-warning mb-2"></i>
+            <div class="small fw-bold">UK NUMBER</div>
+            <div class="h4 my-2">
+                <span class="currency-sym">$</span><span class="price-val" data-usd="110">110</span>
+            </div>
+            <button class="btn btn-info text-white btn-sm w-100" onclick="openAsset('UK', 110)">SELECT</button>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="it-btn border p-3 rounded">
+            <i class="fab fa-canadian-maple-leaf fa-2x text-danger mb-2"></i>
+            <div class="small fw-bold">CANADA NUMBER</div>
+            <div class="h4 my-2">
+                <span class="currency-sym">$</span><span class="price-val" data-usd="105">105</span>
+            </div>
+            <button class="btn btn-danger btn-sm w-100" onclick="openAsset('Canada', 105)">SELECT</button>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-light border mt-3 small shadow-sm">
+    <i class="fas fa-wallet text-success me-2"></i> 
+    <strong>Note:</strong> Your payment is about to be deducted to send over <b>Abid Khan GWallet</b>. To get full number access, please fill out the 
+    <a href="signup.html" class="text-decoration-none fw-bold">Signup Form</a> 
+    so we can move towards online classroom features.
 </div>
 <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -467,15 +476,15 @@ body {
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/* START: MASTER UNIFIED LOGIC V8.7 | ABID KHAN E-INSTITUTE 
+/* START: MASTER UNIFIED LOGIC V8.8 | ABID KHAN E-INSTITUTE 
    TARGET: abid-khan-institute-hub (Signup) & abid-pedagogy-db (Dashboard)
-   REPAIR: Data-Label Logic for Android Stacking, Keyboard Repair, & Logic Override
+   REPAIR: Merged Live API Currency Sync, GWallet Integration, & Android Scroll Fix
 */
 
 // 1. GLOBAL STATE
 let tapCount = 0; // For tEST Mode
 let selectedCountry = "";
-let livePkrRate = 279.40; // Default fallback
+let livePkrRate = 280.00; // Default fallback for 2026
 const assetPrices = { usa: 120, uk: 110, can: 105 };
 
 const verifiedPool = {
@@ -488,7 +497,7 @@ const verifiedPool = {
 window.addEventListener('load', async () => {
     await fetchLiveExchangeRate();
     startLiveTxt();
-    syncCurrency('USD');
+    syncCurrency('USD'); // Set initial state
     
     // Identity Sync from Workers
     const savedName = localStorage.getItem('user_name');
@@ -496,10 +505,10 @@ window.addEventListener('load', async () => {
         const title = document.getElementById('main-portal-title');
         if(title) title.innerHTML = `WELCOME, <span style="color:var(--cyber-cyan)">${savedName.toUpperCase()}</span>`;
     }
-    console.log("System Check: V8.7 Logic Active. Android View Ready.");
+    console.log("System Check: V8.8 Merged Logic Active.");
 });
 
-// 3. CORE LOGIC (Exchange & Currency Sync)
+// 3. CORE LOGIC (Exchange & Unified Currency Sync)
 async function fetchLiveExchangeRate() {
     try {
         const response = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json');
@@ -507,22 +516,31 @@ async function fetchLiveExchangeRate() {
         livePkrRate = data.usd.pkr;
         logActivity('EXCHANGE', 'API', `PKR Synced: ${livePkrRate.toFixed(2)}`, 'VERIFIED');
     } catch (e) { 
-        logActivity('EXCHANGE', 'OFFLINE', 'Using Static Fallback', 'OFFLINE');
+        logActivity('EXCHANGE', 'OFFLINE', 'Using Static Fallback (280)', 'OFFLINE');
     }
 }
 
-function syncCurrency(type) {
+function syncCurrency(currency) {
     const btnUsd = document.getElementById('btn-usd');
     const btnPkr = document.getElementById('btn-pkr');
-    
-    if(btnUsd) btnUsd.className = type === 'USD' ? 'btn btn-sm btn-info active' : 'btn btn-sm btn-outline-info';
-    if(btnPkr) btnPkr.className = type === 'PKR' ? 'btn btn-sm btn-info active' : 'btn btn-sm btn-outline-info';
+    const prices = document.querySelectorAll('.price-val'); // Matches new HTML
+    const symbols = document.querySelectorAll('.currency-sym');
 
+    // Toggle Button UI
+    if (currency === 'PKR') {
+        if(btnPkr) { btnPkr.classList.replace('btn-outline-info', 'btn-info'); btnPkr.classList.add('active'); }
+        if(btnUsd) { btnUsd.classList.replace('btn-info', 'btn-outline-info'); btnUsd.classList.remove('active'); }
+    } else {
+        if(btnUsd) { btnUsd.classList.replace('btn-outline-info', 'btn-info'); btnUsd.classList.add('active'); }
+        if(btnPkr) { btnPkr.classList.replace('btn-info', 'btn-outline-info'); btnPkr.classList.remove('active'); }
+    }
+
+    // Update Price Values (Mapping IDs for USA, UK, CAN)
     ['usa', 'uk', 'can'].forEach(key => {
         const valEl = document.getElementById(`val-${key}`);
         const symEl = document.getElementById(`sym-${key}`);
         if (valEl && symEl) {
-            if (type === 'PKR') {
+            if (currency === 'PKR') {
                 symEl.innerText = "Rs. ";
                 valEl.innerText = (assetPrices[key] * livePkrRate).toLocaleString(undefined, {maximumFractionDigits: 0});
             } else {
@@ -551,14 +569,11 @@ function openAsset(country, price) {
     myModal.show();
 }
 
-// 5. MASTER LOG ACTIVITY (Cleaned for Android Table Repair)
+// 5. MASTER LOG ACTIVITY
 function logActivity(type, app, message, status = 'VERIFIED') {
     const tableBody = document.getElementById('user-history-body');
     if(!tableBody) return;
-    
     const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    
-    // Logic: Every TD MUST have a data-label to match the CSS Card View
     const newRow = `
         <tr>
             <td data-label="TYPE"><span class="badge bg-info">${type}</span></td>
@@ -567,11 +582,10 @@ function logActivity(type, app, message, status = 'VERIFIED') {
             <td data-label="STATUS"><span class="badge bg-success">${status}</span></td>
             <td data-label="TIME" class="text-secondary">${timeStr}</td>
         </tr>`;
-        
     tableBody.insertAdjacentHTML('afterbegin', newRow);
 }
 
-// 6. tEST MODE TRIGGER (5-Click on Title)
+// 6. tEST MODE TRIGGER (5-Click)
 document.getElementById('main-portal-title')?.addEventListener('click', () => {
     tapCount++;
     if(tapCount === 5) { 
@@ -581,28 +595,22 @@ document.getElementById('main-portal-title')?.addEventListener('click', () => {
         tapCount = 0; 
     }
 });
- 
-// 7. UI REPAIRING (PART 6) - ANDROID SPECIALS
+
+// 7. UI REPAIRING (PART 6) - ANDROID & LIVE TXT
 function startLiveTxt() {
     const marquee = document.getElementById('live-marquee');
     if(!marquee) return;
-    const activities = ["Syncing hub...", "USA Proxy Secured...", `Rate: ${livePkrRate.toFixed(0)}`, "LIVE TXT Active"];
+    const activities = ["Syncing hub...", "USA Proxy Secured...", `Rate: ${livePkrRate.toFixed(0)}`, "GWallet Ready"];
     let i = 0;
-    setInterval(() => { 
-        marquee.innerHTML = `<span class="text-info">${activities[i++ % activities.length]}</span>`; 
-    }, 4000);
+    setInterval(() => { marquee.innerHTML = `<span class="text-info">${activities[i++ % activities.length]}</span>`; }, 4000);
 }
 
-// Keyboard Scroll Repair for Android WebView
 window.addEventListener('resize', () => {
     if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT') {
-        window.setTimeout(() => {
-            document.activeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 150);
+        window.setTimeout(() => { document.activeElement.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150);
     }
 });
-
-/* END: MASTER UNIFIED LOGIC V8.7 */
+/* END: MASTER UNIFIED LOGIC V8.8 */
 </script>
 
 
