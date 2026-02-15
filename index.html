@@ -20,7 +20,40 @@
     --islamic-green: #00c853;
     --deep-blue: #001f3f;
 }
+/* A. CARDS FRO SELECTING NUMBERS */
+        /* ELITE CARD STYLING */
+        .asset-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            height: 100%;
+            text-align: center;
+        }
 
+        .asset-card:hover {
+            border-color: var(--cyber-cyan);
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .flag-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        
+        /* MODAL STYLES */
+        .modal-content { background: #080a0f; border: 2px solid var(--cyber-cyan); border-radius: 20px; }
+        .signup-notice {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--gold);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .dua-header { font-size: 20px !important; }
+            .col-6 { width: 100% !important; }
+        }
 /* 1. BASE BODY & ANDROID SYSTEM FIXES */
 body {
     background-color: var(--dark-bg); 
@@ -193,6 +226,104 @@ body {
     // Auto-fix for mobile height glitches
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
+</script>
+    <div class="container text-center py-4">
+    <h1 id="main-portal-title" style="font-family:'Orbitron'; font-weight:900; color: white; cursor:pointer;">DISTINGUISHED GENIUS HUB</h1>
+    <p class="text-info small">Global Sovereign Proxy Management</p>
+
+    <div class="row g-3 mt-4">
+        <div class="col-md-4 col-6">
+            <div class="asset-card" onclick="openAsset('USA')">
+                <span class="flag-icon">🇺🇸</span>
+                <h5 class="fw-bold">USA</h5>
+                <p class="x-small text-muted">Verified Virtual Identity</p>
+                <button class="btn btn-sm btn-outline-info w-100">SELECT</button>
+            </div>
+        </div>
+        <div class="col-md-4 col-6">
+            <div class="asset-card" onclick="openAsset('UK')">
+                <span class="flag-icon">🇬🇧</span>
+                <h5 class="fw-bold">UK</h5>
+                <p class="x-small text-muted">Premium British Proxy</p>
+                <button class="btn btn-sm btn-outline-info w-100">SELECT</button>
+            </div>
+        </div>
+        <div class="col-md-4 col-6">
+            <div class="asset-card" onclick="openAsset('CANADA')">
+                <span class="flag-icon">🇨🇦</span>
+                <h5 class="fw-bold">CANADA</h5>
+                <p class="x-small text-muted">Secure Maple Identity</p>
+                <button class="btn btn-sm btn-outline-info w-100">SELECT</button>
+            </div>
+        </div>
+        <div class="col-md-4 col-6">
+            <div class="asset-card" onclick="openAsset('CHINA')">
+                <span class="flag-icon">🇨🇳</span>
+                <h5 class="fw-bold">CHINA</h5>
+                <p class="x-small text-muted">Mainland Data Proxy</p>
+                <button class="btn btn-sm btn-outline-info w-100">SELECT</button>
+            </div>
+        </div>
+        <div class="col-md-4 col-6">
+            <div class="asset-card" onclick="openAsset('AUSTRALIA')">
+                <span class="flag-icon">🇦🇺</span>
+                <h5 class="fw-bold">AUSTRALIA</h5>
+                <p class="x-small text-muted">Oceanic Secure Line</p>
+                <button class="btn btn-sm btn-outline-info w-100">SELECT</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="assetModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-white">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="modalTitle">Confirm Asset</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p class="small text-info mb-1">Choose your specific number:</p>
+                <select id="number-selector" class="form-select bg-black text-white border-secondary mb-3"></select>
+                
+                <div class="signup-notice">
+                    <i class="fas fa-user-shield text-warning mb-2 fa-2x"></i>
+                    <h6 class="text-warning fw-bold">IDENTIFICATION REQUIRED</h6>
+                    <p class="small text-white-50">To provide your account info and secure this asset, you must first signup at <b>abid-khan-institute-hub</b>.</p>
+                    <p class="x-small text-info">Payments are processed directly to: <br><b>ABID KHAN GWALLET</b></p>
+                    <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-warning w-100 fw-bold mt-2">SIGNUP / LOGIN TO PROCEED</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const verifiedPool = {
+        "USA": ["+1 (202) 555-0101", "+1 (332) 444-0988"],
+        "UK": ["+44 7700 900077", "+44 20 7123 4567"],
+        "CANADA": ["+1 (416) 999-8877", "+1 (604) 555-1234"],
+        "CHINA": ["+86 10 6552 1234", "+86 21 6248 5678"],
+        "AUSTRALIA": ["+61 2 9123 4567", "+61 3 8888 9999"]
+    };
+
+    function openAsset(country) {
+        document.getElementById('modalTitle').innerText = `${country} Asset Selection`;
+        const selector = document.getElementById('number-selector');
+        selector.innerHTML = "";
+        verifiedPool[country].forEach(num => {
+            let opt = document.createElement('option');
+            opt.value = num; opt.innerText = `💎 ${num} [AVAILABLE]`;
+            selector.appendChild(opt);
+        });
+        new bootstrap.Modal(document.getElementById('assetModal')).show();
+    }
+
+    // tEST Mode Logic
+    let taps = 0;
+    document.getElementById('main-portal-title').addEventListener('click', () => {
+        taps++; if(taps === 5) { alert("tEST Mode Active"); taps = 0; }
+    });
 </script>
     <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
