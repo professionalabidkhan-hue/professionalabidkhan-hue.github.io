@@ -228,6 +228,44 @@ function processFinalDeduction() {
     window.location.href = "https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/";
 }
 /* END: MASTER LOGIC V9.1 */
+/* START: SECURITY & ANTI-INSPECT V1.0 */
+
+// 1. Disable Right-Click (Context Menu)
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+}, false);
+
+// 2. Disable Keyboard Shortcuts
+document.onkeydown = function(e) {
+    // Disable F12 (Dev Tools)
+    if (e.keyCode == 123) {
+        return false;
+    }
+    
+    // Disable Ctrl+Shift+I (Inspect)
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+        return false;
+    }
+
+    // Disable Ctrl+Shift+J (Console)
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+        return false;
+    }
+
+    // Disable Ctrl+U (View Source)
+    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        return false;
+    }
+};
+
+// 3. Console Warning & Clear (Stops users reading the console)
+setInterval(function() {
+    console.clear();
+    console.log("%cSTOP! ACCESS DENIED", "color: red; font-size: 40px; font-weight: bold;");
+    console.log("%cThis portal is property of ABID KHAN E-INSTITUTE. Unauthorized inspection is logged.", "color: yellow; font-size: 15px;");
+}, 1000);
+
+/* END: SECURITY & ANTI-INSPECT V1.0 */
 </script>
 
 </body>
