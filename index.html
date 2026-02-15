@@ -10,67 +10,50 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-   /* START: MASTER CSS V6.8 | ABID KHAN E-INSTITUTE */
+/* START: MASTER CSS V8.6 | ABID KHAN E-INSTITUTE */
+/* TARGET: abid-khan-institute-hub (Signup) & abid-pedagogy-db (Dashboard) */
+
 :root {
     --cyber-cyan: #00d4ff; 
     --gold: #FFD700; 
     --dark-bg: #030407; 
     --islamic-green: #00c853;
-        --gold: #FFD700;
     --deep-blue: #001f3f;
 }
-.navbar-custom {
-    background-color: var(--deep-blue);
-    padding: 10px 0;
-}
 
-/* Unique Distinguished Online Shopping Button */
-.btn-online-shopping {
-    background: linear-gradient(45deg, #007bff, #00d4ff);
-    color: white !important;
-    border: none;
-    font-weight: bold;
-    font-family: 'Orbitron', sans-serif;
-    padding: 5px 15px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-}
-
-.btn-online-shopping:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
-    background: linear-gradient(45deg, #00d4ff, #007bff);
-}
-
-.gap-2 {
-    gap: 10px !important;
-}
-/* END: NAV REFINEMENT & SHOPPING BUTTON STYLES */
+/* 1. BASE BODY & ANDROID SYSTEM FIXES */
 body {
     background-color: var(--dark-bg); 
     color: #fff; 
     font-family: 'Inter', sans-serif;
     margin: 0; padding: 0; overflow-x: hidden; width: 100%;
     -webkit-font-smoothing: antialiased;
+    /* Removes grey highlight on Android taps */
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* ELITE PRESTIGE ANIMATIONS */
-@keyframes elite-glow {
-    0% { border-color: #444; box-shadow: 0 0 5px rgba(255,215,0,0.1); }
-    50% { border-color: var(--gold); box-shadow: 0 0 25px rgba(255,215,0,0.4); }
-    100% { border-color: #444; box-shadow: 0 0 5px rgba(255,215,0,0.1); }
+/* 2. NAVIGATION & ELITE BUTTONS */
+.navbar-custom {
+    background-color: var(--deep-blue);
+    padding: 10px 0;
 }
 
-@keyframes pulse {
-    0% { border-color: rgba(255, 215, 0, 0.3); }
-    50% { border-color: rgba(255, 215, 0, 0.9); }
-    100% { border-color: rgba(255, 215, 0, 0.3); }
+.btn-online-shopping {
+    background: linear-gradient(45deg, #007bff, #00d4ff);
+    color: white !important;
+    border: none;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    padding: 8px 18px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    display: flex; align-items: center; justify-content: center;
 }
 
-/* DUA HEADER SCALING */
+/* 3. DUA & PORTAL HEADER */
 .dua-header {
     font-size: 28px !important;
     color: var(--gold);
@@ -79,11 +62,11 @@ body {
     padding: 20px 10px;
 }
 
-/* 6th PART: UI REPAIRING - MOBILE ONE-COLUMN LOGIC */
+/* 4. PART 6: UI REPAIRING - THE ANDROID "CLEAN BATCH" */
 @media (max-width: 768px) {
-    .container { padding: 10px; }
-    
-    /* Forces Cards to stack Top-to-Bottom */
+    .container { padding: 12px; }
+
+    /* Fix 1: Force vertical stacking for all cards */
     .row { 
         display: flex !important; 
         flex-direction: column !important; 
@@ -92,42 +75,66 @@ body {
     
     .col-md-4, .col-md-6 { 
         width: 100% !important; 
-        padding: 5px 0 !important; 
+        padding: 8px 0 !important; 
         margin-bottom: 15px;
     }
 
-    .dua-header { font-size: 20px !important; }
-    #main-portal-title { font-size: 1.2rem !important; }
+    /* Fix 2: ELITE TABLE STACKING (Fixes overlapping error in screenshot) */
+    #user-history-table thead { display: none; } /* Hide flat header */
 
-    /* Identity Log Mobile Table Fix */
-    .table-responsive { border: none; }
-    #user-history-body tr { 
-        display: block; 
-        border-bottom: 1px solid #222; 
-        padding: 10px 0; 
+    #user-history-body tr {
+        display: block;
+        background: rgba(0, 212, 255, 0.05);
+        border: 1px solid #222;
+        margin-bottom: 15px;
+        padding: 12px;
+        border-radius: 8px;
     }
-    #user-history-body td { 
-        display: inline-block; 
-        padding: 2px 5px; 
+
+    #user-history-body td {
+        display: block;
+        text-align: left;
+        padding: 6px 0;
+        border: none;
+        position: relative;
+        padding-left: 45%; /* Space for labels */
+        font-size: 11px;
+    }
+
+    /* Injecting Labels for Data Clarity */
+    #user-history-body td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        color: var(--cyber-cyan);
+        text-transform: uppercase;
         font-size: 9px;
     }
+
+    /* Fix 3: Android Touch Scaling */
+    .btn, .form-select, .form-control {
+        min-height: 50px;
+        font-size: 16px !important; /* Prevents Android keyboard zoom */
+    }
+    
+    .dua-header { font-size: 22px !important; }
 }
 
-/* MODAL REPAIR */
+/* 5. MODAL & SELECTOR REFINEMENT */
 #paymentModal .modal-content { 
-    max-height: 90vh; 
-    overflow-y: auto; 
     background: #000; 
-    border: 1px solid var(--cyber-cyan); 
+    border: 2px solid var(--cyber-cyan); 
 }
-#wire-proof-form input { 
-    background: #000; 
-    border: 1px solid #333; 
-    color: #fff; 
-    margin-bottom: 10px; 
-}
-/* END: MASTER CSS */
 
+#number-selector {
+    background: #000 !important;
+    color: var(--gold) !important;
+    border: 1px solid #444;
+}
+
+/* END: UI REPAIRING (PART 6) */
+/* END: MASTER CSS V8.6 */
     </style>
 </head>
 <body>
@@ -170,7 +177,7 @@ body {
             <div class="p-4 rounded-3 success-card h-100" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(0,212,255,0.2);">
                 <i class="fas fa-shield-halved fa-3x text-info mb-3"></i>
                 <h3 style="font-family:'Orbitron'">ONLINE CLASS ROOM</h3>
-                <p class="small text-warning fw-bold">ELITE WORKER ACCESS</p>
+                <p class="small text-warning fw-bold">LEARN ONLINE GLOBALLY</p>
                 <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-primary w-100 fw-bold py-2">ENTER GATEWAY</a>
             </div>
         </div>
@@ -180,7 +187,7 @@ body {
                 <i class="fas fa-book-quran fa-3x text-success mb-3"></i>
                 <h3 style="font-family:'Orbitron'">ISLAMIC STUDIES</h3>
                 <p class="small text-warning fw-bold">WISDOM MODULES</p>
-                <a href="islamic_studies.html" class="btn btn-primary w-100 fw-bold py-2">ENTER GATEWAY</a>
+                <a href="islamicstudies.html" class="btn btn-primary w-100 fw-bold py-2">ENTER GATEWAY</a>
             </div>
         </div>
     </div>
@@ -467,68 +474,60 @@ body {
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/* START: MASTER UNIFIED LOGIC V7.3 | ABID KHAN E-INSTITUTE 
+/* START: MASTER UNIFIED LOGIC V8.7 | ABID KHAN E-INSTITUTE 
    TARGET: abid-khan-institute-hub (Signup) & abid-pedagogy-db (Dashboard)
-   REPAIR: Live Exchange API, Fixed Symbol Swapping ($/Rs), & tEST Mode
+   REPAIR: Data-Label Logic for Android Stacking, Keyboard Repair, & Logic Override
 */
 
 // 1. GLOBAL STATE
 let tapCount = 0; // For tEST Mode
 let selectedCountry = "";
-let livePkrRate = 279.40; // Default fallback for Feb 14, 2026
+let livePkrRate = 279.40; // Default fallback
 const assetPrices = { usa: 120, uk: 110, can: 105 };
 
 const verifiedPool = {
-    "USA": ["+1 (202) 555-0144", "+1 (415) 555-0198", "+1 (302) 444-0988"],
-    "UK": ["+44 7700 900077", "+44 7700 900555", "+44 7888 123456"],
-    "Canada": ["+1 (613) 555-0177", "+1 (778) 555-0189", "+1 (416) 999-8877"]
+    "USA": ["+1 (202) 555-0144", "+1 (332) 444-0988", "+1 (415) 555-0198", "+1 (213) 999-0887"],
+    "UK": ["+44 7700 900077", "+44 20 7123 4567", "+44 161 999 0888", "+44 7888 123456"],
+    "Canada": ["+1 (416) 999-8877", "+1 (604) 555-1234", "+1 (587) 444-0911", "+1 (613) 555-0177"]
 };
 
 // 2. INITIALIZATION
 window.addEventListener('load', async () => {
-    // Await the live rate before syncing initial UI
     await fetchLiveExchangeRate();
     startLiveTxt();
-    syncCurrency('USD'); // Default starting currency
+    syncCurrency('USD');
     
-    // Check for saved session
+    // Identity Sync from Workers
     const savedName = localStorage.getItem('user_name');
     if (savedName) {
         const title = document.getElementById('main-portal-title');
         if(title) title.innerHTML = `WELCOME, <span style="color:var(--cyber-cyan)">${savedName.toUpperCase()}</span>`;
     }
-    
-    logActivity('UPLINK', 'SYSTEM', 'abid-pedagogy-db Handshake Complete');
+    console.log("System Check: V8.7 Logic Active. Android View Ready.");
 });
 
-// 3. LIVE EXCHANGE LOGIC
+// 3. CORE LOGIC (Exchange & Currency Sync)
 async function fetchLiveExchangeRate() {
     try {
         const response = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json');
         const data = await response.json();
         livePkrRate = data.usd.pkr;
-        console.log("WORLD EXCHANGE CONNECTED: PKR Rate is", livePkrRate);
-        logActivity('EXCHANGE', 'API', `PKR Rate Synced: ${livePkrRate.toFixed(2)}`);
-    } catch (error) {
-        console.error("Exchange Connection Failed:", error);
-        logActivity('EXCHANGE', 'ERROR', 'Using Fallback Rate');
+        logActivity('EXCHANGE', 'API', `PKR Synced: ${livePkrRate.toFixed(2)}`, 'VERIFIED');
+    } catch (e) { 
+        logActivity('EXCHANGE', 'OFFLINE', 'Using Static Fallback', 'OFFLINE');
     }
 }
 
-// 4. CURRENCY SYNC (DYNAMIC SYMBOLS & VALUES)
 function syncCurrency(type) {
     const btnUsd = document.getElementById('btn-usd');
     const btnPkr = document.getElementById('btn-pkr');
     
-    // UI Button States
     if(btnUsd) btnUsd.className = type === 'USD' ? 'btn btn-sm btn-info active' : 'btn btn-sm btn-outline-info';
     if(btnPkr) btnPkr.className = type === 'PKR' ? 'btn btn-sm btn-info active' : 'btn btn-sm btn-outline-info';
 
-    // Target each country specifically to update Symbol AND Value
     ['usa', 'uk', 'can'].forEach(key => {
         const valEl = document.getElementById(`val-${key}`);
         const symEl = document.getElementById(`sym-${key}`);
-        
         if (valEl && symEl) {
             if (type === 'PKR') {
                 symEl.innerText = "Rs. ";
@@ -539,17 +538,12 @@ function syncCurrency(type) {
             }
         }
     });
-    
-    logActivity('SYNC', 'CURRENCY', `View switched to ${type}`);
 }
 
-// 5. MASTER MODAL & AUTH
+// 4. VIRTUAL NUMBER & MODAL LOGIC
 function openAsset(country, price) {
     selectedCountry = country;
     const selector = document.getElementById('number-selector');
-    const amountDisp = document.getElementById('wire-amount');
-    const isPkrActive = document.getElementById('btn-pkr').classList.contains('active');
-    
     if(!selector) return;
 
     selector.innerHTML = `<option value="" disabled selected>Select a Verified ${country} Number</option>`;
@@ -560,80 +554,62 @@ function openAsset(country, price) {
         selector.appendChild(opt);
     });
 
-    // Update Modal Price based on active currency
-    amountDisp.innerText = isPkrActive 
-        ? `Rs. ${(price * livePkrRate).toLocaleString(undefined, {maximumFractionDigits:0})}` 
-        : `$${price}.00`;
-
     const myModal = new bootstrap.Modal(document.getElementById('paymentModal'));
     myModal.show();
 }
 
-function checkAuthToProceed() {
-    const authWarning = document.getElementById('auth-warning');
-    const guestView = document.getElementById('guest-selection-view');
-    const paymentView = document.getElementById('payment-gate-view');
-    const selector = document.getElementById('number-selector');
-
-    if (!selector.value) {
-        alert("Distinguished User, please select a number first.");
-        return;
-    }
-
-    if (!localStorage.getItem('user_name')) {
-        authWarning.innerHTML = `
-            <div class="mt-3 p-4 rounded-3 border border-warning text-center" style="background: rgba(0,0,0,0.5);">
-                <i class="fas fa-crown fa-3x text-warning mb-3"></i>
-                <h5 class="fw-bold text-white mb-2">SOVEREIGN IDENTIFICATION</h5>
-                <p class="small text-warning">"I AM SENDING THE ONE YEAR GWALLET OF ABID KHAN TO SECURE THIS ASSET."</p>
-                <div class="d-grid gap-2 mt-3">
-                    <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-warning fw-bold">AUTHORIZE ACCESS</a>
-                </div>
-            </div>`;
-        authWarning.style.display = 'block';
-    } else {
-        guestView.style.display = 'none';
-        paymentView.style.display = 'block';
-        document.getElementById('chosen-number-display').innerText = selector.value;
-    }
-}
-
-// 6. tEST MODE TRIGGER (5-Click)
-const titleElem = document.getElementById('main-portal-title');
-if(titleElem) {
-    titleElem.addEventListener('click', () => {
-        tapCount++;
-        if(tapCount === 5) { 
-            titleElem.innerHTML = "tEST MODE <span class='text-warning'>ACTIVE</span>";
-            document.body.style.border = "4px solid #FFD700";
-            logActivity('SMS', 'DEBUG', 'tEST Mode Activated');
-            tapCount = 0; 
-        }
-    });
-}
-
-// LIVE TXT & UI REPAIRING LOGIC
-function startLiveTxt() {
-    const marquee = document.getElementById('live-marquee');
-    const activities = ["Syncing hub...", "USA Proxy Secured...", `PKR Rate: ${livePkrRate.toFixed(2)}`, "LIVE TXT Active"];
-    let i = 0;
-    setInterval(() => { if(marquee) marquee.innerHTML = `<span class="text-info">${activities[i++ % activities.length]}</span>`; }, 5000);
-}
-
-function logActivity(type, app, message) {
+// 5. MASTER LOG ACTIVITY (Cleaned for Android Table Repair)
+function logActivity(type, app, message, status = 'VERIFIED') {
     const tableBody = document.getElementById('user-history-body');
     if(!tableBody) return;
+    
     const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    tableBody.innerHTML = `<tr><td>${type}</td><td class="fw-bold">${app}</td><td>${message}</td><td>VERIFIED</td><td>${timeStr}</td></tr>` + tableBody.innerHTML;
+    
+    // Logic: Every TD MUST have a data-label to match the CSS Card View
+    const newRow = `
+        <tr>
+            <td data-label="TYPE"><span class="badge bg-info">${type}</span></td>
+            <td data-label="SENDER" class="fw-bold text-white">${app}</td>
+            <td data-label="MESSAGE">${message}</td>
+            <td data-label="STATUS"><span class="badge bg-success">${status}</span></td>
+            <td data-label="TIME" class="text-secondary">${timeStr}</td>
+        </tr>`;
+        
+    tableBody.insertAdjacentHTML('afterbegin', newRow);
 }
 
-    /* START: LOG NAVIGATION STATUS */
-document.querySelectorAll('.navbar a').forEach(link => {
-    link.addEventListener('click', (e) => {
-        console.log(`Distinguished user navigating to: ${e.target.href}`);
-    });
+// 6. tEST MODE TRIGGER (5-Click on Title)
+document.getElementById('main-portal-title')?.addEventListener('click', () => {
+    tapCount++;
+    if(tapCount === 5) { 
+        document.getElementById('main-portal-title').innerHTML = "tEST MODE <span class='text-warning'>ACTIVE</span>";
+        document.body.style.border = "4px solid var(--gold)";
+        logActivity('DEBUG', 'SYSTEM', 'tEST Mode Logic Active', 'ACTIVE');
+        tapCount = 0; 
+    }
 });
-/* END: LOG NAVIGATION STATUS */
+ 
+// 7. UI REPAIRING (PART 6) - ANDROID SPECIALS
+function startLiveTxt() {
+    const marquee = document.getElementById('live-marquee');
+    if(!marquee) return;
+    const activities = ["Syncing hub...", "USA Proxy Secured...", `Rate: ${livePkrRate.toFixed(0)}`, "LIVE TXT Active"];
+    let i = 0;
+    setInterval(() => { 
+        marquee.innerHTML = `<span class="text-info">${activities[i++ % activities.length]}</span>`; 
+    }, 4000);
+}
+
+// Keyboard Scroll Repair for Android WebView
+window.addEventListener('resize', () => {
+    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT') {
+        window.setTimeout(() => {
+            document.activeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 150);
+    }
+});
+
+/* END: MASTER UNIFIED LOGIC V8.7 */
 </script>
 
 
