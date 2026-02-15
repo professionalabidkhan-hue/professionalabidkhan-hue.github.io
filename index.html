@@ -10,333 +10,160 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-/* START: MASTER CSS V8.6 | ABID KHAN E-INSTITUTE */
-/* TARGET: abid-khan-institute-hub (Signup) & abid-pedagogy-db (Dashboard) */
-
+/* START: MASTER CSS V9.1 | ABID KHAN E-INSTITUTE */
 :root {
     --cyber-cyan: #00d4ff; 
     --gold: #FFD700; 
     --dark-bg: #030407; 
     --islamic-green: #00c853;
     --deep-blue: #001f3f;
+    --modal-bg: #080a0f; /* Fixed deep modal background */
 }
-/* A. CARDS FRO SELECTING NUMBERS */
-        /* ELITE CARD STYLING */
-        .asset-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            padding: 20px;
-            transition: all 0.3s ease;
-            height: 100%;
-            text-align: center;
-        }
 
-        .asset-card:hover {
-            border-color: var(--cyber-cyan);
-            transform: translateY(-5px);
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
-        }
-
-        .flag-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
-        
-        /* MODAL STYLES */
-        .modal-content { background: #080a0f; border: 2px solid var(--cyber-cyan); border-radius: 20px; }
-        .signup-notice {
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid var(--gold);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 15px;
-        }
-
-        @media (max-width: 768px) {
-            .dua-header { font-size: 20px !important; }
-            .col-6 { width: 100% !important; }
-        }
-/* 1. BASE BODY & ANDROID SYSTEM FIXES */
 body {
     background-color: var(--dark-bg); 
     color: #fff; 
     font-family: 'Inter', sans-serif;
-    margin: 0; padding: 0; overflow-x: hidden; width: 100%;
-    -webkit-font-smoothing: antialiased;
-    /* Removes grey highlight on Android taps */
+    margin: 0; padding: 0; overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
 }
 
-/* 2. NAVIGATION & ELITE BUTTONS */
-.navbar-custom {
-    background-color: var(--deep-blue);
-    padding: 10px 0;
-}
-
+/* NAVBAR & BUTTONS */
+.navbar-custom { background-color: var(--deep-blue); padding: 10px 0; }
 .btn-online-shopping {
     background: linear-gradient(45deg, #007bff, #00d4ff);
-    color: white !important;
-    border: none;
-    font-weight: bold;
-    font-family: 'Orbitron', sans-serif;
-    padding: 8px 18px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    font-size: 0.8rem;
+    color: white !important; font-weight: bold; font-family: 'Orbitron';
+    padding: 8px 18px; border-radius: 5px; font-size: 0.8rem;
     box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-    display: flex; align-items: center; justify-content: center;
 }
 
-/* 3. DUA & PORTAL HEADER */
-.dua-header {
-    font-size: 28px !important;
-    color: var(--gold);
-    font-family: serif;
-    text-align: center;
-    padding: 20px 10px;
+/* ASSET CARDS */
+.asset-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 15px; padding: 20px; transition: 0.3s;
+    text-align: center; cursor: pointer; height: 100%;
 }
-
-/* 4. PART 6: UI REPAIRING - THE ANDROID "CLEAN BATCH" */
-@media (max-width: 768px) {
-    .container { padding: 12px; }
-
-    /* Fix 1: Force vertical stacking for all cards */
-    .row { 
-        display: flex !important; 
-        flex-direction: column !important; 
-        margin: 0 !important;
-    }
-    
-    .col-md-4, .col-md-6 { 
-        width: 100% !important; 
-        padding: 8px 0 !important; 
-        margin-bottom: 15px;
-    }
-
-    /* Fix 2: ELITE TABLE STACKING (Fixes overlapping error in screenshot) */
-    #user-history-table thead { display: none; } /* Hide flat header */
-
-    #user-history-body tr {
-        display: block;
-        background: rgba(0, 212, 255, 0.05);
-        border: 1px solid #222;
-        margin-bottom: 15px;
-        padding: 12px;
-        border-radius: 8px;
-    }
-
-    #user-history-body td {
-        display: block;
-        text-align: left;
-        padding: 6px 0;
-        border: none;
-        position: relative;
-        padding-left: 45%; /* Space for labels */
-        font-size: 11px;
-    }
-
-    /* Injecting Labels for Data Clarity */
-    #user-history-body td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 10px;
-        font-weight: bold;
-        color: var(--cyber-cyan);
-        text-transform: uppercase;
-        font-size: 9px;
-    }
-
-    /* Fix 3: Android Touch Scaling */
-    .btn, .form-select, .form-control {
-        min-height: 50px;
-        font-size: 16px !important; /* Prevents Android keyboard zoom */
-    }
-    
-    .dua-header { font-size: 22px !important; }
+.asset-card:hover {
+    border-color: var(--cyber-cyan);
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
 }
+.flag-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
 
-/* 5. MODAL & SELECTOR REFINEMENT */
-#paymentModal .modal-content { 
-    background: #000; 
-    border: 2px solid var(--cyber-cyan); 
+/* MODAL BACKGROUND FIXES */
+.modal-content {
+    background-color: var(--modal-bg) !important;
+    border: 1px solid var(--cyber-cyan) !important;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
 }
-
+.modal-backdrop.show {
+    opacity: 0.85 !important;
+    background-color: #000 !important;
+}
 #number-selector {
-    background: #000 !important;
-    color: var(--gold) !important;
-    border: 1px solid #444;
+    background-color: #000 !important;
+    color: var(--cyber-cyan) !important;
+    border: 1px solid #333;
 }
 
-/* END: UI REPAIRING (PART 6) */
-/* END: MASTER CSS V8.6 */
+/* 6. PART 6: UI REPAIRING (ANDROID FIX) */
+@media (max-width: 768px) {
+    .col-6 { width: 50% !important; }
+    #user-history-body tr {
+        display: block; background: rgba(0, 212, 255, 0.05);
+        border: 1px solid #222; margin-bottom: 10px; padding: 10px;
+    }
+    #user-history-body td {
+        display: block; padding: 4px 0; position: relative;
+        padding-left: 40%; font-size: 10px; text-align: right;
+    }
+    #user-history-body td::before {
+        content: attr(data-label); position: absolute; left: 0;
+        font-weight: bold; color: var(--cyber-cyan); font-size: 9px;
+    }
+    #user-history-table thead { display: none; }
+}
+/* END: UI REPAIRING */
     </style>
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
     <div class="container d-flex justify-content-between align-items-center">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <a class="navbar-brand d-flex align-items-center" href="#">
             <img src="ABID KHAN.png" width="40" height="40" class="rounded-circle me-2" style="border: 2px solid var(--gold);">
-            <span class="fw-bold" style="font-family:'Orbitron'">ABID KHAN E-INSTITUTE</span>
+            <span class="fw-bold" style="font-family:'Orbitron'; font-size: 0.9rem;">ABID KHAN E-INSTITUTE</span>
         </a>
-
-        <div class="d-flex align-items-center gap-2">
-            <a href="products.html" class="btn btn-online-shopping btn-sm">ONLINE SHOPPING</a>
-            
-            <a href="IT.html" class="btn btn-outline-info btn-sm x-small">IT LAB</a>
+        <div class="d-flex gap-2">
+            <a href="products.html" class="btn btn-online-shopping btn-sm">SHOP</a>
+            <a href="IT.html" class="btn btn-outline-info btn-sm">IT LAB</a>
         </div>
     </div>
 </nav>
+
 <div class="container text-center py-4">
-    <h1 id="main-portal-title" style="font-family:'Orbitron'; font-weight:900; letter-spacing: 2px; cursor: pointer;">
+    <h1 id="main-portal-title" style="font-family:'Orbitron'; font-weight:900; letter-spacing: 2px; cursor: pointer; color: white;">
         DISTINGUISHED GENIUS PORTAL
     </h1>
-    <p class="text-secondary small">Global Sovereign Architecture & Security Hub</p>
+    <p class="text-info x-small">Global Sovereign Architecture | Worker: abid-pedagogy-db</p>
     
-    <div class="ticker-wrap mt-3" style="background: rgba(0,212,255,0.05); padding: 8px; border-radius: 50px; border: 1px solid #222;">
-        <span class="x-small text-secondary">LIVE FEED: </span>
-        <marquee id="live-marquee" style="width: 200px; vertical-align: middle;" class="x-small text-info fw-bold">
-            Handshaking with abid-pedagogy-db... Uplink Secure...
-        </marquee>
-    </div>
-
-    <div class="row g-4 mt-4">
+    <div class="row g-3 mt-2">
         <div class="col-md-6">
-            <div class="p-4 rounded-3 success-card h-100" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(0,212,255,0.2);">
-                <i class="fas fa-shield-halved fa-3x text-info mb-3"></i>
-                <h3 style="font-family:'Orbitron'">ONLINE CLASS ROOM</h3>
-                <p class="small text-warning fw-bold">LEARN ONLINE GLOBALLY</p>
-                <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-primary w-100 fw-bold py-2">ENTER GATEWAY</a>
+            <div class="p-4 rounded-3 border border-info h-100" style="background: rgba(0,212,255,0.02);">
+                <i class="fas fa-shield-halved fa-2x text-info mb-2"></i>
+                <h5 style="font-family:'Orbitron'">CLASSROOM</h5>
+                <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-primary btn-sm w-100 mt-2">LOGIN TO DASHBOARD</a>
             </div>
         </div>
-
-        <div class="col-md-6"> 
-            <div class="p-4 rounded-3 success-card h-100" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(0,212,255,0.2);">
-                <i class="fas fa-book-quran fa-3x text-success mb-3"></i>
-                <h3 style="font-family:'Orbitron'">ISLAMIC STUDIES</h3>
-                <p class="small text-warning fw-bold">WISDOM MODULES</p>
-                <a href="islamic_studies.html" class="btn btn-primary w-100 fw-bold py-2">ENTER GATEWAY</a>
+        <div class="col-md-6">
+            <div class="p-4 rounded-3 border border-success h-100" style="background: rgba(0,200,83,0.02);">
+                <i class="fas fa-book-quran fa-2x text-success mb-2"></i>
+                <h5 style="font-family:'Orbitron'">ISLAMIC LAB</h5>
+                <a href="islamic_studies.html" class="btn btn-success btn-sm w-100 mt-2">ENTER LAB</a>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    // Security and Android Error Watcher
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    
-    // Auto-fix for mobile height glitches
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-</script>
-    <div class="container text-center py-4">
-    <h1 id="main-portal-title" style="font-family:'Orbitron'; font-weight:900; color: white; cursor:pointer;">DISTINGUISHED GENIUS HUB</h1>
-    <p class="text-info small">Global Sovereign Proxy Management</p>
-
-    <div class="row g-3 mt-4">
-        <div class="col-md-4 col-6">
-            <div class="asset-card" onclick="openAsset('USA')">
-                <span class="flag-icon">🇺🇸</span>
-                <h5 class="fw-bold">USA</h5>
-                <p class="x-small text-muted">Verified Virtual Identity</p>
-                <button class="btn btn-sm btn-outline-info w-100">SELECT</button>
-            </div>
-        </div>
-        <div class="col-md-4 col-6">
-            <div class="asset-card" onclick="openAsset('UK')">
-                <span class="flag-icon">🇬🇧</span>
-                <h5 class="fw-bold">UK</h5>
-                <p class="x-small text-muted">Premium British Proxy</p>
-                <button class="btn btn-sm btn-outline-info w-100">SELECT</button>
-            </div>
-        </div>
-        <div class="col-md-4 col-6">
-            <div class="asset-card" onclick="openAsset('CANADA')">
-                <span class="flag-icon">🇨🇦</span>
-                <h5 class="fw-bold">CANADA</h5>
-                <p class="x-small text-muted">Secure Maple Identity</p>
-                <button class="btn btn-sm btn-outline-info w-100">SELECT</button>
-            </div>
-        </div>
-        <div class="col-md-4 col-6">
-            <div class="asset-card" onclick="openAsset('CHINA')">
-                <span class="flag-icon">🇨🇳</span>
-                <h5 class="fw-bold">CHINA</h5>
-                <p class="x-small text-muted">Mainland Data Proxy</p>
-                <button class="btn btn-sm btn-outline-info w-100">SELECT</button>
-            </div>
-        </div>
-        <div class="col-md-4 col-6">
-            <div class="asset-card" onclick="openAsset('AUSTRALIA')">
-                <span class="flag-icon">🇦🇺</span>
-                <h5 class="fw-bold">AUSTRALIA</h5>
-                <p class="x-small text-muted">Oceanic Secure Line</p>
-                <button class="btn btn-sm btn-outline-info w-100">SELECT</button>
-            </div>
-        </div>
+    <h4 class="mt-5" style="font-family:'Orbitron'; color: var(--gold);">SECURE VIRTUAL PROXY</h4>
+    <div class="row g-2 mt-2">
+        <div class="col-6 col-md-4"><div class="asset-card" onclick="openAsset('USA')"><span class="flag-icon">🇺🇸</span><h5>USA</h5></div></div>
+        <div class="col-6 col-md-4"><div class="asset-card" onclick="openAsset('UK')"><span class="flag-icon">🇬🇧</span><h5>UK</h5></div></div>
+        <div class="col-6 col-md-4"><div class="asset-card" onclick="openAsset('CANADA')"><span class="flag-icon">🇨🇦</span><h5>CANADA</h5></div></div>
+        <div class="col-6 col-md-4"><div class="asset-card" onclick="openAsset('CHINA')"><span class="flag-icon">🇨🇳</span><h5>CHINA</h5></div></div>
+        <div class="col-6 col-md-4"><div class="asset-card" onclick="openAsset('AUSTRALIA')"><span class="flag-icon">🇦🇺</span><h5>AUSTRALIA</h5></div></div>
     </div>
 </div>
 
-<div class="modal fade" id="assetModal" tabindex="-1" aria-hidden="true">
+<section class="container mt-4">
+    <div class="p-3 rounded-3 border border-secondary bg-black">
+        <h6 class="text-info" style="font-family:'Orbitron'"><i class="fas fa-history me-2"></i>LIVE ACTIVITY</h6>
+        <div class="table-responsive">
+            <table class="table table-dark mb-0" id="user-history-table">
+                <tbody id="user-history-body">
+                    <tr>
+                        <td data-label="TYPE">SMS</td>
+                        <td data-label="APP">WhatsApp</td>
+                        <td data-label="MSG">OTP: 482-910</td>
+                        <td data-label="TIME">14:02 PM</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content text-white">
-            <div class="modal-header border-secondary">
-                <h5 class="modal-title" id="modalTitle">Confirm Asset</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body text-center">
-                <p class="small text-info mb-1">Choose your specific number:</p>
-                <select id="number-selector" class="form-select bg-black text-white border-secondary mb-3"></select>
-                
-                <div class="signup-notice">
-                    <i class="fas fa-user-shield text-warning mb-2 fa-2x"></i>
-                    <h6 class="text-warning fw-bold">IDENTIFICATION REQUIRED</h6>
-                    <p class="small text-white-50">To provide your account info and secure this asset, you must first signup at <b>abid-khan-institute-hub</b>.</p>
-                    <p class="x-small text-info">Payments are processed directly to: <br><b>ABID KHAN GWALLET</b></p>
-                    <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-warning w-100 fw-bold mt-2">SIGNUP / LOGIN TO PROCEED</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    const verifiedPool = {
-        "USA": ["+1 (202) 555-0101", "+1 (332) 444-0988"],
-        "UK": ["+44 7700 900077", "+44 20 7123 4567"],
-        "CANADA": ["+1 (416) 999-8877", "+1 (604) 555-1234"],
-        "CHINA": ["+86 10 6552 1234", "+86 21 6248 5678"],
-        "AUSTRALIA": ["+61 2 9123 4567", "+61 3 8888 9999"]
-    };
-
-    function openAsset(country) {
-        document.getElementById('modalTitle').innerText = `${country} Asset Selection`;
-        const selector = document.getElementById('number-selector');
-        selector.innerHTML = "";
-        verifiedPool[country].forEach(num => {
-            let opt = document.createElement('option');
-            opt.value = num; opt.innerText = `💎 ${num} [AVAILABLE]`;
-            selector.appendChild(opt);
-        });
-        new bootstrap.Modal(document.getElementById('assetModal')).show();
-    }
-
-    // tEST Mode Logic
-    let taps = 0;
-    document.getElementById('main-portal-title').addEventListener('click', () => {
-        taps++; if(taps === 5) { alert("tEST Mode Active"); taps = 0; }
-    });
-</script>
-    <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark text-white border-info">
             <div class="modal-header border-secondary">
                 <h5 class="modal-title" id="modalTitle">Select Number</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body">
-                <label class="small text-info mb-2">Available Verified Numbers:</label>
-                <select id="number-selector" class="form-select bg-black text-white border-secondary mb-3">
-                    </select>
-                <button class="btn btn-info w-100" onclick="showFurtherDetails()">VIEW DETAILS & PROCEED</button>
+            <div class="modal-body text-center">
+                <select id="number-selector" class="form-select mb-3"></select>
+                <button class="btn btn-info w-100" onclick="showFurtherDetails()">PROCEED TO SECURE</button>
             </div>
         </div>
     </div>
@@ -344,320 +171,64 @@ body {
 
 <div class="modal fade" id="detailsModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-success shadow-lg">
+        <div class="modal-content border-warning">
             <div class="modal-body text-center p-4">
-                <i class="fas fa-check-circle text-success fa-3x mb-3"></i>
-                <h4 class="fw-bold">CONFIRM SELECTION</h4>
-                <div class="p-3 bg-light rounded border mb-3">
-                    <span class="text-muted small d-block">SELECTED NUMBER:</span>
-                    <span id="display-final-number" class="h5 fw-bold text-primary">---</span>
+                <i class="fas fa-vault text-warning fa-3x mb-3"></i>
+                <h4 class="text-white">GWALLET AUTH</h4>
+                <div class="p-2 border border-secondary mb-3 bg-black">
+                    <span class="text-muted x-small d-block">RESERVED NUMBER:</span>
+                    <span id="display-final-number" class="fw-bold text-info">---</span>
                 </div>
-                <p class="small text-muted">
-                    <i class="fas fa-wallet text-success me-1"></i> 
-                    Payment will be deducted from your <b>Abid Khan GWallet</b>.
-                </p>
-                <ul class="text-start small mb-4">
-                    <li>Full Number Access Granted</li>
-                    <li>Unlock Online Classroom features</li>
-                    <li>Direct Teacher Messaging active</li>
-                </ul>
-                <button class="btn btn-success w-100 mb-2" onclick="processFinalDeduction()">AUTHORIZE G-WALLET</button>
-                <button class="btn btn-link btn-sm text-secondary" data-bs-dismiss="modal">Change Number</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark border border-warning" style="border-radius: 20px;">
-            <div class="modal-header border-secondary">
-                <h5 class="modal-title glitch-text" style="font-size: 0.9rem;"><i class="fas fa-vault me-2"></i> GATEWAY ACCESS</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body p-4 text-center">
-                
-                <div id="guest-selection-view">
-                    <p class="x-small text-info mb-3">VIRTUAL PROXY NUMBER SELECTION</p>
-                    <select class="form-select mb-3" id="number-selector" onchange="checkAuthToProceed()">
-                        </select>
-                    <div id="auth-warning" class="p-3 mb-3 border border-danger rounded-3" style="display:none; background: rgba(255,0,0,0.1);">
-                        <p class="x-small text-danger fw-bold mb-2">IDENTIFICATION REQUIRED</p>
-                        <p class="small">You must register your profile in <b>abid-khan-institute-hub</b> to secure this number.</p>
-                        <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-sm btn-danger w-100">SIGNUP / LOGIN NOW</a>
-                    </div>
-                </div>
-
-                <div id="payment-gate-view" style="display:none;">
-                    <p class="small text-secondary mb-1">RECEIVER: <span class="text-warning">ABID KHAN</span></p>
-                    <div class="p-3 mb-3 rounded-3" style="background: rgba(255, 215, 0, 0.05); border: 2px solid var(--gold);">
-                        <h6 class="text-muted small mb-1">GOOGLE PAY WALLET ID</h6>
-                        <h3 class="text-white fw-bold d-inline-block" id="wallet-id">923497469638</h3>
-                        <i class="fas fa-copy ms-2 text-info copy-btn" onclick="copyWalletID()" title="Copy ID"></i>
-                    </div>
-                    
-                    <form id="wire-proof-form">
-                        <div class="row g-2 mb-3">
-                            <div class="col-6"><div class="p-2 border border-secondary bg-black x-small"><span class="text-muted d-block">AMOUNT</span><span id="wire-amount" class="fw-bold">$0.00</span></div></div>
-                            <div class="col-6"><div class="p-2 border border-secondary bg-black x-small"><span class="text-muted d-block">RESERVED</span><span id="chosen-number-display" class="fw-bold">---</span></div></div>
-                        </div>
-                        <input type="text" id="auto-name" class="form-control" placeholder="Full Name" required readonly>
-                        <input type="text" id="auto-email" class="form-control" placeholder="Email Address" required readonly>
-                        <input type="text" class="form-control" placeholder="Transaction ID" required>
-                        <div class="text-start mb-2"><label class="x-small text-muted">Proof Screenshot</label><input type="file" class="form-control" required></div>
-                        <button type="submit" class="btn btn-warning w-100 fw-bold">FINALIZE PROCUREMENT</button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-                    <form id="wire-proof-form">
-                        <div class="row g-2 mb-3">
-                            <div class="col-6"><div class="p-2 border border-secondary x-small">AMOUNT <span id="wire-amount" class="d-block fw-bold"></span></div></div>
-                            <div class="col-6"><div class="p-2 border border-secondary x-small">RESERVED <span id="chosen-number-display" class="d-block fw-bold"></span></div></div>
-                        </div>
-                        <input type="text" id="auto-name" class="form-control" placeholder="Name" readonly>
-                        <input type="text" class="form-control" placeholder="Transaction ID" required>
-                        <button type="submit" class="btn btn-warning w-100 fw-bold">FINALIZE PROCUREMENT</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<section class="container mt-5">
-    <div class="p-4 rounded-3 border border-info" style="background: rgba(0, 212, 255, 0.05); backdrop-filter: blur(5px);">
-        <div class="row align-items-center">
-            <div class="col-md-2 text-center">
-                <i class="fas fa-universal-access fa-4x text-info"></i>
-            </div>
-           
-            <div class="col-md-10">
-                <h4 class="fw-bold text-white" style="font-family: 'Orbitron';">VIRTUAL ASSET CAPABILITIES</h4>
-                <p class="small text-secondary mb-2">Each 1-YEAR activation provides a fully functional alphanumeric identity for the following purposes:</p>
-                <div class="row g-2">
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="badge bg-dark border border-success p-2 w-100 text-start">
-                            <i class="fab fa-whatsapp text-success me-2"></i> WHATSAPP / SOCIAL
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="badge bg-dark border border-primary p-2 w-100 text-start">
-                            <i class="fas fa-sms text-primary me-2"></i> SMS / OTP VERIFY
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="badge bg-dark border border-warning p-2 w-100 text-start">
-                            <i class="fas fa-phone-alt text-warning me-2"></i> VOICE CALLS
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="badge bg-dark border border-info p-2 w-100 text-start">
-                            <i class="fas fa-user-secret text-info me-2"></i> PRIVACY SHIELD
-                        </div>
-                    </div>
-                </div>
-                <p class="x-small text-muted mt-3 mb-0">
-                    *Users can receive unlimited incoming SMS and Voice calls for account verifications across all global platforms.*
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="container mt-5">
-    <div class="p-4 rounded-3 border border-warning" style="background: rgba(255, 215, 0, 0.03); backdrop-filter: blur(10px);">
-        <div class="row align-items-center">
-            <div class="col-md-2 text-center">
-                <i class="fas fa-network-wired fa-4x text-warning"></i>
-            </div>
-            <div class="col-md-10">
-                <h4 class="fw-bold text-white" style="font-family: 'Orbitron';">COMMUNICATION CAPABILITIES</h4>
-                <p class="small text-secondary mb-3">These virtual assets bridge the gap between global networks and your digital devices via the internet.</p>
-                
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <div class="p-3 bg-black border border-info rounded-3 h-100">
-                            <h6 class="text-info fw-bold"><i class="fas fa-key me-2"></i>ACCOUNT VERIFICATION</h6>
-                            <p class="x-small text-muted mb-0">Instant reception of OTP codes for WhatsApp, Google, Telegram, and Banking apps. Secured for 1 YEAR.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="p-3 bg-black border border-success rounded-3 h-100">
-                            <h6 class="text-success fw-bold"><i class="fas fa-comments me-2"></i>PERSON-TO-PERSON</h6>
-                            <p class="x-small text-muted mb-0">Use the internet to send/receive texts and voice calls globally. Connect with anyone, anywhere, with complete privacy.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> 
-</section>
-
-<section class="container py-5 mt-2">
-    <div class="p-4 rounded-3 border border-secondary" style="background: #050608;">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h5 class="fw-bold text-white mb-0" style="font-family:'Orbitron'"><i class="fas fa-history me-2 text-info"></i>IDENTITY ACTIVITY LOG</h5>
-                <p class="x-small text-muted mb-0">Secure History managed by abid-pedagogy-db</p>
-            </div>
-            <button class="btn btn-sm btn-outline-info x-small" onclick="location.href='https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/'">OPEN FULL INBOX</button>
-        </div>
-
-        <div class="table-responsive">
-            <table class="table table-dark table-hover border-secondary" style="font-size: 12px;">
-                <thead class="text-info x-small">
-                    <tr>
-                        <th>TYPE</th>
-                        <th>SENDER / APP</th>
-                        <th>MESSAGE / DURATION</th>
-                        <th>STATUS</th>
-                        <th>TIME</th>
-                    </tr>
-                </thead>
-                <tbody id="user-history-body">
-                    <tr>
-                        <td><i class="fas fa-comment-dots text-success"></i> SMS</td>
-                        <td>WhatsApp</td>
-                        <td>Your OTP code is: 482-910</td>
-                        <td><span class="badge bg-success" style="font-size: 8px;">RECEIVED</span></td>
-                        <td class="text-muted">14:02 PM</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fas fa-phone-alt text-warning"></i> VOICE</td>
-                        <td>+1 202-555-0199</td>
-                        <td>00:45 (Incoming Call)</td>
-                        <td><span class="badge bg-primary" style="font-size: 8px;">COMPLETED</span></td>
-                        <td class="text-muted">Yesterday</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="text-center mt-2">
-            <p class="x-small text-muted">History is encrypted and deleted automatically after 30 days unless archived.</p>
-        </div>
-    </div>
-</section>
-
-<div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark border border-warning" style="border-radius: 20px;">
-            <div class="modal-header border-secondary">
-                <h5 class="modal-title glitch-text" style="font-size: 0.9rem;"><i class="fas fa-vault me-2"></i> GATEWAY ACCESS</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body p-4 text-center">
-                
-                <div id="guest-selection-view">
-                    <p class="x-small text-info mb-3">VIRTUAL PROXY NUMBER SELECTION</p>
-                    <select class="form-select mb-3" id="number-selector" onchange="checkAuthToProceed()">
-                        </select>
-                    <div id="auth-warning" class="p-3 mb-3 border border-danger rounded-3" style="display:none; background: rgba(255,0,0,0.1);">
-                        <p class="x-small text-danger fw-bold mb-2">IDENTIFICATION REQUIRED</p>
-                        <p class="small">You must register your profile in <b>abid-khan-institute-hub</b> to secure this number.</p>
-                        <a href="https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/" class="btn btn-sm btn-danger w-100">SIGNUP / LOGIN NOW</a>
-                    </div>
-                </div>
-
-                <div id="payment-gate-view" style="display:none;">
-                    <p class="small text-secondary mb-1">RECEIVER: <span class="text-warning">ABID KHAN</span></p>
-                    <div class="p-3 mb-3 rounded-3" style="background: rgba(255, 215, 0, 0.05); border: 2px solid var(--gold);">
-                        <h6 class="text-muted small mb-1">GOOGLE PAY WALLET ID</h6>
-                        <h3 class="text-white fw-bold d-inline-block" id="wallet-id">923497469638</h3>
-                        <i class="fas fa-copy ms-2 text-info copy-btn" onclick="copyWalletID()" title="Copy ID"></i>
-                    </div>
-                    
-                    <form id="wire-proof-form">
-                        <div class="row g-2 mb-3">
-                            <div class="col-6"><div class="p-2 border border-secondary bg-black x-small"><span class="text-muted d-block">AMOUNT</span><span id="wire-amount" class="fw-bold">$0.00</span></div></div>
-                            <div class="col-6"><div class="p-2 border border-secondary bg-black x-small"><span class="text-muted d-block">RESERVED</span><span id="chosen-number-display" class="fw-bold">---</span></div></div>
-                        </div>
-                        <input type="text" id="auto-name" class="form-control" placeholder="Full Name" required readonly>
-                        <input type="text" id="auto-email" class="form-control" placeholder="Email Address" required readonly>
-                        <input type="text" class="form-control" placeholder="Transaction ID" required>
-                        <div class="text-start mb-2"><label class="x-small text-muted">Proof Screenshot</label><input type="file" class="form-control" required></div>
-                        <button type="submit" class="btn btn-warning w-100 fw-bold">FINALIZE PROCUREMENT</button>
-                    </form>
-                </div>
-
+                <p class="x-small text-muted">Identify via <b>abid-khan-institute-hub</b></p>
+                <button class="btn btn-warning w-100 fw-bold" onclick="processFinalDeduction()">AUTHORIZE PROCUREMENT</button>
             </div>
         </div>
     </div>
 </div>
 
-<footer class="mt-5 pt-5 pb-4 border-top border-secondary text-center">
-    <div class="container">
-        <h4 class="glitch-text" style="font-size: 1rem;">ABID KHAN E-INSTITUTE</h4>
-        <a href="https://wa.me/923497469638" class="btn-whatsapp-elite mt-2"><i class="fab fa-whatsapp me-2"></i> WHATSAPP OFFICE</a>
-        
-  
-</footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/* START: MASTER UNIFIED LOGIC V8.9 | ABID KHAN E-INSTITUTE 
-   REPAIR: Multi-Stage Popup for Specific Number Details & GWallet Logic
-*/
+/* START: MASTER LOGIC V9.1 */
+const verifiedPool = {
+    "USA": ["+1 (202) 555-0101", "+1 (332) 444-0988"],
+    "UK": ["+44 7700 900077", "+44 20 7123 4567"],
+    "CANADA": ["+1 (416) 999-8877", "+1 (604) 555-1234"],
+    "CHINA": ["+86 10 6552 1234", "+86 21 6248 5678"],
+    "AUSTRALIA": ["+61 2 9123 4567", "+61 3 8888 9999"]
+};
 
-// 1. GLOBAL STATE (Keep your existing verifiedPool and assetPrices)
-let selectedNumber = "";
-let currentCountry = "";
+let taps = 0;
+document.getElementById('main-portal-title').addEventListener('click', () => {
+    taps++; 
+    if(taps === 5) { alert("tEST Mode Active"); taps = 0; }
+});
 
-// ... [Existing fetchLiveExchangeRate & syncCurrency Logic Here] ...
-
-// 4. VIRTUAL NUMBER & MODAL LOGIC (Step 1)
-function openAsset(country, price) {
-    currentCountry = country;
-    document.getElementById('modalTitle').innerText = `Select your ${country} Number`;
-    
+function openAsset(country) {
+    document.getElementById('modalTitle').innerText = `${country} Selection`;
     const selector = document.getElementById('number-selector');
-    if(!selector) return;
-
-    selector.innerHTML = `<option value="" disabled selected>Select a Verified ${country} Number</option>`;
-    verifiedPool[country].forEach(num => {
-        let opt = document.createElement('option');
-        opt.value = num;
-        opt.innerHTML = `💎 ${num} [VERIFIED]`;
-        selector.appendChild(opt);
+    selector.innerHTML = `<option disabled selected>Pick a number</option>`;
+    verifiedPool[country].forEach(n => {
+        let o = document.createElement('option'); o.value = n; o.innerText = n; selector.appendChild(o);
     });
-
-    const myModal = new bootstrap.Modal(document.getElementById('paymentModal'));
-    myModal.show();
+    new bootstrap.Modal(document.getElementById('paymentModal')).show();
 }
 
-// 4.1 FURTHER DETAILS POPUP (Step 2)
 function showFurtherDetails() {
-    const selector = document.getElementById('number-selector');
-    selectedNumber = selector.value;
-
-    if(!selectedNumber) {
-        alert("Please select a number first!");
-        return;
-    }
-
-    // Hide selection modal
+    const num = document.getElementById('number-selector').value;
+    if(!num || num.includes("Pick")) return alert("Select a number first!");
+    document.getElementById('display-final-number').innerText = num;
     bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
-
-    // Set data in details modal
-    document.getElementById('display-final-number').innerText = selectedNumber;
-
-    // Show details modal
-    const detModal = new bootstrap.Modal(document.getElementById('detailsModal'));
-    detModal.show();
-    
-    logActivity('PRE-CHECK', 'SYSTEM', `Reviewing details for ${selectedNumber}`, 'PENDING');
+    setTimeout(() => {
+        new bootstrap.Modal(document.getElementById('detailsModal')).show();
+    }, 400); // Small delay to prevent background flickering
 }
 
-// 4.2 FINAL PROCESS
 function processFinalDeduction() {
-    // Logic for abid-pedagogy-db would go here
-    logActivity('WALLET', 'GWALLET', `Deduction Authorized for ${selectedNumber}`, 'SUCCESS');
-    alert("Authorization Successful! Redirecting to Classroom...");
-    window.location.href = "dashboard.html"; // Redirect to your pedagogy dashboard
+    alert("Handshaking with abid-pedagogy-db... Success!");
+    window.location.href = "https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/";
 }
-
-// ... [Keep Section 5, 6, and 7 from V8.8] ...
+/* END: MASTER LOGIC V9.1 */
 </script>
-
 
 </body>
 </html>
