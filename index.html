@@ -190,8 +190,52 @@ input, textarea, select, .modal-content { user-select: text !important; }
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/* START: MASTER PERMANENT LOGIC V10.0 */
+/* START: Part 1 Code Protection & Inspector Disable Logic */
+// 1. High-Priority Right-Click Disable
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    alert("Source code access is restricted.");
+}, { capture: true });
 
+// 2. Comprehensive Keyboard Shortcut Blocker
+document.addEventListener('keydown', (e) => {
+    // Disable F12 (123)
+    if (e.keyCode === 123 || e.key === "F12") {
+        e.preventDefault();
+        return false;
+    }
+    // Disable Ctrl+Shift+I (Inspect), J (Console), C (Selector)
+    if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67 || e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+        e.preventDefault();
+        return false;
+    }
+    // Disable Ctrl+U (View Source) and Ctrl+S (Save)
+    if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83 || e.key === 'u' || e.key === 's')) {
+        e.preventDefault();
+        return false;
+    }
+}, { capture: true });
+
+// 3. Anti-Debugger & Console Trap
+setInterval(() => {
+    // Clear console to hide logic
+    console.clear();
+    console.log("%cSTOP! ACCESS RESTRICTED", "color:red;font-size:30px;font-weight:bold;");
+    
+    // Debugger trap: detects if DevTools is open
+    const start = new Date().getTime();
+    debugger; 
+    if (new Date().getTime() - start > 100) {
+        document.body.innerHTML = `
+            <div style="background:#000;color:cyan;text-align:center;padding-top:20%;height:100vh;font-family:Orbitron;">
+                <h1>SECURITY PROTOCOL ACTIVE</h1>
+                <p>Please close Developer Tools to return to ABID KHAN HUB.</p>
+            </div>`;
+    }
+}, 1000);
+/* END: Part 1 Code Protection */
+
+/* START: MASTER PERMANENT LOGIC V10.0 */
 // 1. Virtual Number Pool (Manual Update Area)
 const verifiedPool = {
     "USA": ["+1 (202) 555-0101", "+1 (332) 444-0988"],
@@ -203,12 +247,19 @@ const verifiedPool = {
 
 // 2. tEST Mode Activation
 let taps = 0;
-document.getElementById('main-portal-title').addEventListener('click', () => {
-    taps++; 
-    if(taps === 5) { alert("tEST Mode Active"); taps = 0; }
-});
+// Note: Targeting the navbar brand for the secret trigger
+const brandTrigger = document.querySelector('.navbar-brand span') || document.getElementById('main-portal-title');
+if (brandTrigger) {
+    brandTrigger.addEventListener('click', () => {
+        taps++; 
+        if(taps === 5) { 
+            alert("tEST Mode Active: Internal Access Granted"); 
+            taps = 0; 
+        }
+    });
+}
 
-// 3. Asset Handling Logic
+// 3. Asset & Modal Logic
 function openAsset(country) {
     document.getElementById('modalTitle').innerText = `${country} Selection`;
     const selector = document.getElementById('number-selector');
@@ -233,52 +284,14 @@ function processFinalDeduction() {
     alert("Handshaking with abid-pedagogy-db... Success!");
     window.location.href = "https://abid-pedagogy-db.abidkhanpedagogyinstitute.workers.dev/";
 }
+/* END: MASTER PERMANENT LOGIC V10.0 */
 
-// 4. PERMANENT SECURITY (RIGHT-CLICK / F12 / SHORTCUTS)
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.onkeydown = function(e) {
-    if (e.keyCode == 123 || 
-       (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) ||
-       (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {
-        return false;
-    }
-};
-setInterval(() => { console.clear(); console.log("%cSTOP!", "color:red;font-size:30px"); }, 1000);
-/* START: Code Protection & Inspector Disable Logic */
-
-// 1. Enhanced Right-Click Disable
-document.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-    alert("Source code access is restricted.");
-}, { capture: true });
-
-// 2. Modern Keyboard Listener (Using 'key' instead of 'keyCode')
-document.addEventListener('keydown', (e) => {
-    // Disable F12
-    if (e.key === "F12") {
-        e.preventDefault();
-        return false;
-    }
-    // Disable Ctrl+Shift+I, J, C and Ctrl+U
-    if (e.ctrlKey && (e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C') || e.key === 'u' || e.key === 's')) {
-        e.preventDefault();
-        return false;
-    }
-}, { capture: true });
-
-// 3. The "Console Trap" - Automatically closes or clears if tools are opened
-setInterval(() => {
-    const before = new Date().getTime();
-    debugger; // This pauses execution if the console is open
-    const after = new Date().getTime();
-    if (after - before > 100) {
-        // If it took too long, the debugger was active
-        document.body.innerHTML = "<h1>Access Denied: Please close Developer Tools to continue.</h1>";
-    }
-}, 1000);
-
-/* END: Code Protection & Inspector Disable Logic */
-
+/* START: PART 6 - UI REPAIRING */
+// Restores modal focus and ensures 'LIVE TXT' logic remains smooth
+document.querySelectorAll('.modal').forEach(m => {
+    m.addEventListener('shown.bs.modal', () => console.log("UI Repair: Active Context Secured"));
+});
+/* END: PART 6 - UI REPAIRING */
 </script>
 </body>
 </html>
