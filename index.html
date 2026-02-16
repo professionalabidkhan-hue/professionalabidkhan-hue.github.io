@@ -246,6 +246,43 @@ document.onkeydown = function(e) {
 setInterval(() => { console.clear(); console.log("%cSTOP!", "color:red;font-size:30px"); }, 1000);
 
 /* END: MASTER PERMANENT LOGIC V10.0 */
+    /* START: Code Protection & Inspector Disable Logic */
+
+// 1. Disable Right-Click Context Menu
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    alert("Source code access is restricted.");
+});
+
+// 2. Disable Keyboard Shortcuts (F12, Ctrl+Shift+I, Ctrl+U, etc.)
+document.onkeydown = function(e) {
+    // Disable F12
+    if (e.keyCode == 123) {
+        return false;
+    }
+    // Disable Ctrl+Shift+I (Inspect)
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+        return false;
+    }
+    // Disable Ctrl+Shift+C (Element Selector)
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+        return false;
+    }
+    // Disable Ctrl+Shift+J (Console)
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+        return false;
+    }
+    // Disable Ctrl+U (View Source)
+    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        return false;
+    }
+    // Disable Ctrl+S (Save Page)
+    if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) {
+        return false;
+    }
+};
+
+/* END: Code Protection & Inspector Disable Logic */
 </script>
 </body>
 </html>
