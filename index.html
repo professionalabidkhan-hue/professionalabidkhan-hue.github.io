@@ -244,45 +244,41 @@ document.onkeydown = function(e) {
     }
 };
 setInterval(() => { console.clear(); console.log("%cSTOP!", "color:red;font-size:30px"); }, 1000);
+/* START: Code Protection & Inspector Disable Logic */
 
-/* END: MASTER PERMANENT LOGIC V10.0 */
-    /* START: Code Protection & Inspector Disable Logic */
-
-// 1. Disable Right-Click Context Menu
+// 1. Enhanced Right-Click Disable
 document.addEventListener('contextmenu', (e) => {
     e.preventDefault();
     alert("Source code access is restricted.");
-});
+}, { capture: true });
 
-// 2. Disable Keyboard Shortcuts (F12, Ctrl+Shift+I, Ctrl+U, etc.)
-document.onkeydown = function(e) {
+// 2. Modern Keyboard Listener (Using 'key' instead of 'keyCode')
+document.addEventListener('keydown', (e) => {
     // Disable F12
-    if (e.keyCode == 123) {
+    if (e.key === "F12") {
+        e.preventDefault();
         return false;
     }
-    // Disable Ctrl+Shift+I (Inspect)
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+    // Disable Ctrl+Shift+I, J, C and Ctrl+U
+    if (e.ctrlKey && (e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C') || e.key === 'u' || e.key === 's')) {
+        e.preventDefault();
         return false;
     }
-    // Disable Ctrl+Shift+C (Element Selector)
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-        return false;
+}, { capture: true });
+
+// 3. The "Console Trap" - Automatically closes or clears if tools are opened
+setInterval(() => {
+    const before = new Date().getTime();
+    debugger; // This pauses execution if the console is open
+    const after = new Date().getTime();
+    if (after - before > 100) {
+        // If it took too long, the debugger was active
+        document.body.innerHTML = "<h1>Access Denied: Please close Developer Tools to continue.</h1>";
     }
-    // Disable Ctrl+Shift+J (Console)
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-        return false;
-    }
-    // Disable Ctrl+U (View Source)
-    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-        return false;
-    }
-    // Disable Ctrl+S (Save Page)
-    if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) {
-        return false;
-    }
-};
+}, 1000);
 
 /* END: Code Protection & Inspector Disable Logic */
+
 </script>
 </body>
 </html>
