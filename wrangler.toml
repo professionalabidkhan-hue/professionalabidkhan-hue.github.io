@@ -5,12 +5,22 @@ compatibility_date = "2026-02-10"
 [ai]
 binding = "AI"
 
-[[kv_namespaces]]
-binding = "abid_pedagogy_db"
-id = "68cf91c6f606eb4c30cc5bf692045694"
+# FIX: Changed from kv_namespaces to d1_databases
+[[d1_databases]]
+binding = "DB" # This MUST match 'env.DB' in your code
+database_name = "abid_pedagogy_db"
+database_id = "68cf91c6f606eb4c30cc5bf692045694"
 
 [vars]
 EMAIL_FROM = "verify@abid-pedagogy-hub.com"
 
 [observability]
 enabled = true
+
+[[durable_objects.bindings]]
+name = "CHAT_ROOM"
+class_name = "ChatRoom"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["ChatRoom"]
