@@ -1,0 +1,43 @@
+name: Deploy Abid Khan E-Hub
+
+on:
+
+  push:
+
+    branches:
+
+      - main  # This triggers the deploy whenever you push to the 'main' branch
+
+
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    name: Deploy to Cloudflare Workers
+
+    steps:
+
+      - name: Checkout Code
+
+        uses: actions/checkout@v4
+
+
+
+      - name: Deploy Worker
+
+        uses: cloudflare/wrangler-action@v3
+
+        with:
+
+          # These refer to the names you saved in GitHub Settings > Secrets
+
+          apiToken: ${{ xqD9HUiSP9l2hDBpsuxn8GEidr13KLvrJ30Av62H }}
+
+          accountId: ${{ 68cf91c6f606eb4c30cc5bf692045694 }}
+
+          # This ensures migrations (Durable Objects) are handled
+
+          command: deploy --minify
